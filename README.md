@@ -7,7 +7,7 @@ This is an extremely early alpha (in fact it is more a prototype designed to tes
 
 How to play:
 
-To be honest it's not really playable at the moment. If you really want to check it out the clone the repo and use your browser (Chrome only at the moment, but will be cross-browser in due course) to view the index.html file. But seriously, this is not yet a game. What might be more interesting is to look at the source and to compare with your own approaches in creating HTML5 games.
+To be honest it's not really playable at the moment. If you really want to check it out then clone the repo and use your browser (Chrome only at the moment, but will be cross-browser in due course) to view the index.html file. But seriously, this is not yet a game. What might be more interesting is to look at the source and to compare with your own approaches in creating HTML5 games.
 
 Technology:
 
