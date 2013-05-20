@@ -14,11 +14,11 @@ Technology:
 -----------
 
 + canvas element
-+ *localStorage
++ (*)localStorage
 + AJAX
-+ *HTML5 audio
++ (*)HTML5 audio
 + Javascript game engine
-+ An as yet undetermined server side setup for storing saved games, etc. Probably PHP or Python. Google App Engine is a strong contender at this point but it has not been properly looked into.
++ (*)An as yet undetermined server side setup for storing saved games, etc. Probably PHP or Python. Google App Engine is a strong contender at this point but it has not been properly looked into.
 
 (*) indicates that the technology is not yet implemented
 
