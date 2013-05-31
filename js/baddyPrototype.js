@@ -1,4 +1,4 @@
-var baddyPrototype = $.extend({}, actorPrototype, {
+var baddyPrototype = $.extend(Object.create(actorPrototype), {
 	firerId: (function() {
 		var counter=-1; 
 		return (function() {

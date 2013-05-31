@@ -1,0 +1,52 @@
+body {
+	font-family: 'sans-serif';
+}
+
+#info {
+	position: fixed;
+	color: white;
+	pointer-events: none;
+}
+
+#container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#gameContainer {
+	position: relative;
+	width: auto;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	margin-right: 200px;
+	overflow: auto;
+}
+
+#gameCanvas {
+	position: relative;
+}
+
+#palette {
+	float: right;
+	display: none;
+	top: 0;
+	right: 0;
+	width: 200px;
+	height: 100%;
+	padding: 10px;
+	color: black;
+	background-color: #999;
+}
+
+#palette>p:hover {
+	color: yellow;
+	cursor: pointer;
+}
+
+.tool.selected {
+	font-weight: bold;
+}

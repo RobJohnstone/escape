@@ -1,24 +1,31 @@
 var graphics = {};
 
-graphics.init = function(width, height, pixelDensity) {
-	/* not yet added support for pixel density to functions that need to translate between screen and canvas coords
-	   (e.g. in input.js) */
-	if (!pixelDensity) pixelDensity = 1;
-	graphics.pixelDensity = pixelDensity;
+graphics.init = function(width, height, clipping) {
+	$('#gameContainer').html('');
+	graphics.viewport = {
+		width: $('#gameContainer').width(),
+		height: $('#gameContainer').height()
+		/*width: (window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||800),
+		height: (window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||600)*/
+	};
 	if (width === 'fullscreen') {
 		graphics.fullscreen = true;
-		width = (window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||800);
-		height = (window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||600);
+		width = graphics.viewport.width;
+		height = graphics.viewport.height;
 	}
-	pixelWidth = width * pixelDensity;
-	pixelHeight = height * pixelDensity;
-	$('#gameContainer').html('<canvas id="gameCanvas" class="defaultBorder" width="'+ pixelWidth +'px" height="' + pixelHeight +'px">Your broswer does not support the "canvas element". To play this game you will need a more modern browser.</canvas>');
-	$('#gameCanvas').css({width: +width+'px', height: height+'px'});
+	graphics.initCanvas('game', width, height);
+	graphics.clipping = (clipping === undefined) ? true : clipping;
+};
 
-	graphics.gameCanvas = document.getElementById('gameCanvas');
-	graphics.gameContext = graphics.gameCanvas.getContext('2d');
-	graphics.canvasWidth = pixelWidth;
-	graphics.canvasHeight = pixelHeight;
+graphics.initCanvas = function(name, width, height) {
+	if (!width) width = 800;
+	if (!height) height = 600;
+	$('#gameContainer').append('<canvas id="'+name+'Canvas" class="defaultBorder" width="'+ width +'px" height="' + height +'px">Your broswer does not support the "canvas element". To play this game you will need a more modern browser.</canvas>');
+	$('#'+name+'Canvas').css({width: +width+'px', height: height+'px'});
+	graphics[name+'Canvas'] = document.getElementById(name+'Canvas');
+	graphics[name+'Context'] = graphics.gameCanvas.getContext('2d');
+	graphics[name+'Canvas'].width = width;
+	graphics[name+'Canvas'].height = height;
 };
 
 graphics.textQueue = [];
@@ -48,16 +55,34 @@ graphics.renderText = function() {
 	graphics.textQueue = [];
 };
 
+graphics.vectors = {
+	commands: [],
+	render: function() {
+		for (var i=0; i<this.commands.length; i++) {
+			this.commands[i]();
+		}
+		this.commands = [];
+	},
+	command: function(command) {
+		this.commands.push(command);
+	}
+};
+
 graphics.render = function() {
-	graphics.gameContext.fillStyle = 'black';
-	graphics.gameContext.fillRect(0, 0, graphics.canvasWidth, graphics.canvasHeight);
+	if (graphics.clipping) {
+		graphics.gameContext.clearRect(-map.xOffset, -map.yOffset, graphics.gameCanvas.width, graphics.gameCanvas.height);
+	}
+	else {
+		graphics.gameContext.clearRect(-map.xOffset, -map.yOffset, graphics.viewport.width, graphics.viewport.height);
+	}
 	map.render();
 	entities.render();
-	graphics.writeText('FPS: '+Math.round(timer.FPS), graphics.canvasWidth - 150, 30);
-	graphics.writeText('map.xOffset: '+map.xOffset, graphics.canvasWidth - 150, 50);
-	graphics.writeText('map.yOffset: '+map.yOffset, graphics.canvasWidth - 150, 70);
-	graphics.writeText('player.x: '+player.x, graphics.canvasWidth - 150, 90);
-	graphics.writeText('player.y: '+player.y, graphics.canvasWidth - 150, 110);
-	graphics.writeText('tile index: '+map.getTileIndex(player.x, player.y), graphics.canvasWidth - 150, 130);
+	graphics.vectors.render();
 	graphics.renderText();
+};
+
+graphics.resizeCanvas = function(name, width, height) {
+	graphics[name+'Canvas'].width = width;
+	graphics[name+'Canvas'].height = height;
+	$('#'+name+'Canvas').css({width: +width+'px', height: height+'px'});
 };

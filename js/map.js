@@ -1,56 +1,39 @@
 var map = {};
 
-map.init = function(mapData, tileSource, tileWidth, tileHeight) {
-	map.xOffset = 0;
-	map.yOffset = 0;
-	map.columns = mapData.width;
-	map.rows = mapData.height;
-	map.width = map.columns * tileWidth;
-	map.height = map.rows * tileHeight;
-	tiles.init(tileSource, tileWidth, tileHeight);
-	map.data = mapData.layers[0].data.map(function(elem) {
-		return elem - 1; // account for the fact that the tiled map editor counts tiles from 1 rather than 0.
-	});
+map.init = function(mapObj) {
+	$.extend(true, map, mapObj);
+	tiles.init('', map.tileWidth, map.tileHeight);
 	map.pathGrid = [];
 	var i = 0;
 	for (var row=0; row<map.rows; row++) {
 		map.pathGrid.push([]);
 		for (var col=0; col<map.columns; col++) {
-			map.pathGrid[row].push(map.data[i]); // need to modify to check if tile is passable rather than this hack
+			map.pathGrid[row].push(!tiles.tileset[map.data[i]].passable); // need to modify to check if tile is passable rather than this hack
 			i++;
 		}
+	}
+	for (var i=0; i < map.actors.length; i++) {
+		actors.create(map.actors[i]);
+	}
+	window.player = Object.create(actorPrototype).init($.extend({ // deliberately make global (when I namespace the code later this would belong to the namespace)
+		width: 32,
+		height: 32,
+		colour: 'green',
+		speed: 5,
+		direction: Math.PI / 4,
+		invulnerable: false
+	}, map.playerStart));
+	if (!graphics.clipping) {
+		graphics.resizeCanvas('game', map.tileWidth * map.columns, map.tileHeight * map.rows);
 	}
 };
 
 map.load = function(mapName, tileSource, tileWidth, tileHeight, onLoad) {
-	console.log('map.load()');
 	$.ajax({
 		url: '../escape/maps/'+mapName+'.json',
 		type: 'get',
-		success: function(mapData) {
-			map.init(mapData, tileSource, tileWidth, tileHeight);
-			Object.create(baddyPrototype).init({
-				x: 543,
-				y: 351,
-				width: 32,
-				height: 32,
-				colour: 'red',
-				maxRange: 2000,
-				mode: 'watch',
-				idealRange: 1024,
-				speed: 5,
-				direction: Math.PI / 2
-			});
-			window.player = Object.create(actorPrototype).init({ // deliberately make global (when I namespace the code later this would belong to the namespace)
-				x: 100,
-				y: 100,
-				width: 32,
-				height: 32,
-				colour: 'green',
-				speed: 5,
-				direction: Math.PI / 4,
-				invulnerable: false
-			});
+		success: function(mapObj) {
+			map.init(mapObj);
 			if (typeof onLoad === 'function') {
 				onLoad();
 			}
@@ -58,13 +41,24 @@ map.load = function(mapName, tileSource, tileWidth, tileHeight, onLoad) {
 	});
 };
 
+map.save = function() {
+	$.ajax({
+		url: '../escape/saveMap.php',
+		type: 'post',
+		data: 'map='+JSON.stringify(map),
+		success: function(result) {
+			console.log('map saved');
+		} 
+	});
+};
+
 map.render = function() {
 	var floor = Math.floor,
 		ceil = Math.ceil,
 		rowStart = floor(-map.yOffset / tiles.tileHeight),
-		rowEnd = ceil((graphics.canvasHeight - map.yOffset) / tiles.tileHeight),
+		rowEnd = ceil((graphics.gameCanvas.height - map.yOffset) / tiles.tileHeight),
 		colStart = floor(-map.xOffset / tiles.tileWidth),
-		colEnd = ceil((graphics.canvasWidth - map.xOffset) / tiles.tileWidth);
+		colEnd = ceil((graphics.gameCanvas.width - map.xOffset) / tiles.tileWidth);
 	for (var row=rowStart; row<rowEnd; row++) {
 		for (var col=colStart; col<colEnd; col++) {
 			var x = map.xOffset + (col * tiles.tileWidth),
@@ -75,12 +69,12 @@ map.render = function() {
 };
 
 map.position = function(x, y) {
-	map.xOffset = Math.round(graphics.canvasWidth / 2) - x;
-	map.yOffset = Math.round(graphics.canvasHeight / 2) - y;
+	map.xOffset = Math.round(graphics.gameCanvas.width / 2) - x;
+	map.yOffset = Math.round(graphics.gameCanvas.height / 2) - y;
 	if (map.xOffset > 0) map.xOffset = 0;
 	if (map.yOffset > 0) map.yOffset = 0;
-	if (map.xOffset < graphics.canvasWidth-(map.columns * tiles.tileWidth)) map.xOffset = graphics.canvasWidth-(map.columns * tiles.tileWidth);
-	if (map.yOffset < graphics.canvasHeight-(map.rows * tiles.tileHeight)) map.yOffset = graphics.canvasHeight-(map.rows * tiles.tileHeight);
+	if (map.xOffset < graphics.gameCanvas.width-(map.columns * tiles.tileWidth)) map.xOffset = graphics.gameCanvas.width-(map.columns * tiles.tileWidth);
+	if (map.yOffset < graphics.gameCanvas.height-(map.rows * tiles.tileHeight)) map.yOffset = graphics.gameCanvas.height-(map.rows * tiles.tileHeight);
 };
 
 map.getTileIndex = function(x, y) {
@@ -139,4 +133,18 @@ map.lineTraversable = function(startX, startY, endX, endY, resolution) {
 		}
 	}
 	return true;
+};
+
+map.highlightTile = function(tile) {
+	if (graphics.gameCanvas) {
+		var tileCentre = map.getTileCentre(tile);
+		graphics.vectors.command(function() {
+			graphics.gameContext.strokeStyle = 'white';
+			graphics.gameContext.strokeRect(Math.round(tileCentre.x-tiles.tileWidth/2)+0.5, Math.round(tileCentre.y-tiles.tileHeight/2)+0.5, tiles.tileWidth, tiles.tileHeight);
+		});
+	}
+};
+
+map.highlightMouseTile = function() {
+	map.highlightTile(map.getTileIndex(input.mouseState.x, input.mouseState.y));
 };

@@ -1,5 +1,14 @@
-body {
-	cursor: crosshair;
+body {}
+
+#gameContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	pointer-events: none;
 }
 
 #gameCanvas {
@@ -7,4 +16,12 @@ body {
 	top: 0;
 	left: 0;
 	background-color: black;
+	cursor: crosshair;
+}
+
+#overlayCanvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: transparent;
 }

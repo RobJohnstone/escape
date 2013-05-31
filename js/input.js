@@ -75,25 +75,60 @@ input.start = function(mode) {
 				}
 				return false;
 			});
+		case 'edit':
+			input.mouseState = {
+				'left': 0,
+				'middle': 0,
+				'right': 0,
+				'x': 0,
+				'y': 0
+			};
+			$(document).on('mousedown mouseup', function(e) {
+				game.update = true;
+				switch(e.which) {
+					case 1:
+						input.mouseState.left = ((e.type === 'mousedown') ? 1 : 0);
+						break;
+					case 2:
+						input.mouseState.middle = ((e.type === 'mousedown') ? 1 : 0);
+						break;
+					case 3:
+						input.mouseState.right = ((e.type === 'mousedown') ? 1 : 0);
+						break;
+				}
+			});
+			$(document).on('mousemove', function(e) {
+				var canvasOffset = $('#gameCanvas').offset();
+				input.mouseState.x = e.pageX - canvasOffset.left;
+				input.mouseState.y = e.pageY - canvasOffset.top ;
+				game.update = true;
+			});
+			break;
 	}
 };
 
 input.process = function() {
-	if (game.mode === 'play') {
-		if (input.keyState.pause) {
-			game.pause();
-		}
-		if (input.keyState.quit) {
-			game.end();
-			graphics.writeText('Game ended.', 20, 30);
-		}
-		var dx = 0, dy = 0;
-		if (input.keyState.left) dx += -5;
-		if (input.keyState.up) dy += -5;
-		if (input.keyState.right) dx += 5;
-		if (input.keyState.down) dy += 5;
-		if (dx !== 0 || dy !== 0) player.move(dx, dy);
-		if (input.mouseState.left) player.fire(input.mouseState.x - map.xOffset, input.mouseState.y - map.yOffset);
+	switch (game.mode) {
+		case 'play':
+			if (input.keyState.pause) {
+				game.pause();
+			}
+			if (input.keyState.quit) {
+				game.end();
+				graphics.writeText('Game ended.', 20, 30);
+			}
+			var dx = 0, dy = 0;
+			if (input.keyState.left) dx += -5;
+			if (input.keyState.up) dy += -5;
+			if (input.keyState.right) dx += 5;
+			if (input.keyState.down) dy += 5;
+			if (dx !== 0 || dy !== 0) player.move(dx, dy);
+			if (input.mouseState.left) player.fire(input.mouseState.x - map.xOffset, input.mouseState.y - map.yOffset);
+			break;
+		case 'edit':
+			//map.mouse.x = input.mouseState.x + $('body').scrollLeft();
+			//map.mouse.y = input.mouseState.y + $('body').scrollTop();
+			break;
 	}
 };
 
