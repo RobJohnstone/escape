@@ -6,7 +6,7 @@ $(function() {
 		}
 		else {
 			game.init(map);
-		}	
+		}
 	});
 	$('#mapName').focus().select().on({
 		keyup: function(e) {
@@ -36,7 +36,7 @@ game.main = function() {
 	input.process();
 	game.info.add('input.mouseState.x');
 	game.info.add('input.mouseState.y');
-	game.info.add('tile', map.getTileIndex(input.mouseState.x, input.mouseState.y));
+	game.info.add('tile', map.getTileIndex(input.mouseState));
 	game.info();
 	map.highlightMouseTile();
 	if (game.update) {
@@ -86,8 +86,6 @@ palette.tools = {
 		targetType: 'actor',
 		click: function(tileIndex) {
 			var coords = map.getTileCentre(tileIndex);
-			console.log(coords);
-			console.log(map.actors);
 			for (var i=0; i<map.actors.length; i++) {
 				if (map.actors[i].x === coords.x && map.actors[i].y === coords.y) {
 					map.actors.splice(i, 1);
@@ -102,10 +100,10 @@ palette.tools = {
 		type: 'entity',
 		click: function(tileIndex) {
 			var baddy = map.getTileCentre(tileIndex);
-			$.extend(baddy, {type: 'baddy'})
+			$.extend(baddy, {type: 'baddy'});
 			map.actors.push(baddy);
 			map.init();
-			game.update = true;		
+			game.update = true;
 		}
 	}
 };
@@ -129,14 +127,14 @@ palette.init = function() {
 	$('#'+palette.currentTool).addClass('selected');
 	$('#gameCanvas').on({
 		click: function() {
-			var tileIndex = map.getTileIndex(input.mouseState.x, input.mouseState.y),
+			var tileIndex = map.getTileIndex(input.mouseState),
 				tilesetIndex;
 			if (typeof palette.tools[palette.currentTool].click === 'function') {
 				palette.tools[palette.currentTool].click(tileIndex);
 			}
 			else {
 				tilesetIndex = palette.tools[palette.currentTool].tilesetIndex;
-				map.data[tileIndex] = tilesetIndex
+				map.data[tileIndex] = tilesetIndex;
 				game.update = true;
 			}
 			palette.updatedMap();
@@ -157,10 +155,12 @@ $(function() {
 		click: function() {
 			map.save();
 			$('#saveMap').text('Save map');
+			map.updated = false;
 		}
 	}, '#saveMap');
 });
 
+map.updated = false;
 window.onbeforeunload = function() {
 	if (map.updated) {
 		return 'You have unsaved changes. Are you sure you wish to leave?';

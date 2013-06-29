@@ -83,20 +83,6 @@ input.start = function(mode) {
 				'x': 0,
 				'y': 0
 			};
-			$(document).on('mousedown mouseup', function(e) {
-				game.update = true;
-				switch(e.which) {
-					case 1:
-						input.mouseState.left = ((e.type === 'mousedown') ? 1 : 0);
-						break;
-					case 2:
-						input.mouseState.middle = ((e.type === 'mousedown') ? 1 : 0);
-						break;
-					case 3:
-						input.mouseState.right = ((e.type === 'mousedown') ? 1 : 0);
-						break;
-				}
-			});
 			$(document).on('mousemove', function(e) {
 				var canvasOffset = $('#gameCanvas').offset();
 				input.mouseState.x = e.pageX - canvasOffset.left;
@@ -122,8 +108,8 @@ input.process = function() {
 			if (input.keyState.up) dy += -5;
 			if (input.keyState.right) dx += 5;
 			if (input.keyState.down) dy += 5;
-			if (dx !== 0 || dy !== 0) player.move(dx, dy);
-			if (input.mouseState.left) player.fire(input.mouseState.x - map.xOffset, input.mouseState.y - map.yOffset);
+			if (dx !== 0 || dy !== 0) player.move({x:dx, y:dy});
+			if (input.mouseState.left) player.fire({x:input.mouseState.x - map.offset.x, y:input.mouseState.y - map.offset.y});
 			break;
 		case 'edit':
 			//map.mouse.x = input.mouseState.x + $('body').scrollLeft();

@@ -6,10 +6,10 @@ var projectilePrototype  = $.extend(Object.create(entityPrototype), {
 	move: function() {
 		var tile,
 			projectile = this;
-		this.x += this.xSpeed * timer.coeff;
-		this.y += this.ySpeed * timer.coeff;
+		this.x += this.speed.x * timer.coeff;
+		this.y += this.speed.y * timer.coeff;
 		// check for collisions with tiles
-		tile = map.getTileIndex(this.x, this.y);
+		tile = map.getTileIndex(this);
 		if (map.data[tile] === undefined || !tiles.tileset[map.data[tile]].passable) {
 			this.remove = true;
 		}
@@ -24,8 +24,8 @@ var projectilePrototype  = $.extend(Object.create(entityPrototype), {
 		});
 	},
 	render: function() {
-		var x = map.xOffset + this.x,
-			y = map.yOffset + this.y;
+		var x = map.offset.x + this.x,
+			y = map.offset.y + this.y;
 		graphics.gameContext.beginPath();
 		graphics.gameContext.arc(x, y, this.halfWidth, 0, 2 * Math.PI);
 		graphics.gameContext.fillStyle = 'yellow';

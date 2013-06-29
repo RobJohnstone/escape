@@ -3,18 +3,15 @@ var game = {
 };
 
 game.init = function() {
-	console.log('game.init()');
 	graphics.init('fullscreen', '');
 	map.load('test', '', 64, 64, game.start);
 };
 
 game.start = function() {
-	console.log('game.start()');
 	game.resume();
 };
 
 game.resume = function() {
-	console.log('game.resume()');
 	game.mode = 'play';
 	input.start('play');
 	timer.start(60);
@@ -22,11 +19,10 @@ game.resume = function() {
 };
 
 game.play = function() {
-	console.log('game.play');
 	if (game.mode === 'play' || game.mode === 'over') {
 		timer.process();
 		entities.process();
-		map.position(player.x, player.y);
+		map.position(player);
 		if (game.mode === 'over') {
 			graphics.writeText('Game over!', 20, 30);
 		}
@@ -46,35 +42,34 @@ game.play = function() {
 
 game.info = function() {
 	graphics.writeText('FPS: '+Math.round(timer.FPS), graphics.gameCanvas.width - 150, 30);
-	graphics.writeText('map.xOffset: '+map.xOffset, graphics.gameCanvas.width - 150, 50);
-	graphics.writeText('map.yOffset: '+map.yOffset, graphics.gameCanvas.width - 150, 70);
+	graphics.writeText('map.offset.x: '+map.offset.x, graphics.gameCanvas.width - 150, 50);
+	graphics.writeText('map.offset.y: '+map.offset.y, graphics.gameCanvas.width - 150, 70);
 	graphics.writeText('player.x: '+player.x, graphics.gameCanvas.width - 150, 90);
 	graphics.writeText('player.y: '+player.y, graphics.gameCanvas.width - 150, 110);
-	graphics.writeText('tile index: '+map.getTileIndex(player.x, player.y), graphics.gameCanvas.width - 150, 130);
+	graphics.writeText('player.direction.x: '+player.direction.x, graphics.gameCanvas.width - 150, 130);
+	graphics.writeText('player.direction.y: '+player.direction.y, graphics.gameCanvas.width - 150, 150);
+	graphics.writeText('player.direction angle: '+vector.angle(player.direction), graphics.gameCanvas.width - 200, 170);
+	graphics.writeText('tile index: '+map.getTileIndex(player), graphics.gameCanvas.width - 150, 190);
 };
 
 game.pause = function() {
-	console.log('game.pause()');
 	game.mode = 'pause';
 	input.start('pause');
 	graphics.renderText();
 };
 
 game.over = function() {
-	console.log('game.over()');
 	game.mode = 'over';
 	input.start('over');
 };
 
 game.reset = function() {
-	console.log('game.reset()');
 	entities.instances = [];
 	cancelAnimationFrame(game.animationFrame);
 	game.init();
 };
 
 game.end = function() {
-	console.log('game.end()');
 	game.pause();
 	input.stop();
 };

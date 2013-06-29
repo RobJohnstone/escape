@@ -1,7 +1,8 @@
-if (!window.requestAnimationFrame) {
-	window.requestAnimationFrame = window.mozRequestAnimationFrame;
-}
-
-if (!window.cancelAnimationFrame) {
-	window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
-}
+window.requestAnimationFrame = (function(){
+	return 	window.requestAnimationFrame       ||
+          	window.webkitRequestAnimationFrame ||
+          	window.mozRequestAnimationFrame    || 
+			function (callback) {
+	  	   		window.setTimeout(callback, 1000 / 60);
+    		};
+})();

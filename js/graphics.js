@@ -5,8 +5,6 @@ graphics.init = function(width, height, clipping) {
 	graphics.viewport = {
 		width: $('#gameContainer').width(),
 		height: $('#gameContainer').height()
-		/*width: (window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||800),
-		height: (window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||600)*/
 	};
 	if (width === 'fullscreen') {
 		graphics.fullscreen = true;
@@ -70,10 +68,10 @@ graphics.vectors = {
 
 graphics.render = function() {
 	if (graphics.clipping) {
-		graphics.gameContext.clearRect(-map.xOffset, -map.yOffset, graphics.gameCanvas.width, graphics.gameCanvas.height);
+		graphics.gameContext.clearRect(-map.offset.x, -map.offset.y, graphics.gameCanvas.width, graphics.gameCanvas.height);
 	}
 	else {
-		graphics.gameContext.clearRect(-map.xOffset, -map.yOffset, graphics.viewport.width, graphics.viewport.height);
+		graphics.gameContext.clearRect(-map.offset.x, -map.offset.y, graphics.viewport.width, graphics.viewport.height);
 	}
 	map.render();
 	entities.render();

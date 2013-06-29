@@ -1,4 +1,9 @@
-var map = {};
+var map = {
+	offset: {
+		x: 0,
+		y: 0
+	}
+};
 
 map.init = function(mapObj) {
 	$.extend(true, map, mapObj);
@@ -12,7 +17,7 @@ map.init = function(mapObj) {
 			i++;
 		}
 	}
-	for (var i=0; i < map.actors.length; i++) {
+	for (var i=0; i<map.actors.length; i++) {
 		actors.create(map.actors[i]);
 	}
 	window.player = Object.create(actorPrototype).init($.extend({ // deliberately make global (when I namespace the code later this would belong to the namespace)
@@ -20,8 +25,8 @@ map.init = function(mapObj) {
 		height: 32,
 		colour: 'green',
 		speed: 5,
-		direction: Math.PI / 4,
-		invulnerable: false
+		direction: {x: 1, y: 0},
+		invulnerable: true
 	}, map.playerStart));
 	if (!graphics.clipping) {
 		graphics.resizeCanvas('game', map.tileWidth * map.columns, map.tileHeight * map.rows);
@@ -32,6 +37,7 @@ map.load = function(mapName, tileSource, tileWidth, tileHeight, onLoad) {
 	$.ajax({
 		url: '../escape/maps/'+mapName+'.json',
 		type: 'get',
+		datType: 'json',
 		success: function(mapObj) {
 			map.init(mapObj);
 			if (typeof onLoad === 'function') {
@@ -48,38 +54,40 @@ map.save = function() {
 		data: 'map='+JSON.stringify(map),
 		success: function(result) {
 			console.log('map saved');
-		} 
+		}
 	});
 };
 
 map.render = function() {
 	var floor = Math.floor,
 		ceil = Math.ceil,
-		rowStart = floor(-map.yOffset / tiles.tileHeight),
-		rowEnd = ceil((graphics.gameCanvas.height - map.yOffset) / tiles.tileHeight),
-		colStart = floor(-map.xOffset / tiles.tileWidth),
-		colEnd = ceil((graphics.gameCanvas.width - map.xOffset) / tiles.tileWidth);
+		rowStart = floor(-map.offset.y / tiles.tileHeight),
+		rowEnd = ceil((graphics.gameCanvas.height - map.offset.y) / tiles.tileHeight),
+		colStart = floor(-map.offset.x / tiles.tileWidth),
+		colEnd = ceil((graphics.gameCanvas.width - map.offset.x) / tiles.tileWidth);
 	for (var row=rowStart; row<rowEnd; row++) {
 		for (var col=colStart; col<colEnd; col++) {
-			var x = map.xOffset + (col * tiles.tileWidth),
-				y = map.yOffset + (row * tiles.tileHeight);
-			tiles.renderTile(map.data[row*map.columns + col], x, y)
+			var x = map.offset.x + (col * tiles.tileWidth),
+				y = map.offset.y + (row * tiles.tileHeight);
+			tiles.renderTile(map.data[row*map.columns + col], x, y);
 		}
 	}
 };
 
-map.position = function(x, y) {
-	map.xOffset = Math.round(graphics.gameCanvas.width / 2) - x;
-	map.yOffset = Math.round(graphics.gameCanvas.height / 2) - y;
-	if (map.xOffset > 0) map.xOffset = 0;
-	if (map.yOffset > 0) map.yOffset = 0;
-	if (map.xOffset < graphics.gameCanvas.width-(map.columns * tiles.tileWidth)) map.xOffset = graphics.gameCanvas.width-(map.columns * tiles.tileWidth);
-	if (map.yOffset < graphics.gameCanvas.height-(map.rows * tiles.tileHeight)) map.yOffset = graphics.gameCanvas.height-(map.rows * tiles.tileHeight);
+map.position = function(position) {
+	map.offset = {
+		x: Math.round(graphics.gameCanvas.width / 2) - position.x,
+		y: Math.round(graphics.gameCanvas.height / 2) - position.y
+	};
+	if (map.offset.x > 0) map.offset.x = 0;
+	if (map.offset.y > 0) map.offset.y = 0;
+	if (map.offset.x < graphics.gameCanvas.width-(map.columns * tiles.tileWidth)) map.offset.x = graphics.gameCanvas.width-(map.columns * tiles.tileWidth);
+	if (map.offset.y < graphics.gameCanvas.height-(map.rows * tiles.tileHeight)) map.offset.y = graphics.gameCanvas.height-(map.rows * tiles.tileHeight);
 };
 
-map.getTileIndex = function(x, y) {
-	var col = Math.floor(x / tiles.tileWidth),
-		row = Math.floor(y / tiles.tileHeight);
+map.getTileIndex = function(position) {
+	var col = Math.floor(position.x / tiles.tileWidth),
+		row = Math.floor(position.y / tiles.tileHeight);
 	return (row * map.columns) + col;
 };
 
@@ -110,21 +118,16 @@ map.getTileFromCoords = function(x, y) {
 	return (y * map.columns) + x;
 };
 
-map.lineTraversable = function(startX, startY, endX, endY, resolution) {
-	var dx = endX - startX,
-		dy = endY - startY,
-		sqrt = Math.sqrt,
-		distance = sqrt(dx*dx + dy*dy),
-		xSpeed = dx / distance,
-		ySpeed = dy / distance,
-		x = startX, 
-		y = startY,
+map.lineTraversable = function(start, end, resolution) {
+	var diff = vector.subtract(start, end),
+		distance = vector.mag(diff),
+		vel = vector.normalise(diff),
+		pos = vector.clone(start),
 		tile,
-		endTile = map.getTileIndex(endX, endY);
+		endTile = map.getTileIndex(end);
 	for (var i=0; i<distance; i++) {
-		x += xSpeed;
-		y += ySpeed;
-		tile = map.getTileIndex(x, y);
+		pos = vector.add(pos, vel);
+		tile = map.getTileIndex(pos);
 		if (tile === endTile) {
 			return true;
 		}
@@ -146,5 +149,5 @@ map.highlightTile = function(tile) {
 };
 
 map.highlightMouseTile = function() {
-	map.highlightTile(map.getTileIndex(input.mouseState.x, input.mouseState.y));
+	map.highlightTile(map.getTileIndex(input.mouseState));
 };

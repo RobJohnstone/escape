@@ -10,7 +10,7 @@ var actors = {
 		height: 32,
 		colour: 'green',
 		speed: 5,
-		direction: Math.PI / 4,
+		direction: {x: 1, y: 0},
 		invulnerable: false
 	},
 	baddy: {
@@ -18,10 +18,10 @@ var actors = {
 		width: 32,
 		height: 32,
 		colour: 'red',
-		maxRange: 2000,
+		maxRange: 500,
 		mode: 'watch',
-		idealRange: 1024,
+		idealRange: 500,
 		speed: 5,
-		direction: Math.PI / 2
+		direction: {x: 1, y: 0}
 	}
 };

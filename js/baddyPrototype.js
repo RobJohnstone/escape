@@ -1,6 +1,6 @@
 var baddyPrototype = $.extend(Object.create(actorPrototype), {
 	firerId: (function() {
-		var counter=-1; 
+		var counter=-1;
 		return (function() {
 			return counter++;
 		})();
@@ -10,11 +10,11 @@ var baddyPrototype = $.extend(Object.create(actorPrototype), {
 		if (player.health <= 0) this.mode = 'watch';
 		else {
 			if (this.baddySeePlayer()) {
-				this.targetTile = map.getTileIndex(player.x, player.y);
+				this.targetTile = map.getTileIndex(player);
 				this.target = map.getTileCentre(this.targetTile);
-				this.target.direction = player.direction;
-				this.targetDistance = Math.sqrt(this.target.x * this.target.x + this.target.y * this.target.y);
-				this.fire(player.x, player.y);
+				this.target.direction = vector.clone(player.direction);
+				this.targetDistance = vector.distance(this, this.target);
+				this.fire(player);
 				if(this.targetDistance > this.idealRange) {
 					this.mode = 'chase';
 				}
@@ -23,31 +23,32 @@ var baddyPrototype = $.extend(Object.create(actorPrototype), {
 				}
 			}
 			switch (this.mode) {
+				case 'watch':
+					// currently do nothing
+					break;
 				case 'attack':
-					var dx = this.target.x - this.x,
-						dy = this.y - this.target.y;
-					this.direction = (dy < 0 ? Math.PI : 0) + Math.atan(dx/dy);
+					this.direction = vector.subtract(this, this.target);
 					if (player.health > 0 && !this.baddySeePlayer()) {
 						this.mode = 'chase';
 					}
 					break;
 				case 'chase':
-					var distanceSquared = Math.pow(this.target.x - this.x, 2) + Math.pow(this.target.y - this.y, 2);
-					if (distanceSquared < this.speed * this.speed) {
+					if (this.targetDistance < this.speed) {
 						this.x = this.target.x;
 						this.y = this.target.y;
 						this.mode = 'watch';
 						this.direction = this.target.direction;
 					}
 					else {
-						this.moveTo(this.target.x, this.target.y);
+						this.moveTo(this.target);
 					}
 					break;
 			}
 		}
 	},
 	baddySeePlayer: function() {
-		if (vector.distance(this.x, this.y, player.x, player.y) > this.maxRange) return false;
-		return map.lineTraversable(this.x, this.y, player.x, player.y);
+		var targetVector = vector.subtract(this, player);
+		if (vector.mag(targetVector) > this.maxRange || vector.dot(this.direction, targetVector) < 0) return false;
+		return map.lineTraversable(this, player);
 	}
 });
