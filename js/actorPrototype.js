@@ -102,6 +102,9 @@ actorPrototype.hit = function(projectile) {
 			this.remove = true;
 		}
 	}
+	if (typeof this.hitHandler === 'function') {
+		this.hitHandler(projectile);
+	}
 };
 actorPrototype.fire = function(target) {
 	var weapon = weapons[this.weapon],

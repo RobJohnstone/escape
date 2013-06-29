@@ -50,6 +50,10 @@ baddyPrototype.process = function() {
 	}
 };
 
+baddyPrototype.hitHandler = function(projectile) {
+	this.direction = vector.reverse(projectile.speed);
+};
+
 baddyPrototype.baddySeePlayer = function() {
 	var targetVector = vector.subtract(this, player);
 	if (vector.mag(targetVector) > this.maxRange || vector.dot(this.direction, targetVector) < 0) return false;
