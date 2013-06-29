@@ -1,5 +1,3 @@
-commit
-fix bug that appears to make entities faster when they are sliding along walls
 Sort out inheritance
 Baddies should respond when hit even if not intially looking in the right direction
 Baddies should guess which direction to go when they've lost track of the player

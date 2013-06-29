@@ -27,7 +27,7 @@ var actorPrototype = $.extend(Object.create(entityPrototype), {
 		if (v.x < 0 && test.x - this.halfWidth < (tile % map.columns) * tiles.tileWidth) {
 			if (map.data[tileLeft] !== undefined && !tiles.tileset[map.data[tileLeft]].passable) {
 				test.x = this.halfWidth + (tile % map.columns) * tiles.tileWidth;
-				test.y = test.y + (v.y ? (v.y / Math.abs(v.y)) : 0) * Math.round(this.speed * timer.coeff);
+				test.y = this.y + (v.y ? (v.y / Math.abs(v.y)) : 0) * Math.round(this.speed * timer.coeff);
 			}
 			else if (map.data[tileLeftUp] !== undefined && !tiles.tileset[map.data[tileLeftUp]].passable && test.y - this.halfHeight < Math.floor(tile / map.rows) * tiles.tileHeight) {
 				test.y = this.halfHeight + Math.floor(tile / map.rows) * tiles.tileHeight;
@@ -39,7 +39,7 @@ var actorPrototype = $.extend(Object.create(entityPrototype), {
 		else if (v.x > 0 && test.x + this.halfWidth > (tileRight % map.columns) * tiles.tileWidth) {
 			if (map.data[tileRight] !== undefined && !tiles.tileset[map.data[tileRight]].passable) {
 				test.x = -this.halfWidth + (tileRight % map.columns) * tiles.tileWidth;
-				test.y = test.y + (v.y ? (v.y / Math.abs(v.y)) : 0) * Math.round(this.speed * timer.coeff);
+				test.y = this.y + (v.y ? (v.y / Math.abs(v.y)) : 0) * Math.round(this.speed * timer.coeff);
 			}
 			else if (map.data[tileRightUp] !== undefined && !tiles.tileset[map.data[tileRightUp]].passable && test.y - this.halfHeight < Math.floor(tile / map.rows) * tiles.tileHeight) {
 				test.y = this.halfHeight + Math.floor(tile / map.rows) * tiles.tileHeight;
@@ -51,7 +51,7 @@ var actorPrototype = $.extend(Object.create(entityPrototype), {
 		if (v.y < 0 && test.y - this.halfHeight < Math.floor(tile / map.rows) * tiles.tileHeight) {
 			if (map.data[tileUp] !== undefined && !tiles.tileset[map.data[tileUp]].passable) {
 				test.y = this.halfHeight + Math.floor(tile / map.rows) * tiles.tileHeight;
-				test.x = test.x + (v.x ? (v.x / Math.abs(v.x)) : 0) * Math.round(this.speed * timer.coeff);
+				test.x = this.x + (v.x ? (v.x / Math.abs(v.x)) : 0) * Math.round(this.speed * timer.coeff);
 			}
 			else if (map.data[tileLeftUp] !== undefined && !tiles.tileset[map.data[tileLeftUp]].passable && test.x - this.halfWidth < Math.floor(tile % map.columns) * tiles.tileWidth) {
 				test.x = this.halfWidth + Math.floor(tile % map.columns) * tiles.tileWidth;
@@ -63,7 +63,7 @@ var actorPrototype = $.extend(Object.create(entityPrototype), {
 		else if (v.y > 0 && test.y + this.halfHeight > Math.floor(tileDown / map.rows) * tiles.tileHeight) {
 			if (map.data[tileDown] !== undefined && !tiles.tileset[map.data[tileDown]].passable) {
 				test.y = -this.halfHeight + Math.floor(tileDown / map.rows) * tiles.tileHeight;
-				test.x = test.x + (v.x ? (v.x / Math.abs(v.x)) : 0) * Math.round(this.speed * timer.coeff);
+				test.x = this.x + (v.x ? (v.x / Math.abs(v.x)) : 0) * Math.round(this.speed * timer.coeff);
 			}
 			else if (map.data[tileLeftDown] !== undefined && !tiles.tileset[map.data[tileLeftDown]].passable && test.x - this.halfWidth < Math.floor(tile % map.columns) * tiles.tileWidth) {
 				test.x = this.halfWidth + Math.floor(tile % map.columns) * tiles.tileWidth;
