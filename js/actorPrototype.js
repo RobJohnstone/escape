@@ -4,6 +4,13 @@ actorPrototype.entityType = 'actor';
 actorPrototype.hittable = true;
 actorPrototype.health = 100;
 actorPrototype.weapon = 'gun';
+/*actorPrototype.init = function() {
+	entityPrototype.init.apply(this);
+	this.home = {
+		x: this.x,
+		y: this.y
+	};
+};*/
 actorPrototype.move = function(v) {
 	var tile = map.getTileIndex(this),
 		tileLeft = tile - 1,
@@ -14,7 +21,8 @@ actorPrototype.move = function(v) {
 		tileRightUp = tileUp + 1,
 		tileRightDown = tileDown + 1,
 		tileLeftDown = tileDown - 1,
-		distance, ratio, test;
+		distance, ratio, test,
+		blocked = false;
 	// normalise velocity
 	v = vector.setLength(v, this.speed * timer.coeff);
 	// move
@@ -74,9 +82,14 @@ actorPrototype.move = function(v) {
 		}
 	}
 	this.direction = vector.normalise(vector.subtract(this, test));
+	// check if blocked
+	if (this.x === test.x && this.y === test.y) {
+		blocked = true;
+	}
 	// save position
 	this.x = Math.round(test.x);
 	this.y = Math.round(test.y);
+	return !blocked;
 };
 actorPrototype.moveTowards = function(position) {
 	var targetVector = vector.subtract(this, position);

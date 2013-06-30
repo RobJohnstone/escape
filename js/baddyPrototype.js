@@ -14,9 +14,10 @@ baddyPrototype.process = function() {
 	else {
 		if (this.baddySeePlayer()) {
 			this.targetTile = map.getTileIndex(player);
-			this.target = map.getTileCentre(this.targetTile);
+			/*this.target = map.getTileCentre(this.targetTile);*/
+			this.target = $.extend({}, player, map.getTileCentre(this.targetTile));
 			this.target.direction = vector.clone(player.direction);
-			this.targetDistance = vector.distance(this, this.target);
+			//this.targetDistance = vector.distance(this, this.target);
 			this.fire(player);
 			if(this.targetDistance > this.idealRange) {
 				this.mode = 'chase';
@@ -36,14 +37,33 @@ baddyPrototype.process = function() {
 				}
 				break;
 			case 'chase':
-				if (this.targetDistance < this.speed) {
+				var distance = vector.distance(this, this.target);
+				if (distance < this.speed) {
 					this.x = this.target.x;
 					this.y = this.target.y;
-					this.mode = 'watch';
+					this.mode = 'search';
 					this.direction = this.target.direction;
 				}
 				else {
 					this.moveTo(this.target);
+				}
+				break;
+			case 'search':
+				var velocity = vector.setLength(this.direction, this.speed);
+				if (!this.move(velocity)) { // if path is blocked
+					this.mode = 'returnToStation';
+				}
+				break;
+			case 'returnToStation':
+				var distance = vector.distance(this, this.initial);
+				if (distance < this.speed) {
+					this.x = this.initial.x;
+					this.y = this.initial.y;
+					this.mode = 'watch';
+					this.direction = this.initial.direction;
+				}
+				else {
+					this.moveTo(this.initial);
 				}
 				break;
 		}
