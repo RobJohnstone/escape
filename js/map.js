@@ -35,7 +35,7 @@ map.init = function(mapObj) {
 
 map.load = function(mapName, tileSource, tileWidth, tileHeight, onLoad) {
 	$.ajax({
-		url: '../escape/maps/'+mapName+'.json',
+		url: '/maps/'+mapName+'.json',
 		type: 'get',
 		datType: 'json',
 		success: function(mapObj) {

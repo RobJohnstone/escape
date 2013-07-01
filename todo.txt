@@ -1,4 +1,3 @@
-Migrate to grunt server rather than apache
 Improve editor so that it is a playable game
 	set player start
 	set exit
