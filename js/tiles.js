@@ -6,11 +6,11 @@ tiles.init = function(source, tileWidth, tileHeight) {
 	tiles.tileset = [{
 						colour: 'black',
 						passable: true
-					 },
-					 {
-					 	colour: 'blue',
-					 	passable: false
-					 }];
+					},
+					{
+						colour: 'blue',
+						passable: false
+					}];
 };
 
 tiles.renderTile = function(tile, x, y) {

@@ -32,7 +32,7 @@ var entityPrototype = {
 			this.halfHeight = this.height / 2;
 			entities.instances.push(this);
 			return this;
-		}
+		};
 	})(),
-	process: function() {},
+	process: function() {}
 };

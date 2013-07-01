@@ -1,8 +1,8 @@
 var valFromString = function(name) {
-	var value = 'window',
+	var value = window,
 		names = name.split('.');
-	for (key in names) {
-		value = value+'.'+names[key];
+	for (var i=0; i<names.length; i++) {
+		value = value[names[i]];
 	}
-	return eval('('+value+')');
+	return value;
 };

@@ -1,4 +1,48 @@
 module.exports = function(grunt) {
+  // load tasks
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-bumpup');
+  grunt.loadNpmTasks('grunt-open');
+
+  // config
+  grunt.initConfig({
+    jshint: {
+      all: ['Gruntfile.js', 'js/**/*.js', '!js/lib/*.js']
+    },
+    uglify: {
+      options: {
+        wrap: true,
+        report: 'min',
+        sourceMap: 'production/sourceMap.js',
+        sourceMapRoot: '../',
+        sourceMappingURL: 'sourceMap.js'
+      },
+      min: {
+        src: ['js/entities.js', 'js/actorPrototype.js', 'js/baddyPrototype.js', 'js/**/*.js', '!js/edit.js'],
+        dest: 'production/app-min.js'
+      }
+    },
+    bumpup: {
+      file: 'package.json'
+    },
+    open: {
+      all: {
+        path: 'http://localhost:8080/'
+      }
+    }
+  });
+  grunt.registerTask('default', ['build', 'bumpup:build']);
+  grunt.registerTask('build', function() {
+    grunt.task.run('jshint');
+    grunt.task.run('uglify');
+  });
+  grunt.registerTask('patch', ['build', 'bumpup:patch']);
+  grunt.registerTask('minor', ['build', 'bumpup:minor']);
+  grunt.registerTask('major', ['build', 'bumpup:major']);
+};
+
+/*module.exports = function(grunt) {
  
   // Load Grunt tasks declared in the package.json file
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -46,7 +90,7 @@ module.exports = function(grunt) {
     // Surprisingly, livereload complains when you try to use grunt-contrib-watch instead of grunt-regarde 
     regarde: {
       all: {
-        // This'll just watch the index.html file, you could add **/*.js or **/*.css
+        // This'll just watch the index.html file, you could add **\/*.js or **\/*.css
         // to watch Javascript and CSS files too.
         files:['index.html'],
         // This configures the task that will run when the file change
@@ -67,4 +111,4 @@ module.exports = function(grunt) {
     // Starts monitoring the folders and keep Grunt alive
     'regarde'
   ]);
-};
+};*/

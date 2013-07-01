@@ -127,7 +127,7 @@ palette.hide = function() {
 palette.init = function() {
 	palette.show();
 	palette.$ = $('#palette');
-	for (toolName in palette.tools) {
+	for (var toolName in palette.tools) {
 		palette.$.append('<p class="tool" id="'+toolName+'">'+toolName+'<p>');
 	}
 	$('#'+palette.currentTool).addClass('selected');

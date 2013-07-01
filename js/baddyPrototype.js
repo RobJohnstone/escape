@@ -10,6 +10,7 @@ baddyPrototype.firerId = (function() {
 baddyPrototype.target = {x: 0, y: 0};
 
 baddyPrototype.process = function() {
+	var distance, velocity;
 	if (player.health <= 0) this.mode = 'watch';
 	else {
 		if (this.baddySeePlayer()) {
@@ -37,7 +38,7 @@ baddyPrototype.process = function() {
 				}
 				break;
 			case 'chase':
-				var distance = vector.distance(this, this.target);
+				distance = vector.distance(this, this.target);
 				if (distance < this.speed) {
 					this.x = this.target.x;
 					this.y = this.target.y;
@@ -49,13 +50,13 @@ baddyPrototype.process = function() {
 				}
 				break;
 			case 'search':
-				var velocity = vector.setLength(this.direction, this.speed);
+				velocity = vector.setLength(this.direction, this.speed);
 				if (!this.move(velocity)) { // if path is blocked
 					this.mode = 'returnToStation';
 				}
 				break;
 			case 'returnToStation':
-				var distance = vector.distance(this, this.initial);
+				distance = vector.distance(this, this.initial);
 				if (distance < this.speed) {
 					this.x = this.initial.x;
 					this.y = this.initial.y;

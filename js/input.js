@@ -75,6 +75,7 @@ input.start = function(mode) {
 				}
 				return false;
 			});
+			break;
 		case 'edit':
 			input.mouseState = {
 				'left': 0,
