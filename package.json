@@ -1,6 +1,7 @@
 {
   "name":"escape",
   "version":"0.1.0",
+  "scripts":{"start":"node server/server.js"},
   "dependencies":{},
   "devDependencies":{
     "matchdep": "~0.1.1",
@@ -8,6 +9,7 @@
     "grunt-regarde": "~0.1.1",
     "grunt-contrib-connect":  "0.1.2",
     "grunt-contrib-livereload": "0.1.1",
-    "grunt-open": "~0.2.0"
+    "grunt-open": "~0.2.0",
+    "node-static": "~0.6.9"
   }
 }

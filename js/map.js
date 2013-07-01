@@ -37,21 +37,24 @@ map.load = function(mapName, tileSource, tileWidth, tileHeight, onLoad) {
 	$.ajax({
 		url: '/maps/'+mapName+'.json',
 		type: 'get',
-		datType: 'json',
 		success: function(mapObj) {
 			map.init(mapObj);
 			if (typeof onLoad === 'function') {
 				onLoad();
 			}
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			console.log('map loading error: ');
+			console.log(textStatus);
 		}
 	});
 };
 
 map.save = function() {
 	$.ajax({
-		url: '../escape/saveMap.php',
+		url: '/maps/'+map.name+'.json',
 		type: 'post',
-		data: 'map='+JSON.stringify(map),
+		data: JSON.stringify(map),
 		success: function(result) {
 			console.log('map saved');
 		}

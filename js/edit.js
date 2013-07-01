@@ -81,6 +81,12 @@ palette.tools = {
 		type: 'terrain',
 		tilesetIndex: 0
 	},
+	player: {
+		type: 'entity',
+		click: function() {
+			console.log('player');
+		}
+	},
 	removeActor: {
 		type: 'eraser',
 		targetType: 'actor',
