@@ -5,6 +5,23 @@ HTML5 Game - 1942: You are a British paratrooper captured in France during a rai
 
 This is an extremely early alpha (in fact it is more a prototype designed to test gameplay principles - hence the horrible vector graphics). If the gameplay is promising then this will eventually turn into a complete game
 
+How to Install
+----------------
+
+(I've only been able so far to test this process on linux (Ubuntu 12.10) so far. If it does not work then it may be that my directions do not translate well to your operating system. Please let me know and I'll investigate)
+
+1. Install node.js (http://nodejs.org)
+2. Install git (http://git-scm.com)
+3. Install grunt (from the command line, type: 'npm install -g grunt-cli' - you may need to prefix with 'sudo ' in some circumstances)
+3. Clone the repo (from the command line when in the correct parent directory, type: 'git clone https://github.com/RobJohnstone/escape.git')
+4. Navigate into the escape directory (type: 'cd escape')
+5. Install dependencies (type: 'npm install')
+6. Start the server (type: './escape.sh' [on Windows systems you will instead have to type 'node server/server.js' and then open the browser manually]) 
+
+The last command should also open your default web browser (hopefully Chrome as that is what the game is currently tested in! If not, open Chrome and type 'localhost:8080' into the address bar. As long as you do not have anything else running on that port then the game will start).
+
+If you need to stop the server press 'ctrl-c' on the command line
+
 How to play:
 ------------
 
@@ -16,21 +33,6 @@ To be honest it's not really playable at the moment. If you really want to check
 + a: move left
 + p: pause
 + click to fire
-
-Advanced Install
-----------------
-
-For developers with a bit of experience there is an alternative way to install the game. The advantage of this approach is that you will be able to use the build scripts and also use the map editor which will not save files if the simple process is followed. [I've only been able so far to test this process on linux (Ubuntu 12.10). If it does not work then it may be that my directions do not translate well to your operating system. Please let me know and I'll investigate]
-
-1. Install node.js (http://nodejs.org)
-2. Install git (http://git-scm.com)
-3. Install grunt (type: 'npm install -g grunt-cli')
-3. Clone the repo (from the command line when in the correct parent directory, type: 'git clone https://github.com/RobJohnstone/escape.git')
-4. Navigate into the escape directory (type: 'cd escape')
-5. Install dependencies (type: 'npm install')
-6. Start the server (type: './escape.sh')
-
-The last command should also open your default web browser (hopefully Chrome as that is what the game is currently tested in! If not, open Chrome and type 'localhost:8080' into the address bar. As long as you do not have anything else running on that port then the game will start).
 
 Technology:
 -----------
