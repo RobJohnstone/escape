@@ -3,7 +3,7 @@ var actors = {
 		var actorDefinition = this[actor.type];
 		$.extend(actorDefinition, actor);
 		actorDefinition.initial = $.extend({}, actorDefinition);
-		Object.create(actorDefinition.prototype).init(actorDefinition);
+		actorDefinition.prototype.create(actorDefinition);
 	},
 	player: {
 		prototype: actorPrototype,

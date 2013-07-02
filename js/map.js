@@ -20,7 +20,7 @@ map.init = function(mapObj) {
 	for (i=0; i<map.actors.length; i++) {
 		actors.create(map.actors[i]);
 	}
-	window.player = Object.create(actorPrototype).init($.extend({ // deliberately make global (when I namespace the code later this would belong to the namespace)
+	window.player = actorPrototype.create($.extend({ // deliberately make global (when I namespace the code later this would belong to the namespace)
 		width: 32,
 		height: 32,
 		colour: 'green',

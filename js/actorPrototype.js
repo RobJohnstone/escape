@@ -1,4 +1,4 @@
-var actorPrototype = Object.create(entityPrototype);
+var actorPrototype = entityPrototype.create();
 
 actorPrototype.entityType = 'actor';
 actorPrototype.hittable = true;
@@ -127,8 +127,7 @@ actorPrototype.fire = function(target) {
 		firer = this,
 		projectile;
 	if (this.lastFired === undefined || this.lastFired < timer.time - weapon.reloadTime) {
-		projectile = Object.create(projectilePrototype);
-		projectile.init({
+		projectile = projectilePrototype.create({
 			'x': this.x,
 			'y': this.y,
 			'width': 4,

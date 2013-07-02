@@ -1,4 +1,3 @@
-Test readme instructions
 Give prototypes a create method which combines the init method with the creation.
 Improve editor so that it is a playable game
 	set player start

@@ -6,3 +6,9 @@ var valFromString = function(name) {
 	}
 	return value;
 };
+
+Object.prototype.create = function() {
+	var object = Object.create(this);
+	if (typeof object.init === "function") object.init.apply(object, arguments);
+	return object;
+};
