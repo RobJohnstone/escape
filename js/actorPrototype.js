@@ -1,4 +1,4 @@
-var actorPrototype = entityPrototype.create();
+var actorPrototype = entityPrototype.extend();
 
 actorPrototype.entityType = 'actor';
 actorPrototype.hittable = true;

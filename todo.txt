@@ -1,9 +1,17 @@
-Give prototypes a create method which combines the init method with the creation.
+Sort out git workflow
+
+consider whether to break clean from $.extend
+
+Strict mode
+
+ECMA5 object methods?
+
+Allow commit messages to be passed to grunt
+
 Improve editor so that it is a playable game
 	set player start
 	set exit
 	set baddy direction
 Start using images (separate into separate tasks to encourage commits)
 
-Minification and concatenation
 tests

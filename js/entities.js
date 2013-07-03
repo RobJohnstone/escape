@@ -19,7 +19,7 @@ entities.render = function() {
 	}
 };
 
-var entityPrototype = {
+var entityPrototype = {}.extend({
 	hittable: false,
 	init: (function() {
 		if (counter === undefined) {
@@ -35,4 +35,4 @@ var entityPrototype = {
 		};
 	})(),
 	process: function() {}
-};
+});

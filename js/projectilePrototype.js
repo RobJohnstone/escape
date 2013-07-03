@@ -1,4 +1,4 @@
-var projectilePrototype = entityPrototype.create();
+var projectilePrototype = entityPrototype.extend();
 projectilePrototype.entityType = 'projectile';
 projectilePrototype.process = function() {
 	this.move();

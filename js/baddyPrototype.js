@@ -1,4 +1,4 @@
-var baddyPrototype = actorPrototype.create();
+var baddyPrototype = actorPrototype.extend();
 
 baddyPrototype.firerId = (function() {
 	var counter=-1;
