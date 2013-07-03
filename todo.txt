@@ -1,10 +1,4 @@
-Sort out git workflow
-
-consider whether to break clean from $.extend
-
 Strict mode
-
-ECMA5 object methods?
 
 Allow commit messages to be passed to grunt
 

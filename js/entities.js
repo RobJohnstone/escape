@@ -1,38 +1,50 @@
-var entities = {};
+E.entities = (function() {
+	"use strict";
 
-entities.instances = [];
+	var entities = {};
 
-entities.process = function() {
-	var currentInstances = [];
-	for (var i=0; i<entities.instances.length; i++) {
-		entities.instances[i].process();
-		if (!entities.instances[i].remove) {
-			currentInstances.push(entities.instances[i]);
+	entities.instances = [];
+
+	entities.process = function() {
+		var currentInstances = [];
+		for (var i=0; i<entities.instances.length; i++) {
+			entities.instances[i].process();
+			if (!entities.instances[i].remove) {
+				currentInstances.push(entities.instances[i]);
+			}
 		}
-	}
-	entities.instances = currentInstances;
-};
+		entities.instances = currentInstances;
+	};
 
-entities.render = function() {
-	for (var i=0; i<entities.instances.length; i++) {
-		entities.instances[i].render();
-	}
-};
-
-var entityPrototype = {}.extend({
-	hittable: false,
-	init: (function() {
-		if (counter === undefined) {
-			var counter=0;
+	entities.render = function() {
+		for (var i=0; i<entities.instances.length; i++) {
+			entities.instances[i].render();
 		}
-		return function(params) {
-			$.extend(this, params);
-			this.entityId = counter++;
-			this.halfWidth = this.width / 2;
-			this.halfHeight = this.height / 2;
-			entities.instances.push(this);
-			return this;
-		};
-	})(),
-	process: function() {}
-});
+	};
+
+	return entities;
+})();
+
+E.entityPrototype = (function() {
+	"use strict";
+
+	var entityPrototype = {}.extend({
+		hittable: false,
+		init: (function() {
+			if (counter === undefined) {
+				var counter=0;
+			}
+			return function(params) {
+				$.extend(this, params);
+				this.entityId = counter++;
+				this.halfWidth = this.width / 2;
+				this.halfHeight = this.height / 2;
+				E.entities.instances.push(this);
+				return this;
+			};
+		})(),
+		process: function() {}
+	});
+
+	return entityPrototype;
+})();

@@ -2,7 +2,7 @@
  * Extend Object.prototype with helper methods to simplify inheritance
  */
 
-(function() {
+(function(Object) { // pass in Object as an argument to prevent minification bugs
 	/* extend - return a new object inheriting from the previous one 
 	 * @param propertiesObject an object that contains properties to add to the new object (overwriting previous ones with the same name)
 	 * The reason to use this over Object.create is that to pass in properties to the new object, Object.create requires property descriptors as its
@@ -42,4 +42,4 @@
 			value: create
 		}
 	});
-})();
+})(Object);

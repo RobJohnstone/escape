@@ -1,4 +1,4 @@
-var AStar = (function () {
+var aStar = (function () {  // my only change to the original implementation is naming the variable 'aStar' rather than 'AStar' to prevent jsHint throwing fits about constructors 
 
     /**
      * A* (A-Star) algorithm for a path finder
