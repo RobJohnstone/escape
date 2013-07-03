@@ -4,13 +4,6 @@ actorPrototype.entityType = 'actor';
 actorPrototype.hittable = true;
 actorPrototype.health = 100;
 actorPrototype.weapon = 'gun';
-/*actorPrototype.init = function() {
-	entityPrototype.init.apply(this);
-	this.home = {
-		x: this.x,
-		y: this.y
-	};
-};*/
 actorPrototype.move = function(v) {
 	var tile = map.getTileIndex(this),
 		tileLeft = tile - 1,

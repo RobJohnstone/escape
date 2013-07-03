@@ -106,7 +106,7 @@ palette.tools = {
 		type: 'entity',
 		click: function(tileIndex) {
 			var baddy = map.getTileCentre(tileIndex);
-			$.extend(baddy, {type: 'baddy'});
+			baddy.type = 'baddy';
 			map.actors.push(baddy);
 			map.init();
 			game.update = true;
