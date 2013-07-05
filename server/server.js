@@ -1,6 +1,6 @@
 // settings
 var settings = {
-	write: true
+	write: true // in production this should be false
 };
 
 // modules

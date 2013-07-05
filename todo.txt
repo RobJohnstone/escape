@@ -1,4 +1,6 @@
-Strict mode
+Improve node.js code
+
+Refactor and comment all code
 
 Allow commit messages to be passed to grunt
 

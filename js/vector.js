@@ -3,6 +3,13 @@ E.vector = (function() {
 
 	var vector = {};
 
+	vector.round = function(v) {
+		return {
+			x: Math.round(v.x),
+			y: Math.round(v.y)
+		};
+	};
+
 	vector.add = function(v1, v2) {
 		return {
 			x: v1.x + v2.x,

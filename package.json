@@ -1,6 +1,6 @@
 {
   "name": "escape",
-  "version": "0.1.2-0",
+  "version": "0.1.2-1",
   "scripts": {
     "start": "node server/server.js"
   },

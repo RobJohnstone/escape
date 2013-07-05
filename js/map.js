@@ -80,6 +80,80 @@ E.map = (function() {
 		}
 	};
 
+	map.checkWithinBounds = function(pos) {
+		if (pos.x < 0 || pos.x > map.width || pos.y < 0 || pos.y > map.height)
+			return false;
+		else
+			return true;
+	};
+
+	map.isPassable = function(tileIndex) {
+		var tile = map.data[tileIndex];
+		if (tile === undefined) {
+			return false;
+		}
+		else return E.tiles.tileset[tile].passable;
+	};
+
+	/* checks if an entity is about to collide with an impassable tile on the map and, if so, returns a more appropriate vector */
+	map.collisionAdjust = function(entity, v) {
+		var cornerCollisions, testV,
+			magnitude = E.vector.mag(v),
+			testVectors = [v];
+		// if v doesn't work then we're going try the individual x and y components of v scaled to the appropriate length
+		if (v.x) testVectors.push(E.vector.setLength({x: v.x, y: 0}, magnitude));
+		if (v.y) testVectors.push(E.vector.setLength({x: 0, y: v.y}, magnitude));
+		// and if they don't work we are blocked and so stay where we are
+		testVectors.push({x:0, y:0});
+
+		for (var i=0; i<testVectors.length; i++) {
+			testV = testVectors[i];
+			cornerCollisions = cornersCollide(entity, testV);
+			if (cornerCollisions.length === 0) {
+				return testV;
+			}
+			else if (cornerCollisions.length === 1) { // nudge around the corner as it's clear what the player is trying to do
+				return nudge(testV, cornerCollisions[0], entity);
+			}
+		}
+
+		/* Returns true if the point collides with an impassable tile on the map */
+		function pointCollides(point, v) {
+			var testPos = E.vector.round(E.vector.add(point, v));
+			var testTile = map.getTileIndex(testPos);
+			return !map.isPassable(testTile);
+		}
+
+		/* Returns the number of corners of the entity's bounding box that collide with impassable tiles on the map */
+		function cornersCollide(entity, v) {
+			var collisions = [],
+				corners = {
+					topLeft: {x: entity.x-entity.halfWidth, y: entity.y-entity.halfHeight},
+					topRight: {x: entity.x+entity.halfWidth, y: entity.y-entity.halfHeight},
+					bottomRight: {x: entity.x+entity.halfWidth, y: entity.y+entity.halfHeight},
+					bottomLeft: {x: entity.x-entity.halfWidth, y: entity.y+entity.halfHeight}
+				};
+			for (var corner in corners) {
+				if (pointCollides(corners[corner], v)) collisions.push(corner);
+			}
+			return collisions;
+		}
+
+		/* Returns a vector that will steer the entity away from a collision if only one of it's corners has collided with impassable tiles on the map */
+		function nudge(v, collidingCorner, entity) {
+			var sideLength = Math.sqrt(entity.halfWidth * entity.halfWidth + entity.halfHeight * entity.halfHeight),
+				cornerVectors = {
+					topLeft: {x:-1, y:-1},
+					topRight: {x:1, y:-1},
+					bottomRight: {x:1, y:1},
+					bottomLeft: {x:-1, y:1}
+				},
+				cornerVector = cornerVectors[collidingCorner],
+				nudgeVector = E.vector.subtract(cornerVector, {x:0, y:0});
+			return E.vector.setLength(nudgeVector, E.vector.mag(nudgeVector) * sideLength / 2);
+		}
+	};
+
 	map.position = function(position) {
 		map.offset = {
 			x: Math.round(E.graphics.gameCanvas.width / 2) - position.x,
@@ -91,10 +165,14 @@ E.map = (function() {
 		if (map.offset.y < E.graphics.gameCanvas.height-(map.rows * E.tiles.tileHeight)) map.offset.y = E.graphics.gameCanvas.height-(map.rows * E.tiles.tileHeight);
 	};
 
+	/* TODO: All these get methods should be memoized but there also needs to be a means of resetting them when a new map is loaded. The same is true of .isPassable above */
 	map.getTileIndex = function(position) {
-		var col = Math.floor(position.x / E.tiles.tileWidth),
-			row = Math.floor(position.y / E.tiles.tileHeight);
-		return (row * map.columns) + col;
+		if(map.checkWithinBounds(position)) {
+			var col = Math.floor(position.x / E.tiles.tileWidth),
+				row = Math.floor(position.y / E.tiles.tileHeight);
+			return (row * map.columns) + col;
+		}
+		else return undefined;
 	};
 
 	map.getTileCentre = function(tile) {

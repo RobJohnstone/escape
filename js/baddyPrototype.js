@@ -18,7 +18,6 @@ E.baddyPrototype = (function() {
 		else {
 			if (this.baddySeePlayer()) {
 				this.targetTile = E.map.getTileIndex(player);
-				/*this.target = E.map.getTileCentre(this.targetTile);*/
 				this.target = $.extend({}, player, E.map.getTileCentre(this.targetTile));
 				this.target.direction = E.vector.clone(player.direction);
 				this.fire(player);
