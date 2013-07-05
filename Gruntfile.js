@@ -5,26 +5,34 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bumpup');
   grunt.loadNpmTasks('grunt-open');
 
+  // set working directory to client
+  grunt.file.setBase('client');
+
   // config
   grunt.initConfig({
     jshint: {
-      all: ['Gruntfile.js', 'js/**/*.js', '!js/lib/*.js']
+      all: ['../Gruntfile.js', 'js/**/*.js', '!js/lib/*.js']
     },
     uglify: {
       options: {
         wrap: true,
         report: 'min',
-        sourceMap: 'production/sourceMap.js',
+        sourceMap: function(dest) {
+          var srcMapName = dest.split('/');
+          srcMapName.pop();
+          srcMapName.push('sourceMap.js');
+          return srcMapName.join('/');
+        },
         sourceMapRoot: '../',
-        sourceMappingURL: 'sourceMap.js'
+        sourceMappingURL: '/production/sourceMap.js'
       },
-      min: {
-        src: ['js/objectPrototype.js', 'js/escape.js', 'js/map.js', 'js/entities.js', 'js/actorPrototype.js', 'js/baddyPrototype.js', 'js/**/*.js', '!js/edit.js'],
+      files: {
+        src: ['js/objectPrototype.js', 'js/escape.js', 'js/map.js', 'js/entities.js', 'js/actorPrototype.js', 'js/baddyPrototype.js', 'js/**/*.js', '!js/edit.js', '!js/palette.js'],
         dest: 'production/app-min.js'
       }
     },
     bumpup: {
-      file: 'package.json'
+      file: '../package.json'
     },
     open: {
       production: {

@@ -57,7 +57,7 @@ E.map = (function() {
 		$.ajax({
 			url: '/maps/'+map.name+'.json',
 			type: 'post',
-			data: JSON.stringify(map),
+			data: {data: JSON.stringify(map)},
 			success: function(result) {
 				console.log('map saved');
 			}
