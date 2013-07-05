@@ -15,7 +15,9 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        wrap: true,
+        mangle: {
+          except: ['create', 'extend']
+        },
         report: 'min',
         sourceMap: function(dest) {
           var srcMapName = dest.split('/');
