@@ -1,13 +1,6 @@
-Improve node.js code
-
-Refactor and comment all code
-
-Allow commit messages to be passed to grunt
-
 Improve editor so that it is a playable game
 	set player start
 	set exit
 	set baddy direction
-Start using images (separate into separate tasks to encourage commits)
 
-tests
+Write bitmap graphics code (separate into separate tasks)
