@@ -19,6 +19,7 @@ E.palette = (function() {
 	 * @return this
 	 */
 	palette.updatedMap = function() {
+		console.log('called updatedMap');
 		$('#saveMap').text('Save map*');
 		map.updated = true;
 		return this;
@@ -41,8 +42,11 @@ E.palette = (function() {
 			 * @method tools.player.click
 			 * @return palette
 			 */
-			click: function() {
-				console.log('player');
+			click: function(tileIndex) {
+				var coords = map.getTileCentre(tileIndex);
+				map.playerStart.x = coords.x;
+				map.playerStart.y = coords.y;
+				E.game.reset();
 				return palette;
 			}
 		},

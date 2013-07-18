@@ -1,7 +1,4 @@
-BUG: Baddies not chasing player
-
 Improve editor so that it is a playable game
-	set player start
 	set exit
 	set baddy direction
 

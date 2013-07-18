@@ -85,6 +85,7 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.save = function() {
+		delete map.updated;
 		$.ajax({
 			url: '/maps/'+map.name+'.json',
 			type: 'post',

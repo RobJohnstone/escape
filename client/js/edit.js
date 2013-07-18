@@ -86,6 +86,19 @@ E.game = (function() {
 	};
 
 	/**
+	 * Resets game state when map data changes
+	 *
+	 * @method reset
+	 * @return this
+	 */
+	game.reset = function() {
+		E.entities.instances = [];
+		E.map.init();
+		game.update = true;
+		return this;
+	};
+
+	/**
 	 * A singleton DOM element. On first call creates the DOM element. On all calls populates the DOM element with the items
 	 * in the game.info.items array.
 	 *
