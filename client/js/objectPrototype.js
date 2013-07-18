@@ -72,6 +72,6 @@
 		}
 	}
 
-	addToObjectPrototype(extend);
-	addToObjectPrototype(create);
+	_addToObjectPrototype(extend);
+	_addToObjectPrototype(create);
 })(Object);
