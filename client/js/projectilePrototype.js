@@ -1,11 +1,36 @@
+/**
+ * Prototype for all projectiles. Inherits from entity prototype
+ *
+ * For more information on how Escape uses inheritance see objectPrototype.js
+ *
+ * @module projectilePrototype
+ * @class projectilePrototype
+ * @extends entityPrototype
+ */
+
 E.projectilePrototype = (function() {
 	"use strict";
 
 	var projectilePrototype = E.entityPrototype.extend();
 	projectilePrototype.entityType = 'projectile';
+
+	/**
+	 * Carries out the processing required by a projectile each frame
+	 *
+	 * @method process
+	 * @return this
+	 */
 	projectilePrototype.process = function() {
 		this.move();
+		return this;
 	};
+
+	/**
+	 * Moves the projectile testing for collisions and calling the appropriate hit handlers
+	 *
+	 * @method move
+	 * @return this
+	 */
 	projectilePrototype.move = function() {
 		var tile,
 			projectile = this;
@@ -25,7 +50,17 @@ E.projectilePrototype = (function() {
 				}
 			}
 		});
+		return this;
 	};
+
+	/**
+	 * Renders the projectile
+	 *
+	 * Placeholder graphics TODO: replace with bitmaps
+	 *
+	 * @method render
+	 * @return this
+	 */
 	projectilePrototype.render = function() {
 		var x = E.map.offset.x + this.x,
 			y = E.map.offset.y + this.y;
@@ -33,6 +68,7 @@ E.projectilePrototype = (function() {
 		E.graphics.gameContext.arc(x, y, this.halfWidth, 0, 2 * Math.PI);
 		E.graphics.gameContext.fillStyle = 'yellow';
 		E.graphics.gameContext.fill();
+		return this;
 	};
 
 	return projectilePrototype;

@@ -1,0 +1,11 @@
+{
+    "name": "Escape",
+    "description": "An HTML5 game",
+    "version": "1.0.0",
+    "url": "https://github.com/RobJohnstone/escape",
+    "options": {
+        "linkNatives": "true",
+        "outdir": "./docs",
+        "paths": "."
+    }
+}

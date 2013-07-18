@@ -1,7 +1,11 @@
-/*
+/**
  * Prototype for all actors. Inherits from entity prototype
  *
  * For more information on how Escape uses inheritance see objectPrototype.js
+ *
+ * @module actorPrototype
+ * @class actorPrototype
+ * @extends entityPrototype
  */
 
 E.actorPrototype = (function () {
@@ -18,8 +22,9 @@ E.actorPrototype = (function () {
 	 * Moves the actor in the direction indicated by vector v. If this would result in a collision with the map
 	 * then a more sensible vector is chosen and the actor moves that way instead
 	 *
-	 * @param v the movement vector
-	 * @return blocked true if the actor was unable to move. This is useful for the AI
+	 * @method move
+	 * @param v {vector} the movement vector
+	 * @return {boolean} true if the actor was unable to move. This is useful for the AI
 	 */
 	actorPrototype.move = function(v) {
 		var newPos,
@@ -46,7 +51,8 @@ E.actorPrototype = (function () {
 	 * Moves actor towards the position indicated, taking into account the actor's speed
 	 * Movement is attempted "as the crow flies" with no route selection
 	 * 
-	 * @param position the location to move towards
+	 * method moveTowards
+	 * @param position {vector} the location to move towards
 	 * @return this
 	 */
 	actorPrototype.moveTowards = function(position) {
@@ -60,7 +66,8 @@ E.actorPrototype = (function () {
 	 * Moves actor towards the position indicated, while performing sensible route selection
 	 * Route selection algorithm is A*
 	 *
-	 * @param position the location to move to
+	 * @method moveTo
+	 * @param position {vector} the location to move to
 	 * @return this
 	 */
 	actorPrototype.moveTo = function(position) {
@@ -80,7 +87,8 @@ E.actorPrototype = (function () {
 	/**
 	 * handles being hit by a projectile, including effect on health and action to take upon death
 	 *
-	 * @param projectile The object that is doing the hitting. Should inherit from projectilePrototype
+	 * @method hit
+	 * @param projectile {object} The object that is doing the hitting. Should inherit from projectilePrototype
 	 * @return this;
 	 */
 	actorPrototype.hit = function(projectile) {
@@ -99,7 +107,8 @@ E.actorPrototype = (function () {
 	/**
 	 * Fires the actor's weapon
 	 *
-	 * @param target The location that is to be aimed at
+	 * @method fire
+	 * @param target {vector} The location that is to be aimed at
 	 * @return this
 	 */
 	actorPrototype.fire = function(target) {
@@ -129,6 +138,7 @@ E.actorPrototype = (function () {
 	/*
 	 * Renders the actor. This is placeholder code until the bitmap graphics code has been written
 	 *
+	 * @method render
 	 * @return this
 	 */
 	actorPrototype.render = function() {

@@ -1,3 +1,10 @@
+/**
+ * Weapon definitions
+ *
+ * @module weapons
+ * @class weapons
+ */
+
 E.weapons = (function() {
 	"use strict";
 

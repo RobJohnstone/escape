@@ -1,3 +1,9 @@
+/**
+ * Map module. Objects and methods concerning the map
+ *
+ * @module map
+ * @class map
+ */
 E.map = (function() {
 	"use strict";
 
@@ -8,6 +14,13 @@ E.map = (function() {
 		}
 	};
 
+	/**
+	 * initialise the map based on a loaded map object
+	 *
+	 * @method init
+	 * @param mapObj {object} information about the map loaded from file
+	 * @return this
+	 */
 	map.init = function(mapObj) {
 		$.extend(true, map, mapObj);
 		E.tiles.init('', map.tileWidth, map.tileHeight);
@@ -34,9 +47,20 @@ E.map = (function() {
 		if (!E.graphics.clipping) {
 			E.graphics.resizeCanvas('game', map.tileWidth * map.columns, map.tileHeight * map.rows);
 		}
+		return this;
 	};
 
-	map.load = function(mapName, tileSource, tileWidth, tileHeight, onLoad) {
+	/**
+	 * load the map data
+	 *
+	 * @method load
+	 * @param mapName {string} the name of the map. This should also be the filename minus the extension
+	 * @param tileWidth {number} the width in pixels of a tile on the map
+	 * @param tileHeight {number} the height in pixels of a tile on the map
+	 * @param onLoad {function} the function to be called once the map has loaded
+	 * @return this
+	 */
+	map.load = function(mapName, tileWidth, tileHeight, onLoad) {
 		$.ajax({
 			url: '/maps/'+mapName+'.json',
 			type: 'get',
@@ -51,8 +75,15 @@ E.map = (function() {
 				console.log(textStatus);
 			}
 		});
+		return this;
 	};
 
+	/**
+	 * Saves the map on the server (this should only be allowed on the dev server)
+	 *
+	 * @method save
+	 * @return this
+	 */
 	map.save = function() {
 		$.ajax({
 			url: '/maps/'+map.name+'.json',
@@ -62,8 +93,15 @@ E.map = (function() {
 				console.log('map saved');
 			}
 		});
+		return this;
 	};
 
+	/**
+	 * renders the map
+	 *
+	 * @method render
+	 * @return this
+	 */
 	map.render = function() {
 		var floor = Math.floor,
 			ceil = Math.ceil,
@@ -78,8 +116,16 @@ E.map = (function() {
 				E.tiles.renderTile(map.data[row*map.columns + col], x, y);
 			}
 		}
+		return this;
 	};
 
+	/**
+	 * Checks that a position is within the bounds of the map
+	 *
+	 * @method checkWithinBounds
+	 * @param pos {vector} the position to test
+	 * @return {boolean} true if the position is within the bounds of the map, false otherwise
+	 */
 	map.checkWithinBounds = function(pos) {
 		if (pos.x < 0 || pos.x > map.width || pos.y < 0 || pos.y > map.height)
 			return false;
@@ -87,6 +133,13 @@ E.map = (function() {
 			return true;
 	};
 
+	/**
+	 * Checks that a particular tile is passable
+	 *
+	 * @method isPassable
+	 * @param tileIndex {number} the index of the tile within the E.tiles.tiles array
+	 * @return {boolean} true if the tile is passable, false otherwise
+	 */
 	map.isPassable = function(tileIndex) {
 		var tile = map.data[tileIndex];
 		if (tile === undefined) {
@@ -95,7 +148,13 @@ E.map = (function() {
 		else return E.tiles.tileset[tile].passable;
 	};
 
-	/* checks if an entity is about to collide with an impassable tile on the map and, if so, returns a more appropriate vector */
+	/** Checks if an entity is about to collide with an impassable tile on the map and, if so, returns a more appropriate vector
+	 *
+	 * @method collisionAdjust
+	 * @param entity {entity} the entity that is moving
+	 * @param v {vector} the desired movement vector of the entity
+	 * @return {vector} an allowable movement vector
+	 */	
 	map.collisionAdjust = function(entity, v) {
 		var cornerCollisions, testV,
 			magnitude = E.vector.mag(v),
@@ -154,6 +213,13 @@ E.map = (function() {
 		}
 	};
 
+	/**
+	 * Scrolls the map so that it is looking at the passed position
+	 *
+	 * @method position
+	 * @param position {vector} The position to look at
+	 * @return this
+	 */
 	map.position = function(position) {
 		map.offset = {
 			x: Math.round(E.graphics.gameCanvas.width / 2) - position.x,
@@ -163,9 +229,17 @@ E.map = (function() {
 		if (map.offset.y > 0) map.offset.y = 0;
 		if (map.offset.x < E.graphics.gameCanvas.width-(map.columns * E.tiles.tileWidth)) map.offset.x = E.graphics.gameCanvas.width-(map.columns * E.tiles.tileWidth);
 		if (map.offset.y < E.graphics.gameCanvas.height-(map.rows * E.tiles.tileHeight)) map.offset.y = E.graphics.gameCanvas.height-(map.rows * E.tiles.tileHeight);
+		return this;
 	};
 
 	/* TODO: All these get methods should be memoized but there also needs to be a means of resetting them when a new map is loaded. The same is true of .isPassable above */
+	/**
+	 * Returns the index of the tile corresponding to the passed postion
+	 *
+	 * @method getTileIndex
+	 * @param position {vector} the position to test
+	 * @return {number} the index of the appropriate tile or undefined if there is no tile at that position
+	 */
 	map.getTileIndex = function(position) {
 		if(map.checkWithinBounds(position)) {
 			var col = Math.floor(position.x / E.tiles.tileWidth),
@@ -175,6 +249,13 @@ E.map = (function() {
 		else return undefined;
 	};
 
+	/**
+	 * Returns a vector indicating the position of the centre of the tile
+	 *
+	 * @method getTileCentre
+	 * @param tile {number} The tile to consider. If an object is passed it will try to determine the tile based on the x and y properties of the object
+	 * @return {vector} The postion of the centre of the tile
+	 */
 	map.getTileCentre = function(tile) {
 		if (Object.prototype.toString.call(tile) === '[object Array]') {
 			tile = map.getTileFromCoords(tile);
@@ -187,6 +268,13 @@ E.map = (function() {
 		});
 	};
 
+	/**
+	 * Converts a tile index into 2d coordinates within the tiles array
+	 *
+	 * @method getTileCoords
+	 * @param tile {number} The tile index
+	 * @return {array} The first element is the x coordinate, the second the y coordinate
+	 */
 	map.getTileCoords = function(tile) {
 		if (Object.prototype.toString.call(tile) === '[object Array]') { // check if 2d coords rather than straight tile no
 			tile = tile[0] + tile[1] * map.columns;
@@ -194,6 +282,14 @@ E.map = (function() {
 		return [tile % map.columns, Math.floor(tile / map.rows)];
 	};
 
+	/**
+	 * Converts 2d tile coords (not pixel coords) into a tile index
+	 *
+	 * @method getTileFromCoords
+	 * @param x {number} The x coord of the tile
+	 * @param y {number} The y coord of the tile
+	 * @return {number} The tile index
+	 */
 	map.getTileFromCoords = function(x, y) {
 		if (Object.prototype.toString.call(x) === '[object Array]') {
 			y = x[1];
@@ -202,7 +298,16 @@ E.map = (function() {
 		return (y * map.columns) + x;
 	};
 
-	map.lineTraversable = function(start, end, resolution) {
+	/**
+	 * Checks if a line between two points can pass unimpeeded by the map
+	 * Note that this does not check for collisions with entities
+	 *
+	 * @method lineTraversable
+	 * @param start {vector} The start location
+	 * @param end {vector} The end location
+	 * @return {boolean} True if there are no impassable tiles between the start and end points, false otherwise
+	 */
+	map.lineTraversable = function(start, end) {
 		var diff = E.vector.subtract(start, end),
 			distance = E.vector.mag(diff),
 			vel = E.vector.normalise(diff),
@@ -222,6 +327,13 @@ E.map = (function() {
 		return true;
 	};
 
+	/**
+	 * Higlights the tile indicated
+	 *
+	 * @method highlightTile
+	 * @param tile {number} The tile to highlight
+	 * @return this
+	 */
 	map.highlightTile = function(tile) {
 		if (E.graphics.gameCanvas) {
 			var tileCentre = map.getTileCentre(tile);
@@ -230,10 +342,18 @@ E.map = (function() {
 				E.graphics.gameContext.strokeRect(Math.round(tileCentre.x-E.tiles.tileWidth/2)+0.5, Math.round(tileCentre.y-E.tiles.tileHeight/2)+0.5, E.tiles.tileWidth, E.tiles.tileHeight);
 			});
 		}
+		return this;
 	};
 
+	/**
+	 * highlights the tile under the mouse cursor
+	 *
+	 * @method highlightMouseTile
+	 * @return this
+	 */
 	map.highlightMouseTile = function() {
 		map.highlightTile(map.getTileIndex(E.input.mouseState));
+		return this;
 	};
 
 	return map;

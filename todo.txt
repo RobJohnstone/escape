@@ -4,3 +4,5 @@ Improve editor so that it is a playable game
 	set baddy direction
 
 Write bitmap graphics code (separate into separate tasks)
+
+Write documentation tool that better supports prototypal rather than classical inheritance

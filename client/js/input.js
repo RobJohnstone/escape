@@ -1,3 +1,10 @@
+/**
+ * Input module
+ * Contains all code relating to input
+ *
+ * @module input
+ * @class input
+ */
 E.input = (function() {
 	"use strict";
 
@@ -13,6 +20,13 @@ E.input = (function() {
 		'73': 'invulnerable'
 	};
 
+	/**
+	 * starts observing input
+	 *
+	 * @method start
+	 * @param mode {string} the input mode (i.e. what to check and what methods to run as a result)
+	 * @return this
+	 */
 	input.start = function(mode) {
 		$(document).off();
 		switch (mode) {
@@ -95,8 +109,15 @@ E.input = (function() {
 				});
 				break;
 		}
+		return this;
 	};
 
+	/**
+	 * invoke event handlers
+	 *
+	 * @method process
+	 * @return this
+	 */
 	input.process = function() {
 		switch (E.game.mode) {
 			case 'play':
@@ -120,10 +141,18 @@ E.input = (function() {
 				//map.mouse.y = input.mouseState.y + $('body').scrollTop();
 				break;
 		}
+		return this;
 	};
 
+	/**
+	 * detach all input event handlers
+	 *
+	 * @method stop
+	 * @return this
+	 */
 	input.stop = function() {
 		$(document).off();
+		return this;
 	};
 
 	return input;

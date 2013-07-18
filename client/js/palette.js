@@ -1,3 +1,10 @@
+/**
+ * Command palette for the game editor
+ *
+ * @module palette
+ * @class palette
+ */
+
 E.palette = (function() {
 	"use strict";
 
@@ -5,9 +12,16 @@ E.palette = (function() {
 
 	var palette = {};
 
+	/**
+	 * change state of map to record that the current version is not saved
+	 *
+	 * @method updatedMap
+	 * @return this
+	 */
 	palette.updatedMap = function() {
 		$('#saveMap').text('Save map*');
 		map.updated = true;
+		return this;
 	};
 
 	palette.tools = {
@@ -21,13 +35,26 @@ E.palette = (function() {
 		},
 		player: {
 			type: 'entity',
+			/**
+			 * Player tool
+			 *
+			 * @method tools.player.click
+			 * @return palette
+			 */
 			click: function() {
 				console.log('player');
+				return palette;
 			}
 		},
 		removeActor: {
 			type: 'eraser',
 			targetType: 'actor',
+			/**
+			 * Remove actor tool
+			 *
+			 * @method tools.removeActor.click
+			 * @return palette
+			 */
 			click: function(tileIndex) {
 				var coords = map.getTileCentre(tileIndex);
 				for (var i=0; i<map.actors.length; i++) {
@@ -38,30 +65,60 @@ E.palette = (function() {
 						E.game.update = true;
 					}
 				}
+				return palette;
 			}
 		},
 		baddy: {
 			type: 'entity',
+			/**
+			 * Baddy tool
+			 *
+			 * @method tools.baddy.click
+			 * @return palette
+			 */
 			click: function(tileIndex) {
 				var baddy = map.getTileCentre(tileIndex);
 				baddy.type = 'baddy';
 				map.actors.push(baddy);
 				map.init();
 				E.game.update = true;
+				return palette;
 			}
 		}
 	};
 
 	palette.currentTool = 'wall';
 
+	/**
+	 * Displays the command palette
+	 *
+	 * @method show
+	 * @return this
+	 */
 	palette.show = function() {
 		$('#palette').show();
+		return this;
 	};
 
+	/**
+	 * Hides the command palette
+	 *
+	 * @method hide
+	 * @return this
+	 */
 	palette.hide = function() {
 		$('#palette').hide();
+		return this;
 	};
 
+	/**
+	 * Initialises the command palette
+	 *
+	 * Includes a generic event handler for using the currently selected tool
+	 *
+	 * @method init
+	 * @return this
+	 */
 	palette.init = function() {
 		palette.show();
 		palette.$ = $('#palette');
@@ -84,8 +141,14 @@ E.palette = (function() {
 				palette.updatedMap();
 			}
 		});
+		return this;
 	};
 
+	/*
+	 * Event handlers
+	 *
+	 * Event handlers bound after dom loaded
+	 */
 	$(function() {
 		$('#palette').on({
 			click: function() {
@@ -105,6 +168,10 @@ E.palette = (function() {
 	});
 
 	map.updated = false;
+
+	/*
+	 * Confirmation message before leaving an unsaved map
+	 */
 	window.onbeforeunload = function() {
 		if (map.updated) {
 			return 'You have unsaved changes. Are you sure you wish to leave?';

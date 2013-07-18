@@ -1,0 +1,2276 @@
+{
+    "project": {
+        "name": "Escape",
+        "description": "An HTML5 game",
+        "version": "1.0.0",
+        "url": "https://github.com/RobJohnstone/escape"
+    },
+    "files": {
+        "client/js/lib/AStar.js": {
+            "name": "client/js/lib/AStar.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/actorPrototype.js": {
+            "name": "client/js/actorPrototype.js",
+            "modules": {
+                "actorPrototype": 1
+            },
+            "classes": {
+                "actorPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/actors.js": {
+            "name": "client/js/actors.js",
+            "modules": {
+                "actors": 1
+            },
+            "classes": {
+                "actors": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/baddyPrototype.js": {
+            "name": "client/js/baddyPrototype.js",
+            "modules": {
+                "baddyPrototype": 1
+            },
+            "classes": {
+                "baddyPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/edit.js": {
+            "name": "client/js/edit.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/entities.js": {
+            "name": "client/js/entities.js",
+            "modules": {
+                "entities": 1
+            },
+            "classes": {
+                "entities": 1,
+                "entityPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/escape.js": {
+            "name": "client/js/escape.js",
+            "modules": {
+                "game": 1
+            },
+            "classes": {
+                "game": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/graphics.js": {
+            "name": "client/js/graphics.js",
+            "modules": {
+                "graphics": 1
+            },
+            "classes": {
+                "graphics": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/input.js": {
+            "name": "client/js/input.js",
+            "modules": {
+                "input": 1
+            },
+            "classes": {
+                "input": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/map.js": {
+            "name": "client/js/map.js",
+            "modules": {
+                "map": 1
+            },
+            "classes": {
+                "map": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/objectPrototype.js": {
+            "name": "client/js/objectPrototype.js",
+            "modules": {
+                "objectPrototype": 1
+            },
+            "classes": {
+                "objectPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/palette.js": {
+            "name": "client/js/palette.js",
+            "modules": {
+                "palette": 1
+            },
+            "classes": {
+                "palette": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/polyfills.js": {
+            "name": "client/js/polyfills.js",
+            "modules": {
+                "polyfills": 1
+            },
+            "classes": {
+                "polyfills": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/projectilePrototype.js": {
+            "name": "client/js/projectilePrototype.js",
+            "modules": {
+                "projectilePrototype": 1
+            },
+            "classes": {
+                "projectilePrototype": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/tiles.js": {
+            "name": "client/js/tiles.js",
+            "modules": {
+                "tiles": 1
+            },
+            "classes": {
+                "tiles": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/timer.js": {
+            "name": "client/js/timer.js",
+            "modules": {
+                "timer": 1
+            },
+            "classes": {
+                "timer": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/util.js": {
+            "name": "client/js/util.js",
+            "modules": {
+                "util": 1
+            },
+            "classes": {
+                "util": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/vector.js": {
+            "name": "client/js/vector.js",
+            "modules": {
+                "vector": 1
+            },
+            "classes": {
+                "vector": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/weapons.js": {
+            "name": "client/js/weapons.js",
+            "modules": {
+                "weapons": 1
+            },
+            "classes": {
+                "weapons": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/server.js": {
+            "name": "server/server.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "actorPrototype": {
+            "name": "actorPrototype",
+            "submodules": {},
+            "classes": {
+                "actorPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/actorPrototype.js",
+            "line": 1,
+            "description": "Prototype for all actors. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
+            "extends": "entityPrototype"
+        },
+        "actors": {
+            "name": "actors",
+            "submodules": {},
+            "classes": {
+                "actors": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/actors.js",
+            "line": 1,
+            "description": "Definitions for all the actor types in the game. Also includes a factory method (create)\nto create an actor of that type"
+        },
+        "baddyPrototype": {
+            "name": "baddyPrototype",
+            "submodules": {},
+            "classes": {
+                "baddyPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/baddyPrototype.js",
+            "line": 1,
+            "description": "Prototype for all baddies. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
+            "extends": "actorPrototype"
+        },
+        "game": {
+            "name": "game",
+            "submodules": {},
+            "classes": {
+                "game": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/escape.js",
+            "line": 11,
+            "description": "ESCAPE\n\nThe game entry point code and loop"
+        },
+        "entities": {
+            "name": "entities",
+            "submodules": {},
+            "classes": {
+                "entities": 1,
+                "entityPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/entities.js",
+            "line": 49,
+            "description": "entities object contains code for tracking, processing and rendering entities"
+        },
+        "graphics": {
+            "name": "graphics",
+            "submodules": {},
+            "classes": {
+                "graphics": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/graphics.js",
+            "line": 1,
+            "description": "Graphics module\nContains all code that outputs to the canvas"
+        },
+        "input": {
+            "name": "input",
+            "submodules": {},
+            "classes": {
+                "input": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/input.js",
+            "line": 1,
+            "description": "Input module\nContains all code relating to input"
+        },
+        "map": {
+            "name": "map",
+            "submodules": {},
+            "classes": {
+                "map": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/map.js",
+            "line": 1,
+            "description": "Map module. Objects and methods concerning the map"
+        },
+        "objectPrototype": {
+            "name": "objectPrototype",
+            "submodules": {},
+            "classes": {
+                "objectPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/objectPrototype.js",
+            "line": 1,
+            "description": "Extend Object.prototype with helper methods to simplify inheritance\n\nEscape uses prototypal style inheritance rather than the constructor / pseudo-classical \napproach used by many javascript developers. The \"blueprints\" for each type of object\nare defined as objects in files named \"<type>Prototype.js\". A new object of that type can \nbe created using \"var newObj = <type>Prototype.create();\". To create a new prototype based\nupon a previous one use \"var newPrototype = <type>Prototype.extend();\"\n\nIt could be argued that extending Object.prototype in this way is an anti-pattern due to the\neffect it could have on code written by those who are unaware that it has been extended. However,\nthe code below takes account of the most common types of conflict and employs suitable preventative\nmeasures so this sort of problem should not occur."
+        },
+        "palette": {
+            "name": "palette",
+            "submodules": {},
+            "classes": {
+                "palette": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/palette.js",
+            "line": 1,
+            "description": "Command palette for the game editor"
+        },
+        "polyfills": {
+            "name": "polyfills",
+            "submodules": {},
+            "classes": {
+                "polyfills": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/polyfills.js",
+            "line": 1,
+            "description": "Polyfills module"
+        },
+        "projectilePrototype": {
+            "name": "projectilePrototype",
+            "submodules": {},
+            "classes": {
+                "projectilePrototype": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/projectilePrototype.js",
+            "line": 1,
+            "description": "Prototype for all projectiles. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
+            "extends": "entityPrototype"
+        },
+        "tiles": {
+            "name": "tiles",
+            "submodules": {},
+            "classes": {
+                "tiles": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/tiles.js",
+            "line": 1,
+            "description": "Tiles module.\n\nHandles all functionality associated with map tiles\nIf you're looking for something and can't find it then try the map module"
+        },
+        "timer": {
+            "name": "timer",
+            "submodules": {},
+            "classes": {
+                "timer": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/timer.js",
+            "line": 1,
+            "description": "Keeps track of the time between frames\n\nTODO: expand with functionality to set custom timers"
+        },
+        "util": {
+            "name": "util",
+            "submodules": {},
+            "classes": {
+                "util": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/util.js",
+            "line": 1,
+            "description": "Utility methods that do not really belong any where else"
+        },
+        "vector": {
+            "name": "vector",
+            "submodules": {},
+            "classes": {
+                "vector": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/vector.js",
+            "line": 1,
+            "description": "A library of useful vector math functions\n\nAt first glance it may appear that a nicer syntax could be obtained by creating a vector type\nand attaching these methods to the prototype. However, the most common use case is an object\nof a different type that happens to have x and y properties. As using apply/call is fiddly\nin terms of syntax and multiple inheritance is memory inefficient in javascript (an object can \nonly be linked to a single prototype), I believe this approach to be best."
+        },
+        "weapons": {
+            "name": "weapons",
+            "submodules": {},
+            "classes": {
+                "weapons": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/weapons.js",
+            "line": 1,
+            "description": "Weapon definitions"
+        }
+    },
+    "classes": {
+        "actorPrototype": {
+            "name": "actorPrototype",
+            "shortname": "actorPrototype",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "actorPrototype",
+            "namespace": "",
+            "file": "client/js/actorPrototype.js",
+            "line": 1,
+            "description": "Prototype for all actors. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        "actors": {
+            "name": "actors",
+            "shortname": "actors",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "actors",
+            "namespace": "",
+            "file": "client/js/actors.js",
+            "line": 1,
+            "description": "Definitions for all the actor types in the game. Also includes a factory method (create)\nto create an actor of that type"
+        },
+        "baddyPrototype": {
+            "name": "baddyPrototype",
+            "shortname": "baddyPrototype",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "baddyPrototype",
+            "namespace": "",
+            "file": "client/js/baddyPrototype.js",
+            "line": 1,
+            "description": "Prototype for all baddies. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        "game": {
+            "name": "game",
+            "shortname": "game",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "game",
+            "namespace": "",
+            "file": "client/js/escape.js",
+            "line": 11
+        },
+        "entities": {
+            "name": "entities",
+            "shortname": "entities",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "entities",
+            "namespace": "",
+            "file": "client/js/entities.js",
+            "line": 1,
+            "description": "entities object contains code for tracking, processing and rendering entities"
+        },
+        "entityPrototype": {
+            "name": "entityPrototype",
+            "shortname": "entityPrototype",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "entities",
+            "namespace": "",
+            "file": "client/js/entities.js",
+            "line": 49,
+            "description": "Prototype for all entities\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        "graphics": {
+            "name": "graphics",
+            "shortname": "graphics",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "graphics",
+            "namespace": "",
+            "file": "client/js/graphics.js",
+            "line": 1,
+            "description": "Graphics module\nContains all code that outputs to the canvas"
+        },
+        "input": {
+            "name": "input",
+            "shortname": "input",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "input",
+            "namespace": "",
+            "file": "client/js/input.js",
+            "line": 1,
+            "description": "Input module\nContains all code relating to input"
+        },
+        "map": {
+            "name": "map",
+            "shortname": "map",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "map",
+            "namespace": "",
+            "file": "client/js/map.js",
+            "line": 1,
+            "description": "Map module. Objects and methods concerning the map"
+        },
+        "objectPrototype": {
+            "name": "objectPrototype",
+            "shortname": "objectPrototype",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "objectPrototype",
+            "namespace": "",
+            "file": "client/js/objectPrototype.js",
+            "line": 1,
+            "description": "Extend Object.prototype with helper methods to simplify inheritance\n\nEscape uses prototypal style inheritance rather than the constructor / pseudo-classical \napproach used by many javascript developers. The \"blueprints\" for each type of object\nare defined as objects in files named \"<type>Prototype.js\". A new object of that type can \nbe created using \"var newObj = <type>Prototype.create();\". To create a new prototype based\nupon a previous one use \"var newPrototype = <type>Prototype.extend();\"\n\nIt could be argued that extending Object.prototype in this way is an anti-pattern due to the\neffect it could have on code written by those who are unaware that it has been extended. However,\nthe code below takes account of the most common types of conflict and employs suitable preventative\nmeasures so this sort of problem should not occur."
+        },
+        "palette": {
+            "name": "palette",
+            "shortname": "palette",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "palette",
+            "namespace": "",
+            "file": "client/js/palette.js",
+            "line": 1,
+            "description": "Command palette for the game editor"
+        },
+        "polyfills": {
+            "name": "polyfills",
+            "shortname": "polyfills",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "polyfills",
+            "namespace": "",
+            "file": "client/js/polyfills.js",
+            "line": 1,
+            "description": "Polyfills module"
+        },
+        "projectilePrototype": {
+            "name": "projectilePrototype",
+            "shortname": "projectilePrototype",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "projectilePrototype",
+            "namespace": "",
+            "file": "client/js/projectilePrototype.js",
+            "line": 1,
+            "description": "Prototype for all projectiles. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        "tiles": {
+            "name": "tiles",
+            "shortname": "tiles",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "tiles",
+            "namespace": "",
+            "file": "client/js/tiles.js",
+            "line": 1,
+            "description": "Tiles module.\n\nHandles all functionality associated with map tiles\nIf you're looking for something and can't find it then try the map module"
+        },
+        "timer": {
+            "name": "timer",
+            "shortname": "timer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "timer",
+            "namespace": "",
+            "file": "client/js/timer.js",
+            "line": 1,
+            "description": "Keeps track of the time between frames\n\nTODO: expand with functionality to set custom timers"
+        },
+        "util": {
+            "name": "util",
+            "shortname": "util",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "util",
+            "namespace": "",
+            "file": "client/js/util.js",
+            "line": 1,
+            "description": "Utility methods that do not really belong any where else"
+        },
+        "vector": {
+            "name": "vector",
+            "shortname": "vector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "vector",
+            "namespace": "",
+            "file": "client/js/vector.js",
+            "line": 1,
+            "description": "A library of useful vector math functions\n\nAt first glance it may appear that a nicer syntax could be obtained by creating a vector type\nand attaching these methods to the prototype. However, the most common use case is an object\nof a different type that happens to have x and y properties. As using apply/call is fiddly\nin terms of syntax and multiple inheritance is memory inefficient in javascript (an object can \nonly be linked to a single prototype), I believe this approach to be best."
+        },
+        "weapons": {
+            "name": "weapons",
+            "shortname": "weapons",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "weapons",
+            "namespace": "",
+            "file": "client/js/weapons.js",
+            "line": 1,
+            "description": "Weapon definitions"
+        }
+    },
+    "classitems": [
+        {
+            "file": "client/js/lib/AStar.js",
+            "line": 3,
+            "description": "A* (A-Star) algorithm for a path finder",
+            "author": "Andrea Giammarchi",
+            "license": "Mit Style License",
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/actorPrototype.js",
+            "line": 21,
+            "description": "Moves the actor in the direction indicated by vector v. If this would result in a collision with the map\nthen a more sensible vector is chosen and the actor moves that way instead",
+            "itemtype": "method",
+            "name": "move",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "the movement vector",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "true if the actor was unable to move. This is useful for the AI",
+                "type": "Boolean"
+            },
+            "class": "actorPrototype",
+            "module": "actorPrototype"
+        },
+        {
+            "file": "client/js/actorPrototype.js",
+            "line": 50,
+            "description": "Moves actor towards the position indicated, taking into account the actor's speed\nMovement is attempted \"as the crow flies\" with no route selection\n\nmethod moveTowards",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "the location to move towards",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "actorPrototype",
+            "module": "actorPrototype"
+        },
+        {
+            "file": "client/js/actorPrototype.js",
+            "line": 65,
+            "description": "Moves actor towards the position indicated, while performing sensible route selection\nRoute selection algorithm is A*",
+            "itemtype": "method",
+            "name": "moveTo",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "the location to move to",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "actorPrototype",
+            "module": "actorPrototype"
+        },
+        {
+            "file": "client/js/actorPrototype.js",
+            "line": 87,
+            "description": "handles being hit by a projectile, including effect on health and action to take upon death",
+            "itemtype": "method",
+            "name": "hit",
+            "params": [
+                {
+                    "name": "projectile",
+                    "description": "The object that is doing the hitting. Should inherit from projectilePrototype",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this;"
+            },
+            "class": "actorPrototype",
+            "module": "actorPrototype"
+        },
+        {
+            "file": "client/js/actorPrototype.js",
+            "line": 107,
+            "description": "Fires the actor's weapon",
+            "itemtype": "method",
+            "name": "fire",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "The location that is to be aimed at",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "actorPrototype",
+            "module": "actorPrototype"
+        },
+        {
+            "file": "client/js/actors.js",
+            "line": 13,
+            "description": "Creates an actor of the specified type",
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "actor",
+                    "description": "The object to extend with the actor definition. The type property \nof actor determines which definition to use.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "An actor object",
+                "type": "Object"
+            },
+            "class": "actors",
+            "module": "actors"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 17,
+            "description": "Defines the action to be taken by baddies each frame",
+            "itemtype": "method",
+            "name": "process",
+            "return": {
+                "description": "this"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 39,
+            "description": "Takes the current orders and calls the appropriate function in the appropriate context",
+            "itemtype": "method",
+            "name": "processOrders",
+            "params": [
+                {
+                    "name": "orders",
+                    "description": "string indicating the current orders"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 53,
+            "description": "The baddy's default state. Currently does nothing",
+            "itemtype": "method",
+            "name": "orders.watch",
+            "return": {
+                "description": "baddyPrototype"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 63,
+            "description": "Baddy attacks its target. If the baddy can no longer see the target it gives chase",
+            "itemtype": "method",
+            "name": "orders.attack",
+            "return": {
+                "description": "baddyPrototype"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 77,
+            "description": "Baddy chases after target based upon its last known location\nIf the baddy gets to this location and still cannot see the player\nit goes into search mode",
+            "itemtype": "method",
+            "name": "orders.chase",
+            "return": {
+                "description": "baddyPrototype"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 99,
+            "description": "The baddy searches for the target by heading off in the direction the target\nwas last seen moving",
+            "itemtype": "method",
+            "name": "orders.search",
+            "return": {
+                "description": "baddyPrototype"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 114,
+            "description": "The baddy returns to its start location. It then enters watch mode",
+            "itemtype": "method",
+            "name": "orders.returnToStation",
+            "return": {
+                "description": "baddyPrototype"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 134,
+            "description": "The baddy's reaction to being hit",
+            "itemtype": "method",
+            "name": "hitHandler",
+            "params": [
+                {
+                    "name": "projectile",
+                    "description": "the object the baddy has been hit by"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 146,
+            "description": "Checks if the baddy can see the player",
+            "itemtype": "method",
+            "name": "baddySeePlayer",
+            "return": {
+                "description": "boolean"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 158,
+            "description": "sets the baddy's target and other target related information",
+            "itemtype": "method",
+            "name": "setTarget",
+            "return": {
+                "description": "this"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/edit.js",
+            "line": 15,
+            "description": "Event handlers for map selection screen",
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/edit.js",
+            "line": 39,
+            "description": "Carries out all initialisation actions",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "mapName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/edit.js",
+            "line": 54,
+            "description": "Starts any modules that need starting and then begins the game loop",
+            "itemtype": "method",
+            "name": "start",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/edit.js",
+            "line": 67,
+            "description": "The body of the game loop",
+            "itemtype": "method",
+            "name": "main",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/edit.js",
+            "line": 88,
+            "description": "A singleton DOM element. On first call creates the DOM element. On all calls populates the DOM element with the items\nin the game.info.items array.",
+            "itemtype": "method",
+            "name": "info",
+            "return": {
+                "description": "game",
+                "type": "Object"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/edit.js",
+            "line": 110,
+            "description": "Adds an item to the game.info.items array. \nIf one argument, adds the variable name and value\nIf two, adds both separated by a colon",
+            "itemtype": "method",
+            "name": "info.add",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the value to be displayed (basically a label)",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "The value to be displayed. If not a string, it will be coerced into one",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "game",
+                "type": "Object"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/entities.js",
+            "line": 15,
+            "description": "Calls the process() method for each tracked entity and clears up entities that have been marked for removal",
+            "itemtype": "method",
+            "name": "process",
+            "return": {
+                "description": "this"
+            },
+            "class": "entities",
+            "module": "entities"
+        },
+        {
+            "file": "client/js/entities.js",
+            "line": 33,
+            "description": "Calls the render method for each tracked entity",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "this"
+            },
+            "class": "entities",
+            "module": "entities"
+        },
+        {
+            "file": "client/js/entities.js",
+            "line": 61,
+            "description": "initialise entity",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": "this"
+            },
+            "class": "entityPrototype",
+            "module": "entities"
+        },
+        {
+            "file": "client/js/entities.js",
+            "line": 80,
+            "description": "Placeholder function to be overridden\nInvoked once per game loop",
+            "itemtype": "method",
+            "name": "process",
+            "return": {
+                "description": "this"
+            },
+            "class": "entityPrototype",
+            "module": "entities"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 21,
+            "description": "Initialise all required modules",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 33,
+            "description": "Start the game",
+            "itemtype": "method",
+            "name": "start",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 43,
+            "description": "Resume the game (either from scratch of from paused)\nStarts all required modules and starts the game loop",
+            "itemtype": "method",
+            "name": "resume",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 57,
+            "description": "The body of the game loop",
+            "itemtype": "method",
+            "name": "play",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 86,
+            "description": "Displays debugging info and stats on the screen",
+            "itemtype": "method",
+            "name": "info",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 105,
+            "description": "Pauses the game",
+            "itemtype": "method",
+            "name": "pause",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 118,
+            "description": "Action to take when the game is over",
+            "itemtype": "method",
+            "name": "over",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 130,
+            "description": "Resets game state in order to allow a new game to start",
+            "itemtype": "method",
+            "name": "reset",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 143,
+            "description": "End the game",
+            "itemtype": "method",
+            "name": "end",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 155,
+            "description": "Code entry point",
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 13,
+            "description": "Initialise graphics settings and call specific graphics initialisation methods",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "width",
+                    "description": "the width of the canvas in pixels. If set to \"fullscreen\" the \n width and height are set to the viewport width and height",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "the height of the canvas in pixels",
+                    "type": "Number"
+                },
+                {
+                    "name": "clipping",
+                    "description": "if true, only the visible portion of the map is rendered",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 39,
+            "description": "Create and initialise the canvas",
+            "itemtype": "method",
+            "name": "initCanvas",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "the name of the canvas (in case support for multiple canvases is needed later)",
+                    "type": "String"
+                },
+                {
+                    "name": "width",
+                    "description": "the width of the canvas in pixels",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "the height of the canvas in pixels",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 62,
+            "description": "Adds text to graphics.textQueue to be rendered later this frame",
+            "itemtype": "method",
+            "name": "writeText",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "the text to be written",
+                    "type": "String"
+                },
+                {
+                    "name": "x",
+                    "description": "the x coord of the string's position on the canvas",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "the y coord of the string's position on the canvas",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 76,
+            "description": "renders the passed string immediately without taking measures to ensure that other\nrendered items this frame do not obscure the text",
+            "itemtype": "method",
+            "name": "writeTextNow",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "the text to be rendered",
+                    "type": "String"
+                },
+                {
+                    "name": "x",
+                    "description": "the x coord of the string's position on the canvas",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "the y coord of the string's position on the canvas",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 101,
+            "description": "Renders all text in the queue",
+            "itemtype": "method",
+            "name": "renderText",
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 115,
+            "description": "object storing all vectors that need to be rendered this frame",
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 120,
+            "description": "Renders each vector",
+            "itemtype": "method",
+            "name": "vectors.render",
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 133,
+            "description": "Adds a vector command to be rendered this frame",
+            "itemtype": "method",
+            "name": "vectors.command",
+            "params": [
+                {
+                    "name": "command",
+                    "description": "contains code for rendering a specific vector using native HTML5 canvas methods",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 146,
+            "description": "Renders the canvas and all graphics",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 166,
+            "description": "Changes the size of a canvas",
+            "itemtype": "method",
+            "name": "resizeCanvas",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "the name of the canvas to be resized",
+                    "type": "String"
+                },
+                {
+                    "name": "width",
+                    "description": "the width of the canvas in pixels",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "the height of the canvas in pixels",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/input.js",
+            "line": 23,
+            "description": "starts observing input",
+            "itemtype": "method",
+            "name": "start",
+            "params": [
+                {
+                    "name": "mode",
+                    "description": "the input mode (i.e. what to check and what methods to run as a result)",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "input",
+            "module": "input"
+        },
+        {
+            "file": "client/js/input.js",
+            "line": 115,
+            "description": "invoke event handlers",
+            "itemtype": "method",
+            "name": "process",
+            "return": {
+                "description": "this"
+            },
+            "class": "input",
+            "module": "input"
+        },
+        {
+            "file": "client/js/input.js",
+            "line": 147,
+            "description": "detach all input event handlers",
+            "itemtype": "method",
+            "name": "stop",
+            "return": {
+                "description": "this"
+            },
+            "class": "input",
+            "module": "input"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 17,
+            "description": "initialise the map based on a loaded map object",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "mapObj",
+                    "description": "information about the map loaded from file",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 53,
+            "description": "load the map data",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "mapName",
+                    "description": "the name of the map. This should also be the filename minus the extension",
+                    "type": "String"
+                },
+                {
+                    "name": "tileWidth",
+                    "description": "the width in pixels of a tile on the map",
+                    "type": "Number"
+                },
+                {
+                    "name": "tileHeight",
+                    "description": "the height in pixels of a tile on the map",
+                    "type": "Number"
+                },
+                {
+                    "name": "onLoad",
+                    "description": "the function to be called once the map has loaded",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 81,
+            "description": "Saves the map on the server (this should only be allowed on the dev server)",
+            "itemtype": "method",
+            "name": "save",
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 99,
+            "description": "renders the map",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 122,
+            "description": "Checks that a position is within the bounds of the map",
+            "itemtype": "method",
+            "name": "checkWithinBounds",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "the position to test",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "true if the position is within the bounds of the map, false otherwise",
+                "type": "Boolean"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 136,
+            "description": "Checks that a particular tile is passable",
+            "itemtype": "method",
+            "name": "isPassable",
+            "params": [
+                {
+                    "name": "tileIndex",
+                    "description": "the index of the tile within the E.tiles.tiles array",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "true if the tile is passable, false otherwise",
+                "type": "Boolean"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 151,
+            "itemtype": "method",
+            "name": "collisionAdjust",
+            "params": [
+                {
+                    "name": "entity",
+                    "description": "the entity that is moving",
+                    "type": "Entity"
+                },
+                {
+                    "name": "v",
+                    "description": "the desired movement vector of the entity",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "an allowable movement vector",
+                "type": "Vector"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 216,
+            "description": "Scrolls the map so that it is looking at the passed position",
+            "itemtype": "method",
+            "name": "position",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "The position to look at",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 236,
+            "description": "Returns the index of the tile corresponding to the passed postion",
+            "itemtype": "method",
+            "name": "getTileIndex",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "the position to test",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "the index of the appropriate tile or undefined if there is no tile at that position",
+                "type": "Number"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 252,
+            "description": "Returns a vector indicating the position of the centre of the tile",
+            "itemtype": "method",
+            "name": "getTileCentre",
+            "params": [
+                {
+                    "name": "tile",
+                    "description": "The tile to consider. If an object is passed it will try to determine the tile based on the x and y properties of the object",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The postion of the centre of the tile",
+                "type": "Vector"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 271,
+            "description": "Converts a tile index into 2d coordinates within the tiles array",
+            "itemtype": "method",
+            "name": "getTileCoords",
+            "params": [
+                {
+                    "name": "tile",
+                    "description": "The tile index",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The first element is the x coordinate, the second the y coordinate",
+                "type": "Array"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 285,
+            "description": "Converts 2d tile coords (not pixel coords) into a tile index",
+            "itemtype": "method",
+            "name": "getTileFromCoords",
+            "params": [
+                {
+                    "name": "x",
+                    "description": "The x coord of the tile",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "The y coord of the tile",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The tile index",
+                "type": "Number"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 301,
+            "description": "Checks if a line between two points can pass unimpeeded by the map\nNote that this does not check for collisions with entities",
+            "itemtype": "method",
+            "name": "lineTraversable",
+            "params": [
+                {
+                    "name": "start",
+                    "description": "The start location",
+                    "type": "Vector"
+                },
+                {
+                    "name": "end",
+                    "description": "The end location",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "True if there are no impassable tiles between the start and end points, false otherwise",
+                "type": "Boolean"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 330,
+            "description": "Higlights the tile indicated",
+            "itemtype": "method",
+            "name": "highlightTile",
+            "params": [
+                {
+                    "name": "tile",
+                    "description": "The tile to highlight",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 348,
+            "description": "highlights the tile under the mouse cursor",
+            "itemtype": "method",
+            "name": "highlightMouseTile",
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/objectPrototype.js",
+            "line": 21,
+            "description": "Return a new object inheriting from the previous one",
+            "itemtype": "method",
+            "name": "extend",
+            "params": [
+                {
+                    "name": "propertiesObject",
+                    "description": "an object that contains properties to add to the new object (overwriting previous ones with the same name)\nThe reason to use this over Object.create is that to pass in properties to the new object, Object.create requires property descriptors as its\nsecond argument rather than a straightforward object"
+                }
+            ],
+            "return": {
+                "description": "The new object",
+                "type": "Object"
+            },
+            "class": "objectPrototype",
+            "module": "objectPrototype"
+        },
+        {
+            "file": "client/js/objectPrototype.js",
+            "line": 40,
+            "description": "Create a new object based on this prototype, modify according to the passed in parameters and run the init method if available",
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "propertiesObject",
+                    "description": "an object that contains properties to add to the new object"
+                },
+                {
+                    "name": "initObject",
+                    "description": "Any other parameters are passed to the init function",
+                    "optional": true,
+                    "multiple": true
+                }
+            ],
+            "return": {
+                "description": "The new object",
+                "type": "Object"
+            },
+            "class": "objectPrototype",
+            "module": "objectPrototype"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 15,
+            "description": "change state of map to record that the current version is not saved",
+            "itemtype": "method",
+            "name": "updatedMap",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 38,
+            "description": "Player tool",
+            "itemtype": "method",
+            "name": "tools.player.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 52,
+            "description": "Remove actor tool",
+            "itemtype": "method",
+            "name": "tools.removeActor.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 73,
+            "description": "Baddy tool",
+            "itemtype": "method",
+            "name": "tools.baddy.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 92,
+            "description": "Displays the command palette",
+            "itemtype": "method",
+            "name": "show",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 103,
+            "description": "Hides the command palette",
+            "itemtype": "method",
+            "name": "hide",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 114,
+            "description": "Initialises the command palette\n\nIncludes a generic event handler for using the currently selected tool",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/polyfills.js",
+            "line": 8,
+            "description": "[requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window.requestAnimationFrame)\n\nNote that in this implementation the frame rate will not be exactly 60 due to the browser being single threaded.\nTODO: There is a fix for this - google it",
+            "itemtype": "method",
+            "name": "requestAnimationFrame",
+            "class": "polyfills",
+            "module": "polyfills"
+        },
+        {
+            "file": "client/js/projectilePrototype.js",
+            "line": 17,
+            "description": "Carries out the processing required by a projectile each frame",
+            "itemtype": "method",
+            "name": "process",
+            "return": {
+                "description": "this"
+            },
+            "class": "projectilePrototype",
+            "module": "projectilePrototype"
+        },
+        {
+            "file": "client/js/projectilePrototype.js",
+            "line": 28,
+            "description": "Moves the projectile testing for collisions and calling the appropriate hit handlers",
+            "itemtype": "method",
+            "name": "move",
+            "return": {
+                "description": "this"
+            },
+            "class": "projectilePrototype",
+            "module": "projectilePrototype"
+        },
+        {
+            "file": "client/js/projectilePrototype.js",
+            "line": 56,
+            "description": "Renders the projectile\n\nPlaceholder graphics TODO: replace with bitmaps",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "this"
+            },
+            "class": "projectilePrototype",
+            "module": "projectilePrototype"
+        },
+        {
+            "file": "client/js/tiles.js",
+            "line": 16,
+            "description": "Sets tile dimensions and passability",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": "this"
+            },
+            "class": "tiles",
+            "module": "tiles"
+        },
+        {
+            "file": "client/js/tiles.js",
+            "line": 36,
+            "description": "Renders a tile\n\nPlaceholder code TODO: Update with bitmap graphics",
+            "itemtype": "method",
+            "name": "renderTile",
+            "return": {
+                "description": "this"
+            },
+            "class": "tiles",
+            "module": "tiles"
+        },
+        {
+            "file": "client/js/timer.js",
+            "line": 15,
+            "description": "Starts the timer",
+            "itemtype": "method",
+            "name": "start",
+            "return": {
+                "description": "this"
+            },
+            "class": "timer",
+            "module": "timer"
+        },
+        {
+            "file": "client/js/timer.js",
+            "line": 30,
+            "description": "updates the timer",
+            "itemtype": "method",
+            "name": "process",
+            "return": {
+                "description": "this"
+            },
+            "class": "timer",
+            "module": "timer"
+        },
+        {
+            "file": "client/js/util.js",
+            "line": 12,
+            "description": "Takes a string and returns the value of the global variable with that name\n\nTo avoid global cluttering this method understands '.' syntax to follow the namespace/object chain\nThe only usage envisaged so far is the loading of variable names from JSON. Any other usage probably means \nwe're doing something wrong. Even the json example may mean that but I've not yet thought of a better way!",
+            "itemtype": "method",
+            "name": "valFromString",
+            "return": {
+                "description": "value",
+                "type": "Any"
+            },
+            "class": "util",
+            "module": "util"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 19,
+            "description": "returns a vector with integer values for both x and y coordinates\n\nThis is particularly useful when rendering to the canvas where there is a big performance hit for non-integer values",
+            "itemtype": "method",
+            "name": "round",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "The vector to be rounded",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "The new vector",
+                "type": "Vector"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 35,
+            "description": "Adds two vectors together, returning the resulting vector",
+            "itemtype": "method",
+            "name": "add",
+            "params": [
+                {
+                    "name": "v1",
+                    "description": "A vector",
+                    "type": "Vector"
+                },
+                {
+                    "name": "v2",
+                    "description": "A vector",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "The resulting vector",
+                "type": "Vector"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 50,
+            "description": "Returns a new vector that is a copy of the inital vector",
+            "itemtype": "method",
+            "name": "clone",
+            "return": {
+                "description": "The new vector",
+                "type": "Vector"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 60,
+            "description": "Subtracts one vector from another",
+            "itemtype": "method",
+            "name": "subtract",
+            "params": [
+                {
+                    "name": "v1",
+                    "description": "The vector to subtract",
+                    "type": "Vector"
+                },
+                {
+                    "name": "v2",
+                    "description": "The vector to subtract from",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "The resulting vector",
+                "type": "Vector"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 75,
+            "description": "Returns a vector of the same magnitude pointing in the opposite direction",
+            "itemtype": "method",
+            "name": "reverse",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "The initial vector",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "The new vector",
+                "type": "Vector"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 86,
+            "description": "Calculates the magnitude (length) of a vector",
+            "itemtype": "method",
+            "name": "mag",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "The vector",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "The magnitude",
+                "type": "Number"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 97,
+            "description": "Calculates the distance between two vectors (imagine they represent points)",
+            "itemtype": "method",
+            "name": "distance",
+            "params": [
+                {
+                    "name": "v1",
+                    "description": "The first vector",
+                    "type": "Vector"
+                },
+                {
+                    "name": "v2",
+                    "description": "The second vector",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "The distance between the two vectors",
+                "type": "Number"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 109,
+            "description": "Returns a new vector pointing the same direction but with length 1",
+            "itemtype": "method",
+            "name": "normalise",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "The vector to normalise",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "The normalised vector",
+                "type": "Vector"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 124,
+            "description": "Returns a new vector pointing in the same direction but of the specified length",
+            "itemtype": "method",
+            "name": "setLength",
+            "params": [
+                {
+                    "name": "v",
+                    "description": "The intial vector",
+                    "type": "Vector"
+                },
+                {
+                    "name": "length",
+                    "description": "The new length",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The new vector",
+                "type": "Vector"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 140,
+            "description": "Calculates the dot product between two vectors\n\nThis can be thought of as a number indicating how closely the two vectors are aligned",
+            "itemtype": "method",
+            "name": "dot",
+            "params": [
+                {
+                    "name": "v1",
+                    "description": "The first vector",
+                    "type": "Vector"
+                },
+                {
+                    "name": "v2",
+                    "description": "The second vector",
+                    "type": "Vector"
+                }
+            ],
+            "return": {
+                "description": "The dot product",
+                "type": "Number"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "client/js/vector.js",
+            "line": 154,
+            "description": "The angle between two vectors (in radians)",
+            "itemtype": "method",
+            "name": "angle",
+            "params": [
+                {
+                    "name": "v1",
+                    "description": "The first vector",
+                    "type": "Vector"
+                },
+                {
+                    "name": "v2",
+                    "description": "The second vector",
+                    "type": "Vector"
+                },
+                {
+                    "name": "dirMatters",
+                    "description": "If true then the angle is +ve for clockwise angles, -ve for anticlockwise. If false the angle is always positive",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "The angle (in radians)",
+                "type": "Number"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
+            "file": "server/server.js",
+            "line": 1,
+            "description": "Escape server\n\nCurrently just serves static files except in 'dev' mode in which case\nIt will also allow writing to the 'maps' directory to support the \nmap editor",
+            "class": "",
+            "module": "weapons"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: license",
+            "line": " client/js/lib/AStar.js:3"
+        },
+        {
+            "message": "Missing item type\nA* (A-Star) algorithm for a path finder",
+            "line": " client/js/lib/AStar.js:3"
+        },
+        {
+            "message": "Missing item type\nMoves actor towards the position indicated, taking into account the actor's speed\nMovement is attempted \"as the crow flies\" with no route selection\n\nmethod moveTowards",
+            "line": " client/js/actorPrototype.js:50"
+        },
+        {
+            "message": "Missing item type\nEvent handlers for map selection screen",
+            "line": " client/js/edit.js:15"
+        },
+        {
+            "message": "Missing item type\nCode entry point",
+            "line": " client/js/escape.js:155"
+        },
+        {
+            "message": "Missing item type\nobject storing all vectors that need to be rendered this frame",
+            "line": " client/js/graphics.js:115"
+        },
+        {
+            "message": "Missing item type\nEscape server\n\nCurrently just serves static files except in 'dev' mode in which case\nIt will also allow writing to the 'maps' directory to support the \nmap editor",
+            "line": " server/server.js:1"
+        }
+    ]
+}
