@@ -32,7 +32,7 @@ E.baddyPrototype = (function() {
 				this.mode = 'attack';
 			}
 		}
-		baddyPrototype.processOrders(this.mode);
+		this.processOrders();
 		return this;
 	};
 
@@ -43,8 +43,8 @@ E.baddyPrototype = (function() {
 	 * @param orders string indicating the current orders
 	 * @return this
 	 */
-	baddyPrototype.processOrders = function(orders) {
-		baddyPrototype.orders[orders].call(this);
+	baddyPrototype.processOrders = function() {
+		this.orders[this.mode].call(this);
 		return this;
 	};
 
