@@ -17,7 +17,7 @@ E.game = (function() {
 	 */
 	$(function() {
 		$('#load').click(function() {
-			var map = $('#mapName').val();
+			var map = $('#mapName').val().trim();
 			if (map.length === 0) {
 				alert('You have not entered a map name');
 			}
@@ -32,6 +32,20 @@ E.game = (function() {
 				}
 			}
 		});
+		$('#create').click(function() {
+			var mapName = $('#newMapName').val().trim(),
+				cols = $('#newMapX').val().trim(),
+				rows = $('#newMapY').val().trim(),
+				mapObj;
+			if (mapName === '' || cols === '' || rows === '') {
+				alert('You have not entered sufficient details to create a new map.');
+			}
+			else {
+				mapObj = E.map.newMap(mapName, cols, rows);
+				game.init(mapObj);
+				E.map.save();
+			}
+		});
 	});
 
 	var game = {};
@@ -40,13 +54,13 @@ E.game = (function() {
 	 * Carries out all initialisation actions
 	 *
 	 * @method init
-	 * @param mapName {string}
+	 * @param mapName {string} or a mapObj
 	 * @return this
 	 */
 	game.init = function(mapName) {
 		game.mode = 'edit';
 		E.graphics.init(800, 600, false);
-		E.map.load(mapName, 64, 64, game.start);
+		E.map.load(mapName, game.start);
 		E.palette.init();
 		return this;
 	};

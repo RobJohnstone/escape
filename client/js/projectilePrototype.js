@@ -38,7 +38,7 @@ E.projectilePrototype = (function() {
 		this.y += this.speed.y * E.timer.coeff;
 		// check for collisions with tiles
 		tile = E.map.getTileIndex(this);
-		if (E.map.data[tile] === undefined || !E.tiles.tileset[E.map.data[tile]].passable) {
+		if (!E.map.getTileObj(tile).passable) {
 			this.remove = true;
 		}
 		// check for collisions with actors

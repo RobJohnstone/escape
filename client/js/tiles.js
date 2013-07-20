@@ -22,13 +22,18 @@ E.tiles = (function() {
 	tiles.init = function(source, tileWidth, tileHeight) {
 		tiles.tileWidth = tileWidth;
 		tiles.tileHeight = tileHeight;
-		tiles.tileset = [{
+		tiles.tileset = [{ // floor
 							colour: 'black',
 							passable: true
 						},
-						{
+						{ // wall
 							colour: 'blue',
 							passable: false
+						},
+						{ // exit
+							colour: 'yellow',
+							passable: true,
+							exit: true
 						}];
 		return this;
 	};

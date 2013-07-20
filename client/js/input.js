@@ -125,8 +125,7 @@ E.input = (function() {
 					E.game.pause();
 				}
 				if (input.keyState.quit) {
-					E.game.end();
-					E.graphics.writeText('Game ended.', 20, 30);
+					E.game.end('Game ended.');
 				}
 				var dx = 0, dy = 0;
 				if (input.keyState.left) dx += -5;

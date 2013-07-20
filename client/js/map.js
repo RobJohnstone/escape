@@ -22,6 +22,7 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.init = function(mapObj) {
+		map.actors = [];
 		$.extend(true, map, mapObj);
 		E.tiles.init('', map.tileWidth, map.tileHeight);
 		map.pathGrid = [];
@@ -29,21 +30,16 @@ E.map = (function() {
 		for (var row=0; row<map.rows; row++) {
 			map.pathGrid.push([]);
 			for (var col=0; col<map.columns; col++) {
-				map.pathGrid[row].push(!E.tiles.tileset[map.data[i]].passable); // need to modify to check if tile is passable rather than this hack
+				map.pathGrid[row].push(!map.getTileObj(map.data[i]).passable); // need to modify to check if tile is passable rather than this hack
 				i++;
 			}
 		}
 		for (i=0; i<map.actors.length; i++) {
 			E.actors.create(map.actors[i]);
 		}
-		window.player = E.actorPrototype.create($.extend({ // deliberately make global (when I namespace the code later this would belong to the namespace)
-			width: 32,
-			height: 32,
-			colour: 'green',
-			speed: 5,
-			direction: {x: 1, y: 0},
-			invulnerable: true
-		}, map.playerStart));
+		if (map.playerStart) {
+			window.player = E.playerPrototype.create(map.playerStart);
+		}
 		if (!E.graphics.clipping) {
 			E.graphics.resizeCanvas('game', map.tileWidth * map.columns, map.tileHeight * map.rows);
 		}
@@ -54,28 +50,70 @@ E.map = (function() {
 	 * load the map data
 	 *
 	 * @method load
-	 * @param mapName {string} the name of the map. This should also be the filename minus the extension
-	 * @param tileWidth {number} the width in pixels of a tile on the map
-	 * @param tileHeight {number} the height in pixels of a tile on the map
+	 * @param mapName {string} the name of the map. This should also be the filename minus the extension 
+	 * if mapName is an object it will be treated as the mapObj and loaded instead of requesting the object
+	 * from the server
 	 * @param onLoad {function} the function to be called once the map has loaded
 	 * @return this
 	 */
-	map.load = function(mapName, tileWidth, tileHeight, onLoad) {
-		$.ajax({
-			url: '/maps/'+mapName+'.json',
-			type: 'get',
-			success: function(mapObj) {
-				map.init(mapObj);
-				if (typeof onLoad === 'function') {
-					onLoad();
+	map.load = function(mapName, onLoad) {
+		if (typeof mapName === "object") {
+			_loadMapObj(mapName);
+		}
+		else {
+			$.ajax({
+				url: '/maps/'+mapName+'.json',
+				type: 'get',
+				success: function(mapObj) {
+					_loadMapObj(mapObj);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log('map loading error: ');
+					console.log(textStatus);
 				}
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				console.log('map loading error: ');
-				console.log(textStatus);
-			}
-		});
+			});
+		}
 		return this;
+
+		/**
+		 * takes the map object and inserts it into the engine
+		 *
+		 * @method _loadMapObj
+		 * @param mapObj {object} The map object to load
+		 */
+		function _loadMapObj(mapObj) {
+			map.init(mapObj);
+			if (typeof onLoad === 'function') {
+				onLoad();
+			}
+		}
+	};
+
+	/**
+	 * Creates a new blank map object
+	 *
+	 * @method new
+	 * @param mapName {string} The filename of the new map minus the json extension
+	 * @param cols {number} The number of columns in the map
+	 * @param rows {number} The number of rows in the map
+	 * @return mapObj {object}
+	 */
+	map.newMap = function(mapName, cols, rows) {
+		var mapObj = {
+			name: mapName,
+			columns: cols,
+			rows: rows,
+			tileWidth: 64,
+			tileHeight: 64,
+			width: 64*cols,
+			height: 64*rows,
+			data: [],
+			actors: []
+		};
+		for (var i=0, len=cols*rows; i<len; i++) {
+			mapObj.data[i] = 0;
+		}
+		return mapObj;
 	};
 
 	/**
@@ -135,6 +173,20 @@ E.map = (function() {
 	};
 
 	/**
+	 * Gets the tile object for the tile index
+	 *
+	 * @method getTileObj
+	 * @return this
+	 */
+	map.getTileObj = function(tileIndex) {
+		var tile = map.data[tileIndex];
+		if (tile === undefined) {
+			return false;
+		}
+		else return E.tiles.tileset[tile];
+	};
+
+	/**
 	 * Checks that a particular tile is passable
 	 *
 	 * @method isPassable
@@ -142,11 +194,7 @@ E.map = (function() {
 	 * @return {boolean} true if the tile is passable, false otherwise
 	 */
 	map.isPassable = function(tileIndex) {
-		var tile = map.data[tileIndex];
-		if (tile === undefined) {
-			return false;
-		}
-		else return E.tiles.tileset[tile].passable;
+		return map.getTileObj(tileIndex).passable;
 	};
 
 	/** Checks if an entity is about to collide with an impassable tile on the map and, if so, returns a more appropriate vector
@@ -155,7 +203,7 @@ E.map = (function() {
 	 * @param entity {entity} the entity that is moving
 	 * @param v {vector} the desired movement vector of the entity
 	 * @return {vector} an allowable movement vector
-	 */	
+	 */
 	map.collisionAdjust = function(entity, v) {
 		var cornerCollisions, testV,
 			magnitude = E.vector.mag(v),
@@ -321,7 +369,7 @@ E.map = (function() {
 			if (tile === endTile) {
 				return true;
 			}
-			if (map.data[tile] === undefined || !E.tiles.tileset[map.data[tile]].passable) {
+			if (!map.getTileObj(tile).passable) {
 				return false;
 			}
 		}

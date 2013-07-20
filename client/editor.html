@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="content-type" content="text/html" charset="utf-8">
-	<!--<link rel="stylesheet" type="text/css" href="css/escape.css" />-->
 	<link rel="stylesheet" type="text/css" href="css/edit.css" />
 	<script type="text/javascript" src="http://localhost/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="js/lib/AStar.js"></script>
@@ -15,6 +14,7 @@
 	<script type="text/javascript" src="js/tiles.js"></script>
 	<script type="text/javascript" src="js/entities.js"></script>
 	<script type="text/javascript" src="js/actorPrototype.js"></script>
+	<script type="text/javascript" src="js/playerPrototype.js"></script>
 	<script type="text/javascript" src="js/baddyPrototype.js"></script>
 	<script type="text/javascript" src="js/projectilePrototype.js"></script>
 	<script type="text/javascript" src="js/actors.js"></script>
@@ -32,9 +32,20 @@
 			<hr />
 		</div>
 		<div id="gameContainer">
-			<label for="mapName">Map name</label>
-			<input id="mapName" name="mapName" type="text" />
-			<button id="load">Load map</button>
+			<p>
+				<label for="mapName">Load map:</label>
+				<input id="mapName" name="mapName" tabindex="1" type="text" />
+				<button id="load">Load map</button>
+			</p>
+			<p>
+				<label for="newMapName">New map:</label>
+				<input id="newMapName" name="newMapName" tabindex="2" type="text" />
+				<label for="newMapX">X tiles:</label>
+				<input id="newMapX" name="newMapX" tabindex="3" type="text" />
+				<label for="newMapY">Y tiles:</label>
+				<input id="newMapY" name="newMapY" tabindex="4" type="text" />
+				<button id="create" tabindex="5">Create new map</button>
+			</p>
 		</div>
 	</div>
 </body>

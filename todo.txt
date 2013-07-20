@@ -1,6 +1,6 @@
 Improve editor so that it is a playable game
 	set exit
-	set baddy direction
+	set entity direction
 
 Write bitmap graphics code (separate into separate tasks)
 

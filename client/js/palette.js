@@ -19,7 +19,6 @@ E.palette = (function() {
 	 * @return this
 	 */
 	palette.updatedMap = function() {
-		console.log('called updatedMap');
 		$('#saveMap').text('Save map*');
 		map.updated = true;
 		return this;
@@ -34,6 +33,10 @@ E.palette = (function() {
 			type: 'terrain',
 			tilesetIndex: 0
 		},
+		exit: {
+			type: 'terrain',
+			tilesetIndex: 2
+		},
 		player: {
 			type: 'entity',
 			/**
@@ -44,8 +47,10 @@ E.palette = (function() {
 			 */
 			click: function(tileIndex) {
 				var coords = map.getTileCentre(tileIndex);
-				map.playerStart.x = coords.x;
-				map.playerStart.y = coords.y;
+				map.playerStart = {
+					x: coords.x,
+					y: coords.y
+				};
 				E.game.reset();
 				return palette;
 			}

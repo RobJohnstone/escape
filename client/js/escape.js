@@ -19,14 +19,43 @@ E.game = (function() {
 	};
 
 	/**
+	 * Loads the campaign
+	 *
+	 * @method loadCampaign
+	 * @param campaignName {string} the filename of the campaign minus the file extension
+	 * @param callback {function} the function to call once the campaign has loaded
+	 */
+	game.loadCampaign = function(campaignName, callback) {
+		$.ajax({
+			url: '/campaigns/'+campaignName+'.json',
+			type: 'get',
+			success: function(campaignObj) {
+				game.campaign = campaignObj;
+				game.campaign.current = 0;
+				game.campaign.getCurrentLevel = function() {
+					return game.campaign.levels[game.campaign.current];
+				};
+				if (typeof callback === 'function') {
+					callback();
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log('campaign loading error: ');
+				console.log(textStatus);
+			}
+		});
+	};
+
+	/**
 	 * Initialise all required modules
 	 *
 	 * @method init
+	 * @param mapName {string} the filename of the map minus the file extension
 	 * @return this
 	 */
-	game.init = function() {
+	game.init = function(mapName) {
 		E.graphics.init('fullscreen', '');
-		E.map.load('test', 64, 64, game.start);
+		E.map.load(mapName, game.start);
 		return this;
 	};
 
@@ -77,8 +106,11 @@ E.game = (function() {
 			game.animationFrame = window.requestAnimationFrame(game.play);
 		}
 		else if (game.mode === 'pause') {
-			E.graphics.writeText('Game paused. Press space to resume.', 20, 30);
+			//E.graphics.writeText('Game paused. Press space to resume.', 20, 30);
 			E.graphics.renderText();
+		}
+		else if (game.mode === 'levelComplete') {
+			game.levelComplete();
 		}
 		return this;
 	};
@@ -108,9 +140,11 @@ E.game = (function() {
 	 * @method pause
 	 * @return this
 	 */
-	game.pause = function() {
+	game.pause = function(msg) {
+		msg = msg || 'Game paused. Press space to resume.';
 		game.mode = 'pause';
 		E.input.start('pause');
+		E.graphics.writeText(msg, 20, 30);
 		E.graphics.renderText();
 		return this;
 	};
@@ -128,6 +162,24 @@ E.game = (function() {
 	};
 
 	/**
+	 * Action to take when level complete
+	 *
+	 * @method levelComplete
+	 * @return this
+	 */
+	game.levelComplete = function() {
+		if (game.campaign.current < game.campaign.levels.length -1) {
+			game.campaign.current++;
+			game.pause();
+			game.reset();
+			//game.init(game.campaign.levels[game.campaign.current]);
+		}
+		else {
+			game.end('You have completed the campaign!');
+		}
+	};
+
+	/**
 	 * Resets game state in order to allow a new game to start
 	 *
 	 * @method reset
@@ -136,7 +188,7 @@ E.game = (function() {
 	game.reset = function() {
 		E.entities.instances = [];
 		cancelAnimationFrame(game.animationFrame);
-		game.init();
+		game.init(game.campaign.getCurrentLevel());
 		return this;
 	};
 
@@ -146,8 +198,9 @@ E.game = (function() {
 	 * @method end 
 	 * @return this
 	 */
-	game.end = function() {
-		game.pause();
+	game.end = function(msg) {
+		msg = msg || 'The game has ended';
+		game.pause(msg);
 		E.input.stop();
 		return this;
 	};
@@ -156,7 +209,9 @@ E.game = (function() {
 	 * Code entry point
 	 */
 	$(function() {
-		game.init();
+		game.loadCampaign('campaign', function() {
+			game.init(game.campaign.getCurrentLevel());
+		});
 	});
 
 	return game;
