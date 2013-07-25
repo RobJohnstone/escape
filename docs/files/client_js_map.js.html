@@ -184,6 +184,7 @@ E.map = (function() {
 
 	var _mapTemplate = {
 		name: &#x27;&#x27;,
+		description: &#x27;&#x27;,
 		columns: 0,
 		rows: 0,
 		tileWidth: 0,
@@ -202,6 +203,8 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.init = function(mapObj) {
+		var template = $(&#x27;#mapScreenTemplate&#x27;).text().trim(),
+			compiled = _.template(template);
 		if (mapObj) {
 			map.actors = [];
 			$.extend(true, map, mapObj);
@@ -222,8 +225,9 @@ E.map = (function() {
 		if (map.playerStart) {
 			window.player = E.playerPrototype.create(map.playerStart);
 		}
-		$(&#x27;#mapName&#x27;).text(map.name);
-		$(&#x27;#mapDescription&#x27;).text(map.description);
+		$(&#x27;#mapScreen&#x27;).html(compiled(map));
+		/*$(&#x27;#mapName&#x27;).text(map.name);
+		$(&#x27;#mapDescription&#x27;).text(map.description);*/
 		return this;
 	};
 
@@ -238,7 +242,6 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.load = function(mapName, onLoad) {
-		console.log(&#x27;map.load&#x27;);
 		if (typeof mapName === &quot;object&quot;) {
 			_loadMapObj(mapName);
 		}
@@ -325,10 +328,7 @@ E.map = (function() {
 		$.ajax({
 			url: &#x27;/maps/&#x27;+map.name,
 			type: &#x27;post&#x27;,
-			data: {data: JSON.stringify(map)},
-			success: function(result) {
-				console.log(&#x27;map saved&#x27;);
-			}
+			data: {data: JSON.stringify(map)}
 		});
 		return this;
 	};

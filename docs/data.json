@@ -1117,7 +1117,7 @@
         },
         {
             "file": "client/js/campaign.js",
-            "line": 90,
+            "line": 87,
             "description": "Creates a new campaign. The only field populated is the name.\nThis method does not save the newly created campaign (use campaign.save())",
             "itemtype": "method",
             "name": "create",
@@ -1136,7 +1136,7 @@
         },
         {
             "file": "client/js/campaign.js",
-            "line": 108,
+            "line": 105,
             "description": "Saves the current information about the campaign\nNote: this requires that the server is in 'dev' mode",
             "itemtype": "method",
             "name": "save",
@@ -1155,7 +1155,7 @@
         },
         {
             "file": "client/js/campaign.js",
-            "line": 131,
+            "line": 128,
             "description": "updates the value of a field in the campaign\ncan remove the prefix campaign from property names while preserving camel-casing",
             "itemtype": "method",
             "name": "update",
@@ -1179,7 +1179,7 @@
         },
         {
             "file": "client/js/campaign.js",
-            "line": 149,
+            "line": 146,
             "description": "Adds a map to the campaign\nNote this does not check whether the map actually exists",
             "itemtype": "method",
             "name": "addMap",
@@ -1203,7 +1203,41 @@
         },
         {
             "file": "client/js/campaign.js",
-            "line": 171,
+            "line": 168,
+            "description": "Moves the map up one in the order (nearer the start)",
+            "params": [
+                {
+                    "name": "mapName",
+                    "description": "The name of the map",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this;"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "client/js/campaign.js",
+            "line": 184,
+            "description": "Moves the map down one in the order (nearer the end)",
+            "params": [
+                {
+                    "name": "mapName",
+                    "description": "The name of the map",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this;"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "client/js/campaign.js",
+            "line": 200,
             "description": "Populates the relevant DOM ul with the campaigns",
             "itemtype": "method",
             "name": "list",
@@ -1222,7 +1256,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 140,
+            "line": 147,
             "description": "sends a request to the server instructing it to delete a file",
             "itemtype": "method",
             "name": "_deleteItem",
@@ -1245,7 +1279,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 187,
+            "line": 194,
             "description": "Updates the value of an item",
             "itemtype": "method",
             "name": "_editItem",
@@ -1263,7 +1297,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 204,
+            "line": 211,
             "description": "Carries out all initialisation actions",
             "itemtype": "method",
             "name": "init",
@@ -1282,7 +1316,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 219,
+            "line": 226,
             "description": "Starts any modules that need starting and then begins the game loop",
             "itemtype": "method",
             "name": "start",
@@ -1294,7 +1328,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 235,
+            "line": 242,
             "description": "The body of the game loop",
             "itemtype": "method",
             "name": "main",
@@ -1306,7 +1340,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 256,
+            "line": 263,
             "description": "Resets game state when map data changes",
             "itemtype": "method",
             "name": "reset",
@@ -1318,7 +1352,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 269,
+            "line": 276,
             "description": "A singleton DOM element. On first call creates the DOM element. On all calls populates the DOM element with the items\nin the game.info.items array.",
             "itemtype": "method",
             "name": "info",
@@ -1331,7 +1365,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 291,
+            "line": 298,
             "description": "Adds an item to the game.info.items array. \nIf one argument, adds the variable name and value\nIf two, adds both separated by a colon",
             "itemtype": "method",
             "name": "info.add",
@@ -1786,7 +1820,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 29,
+            "line": 30,
             "description": "initialise the map based on a loaded map object",
             "itemtype": "method",
             "name": "init",
@@ -1805,7 +1839,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 62,
+            "line": 66,
             "description": "load the map data",
             "itemtype": "method",
             "name": "load",
@@ -1829,7 +1863,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 93,
+            "line": 96,
             "description": "takes the map object and inserts it into the engine",
             "itemtype": "method",
             "name": "_loadMapObj",
@@ -1845,7 +1879,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 107,
+            "line": 110,
             "description": "Creates a new blank map object",
             "itemtype": "method",
             "name": "new",
@@ -1875,7 +1909,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 133,
+            "line": 136,
             "description": "Updates map values",
             "itemtype": "method",
             "name": "update",
@@ -1899,7 +1933,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 150,
+            "line": 153,
             "description": "Saves the map on the server (this should only be allowed on the dev server)",
             "itemtype": "method",
             "name": "save",
@@ -2494,6 +2528,34 @@
             "module": "util"
         },
         {
+            "file": "client/js/util.js",
+            "line": 31,
+            "description": "Moves an array element from one index to another",
+            "params": [
+                {
+                    "name": "arr",
+                    "description": "The array to modify",
+                    "type": "Array"
+                },
+                {
+                    "name": "currentIndex",
+                    "description": "The index the element currently occupies",
+                    "type": "Number"
+                },
+                {
+                    "name": "newIndex",
+                    "description": "The new index for the element to occupy",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The array",
+                "type": "Array"
+            },
+            "class": "util",
+            "module": "util"
+        },
+        {
             "file": "client/js/vector.js",
             "line": 19,
             "description": "returns a vector with integer values for both x and y coordinates\n\nThis is particularly useful when rendering to the canvas where there is a big performance hit for non-integer values",
@@ -2763,12 +2825,24 @@
             "line": " client/js/actorPrototype.js:50"
         },
         {
+            "message": "Missing item type\nMoves the map up one in the order (nearer the start)",
+            "line": " client/js/campaign.js:168"
+        },
+        {
+            "message": "Missing item type\nMoves the map down one in the order (nearer the end)",
+            "line": " client/js/campaign.js:184"
+        },
+        {
             "message": "Missing item type\nEvent handlers for map selection screen",
             "line": " client/js/edit.js:15"
         },
         {
             "message": "Missing item type\nobject storing all vectors that need to be rendered this frame",
             "line": " client/js/graphics.js:115"
+        },
+        {
+            "message": "Missing item type\nMoves an array element from one index to another",
+            "line": " client/js/util.js:31"
         },
         {
             "message": "Missing item type\nEscape server\n\nCurrently just serves static files except in 'dev' mode in which case\nIt will also allow writing to the 'maps' directory to support the \nmap editor",

@@ -184,7 +184,7 @@ E.game = (function() {
 	 * Event handlers for map selection screen
 	 */
 	$(function() {
-		$(&#x27;#campaignList&#x27;).on(&#x27;click&#x27;, &#x27;.campaign&#x27;, function() {
+		$(&#x27;#campaignList&#x27;).on(&#x27;click&#x27;, &#x27;.campaignName&#x27;, function() {
 			var campaignName = $(this).attr(&#x27;id&#x27;).substr(9);
 			E.campaign.load(campaignName, function() {
 				E.screen.change(&#x27;campaignScreen&#x27;);
@@ -210,34 +210,33 @@ E.game = (function() {
 				$(&#x27;.field&#x27;).val(&#x27;&#x27;);
 			}
 		});
-		$(&#x27;.back&#x27;).click(function() {
+		$(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.back&#x27;, function() {
 			E.screen.previous();
 		});
-		$(&#x27;#saveCampaign&#x27;).click(function() {
+		$(&#x27;#campaignScreen&#x27;).on(&#x27;click&#x27;, &#x27;#saveCampaign&#x27;, function() {
 			E.campaign.save();
 		});
-		$(&#x27;.save&#x27;).click(function() {
+		$(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.save&#x27;, function() {
 			E.screen.save();
 		});
-		$(&#x27;.list&#x27;).on(&#x27;click&#x27;, &#x27;.delete&#x27;, function(e) {
-
+		$(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.list .delete&#x27;, function(e) {
 			_deleteItem(this);
 			e.stopPropagation();
 		});
-		$(&#x27;.editable&#x27;).click(function() { // This is to make it easier to select empty elements
+		$(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.editable&#x27;, function() { // This is to make it easier to select empty elements
 			var elm = $(this).children(&#x27;[contenteditable]&#x27;);
 			elm.focus();
 		});
 		$(&#x27;body&#x27;).on(&#x27;blur keyup paste&#x27;, &#x27;[contenteditable]&#x27;, function() {
 			_editItem(this);
 		});
-		$(&#x27;#mapList&#x27;).on(&#x27;click&#x27;, &#x27;.map&#x27;, function() {
+		$(&#x27;#campaignScreen&#x27;).on(&#x27;click&#x27;, &#x27;.mapName&#x27;, function() {
 			var mapName = $(this).attr(&#x27;id&#x27;).substr(4);
 			E.map.load(mapName, function() {
 				E.screen.change(&#x27;mapScreen&#x27;);
 			});
 		});
-		$(&#x27;#mapList&#x27;).on(&#x27;keyup&#x27;, &#x27;#newMap&#x27;, function(e) {
+		$(&#x27;#campaignScreen&#x27;).on(&#x27;keyup&#x27;, &#x27;#newMap&#x27;, function(e) {
 			var mapName = $(this).val().trim(),
 				mapObj;
 			$(&#x27;#mapListError&#x27;).slideUp();
@@ -254,7 +253,19 @@ E.game = (function() {
 				}
 			}
 		});
-		$(&#x27;#saveMapMeta&#x27;).click(function() {
+		$(&#x27;#campaignScreen&#x27;).on(&#x27;click&#x27;, &#x27;.moveUp&#x27;, function(e) {
+			var mapName = $(this).siblings(&#x27;.mapName&#x27;).attr(&#x27;id&#x27;).substr(4);
+			E.campaign.moveMapUp(mapName);
+			E.screen.update();
+			e.stopPropagation();
+		});
+		$(&#x27;#campaignScreen&#x27;).on(&#x27;click&#x27;, &#x27;.moveDown&#x27;, function(e) {
+			var mapName = $(this).siblings(&#x27;.mapName&#x27;).attr(&#x27;id&#x27;).substr(4);
+			E.campaign.moveMapDown(mapName);
+			E.screen.update();
+			e.stopPropagation();
+		});
+		$(&#x27;#mapScreen&#x27;).on(&#x27;click&#x27;, &#x27;#saveMapMeta&#x27;, function() {
 			E.map.save();
 			/*
 			 * The next line is to cover the scenario where this is a new map being added to 
@@ -263,15 +274,11 @@ E.game = (function() {
 			 * the same campaign, this could result in data being overwritten when it should not be.
 			 */
 			if (E.campaign.addedMap) {
-				console.log(&#x27;save campaign&#x27;);
 				E.campaign.addMap();
 				E.campaign.save().render();
 			}
-			else {
-				console.log(&#x27;map has not been added&#x27;);
-			}
 		});
-		$(&#x27;#editMap&#x27;).click(function() {
+		$(&#x27;#mapScreen&#x27;).on(&#x27;click&#x27;, &#x27;#editMap&#x27;, function() {
 			if (E.screen.updated) {
 				if (confirm(&#x27;This map must be saved before it can be edited. Do you wish to save the map now?&#x27;)) {
 					E.map.save();
@@ -316,7 +323,7 @@ E.game = (function() {
 	function _deleteItem(element, callback) {
 		var parent = $(element).parent(),
 			type = parent.attr(&#x27;class&#x27;),
-			id = parent.attr(&#x27;id&#x27;).substr(type.length+1);
+			id = parent.children(&#x27;.&#x27;+type+&#x27;Name&#x27;).attr(&#x27;id&#x27;).substr(type.length+1);
 		if (window.confirm(&#x27;Are you sure sure you want to delete the &#x27;+type+&#x27; &#x27;+id+&#x27;?&#x27;)) {
 			parent.slideUp(400, function() {
 				this.remove();

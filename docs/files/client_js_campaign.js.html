@@ -243,15 +243,12 @@ E.campaign = (function() {
 	 * @return this;
 	 */
 	campaign.render = function() {
-		$(&#x27;#campaignName&#x27;).text(campaign.data.name);
-		$(&#x27;#campaignDescription&#x27;).text(campaign.data.description);
-		$(&#x27;#campaignSuccessTitle&#x27;).text(campaign.data.successTitle);
-		$(&#x27;#campaignSuccessMessage&#x27;).text(campaign.data.successMessage);
-		$(&#x27;#mapList&#x27;).html(&#x27;&#x27;);
-		campaign.data.maps.forEach(function(map) {
-			$(&#x27;#mapList&#x27;).append(&#x27;&lt;li class=&quot;map&quot; id=&quot;map_&#x27;+map+&#x27;&quot;&gt;&#x27;+map+&#x27; &lt;span class=&quot;delete&quot;&gt;delete&lt;/span&gt;&lt;/li&gt;&#x27;);
-		});
-		$(&#x27;#mapList&#x27;).append(&#x27;&lt;li&gt;&lt;input type=&quot;text&quot; id=&quot;newMap&quot; placeholder=&quot;new map&quot; &gt;&lt;/li&gt;&#x27;);
+		var campaignTemplate = $(&#x27;#campaignScreenTemplate&#x27;).text().trim(),
+			campaignCompiled = _.template(campaignTemplate),
+			successTemplate = $(&#x27;#campaignSuccessTemplate&#x27;).text().trim(),
+			successCompiled = _.template(successTemplate);
+		$(&#x27;#campaignScreen&#x27;).html(campaignCompiled(campaign.data));
+		$(&#x27;#campaignSuccess&#x27;).html(successCompiled(campaign.data));
 		return this;
 	};
 
@@ -337,30 +334,65 @@ E.campaign = (function() {
 	};
 
 	/**
+	 * Moves the map up one in the order (nearer the start)
+	 *
+	 * @param mapName {string} The name of the map
+	 * @return this;
+	 */
+	campaign.moveMapUp = function(mapName) {
+		var mapsArr = campaign.data.maps,
+			currentIndex = mapsArr.indexOf(mapName);
+		if (currentIndex &gt; 0) {
+			E.util.moveArrayElement(mapsArr, currentIndex, currentIndex-1);
+			campaign.render();
+		}
+		return this;
+	};
+
+	/**
+	 * Moves the map down one in the order (nearer the end)
+	 *
+	 * @param mapName {string} The name of the map
+	 * @return this;
+	 */
+	campaign.moveMapDown = function(mapName) {
+		var mapsArr = campaign.data.maps,
+			currentIndex = mapsArr.indexOf(mapName);
+		if (currentIndex &lt; mapsArr.length-1) {
+			E.util.moveArrayElement(mapsArr, currentIndex, currentIndex+1);
+			campaign.render();
+		}
+		return this;
+	};
+
+	/**
 	 * Populates the relevant DOM ul with the campaigns
 	 *
 	 * @method list
 	 * @return this
 	 */
 	campaign.list = function() {
+		var template = $(&#x27;#campaignListItemTemplate&#x27;).text().trim(),
+			compiled = _.template(template),
+			html = [];
 		$.ajax({
 			url: &#x27;/campaigns&#x27;,
 			type: &#x27;GET&#x27;,
 			dataType: &#x27;json&#x27;,
 			success: function(campaigns) {
 				campaign.campaigns = campaigns;
-				$(function() {
-					$(&#x27;#campaignList&#x27;).html(&#x27;&#x27;);
-					campaigns.forEach(function(value, index, array) {
-						$(&#x27;#campaignList&#x27;).append(&#x27;&lt;li class=&quot;campaign&quot; id=&quot;campaign_&#x27;+value+&#x27;&quot;&gt;&#x27;+value+&#x27; &lt;span class=&quot;delete&quot;&gt;delete&lt;/span&gt;&lt;/li&gt;&#x27;);
-					});
+				campaigns.forEach(function(campaignName) {
+					html.push(compiled({name: campaignName}));
 				});
+				$(&#x27;#campaignList&#x27;).html(html.join(&#x27;&#x27;));
 			}
 		});
 		return this;
 	};
 
-	campaign.list();
+	$(function() {
+		campaign.list();
+	});
 
 	return campaign;
 })();

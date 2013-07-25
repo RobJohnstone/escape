@@ -361,10 +361,10 @@ E.game = (function() {
 		});
 
 		// event handlers
-		$(&#x27;#campaignStart&#x27;).click(function() {
+		$(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#campaignStart&#x27;, function() {
 			E.screen.change(&#x27;mapScreen&#x27;);
 		});
-		$(&#x27;#playMap&#x27;).click(function() {
+		$(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#playMap&#x27;, function() {
 			E.screen.change(&#x27;gameContainer&#x27;);
 			game.start();
 		});
