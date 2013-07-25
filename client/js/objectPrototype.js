@@ -55,6 +55,24 @@
 		return object;
 	}
 
+	/**
+	 * Creates a copy of an object rather than a reference to that object
+	 * Note that it is not recursive and does not copy inherited properties
+	 *
+	 * @method clone
+	 * @return {object} A new object identical to the original
+	 */
+	function clone() {
+		var newObj = {};
+		for (var property in this) {
+			if (this.hasOwnProperty(property)) {
+				newObj[property] = this[property];
+			}
+		}
+		return newObj;
+	}
+
+
 	/* Add the methods to Object.prototype in this way to ensure that they are not enumerable and are therefore less likely to cause issues with 
 	 * third party code (normal assignment to Object.prototype caused havoc with jQuery!) 
 	 * 
@@ -65,7 +83,7 @@
 	function _addToObjectPrototype(method) {
 		var propertyDescriptor = {};
 		if (Object.prototype[method.name] === undefined) {
-			Object.defineProperty(Object.prototype, method.name, {value: method}); // enumerable if not defined defaults to false
+			Object.defineProperty(Object.prototype, method.name, {value: method, writable: true}); // enumerable if not defined defaults to false
 		}
 		else {
 			throw "The method "+method.name+"already exists in Object.prototype";
@@ -74,4 +92,5 @@
 
 	_addToObjectPrototype(extend);
 	_addToObjectPrototype(create);
+	_addToObjectPrototype(clone);
 })(Object);

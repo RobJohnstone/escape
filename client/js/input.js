@@ -49,7 +49,7 @@ E.input = (function() {
 						return false;
 					}
 				});
-				input.mouseState = {
+				input.mouseState = input.mouseState || {
 					'left': 0,
 					'middle': 0,
 					'right': 0,

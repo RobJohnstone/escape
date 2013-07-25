@@ -47,6 +47,8 @@
             
                 <li><a href="../classes/baddyPrototype.html">baddyPrototype</a></li>
             
+                <li><a href="../classes/campaign.html">campaign</a></li>
+            
                 <li><a href="../classes/entities.html">entities</a></li>
             
                 <li><a href="../classes/entityPrototype.html">entityPrototype</a></li>
@@ -63,9 +65,13 @@
             
                 <li><a href="../classes/palette.html">palette</a></li>
             
+                <li><a href="../classes/playerPrototype.html">playerPrototype</a></li>
+            
                 <li><a href="../classes/polyfills.html">polyfills</a></li>
             
                 <li><a href="../classes/projectilePrototype.html">projectilePrototype</a></li>
+            
+                <li><a href="../classes/screen.html">screen</a></li>
             
                 <li><a href="../classes/tiles.html">tiles</a></li>
             
@@ -87,6 +93,8 @@
             
                 <li><a href="../modules/baddyPrototype.html">baddyPrototype</a></li>
             
+                <li><a href="../modules/campaign.html">campaign</a></li>
+            
                 <li><a href="../modules/entities.html">entities</a></li>
             
                 <li><a href="../modules/game.html">game</a></li>
@@ -101,9 +109,13 @@
             
                 <li><a href="../modules/palette.html">palette</a></li>
             
+                <li><a href="../modules/playerPrototype.html">playerPrototype</a></li>
+            
                 <li><a href="../modules/polyfills.html">polyfills</a></li>
             
                 <li><a href="../modules/projectilePrototype.html">projectilePrototype</a></li>
+            
+                <li><a href="../modules/screen.html">screen</a></li>
             
                 <li><a href="../modules/tiles.html">tiles</a></li>
             
@@ -201,6 +213,20 @@
 
                     <ul class="index-list methods">
                         
+                            <li class="index-item method private">
+                                <a href="#method__deleteItem">_deleteItem</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__editItem">_editItem</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method">
                                 <a href="#method_end">end</a>
 
@@ -251,6 +277,13 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_mapComplete">mapComplete</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_over">over</a>
 
                                 
@@ -266,6 +299,13 @@
                         
                             <li class="index-item method">
                                 <a href="#method_play">play</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_reset">reset</a>
 
                                 
                                 
@@ -315,6 +355,205 @@
                 <h2 class="off-left">Methods</h2>
 
                 
+                    <div id="method__deleteItem" class="method item private">
+    <h3 class="name"><code>_deleteItem</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>element</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_edit.js.html#l140"><code>client&#x2F;js&#x2F;edit.js:140</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>sends a request to the server instructing it to delete a file</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">element</code>
+                        <span class="type">DOM element</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The delete button. Assuumes that the parent element has sufficent info in its class and id to identify the element to be deleted</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The function to be executed after the request has been completed</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__editItem" class="method item private">
+    <h3 class="name"><code>_editItem</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>element</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_edit.js.html#l187"><code>client&#x2F;js&#x2F;edit.js:187</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Updates the value of an item</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">element</code>
+                        <span class="type">DOM Element</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The DOM element being updated</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_end" class="method item">
     <h3 class="name"><code>end</code></h3>
 
@@ -351,7 +590,7 @@
             
         
         
-        <a href="../files/client_js_escape.js.html#l143"><code>client&#x2F;js&#x2F;escape.js:143</code></a>
+        <a href="../files/client_js_escape.js.html#l173"><code>client&#x2F;js&#x2F;escape.js:173</code></a>
         
         </p>
 
@@ -363,75 +602,6 @@
 
     <div class="description">
         <p>End the game</p>
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                    this
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_info" class="method item">
-    <h3 class="name"><code>info</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/client_js_escape.js.html#l86"><code>client&#x2F;js&#x2F;escape.js:86</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Displays debugging info and stats on the screen</p>
     </div>
 
     
@@ -489,7 +659,7 @@
             
         
         
-        <a href="../files/client_js_edit.js.html#l88"><code>client&#x2F;js&#x2F;edit.js:88</code></a>
+        <a href="../files/client_js_edit.js.html#l269"><code>client&#x2F;js&#x2F;edit.js:269</code></a>
         
         </p>
 
@@ -516,6 +686,75 @@ in the game.info.items array.</p>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
                     
                     game
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_info" class="method item">
+    <h3 class="name"><code>info</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_escape.js.html#l95"><code>client&#x2F;js&#x2F;escape.js:95</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Displays debugging info and stats on the screen</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this
                 
             </div>
         </div>
@@ -577,7 +816,7 @@ in the game.info.items array.</p>
             
         
         
-        <a href="../files/client_js_edit.js.html#l110"><code>client&#x2F;js&#x2F;edit.js:110</code></a>
+        <a href="../files/client_js_edit.js.html#l291"><code>client&#x2F;js&#x2F;edit.js:291</code></a>
         
         </p>
 
@@ -665,100 +904,14 @@ If two, adds both separated by a colon</p>
                     
                 </li>
             
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/client_js_edit.js.html#l39"><code>client&#x2F;js&#x2F;edit.js:39</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Carries out all initialisation actions</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
+                <li class="arg">
                     
-                        <code class="param-name">mapName</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
+                        <code>start</code>
                     
                 </li>
             
-            </ul>
+            </ul><span class="paren">)</span>
         </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                    this
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_init" class="method item">
-    <h3 class="name"><code>init</code></h3>
-
-    
-        <span class="paren">()</span>
     
 
     
@@ -804,6 +957,146 @@ If two, adds both separated by a colon</p>
         <p>Initialise all required modules</p>
     </div>
 
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">mapName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the filename of the map minus the file extension</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">start</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Whether or not to start the game once the map has loaded (defaults to true)</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>mapName</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_edit.js.html#l204"><code>client&#x2F;js&#x2F;edit.js:204</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Carries out all initialisation actions</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">mapName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>or a mapObj</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -859,7 +1152,7 @@ If two, adds both separated by a colon</p>
             
         
         
-        <a href="../files/client_js_edit.js.html#l67"><code>client&#x2F;js&#x2F;edit.js:67</code></a>
+        <a href="../files/client_js_edit.js.html#l235"><code>client&#x2F;js&#x2F;edit.js:235</code></a>
         
         </p>
 
@@ -871,6 +1164,75 @@ If two, adds both separated by a colon</p>
 
     <div class="description">
         <p>The body of the game loop</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_mapComplete" class="method item">
+    <h3 class="name"><code>mapComplete</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_escape.js.html#l141"><code>client&#x2F;js&#x2F;escape.js:141</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Action to take when map complete</p>
     </div>
 
     
@@ -928,7 +1290,7 @@ If two, adds both separated by a colon</p>
             
         
         
-        <a href="../files/client_js_escape.js.html#l118"><code>client&#x2F;js&#x2F;escape.js:118</code></a>
+        <a href="../files/client_js_escape.js.html#l129"><code>client&#x2F;js&#x2F;escape.js:129</code></a>
         
         </p>
 
@@ -997,7 +1359,7 @@ If two, adds both separated by a colon</p>
             
         
         
-        <a href="../files/client_js_escape.js.html#l105"><code>client&#x2F;js&#x2F;escape.js:105</code></a>
+        <a href="../files/client_js_escape.js.html#l114"><code>client&#x2F;js&#x2F;escape.js:114</code></a>
         
         </p>
 
@@ -1066,7 +1428,7 @@ If two, adds both separated by a colon</p>
             
         
         
-        <a href="../files/client_js_escape.js.html#l57"><code>client&#x2F;js&#x2F;escape.js:57</code></a>
+        <a href="../files/client_js_escape.js.html#l63"><code>client&#x2F;js&#x2F;escape.js:63</code></a>
         
         </p>
 
@@ -1135,7 +1497,76 @@ If two, adds both separated by a colon</p>
             
         
         
-        <a href="../files/client_js_escape.js.html#l130"><code>client&#x2F;js&#x2F;escape.js:130</code></a>
+        <a href="../files/client_js_edit.js.html#l256"><code>client&#x2F;js&#x2F;edit.js:256</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Resets game state when map data changes</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_reset" class="method item">
+    <h3 class="name"><code>reset</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_escape.js.html#l160"><code>client&#x2F;js&#x2F;escape.js:160</code></a>
         
         </p>
 
@@ -1204,7 +1635,7 @@ If two, adds both separated by a colon</p>
             
         
         
-        <a href="../files/client_js_escape.js.html#l43"><code>client&#x2F;js&#x2F;escape.js:43</code></a>
+        <a href="../files/client_js_escape.js.html#l49"><code>client&#x2F;js&#x2F;escape.js:49</code></a>
         
         </p>
 
@@ -1274,7 +1705,7 @@ Starts all required modules and starts the game loop</p>
             
         
         
-        <a href="../files/client_js_escape.js.html#l33"><code>client&#x2F;js&#x2F;escape.js:33</code></a>
+        <a href="../files/client_js_edit.js.html#l219"><code>client&#x2F;js&#x2F;edit.js:219</code></a>
         
         </p>
 
@@ -1285,7 +1716,7 @@ Starts all required modules and starts the game loop</p>
     </div>
 
     <div class="description">
-        <p>Start the game</p>
+        <p>Starts any modules that need starting and then begins the game loop</p>
     </div>
 
     
@@ -1343,7 +1774,7 @@ Starts all required modules and starts the game loop</p>
             
         
         
-        <a href="../files/client_js_edit.js.html#l54"><code>client&#x2F;js&#x2F;edit.js:54</code></a>
+        <a href="../files/client_js_escape.js.html#l36"><code>client&#x2F;js&#x2F;escape.js:36</code></a>
         
         </p>
 
@@ -1354,7 +1785,7 @@ Starts all required modules and starts the game loop</p>
     </div>
 
     <div class="description">
-        <p>Starts any modules that need starting and then begins the game loop</p>
+        <p>Start the game</p>
     </div>
 
     

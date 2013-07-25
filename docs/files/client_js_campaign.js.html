@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>client/js/objectPrototype.js - Escape</title>
+    <title>client/js/campaign.js - Escape</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -162,106 +162,208 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: client/js/objectPrototype.js</h1>
+                        <h1 class="file-heading">File: client/js/campaign.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
- * Extend Object.prototype with helper methods to simplify inheritance
+ * Handles all state and behaviour for campaigns
  *
- * Escape uses prototypal style inheritance rather than the constructor / pseudo-classical 
- * approach used by many javascript developers. The &quot;blueprints&quot; for each type of object
- * are defined as objects in files named &quot;&lt;type&gt;Prototype.js&quot;. A new object of that type can 
- * be created using &quot;var newObj = &lt;type&gt;Prototype.create();&quot;. To create a new prototype based
- * upon a previous one use &quot;var newPrototype = &lt;type&gt;Prototype.extend();&quot;
- * 
- * It could be argued that extending Object.prototype in this way is an anti-pattern due to the
- * effect it could have on code written by those who are unaware that it has been extended. However,
- * the code below takes account of the most common types of conflict and employs suitable preventative
- * measures so this sort of problem should not occur. 
- *
- * @module objectPrototype
- * @class objectPrototype
+ * @module campaign
+ * @class campaign
  */
 
-(function(Object) { // pass in Object as an argument to prevent minification bugs
+E.campaign = (function() {
+	var campaign = {
+		campaigns: [],
+		addedMap: false
+	};
+
+	var _campaignTemplate = {
+		name: &#x27;&#x27;,
+		description: &#x27;&#x27;,
+		maps: [],
+		successTitle: &#x27;&#x27;,
+		successMessage: &#x27;&#x27;
+	};
 
 	/**
-	 * Return a new object inheriting from the previous one
+	 * Loads a campaign
 	 *
-	 * @method extend
-	 * @param propertiesObject an object that contains properties to add to the new object (overwriting previous ones with the same name)
-	 * The reason to use this over Object.create is that to pass in properties to the new object, Object.create requires property descriptors as its
-	 * second argument rather than a straightforward object
-	 * @return {object} The new object
+	 * @method load
+	 * @param campaignName {string} The name of the campaign. If campaignName is an object it treats that
+	 * as the campaignObj rather than loading via ajax
+	 * @param callback {function} A function to execute once the campaign has been loaded successfully
+	 * @return this
 	 */
-	function extend(propertiesObject) {
-		var propertyDescriptors = {};
-		if (propertiesObject) {
-			for (var property in propertiesObject) {
-				propertyDescriptors[property] = {value: propertiesObject[property], writable: true, configurable: true, enumerable: true};
-			}
-		}
-		return Object.create(this, propertyDescriptors);
-	}
-
-	/**
-	 * Create a new object based on this prototype, modify according to the passed in parameters and run the init method if available
-	 *
-	 * @method create
-	 * @param propertiesObject an object that contains properties to add to the new object
-	 * @param [initObject]* Any other parameters are passed to the init function
-	 * @return {object} The new object
-	 */
-	function create(propertiesObject) {
-		var object = this.extend(propertiesObject);
-		var initArgs = [];
-		for (var i=1; i&lt;arguments.length; i++) {
-			initArgs.push(arguments[i]);
-		}
-		if (typeof object.init === &quot;function&quot;) object.init.apply(object, initArgs);
-		return object;
-	}
-
-	/**
-	 * Creates a copy of an object rather than a reference to that object
-	 * Note that it is not recursive and does not copy inherited properties
-	 *
-	 * @method clone
-	 * @return {object} A new object identical to the original
-	 */
-	function clone() {
-		var newObj = {};
-		for (var property in this) {
-			if (this.hasOwnProperty(property)) {
-				newObj[property] = this[property];
-			}
-		}
-		return newObj;
-	}
-
-
-	/* Add the methods to Object.prototype in this way to ensure that they are not enumerable and are therefore less likely to cause issues with 
-	 * third party code (normal assignment to Object.prototype caused havoc with jQuery!) 
-	 * 
-	 * @private
-	 * @method _addToObjectPrototype
-	 * @param method {function} The method to add to Object.prototype
-	 */
-	function _addToObjectPrototype(method) {
-		var propertyDescriptor = {};
-		if (Object.prototype[method.name] === undefined) {
-			Object.defineProperty(Object.prototype, method.name, {value: method, writable: true}); // enumerable if not defined defaults to false
+	campaign.load = function(campaignName, callback) {
+		if (typeof campaignName === &#x27;object&#x27;) {
+			_successHandler(campaignName);
 		}
 		else {
-			throw &quot;The method &quot;+method.name+&quot;already exists in Object.prototype&quot;;
+			$.ajax({
+				url: &#x27;/campaigns/&#x27;+campaignName,
+				type: &#x27;get&#x27;,
+				dataType: &#x27;json&#x27;,
+				success: function(campaignObj) {
+					_successHandler(campaignObj);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(&#x27;campaign loading error: &#x27;);
+					console.log(textStatus);
+				}
+			});
 		}
-	}
+		return this;
 
-	_addToObjectPrototype(extend);
-	_addToObjectPrototype(create);
-	_addToObjectPrototype(clone);
-})(Object);
+		function _successHandler(campaignObj) {
+			campaign.data = campaignObj;
+			campaign.current = 0;
+			campaign.render();
+			if (typeof callback === &#x27;function&#x27;) {
+				callback();
+			}
+		}
+	};
+
+	/**
+	 * Gets the name of the current map
+	 *
+	 * @method getCurrentmap
+	 * @return {string} The name of the current map
+	 */
+	campaign.getCurrentmap = function() {
+		return campaign.data.maps[campaign.current];
+	};
+
+	/**
+	 * Populates the relevant DOM elements with campaign information
+	 *
+	 * @method render
+	 * @return this;
+	 */
+	campaign.render = function() {
+		$(&#x27;#campaignName&#x27;).text(campaign.data.name);
+		$(&#x27;#campaignDescription&#x27;).text(campaign.data.description);
+		$(&#x27;#campaignSuccessTitle&#x27;).text(campaign.data.successTitle);
+		$(&#x27;#campaignSuccessMessage&#x27;).text(campaign.data.successMessage);
+		$(&#x27;#mapList&#x27;).html(&#x27;&#x27;);
+		campaign.data.maps.forEach(function(map) {
+			$(&#x27;#mapList&#x27;).append(&#x27;&lt;li class=&quot;map&quot; id=&quot;map_&#x27;+map+&#x27;&quot;&gt;&#x27;+map+&#x27; &lt;span class=&quot;delete&quot;&gt;delete&lt;/span&gt;&lt;/li&gt;&#x27;);
+		});
+		$(&#x27;#mapList&#x27;).append(&#x27;&lt;li&gt;&lt;input type=&quot;text&quot; id=&quot;newMap&quot; placeholder=&quot;new map&quot; &gt;&lt;/li&gt;&#x27;);
+		return this;
+	};
+
+	/**
+	 * Creates a new campaign. The only field populated is the name.
+	 * This method does not save the newly created campaign (use campaign.save())
+	 *
+	 * @method create
+	 * @param name {string} The name of the new campaign
+	 * @return this
+	 */
+	campaign.newCampaign = function(name) {
+		var newCampaign = _campaignTemplate.clone();
+		if (name !== &#x27;&#x27;) {
+			newCampaign.name = name;
+		}
+		campaign.load(newCampaign);
+		E.screen.update();
+		return this;
+	};
+
+	/**
+	 * Saves the current information about the campaign
+	 * Note: this requires that the server is in &#x27;dev&#x27; mode
+	 *
+	 * @method save
+	 * @param callback {function} The function to execute once the campaign has been saved
+	 * @return this
+	 */
+	campaign.save = function(callback) {
+		$.ajax({
+			url: &#x27;/campaigns/&#x27;+campaign.data.name,
+			type: &#x27;post&#x27;,
+			data: &#x27;data=&#x27;+JSON.stringify(campaign.data),
+			success: function(result) {
+				campaign.list();
+				if (typeof callback === &#x27;function&#x27;) {
+					callback(result);
+				}
+			}
+		});
+		return this;
+	};
+
+	/**
+	 * updates the value of a field in the campaign
+	 * can remove the prefix campaign from property names while preserving camel-casing
+	 *
+	 * @method update
+	 * @param field {string} The field to update (either the property name or a the id of a form element associated with that property)
+	 * @param value {any} The new value
+	 * @return this
+	 */
+	campaign.update = function(field, value) {
+		if (field.substr(0, 8) === &#x27;campaign&#x27;) {
+			field = field.substr(8);
+			field = field.charAt(0).toLowerCase() + field.slice(1);
+		}
+		campaign.data[field] = value;
+		return this;
+	};
+
+	/**
+	 * Adds a map to the campaign
+	 * Note this does not check whether the map actually exists
+	 *
+	 * @method addMap
+	 * @param mapName {string} The name of the map
+	 * @param index {number} The index which this map should occupy within the 
+	 * array (defaults to adding the map to the end)
+	 * @return this
+	 */
+	campaign.addMap = function(mapName, index) {
+		mapName = mapName || campaign.addedMap;
+		if (index === undefined) {
+			campaign.data.maps.push(mapName);
+		}
+		else {
+			campaign.data.maps.splice(index, 0, mapName);
+		}
+		E.campaign.addedMap = false;
+		return this;
+	};
+
+	/**
+	 * Populates the relevant DOM ul with the campaigns
+	 *
+	 * @method list
+	 * @return this
+	 */
+	campaign.list = function() {
+		$.ajax({
+			url: &#x27;/campaigns&#x27;,
+			type: &#x27;GET&#x27;,
+			dataType: &#x27;json&#x27;,
+			success: function(campaigns) {
+				campaign.campaigns = campaigns;
+				$(function() {
+					$(&#x27;#campaignList&#x27;).html(&#x27;&#x27;);
+					campaigns.forEach(function(value, index, array) {
+						$(&#x27;#campaignList&#x27;).append(&#x27;&lt;li class=&quot;campaign&quot; id=&quot;campaign_&#x27;+value+&#x27;&quot;&gt;&#x27;+value+&#x27; &lt;span class=&quot;delete&quot;&gt;delete&lt;/span&gt;&lt;/li&gt;&#x27;);
+					});
+				});
+			}
+		});
+		return this;
+	};
+
+	campaign.list();
+
+	return campaign;
+})();
     </pre>
 </div>
 

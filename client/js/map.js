@@ -14,16 +14,30 @@ E.map = (function() {
 		}
 	};
 
+	var _mapTemplate = {
+		name: '',
+		columns: 0,
+		rows: 0,
+		tileWidth: 0,
+		tileHeight: 0,
+		width: 0,
+		height: 0,
+		data: [],
+		actors: []
+	};
+
 	/**
 	 * initialise the map based on a loaded map object
 	 *
 	 * @method init
-	 * @param mapObj {object} information about the map loaded from file
+	 * @param mapObj {object} information about the map loaded from file (optional)
 	 * @return this
 	 */
 	map.init = function(mapObj) {
-		map.actors = [];
-		$.extend(true, map, mapObj);
+		if (mapObj) {
+			map.actors = [];
+			$.extend(true, map, mapObj);
+		}
 		E.tiles.init('', map.tileWidth, map.tileHeight);
 		map.pathGrid = [];
 		var i = 0;
@@ -40,9 +54,8 @@ E.map = (function() {
 		if (map.playerStart) {
 			window.player = E.playerPrototype.create(map.playerStart);
 		}
-		if (!E.graphics.clipping) {
-			E.graphics.resizeCanvas('game', map.tileWidth * map.columns, map.tileHeight * map.rows);
-		}
+		$('#mapName').text(map.name);
+		$('#mapDescription').text(map.description);
 		return this;
 	};
 
@@ -57,13 +70,15 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.load = function(mapName, onLoad) {
+		console.log('map.load');
 		if (typeof mapName === "object") {
 			_loadMapObj(mapName);
 		}
 		else {
 			$.ajax({
-				url: '/maps/'+mapName+'.json',
+				url: '/maps/'+mapName,
 				type: 'get',
+				dataType: 'json',
 				success: function(mapObj) {
 					_loadMapObj(mapObj);
 				},
@@ -94,26 +109,42 @@ E.map = (function() {
 	 *
 	 * @method new
 	 * @param mapName {string} The filename of the new map minus the json extension
-	 * @param cols {number} The number of columns in the map
-	 * @param rows {number} The number of rows in the map
+	 * @param cols {number} The number of columns in the map (defaults to 50)
+	 * @param rows {number} The number of rows in the map (defaults to 50)
 	 * @return mapObj {object}
 	 */
 	map.newMap = function(mapName, cols, rows) {
-		var mapObj = {
-			name: mapName,
-			columns: cols,
-			rows: rows,
-			tileWidth: 64,
-			tileHeight: 64,
-			width: 64*cols,
-			height: 64*rows,
-			data: [],
-			actors: []
-		};
+		cols = cols || 50;
+		rows = rows || 50;
+		var mapObj = _mapTemplate.clone();
+		mapObj.name = mapName;
+		mapObj.columns = cols;
+		mapObj.rows = rows;
+		mapObj.tileWidth = 64;
+		mapObj.tileHeight = 64;
+		mapObj.width = 64*cols;
+		mapObj.height = 64*rows;
 		for (var i=0, len=cols*rows; i<len; i++) {
 			mapObj.data[i] = 0;
 		}
 		return mapObj;
+	};
+
+	/**
+	 * Updates map values
+	 *
+	 * @method update
+	 * @param field {string} The field to update (either the property name or a the id of a form element associated with that property)
+	 * @param value {any} The new value
+	 * @return this
+	 */
+	map.update = function(field, value) {
+		if (field.substr(0, 3) === 'map') {
+			field = field.substr(3);
+			field = field.charAt(0).toLowerCase() + field.slice(1);
+		}
+		map[field] = value;
+		return this;
 	};
 
 	/**
@@ -123,9 +154,8 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.save = function() {
-		delete map.updated;
 		$.ajax({
-			url: '/maps/'+map.name+'.json',
+			url: '/maps/'+map.name,
 			type: 'post',
 			data: {data: JSON.stringify(map)},
 			success: function(result) {

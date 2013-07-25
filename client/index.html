@@ -7,5 +7,21 @@
 	<title>Escape!</title>
 </head>
 <body>
-	<div id="gameContainer"></div>
+	<div id="container">
+		<div id="gameContainer" class="screen">Loading...</div>
+		<div id="campaignScreen" class="screen">
+			<h2 id="campaignName">Loading...</h2>
+			<p id="campaignDescription"></p>
+			<input type="button" id="campaignStart" tabindex="1" value="Start" /input>
+		</div>
+		<div id="mapScreen" class="screen">
+			<h1 id="mapName">Loading...</h1>
+			<p id="mapDescription"></p>
+			<input type="button" id="playMap" tabindex="1" value="Start" /input>
+		</div>
+		<div id="campaignSuccess" class="screen">
+			<h1 id="campaignSuccessTitle">Loading...</h1>
+			<p id="campaignSuccessMessage"></p>
+		</div>
+	</div>
 </body>

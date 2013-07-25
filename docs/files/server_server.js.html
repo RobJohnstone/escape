@@ -47,6 +47,8 @@
             
                 <li><a href="../classes/baddyPrototype.html">baddyPrototype</a></li>
             
+                <li><a href="../classes/campaign.html">campaign</a></li>
+            
                 <li><a href="../classes/entities.html">entities</a></li>
             
                 <li><a href="../classes/entityPrototype.html">entityPrototype</a></li>
@@ -63,9 +65,13 @@
             
                 <li><a href="../classes/palette.html">palette</a></li>
             
+                <li><a href="../classes/playerPrototype.html">playerPrototype</a></li>
+            
                 <li><a href="../classes/polyfills.html">polyfills</a></li>
             
                 <li><a href="../classes/projectilePrototype.html">projectilePrototype</a></li>
+            
+                <li><a href="../classes/screen.html">screen</a></li>
             
                 <li><a href="../classes/tiles.html">tiles</a></li>
             
@@ -87,6 +93,8 @@
             
                 <li><a href="../modules/baddyPrototype.html">baddyPrototype</a></li>
             
+                <li><a href="../modules/campaign.html">campaign</a></li>
+            
                 <li><a href="../modules/entities.html">entities</a></li>
             
                 <li><a href="../modules/game.html">game</a></li>
@@ -101,9 +109,13 @@
             
                 <li><a href="../modules/palette.html">palette</a></li>
             
+                <li><a href="../modules/playerPrototype.html">playerPrototype</a></li>
+            
                 <li><a href="../modules/polyfills.html">polyfills</a></li>
             
                 <li><a href="../modules/projectilePrototype.html">projectilePrototype</a></li>
+            
+                <li><a href="../modules/screen.html">screen</a></li>
             
                 <li><a href="../modules/tiles.html">tiles</a></li>
             
@@ -162,6 +174,10 @@
  * map editor
  */
 
+var settings = {
+	mode: &#x27;dev&#x27;
+};
+
 var express = require(&#x27;express&#x27;),
 	http = require(&#x27;http&#x27;),
 	path = require(&#x27;path&#x27;),
@@ -170,20 +186,90 @@ var express = require(&#x27;express&#x27;),
 var app = express();
 app.set(&#x27;port&#x27;, 8080);
 app.set(&#x27;maps&#x27;, path.join(__dirname, &#x27;../maps&#x27;));
+app.set(&#x27;campaigns&#x27;, path.join(__dirname, &#x27;../campaigns&#x27;));
 app.configure(function() {
 	app.use(express.logger());
 	app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-	app.use(&#x27;/maps&#x27;, express.static(app.get(&#x27;maps&#x27;)));
 	app.use(express.static(path.join(__dirname, &#x27;../client&#x27;)));
 	app.use(express.bodyParser());
 });
 
 app.listen(app.get(&#x27;port&#x27;));
 
-app.post(&#x27;/maps/:map&#x27;, function(req, res) {
-	fs.writeFile(path.join(app.get(&#x27;maps&#x27;), req.params.map), req.body.data);
-	res.end(req.params.map+&#x27; saved&#x27;);
+/* helper methods */
+app.listJSON = function(dirname, res) {
+	fs.readdir(dirname, function(err, files) {
+		if (err) {
+			files = err;	
+		}
+		else {
+			files = files.filter(function(filename) {
+				var ext = filename.split(&#x27;.&#x27;)[1];
+				return (ext === &#x27;json&#x27;);
+			});
+			files = files.map(function(file) {
+				return file.split(&#x27;.&#x27;)[0];
+			});
+		}
+		res.end(JSON.stringify(files));
+	});
+};
+
+app.returnFile = function(filename, res) {
+	fs.readFile(filename, function(err, data) {
+		data = err ? err.message : data;
+		res.end(data);
+	});
+};
+
+app.saveFile = function(filename, data) {
+	fs.writeFile(filename, data, function(err) {
+		if (err) console.log(err);
+	});
+};
+
+/* Routes */
+app.get(&#x27;/campaigns&#x27;, function(req, res) {
+	app.listJSON(app.get(&#x27;campaigns&#x27;), res);
 });
+
+app.get(&#x27;/campaigns/:campaign&#x27;, function(req, res) {
+	app.returnFile(path.join(app.get(&#x27;campaigns&#x27;), req.params.campaign+&#x27;.json&#x27;), res);
+});
+
+app.get(&#x27;/maps&#x27;, function(req, res) {
+	app.listJSON(app.get(&#x27;maps&#x27;), res);
+});
+
+app.get(&#x27;/maps/:map&#x27;, function(req, res) {
+	app.returnFile(path.join(app.get(&#x27;maps&#x27;), req.params.map+&#x27;.json&#x27;), res);
+});
+
+if (settings.mode === &#x27;dev&#x27;) {
+	app.post(&#x27;/campaigns/:campaign&#x27;, function(req, res) {
+		app.saveFile(path.join(app.get(&#x27;campaigns&#x27;), req.params.campaign+&#x27;.json&#x27;), req.body.data);
+		res.end();
+	});
+
+	app.delete(&#x27;/campaigns/:campaign&#x27;, function(req, res) {
+		fs.unlink(path.join(app.get(&#x27;campaigns&#x27;), req.params.campaign+&#x27;.json&#x27;), function(err) {
+			if (err) console.log(err);
+		});
+		res.end();
+	});
+
+	app.post(&#x27;/maps/:map&#x27;, function(req, res) {
+		app.saveFile(path.join(app.get(&#x27;maps&#x27;), req.params.map+&#x27;.json&#x27;), req.body.data);
+		res.end();
+	});
+
+	app.delete(&#x27;/maps/:map&#x27;, function(req, res) {
+		fs.unlink(path.join(app.get(&#x27;maps&#x27;), req.params.map+&#x27;.json&#x27;), function(err) {
+			if (err) console.log(err);
+		});
+		res.end();
+	});
+};
 
 console.log(&#x27;Escape server listening on port &#x27;+app.get(&#x27;port&#x27;));
     </pre>

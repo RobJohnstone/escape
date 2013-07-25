@@ -26,8 +26,8 @@ E.playerPrototype = (function() {
 		process: function() {
 			var tileIndex = E.map.getTileIndex(this);
 			if (E.map.getTileObj(tileIndex).exit) {
-				//E.game.levelComplete();
-				E.game.mode = 'levelComplete';
+				//E.game.mapComplete();
+				E.game.mode = 'mapComplete';
 			}
 			return this;
 		}

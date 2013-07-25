@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>baddyPrototype - Escape</title>
+    <title>campaign - Escape</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -162,7 +162,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>baddyPrototype Class</h1>
+                        <h1>campaign Class</h1>
 <div class="box meta">
     
 
@@ -170,13 +170,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/client_js_baddyPrototype.js.html#l1"><code>client&#x2F;js&#x2F;baddyPrototype.js:1</code></a>
+            Defined in: <a href="../files/client_js_campaign.js.html#l1"><code>client&#x2F;js&#x2F;campaign.js:1</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/baddyPrototype.html">baddyPrototype</a>
+            Module: <a href="../modules/campaign.html">campaign</a>
         
     
 
@@ -186,9 +186,7 @@
 
 
 <div class="box intro">
-    <p>Prototype for all baddies. Inherits from actor prototype</p>
-
-<p>For more information on how Escape uses inheritance see objectPrototype.js</p>
+    <p>Handles all state and behaviour for campaigns</p>
 </div>
 
 
@@ -216,70 +214,56 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_baddySeePlayer">baddySeePlayer</a>
+                                <a href="#method_addMap">addMap</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_hitHandler">hitHandler</a>
+                                <a href="#method_create">create</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_orders.attack">orders.attack</a>
+                                <a href="#method_getCurrentmap">getCurrentmap</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_orders.chase">orders.chase</a>
+                                <a href="#method_list">list</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_orders.returnToStation">orders.returnToStation</a>
+                                <a href="#method_load">load</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_orders.search">orders.search</a>
+                                <a href="#method_render">render</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_orders.watch">orders.watch</a>
+                                <a href="#method_save">save</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_process">process</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_processOrders">processOrders</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_setTarget">setTarget</a>
+                                <a href="#method_update">update</a>
 
                                 
                                 
@@ -301,77 +285,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_baddySeePlayer" class="method item">
-    <h3 class="name"><code>baddySeePlayer</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/client_js_baddyPrototype.js.html#l146"><code>client&#x2F;js&#x2F;baddyPrototype.js:146</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Checks if the baddy can see the player</p>
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                    boolean
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_hitHandler" class="method item">
-    <h3 class="name"><code>hitHandler</code></h3>
+                    <div id="method_addMap" class="method item">
+    <h3 class="name"><code>addMap</code></h3>
 
     
         <div class="args">
@@ -379,7 +294,13 @@
             
                 <li class="arg">
                     
-                        <code>projectile</code>
+                        <code>mapName</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>index</code>
                     
                 </li>
             
@@ -416,7 +337,7 @@
             
         
         
-        <a href="../files/client_js_baddyPrototype.js.html#l134"><code>client&#x2F;js&#x2F;baddyPrototype.js:134</code></a>
+        <a href="../files/client_js_campaign.js.html#l149"><code>client&#x2F;js&#x2F;campaign.js:149</code></a>
         
         </p>
 
@@ -427,7 +348,8 @@
     </div>
 
     <div class="description">
-        <p>The baddy's reaction to being hit</p>
+        <p>Adds a map to the campaign
+Note this does not check whether the map actually exists</p>
     </div>
 
     
@@ -438,14 +360,30 @@
             
                 <li class="param">
                     
-                        <code class="param-name">projectile</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <code class="param-name">mapName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>the object the baddy has been hit by</p>
+                        <p>The name of the map</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">index</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The index which this map should occupy within the 
+array (defaults to adding the map to the end)</p>
                     </div>
 
                     
@@ -472,425 +410,8 @@
 </div>
 
                 
-                    <div id="method_orders.attack" class="method item">
-    <h3 class="name"><code>orders.attack</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/client_js_baddyPrototype.js.html#l63"><code>client&#x2F;js&#x2F;baddyPrototype.js:63</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Baddy attacks its target. If the baddy can no longer see the target it gives chase</p>
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                    baddyPrototype
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_orders.chase" class="method item">
-    <h3 class="name"><code>orders.chase</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/client_js_baddyPrototype.js.html#l77"><code>client&#x2F;js&#x2F;baddyPrototype.js:77</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Baddy chases after target based upon its last known location
-If the baddy gets to this location and still cannot see the player
-it goes into search mode</p>
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                    baddyPrototype
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_orders.returnToStation" class="method item">
-    <h3 class="name"><code>orders.returnToStation</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/client_js_baddyPrototype.js.html#l114"><code>client&#x2F;js&#x2F;baddyPrototype.js:114</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The baddy returns to its start location. It then enters watch mode</p>
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                    baddyPrototype
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_orders.search" class="method item">
-    <h3 class="name"><code>orders.search</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/client_js_baddyPrototype.js.html#l99"><code>client&#x2F;js&#x2F;baddyPrototype.js:99</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The baddy searches for the target by heading off in the direction the target
-was last seen moving</p>
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                    baddyPrototype
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_orders.watch" class="method item">
-    <h3 class="name"><code>orders.watch</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/client_js_baddyPrototype.js.html#l53"><code>client&#x2F;js&#x2F;baddyPrototype.js:53</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The baddy's default state. Currently does nothing</p>
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                    baddyPrototype
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_process" class="method item">
-    <h3 class="name"><code>process</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/client_js_baddyPrototype.js.html#l17"><code>client&#x2F;js&#x2F;baddyPrototype.js:17</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Defines the action to be taken by baddies each frame</p>
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                    this
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_processOrders" class="method item">
-    <h3 class="name"><code>processOrders</code></h3>
+                    <div id="method_create" class="method item">
+    <h3 class="name"><code>create</code></h3>
 
     
         <div class="args">
@@ -898,7 +419,7 @@ was last seen moving</p>
             
                 <li class="arg">
                     
-                        <code>orders</code>
+                        <code>name</code>
                     
                 </li>
             
@@ -935,7 +456,7 @@ was last seen moving</p>
             
         
         
-        <a href="../files/client_js_baddyPrototype.js.html#l39"><code>client&#x2F;js&#x2F;baddyPrototype.js:39</code></a>
+        <a href="../files/client_js_campaign.js.html#l90"><code>client&#x2F;js&#x2F;campaign.js:90</code></a>
         
         </p>
 
@@ -946,7 +467,8 @@ was last seen moving</p>
     </div>
 
     <div class="description">
-        <p>Takes the current orders and calls the appropriate function in the appropriate context</p>
+        <p>Creates a new campaign. The only field populated is the name.
+This method does not save the newly created campaign (use campaign.save())</p>
     </div>
 
     
@@ -957,14 +479,14 @@ was last seen moving</p>
             
                 <li class="param">
                     
-                        <code class="param-name">orders</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>string indicating the current orders</p>
+                        <p>The name of the new campaign</p>
                     </div>
 
                     
@@ -991,8 +513,79 @@ was last seen moving</p>
 </div>
 
                 
-                    <div id="method_setTarget" class="method item">
-    <h3 class="name"><code>setTarget</code></h3>
+                    <div id="method_getCurrentmap" class="method item">
+    <h3 class="name"><code>getCurrentmap</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_campaign.js.html#l61"><code>client&#x2F;js&#x2F;campaign.js:61</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Gets the name of the current map</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    The name of the current map
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_list" class="method item">
+    <h3 class="name"><code>list</code></h3>
 
     
         <span class="paren">()</span>
@@ -1027,7 +620,7 @@ was last seen moving</p>
             
         
         
-        <a href="../files/client_js_baddyPrototype.js.html#l158"><code>client&#x2F;js&#x2F;baddyPrototype.js:158</code></a>
+        <a href="../files/client_js_campaign.js.html#l171"><code>client&#x2F;js&#x2F;campaign.js:171</code></a>
         
         </p>
 
@@ -1038,9 +631,429 @@ was last seen moving</p>
     </div>
 
     <div class="description">
-        <p>sets the baddy's target and other target related information</p>
+        <p>Populates the relevant DOM ul with the campaigns</p>
     </div>
 
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_load" class="method item">
+    <h3 class="name"><code>load</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>campaignName</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_campaign.js.html#l22"><code>client&#x2F;js&#x2F;campaign.js:22</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Loads a campaign</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">campaignName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the campaign. If campaignName is an object it treats that
+as the campaignObj rather than loading via ajax</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A function to execute once the campaign has been loaded successfully</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_render" class="method item">
+    <h3 class="name"><code>render</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_campaign.js.html#l71"><code>client&#x2F;js&#x2F;campaign.js:71</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Populates the relevant DOM elements with campaign information</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this;
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_save" class="method item">
+    <h3 class="name"><code>save</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_campaign.js.html#l108"><code>client&#x2F;js&#x2F;campaign.js:108</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Saves the current information about the campaign
+Note: this requires that the server is in 'dev' mode</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The function to execute once the campaign has been saved</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_update" class="method item">
+    <h3 class="name"><code>update</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>field</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_campaign.js.html#l131"><code>client&#x2F;js&#x2F;campaign.js:131</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>updates the value of a field in the campaign
+can remove the prefix campaign from property names while preserving camel-casing</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">field</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The field to update (either the property name or a the id of a form element associated with that property)</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">Any</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The new value</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     

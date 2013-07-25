@@ -19,43 +19,17 @@ E.game = (function() {
 	};
 
 	/**
-	 * Loads the campaign
-	 *
-	 * @method loadCampaign
-	 * @param campaignName {string} the filename of the campaign minus the file extension
-	 * @param callback {function} the function to call once the campaign has loaded
-	 */
-	game.loadCampaign = function(campaignName, callback) {
-		$.ajax({
-			url: '/campaigns/'+campaignName+'.json',
-			type: 'get',
-			success: function(campaignObj) {
-				game.campaign = campaignObj;
-				game.campaign.current = 0;
-				game.campaign.getCurrentLevel = function() {
-					return game.campaign.levels[game.campaign.current];
-				};
-				if (typeof callback === 'function') {
-					callback();
-				}
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				console.log('campaign loading error: ');
-				console.log(textStatus);
-			}
-		});
-	};
-
-	/**
 	 * Initialise all required modules
 	 *
 	 * @method init
 	 * @param mapName {string} the filename of the map minus the file extension
+	 * @param start {boolean} Whether or not to start the game once the map has loaded (defaults to true)
 	 * @return this
 	 */
-	game.init = function(mapName) {
+	game.init = function(mapName, start) {
+		var callback = (start || start === undefined) ? game.start : null;
 		E.graphics.init('fullscreen', '');
-		E.map.load(mapName, game.start);
+		E.map.load(mapName, callback);
 		return this;
 	};
 
@@ -66,6 +40,9 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.start = function() {
+		if (!E.graphics.clipping) {
+			E.graphics.resizeCanvas('game', map.tileWidth * map.columns, map.tileHeight * map.rows);
+		}
 		game.resume();
 	};
 
@@ -109,8 +86,8 @@ E.game = (function() {
 			//E.graphics.writeText('Game paused. Press space to resume.', 20, 30);
 			E.graphics.renderText();
 		}
-		else if (game.mode === 'levelComplete') {
-			game.levelComplete();
+		else if (game.mode === 'mapComplete') {
+			game.mapComplete();
 		}
 		return this;
 	};
@@ -162,20 +139,21 @@ E.game = (function() {
 	};
 
 	/**
-	 * Action to take when level complete
+	 * Action to take when map complete
 	 *
-	 * @method levelComplete
+	 * @method mapComplete
 	 * @return this
 	 */
-	game.levelComplete = function() {
-		if (game.campaign.current < game.campaign.levels.length -1) {
-			game.campaign.current++;
+	game.mapComplete = function() {
+		if (E.campaign.current < E.campaign.data.maps.length -1) {
+			E.campaign.current++;
 			game.pause();
 			game.reset();
-			//game.init(game.campaign.levels[game.campaign.current]);
+			E.screen.change('mapScreen');
 		}
 		else {
-			game.end('You have completed the campaign!');
+			game.end('');
+			E.screen.change('campaignSuccess');
 		}
 	};
 
@@ -188,7 +166,7 @@ E.game = (function() {
 	game.reset = function() {
 		E.entities.instances = [];
 		cancelAnimationFrame(game.animationFrame);
-		game.init(game.campaign.getCurrentLevel());
+		game.init(E.campaign.getCurrentmap());
 		return this;
 	};
 
@@ -205,12 +183,22 @@ E.game = (function() {
 		return this;
 	};
 
-	/**
+	/*
 	 * Code entry point
 	 */
 	$(function() {
-		game.loadCampaign('campaign', function() {
-			game.init(game.campaign.getCurrentLevel());
+		E.screen.init('campaignScreen');
+		E.campaign.load('Escape', function() {
+			game.init(E.campaign.getCurrentmap(), false);
+		});
+
+		// event handlers
+		$('#campaignStart').click(function() {
+			E.screen.change('mapScreen');
+		});
+		$('#playMap').click(function() {
+			E.screen.change('gameContainer');
+			game.start();
 		});
 	});
 

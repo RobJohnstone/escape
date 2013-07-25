@@ -47,6 +47,8 @@
             
                 <li><a href="../classes/baddyPrototype.html">baddyPrototype</a></li>
             
+                <li><a href="../classes/campaign.html">campaign</a></li>
+            
                 <li><a href="../classes/entities.html">entities</a></li>
             
                 <li><a href="../classes/entityPrototype.html">entityPrototype</a></li>
@@ -63,9 +65,13 @@
             
                 <li><a href="../classes/palette.html">palette</a></li>
             
+                <li><a href="../classes/playerPrototype.html">playerPrototype</a></li>
+            
                 <li><a href="../classes/polyfills.html">polyfills</a></li>
             
                 <li><a href="../classes/projectilePrototype.html">projectilePrototype</a></li>
+            
+                <li><a href="../classes/screen.html">screen</a></li>
             
                 <li><a href="../classes/tiles.html">tiles</a></li>
             
@@ -87,6 +93,8 @@
             
                 <li><a href="../modules/baddyPrototype.html">baddyPrototype</a></li>
             
+                <li><a href="../modules/campaign.html">campaign</a></li>
+            
                 <li><a href="../modules/entities.html">entities</a></li>
             
                 <li><a href="../modules/game.html">game</a></li>
@@ -101,9 +109,13 @@
             
                 <li><a href="../modules/palette.html">palette</a></li>
             
+                <li><a href="../modules/playerPrototype.html">playerPrototype</a></li>
+            
                 <li><a href="../modules/polyfills.html">polyfills</a></li>
             
                 <li><a href="../modules/projectilePrototype.html">projectilePrototype</a></li>
+            
+                <li><a href="../modules/screen.html">screen</a></li>
             
                 <li><a href="../modules/tiles.html">tiles</a></li>
             
@@ -178,11 +190,14 @@ E.game = (function() {
 	 * Initialise all required modules
 	 *
 	 * @method init
+	 * @param mapName {string} the filename of the map minus the file extension
+	 * @param start {boolean} Whether or not to start the game once the map has loaded (defaults to true)
 	 * @return this
 	 */
-	game.init = function() {
+	game.init = function(mapName, start) {
+		var callback = (start || start === undefined) ? game.start : null;
 		E.graphics.init(&#x27;fullscreen&#x27;, &#x27;&#x27;);
-		E.map.load(&#x27;test&#x27;, 64, 64, game.start);
+		E.map.load(mapName, callback);
 		return this;
 	};
 
@@ -193,6 +208,9 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.start = function() {
+		if (!E.graphics.clipping) {
+			E.graphics.resizeCanvas(&#x27;game&#x27;, map.tileWidth * map.columns, map.tileHeight * map.rows);
+		}
 		game.resume();
 	};
 
@@ -233,8 +251,11 @@ E.game = (function() {
 			game.animationFrame = window.requestAnimationFrame(game.play);
 		}
 		else if (game.mode === &#x27;pause&#x27;) {
-			E.graphics.writeText(&#x27;Game paused. Press space to resume.&#x27;, 20, 30);
+			//E.graphics.writeText(&#x27;Game paused. Press space to resume.&#x27;, 20, 30);
 			E.graphics.renderText();
+		}
+		else if (game.mode === &#x27;mapComplete&#x27;) {
+			game.mapComplete();
 		}
 		return this;
 	};
@@ -264,9 +285,11 @@ E.game = (function() {
 	 * @method pause
 	 * @return this
 	 */
-	game.pause = function() {
+	game.pause = function(msg) {
+		msg = msg || &#x27;Game paused. Press space to resume.&#x27;;
 		game.mode = &#x27;pause&#x27;;
 		E.input.start(&#x27;pause&#x27;);
+		E.graphics.writeText(msg, 20, 30);
 		E.graphics.renderText();
 		return this;
 	};
@@ -284,6 +307,25 @@ E.game = (function() {
 	};
 
 	/**
+	 * Action to take when map complete
+	 *
+	 * @method mapComplete
+	 * @return this
+	 */
+	game.mapComplete = function() {
+		if (E.campaign.current &lt; E.campaign.data.maps.length -1) {
+			E.campaign.current++;
+			game.pause();
+			game.reset();
+			E.screen.change(&#x27;mapScreen&#x27;);
+		}
+		else {
+			game.end(&#x27;&#x27;);
+			E.screen.change(&#x27;campaignSuccess&#x27;);
+		}
+	};
+
+	/**
 	 * Resets game state in order to allow a new game to start
 	 *
 	 * @method reset
@@ -292,7 +334,7 @@ E.game = (function() {
 	game.reset = function() {
 		E.entities.instances = [];
 		cancelAnimationFrame(game.animationFrame);
-		game.init();
+		game.init(E.campaign.getCurrentmap());
 		return this;
 	};
 
@@ -302,17 +344,30 @@ E.game = (function() {
 	 * @method end 
 	 * @return this
 	 */
-	game.end = function() {
-		game.pause();
+	game.end = function(msg) {
+		msg = msg || &#x27;The game has ended&#x27;;
+		game.pause(msg);
 		E.input.stop();
 		return this;
 	};
 
-	/**
+	/*
 	 * Code entry point
 	 */
 	$(function() {
-		game.init();
+		E.screen.init(&#x27;campaignScreen&#x27;);
+		E.campaign.load(&#x27;Escape&#x27;, function() {
+			game.init(E.campaign.getCurrentmap(), false);
+		});
+
+		// event handlers
+		$(&#x27;#campaignStart&#x27;).click(function() {
+			E.screen.change(&#x27;mapScreen&#x27;);
+		});
+		$(&#x27;#playMap&#x27;).click(function() {
+			E.screen.change(&#x27;gameContainer&#x27;);
+			game.start();
+		});
 	});
 
 	return game;

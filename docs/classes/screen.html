@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>entities - Escape</title>
+    <title>screen - Escape</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -162,7 +162,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>entities Class</h1>
+                        <h1>screen Class</h1>
 <div class="box meta">
     
 
@@ -170,13 +170,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/client_js_entities.js.html#l1"><code>client&#x2F;js&#x2F;entities.js:1</code></a>
+            Defined in: <a href="../files/client_js_screen.js.html#l1"><code>client&#x2F;js&#x2F;screen.js:1</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/entities.html">entities</a>
+            Module: <a href="../modules/screen.html">screen</a>
         
     
 
@@ -186,7 +186,7 @@
 
 
 <div class="box intro">
-    <p>entities object contains code for tracking, processing and rendering entities</p>
+    <p>Screen methods</p>
 </div>
 
 
@@ -214,14 +214,42 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_process">process</a>
+                                <a href="#method_change">change</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_render">render</a>
+                                <a href="#method_getCurrent">getCurrent</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_init">init</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_previous">previous</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_save">save</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_update">update</a>
 
                                 
                                 
@@ -243,8 +271,304 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_process" class="method item">
-    <h3 class="name"><code>process</code></h3>
+                    <div id="method_change" class="method item">
+    <h3 class="name"><code>change</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>screenId</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>updateHistory</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_screen.js.html#l32"><code>client&#x2F;js&#x2F;screen.js:32</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Change to another screen</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">screenId</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The DOM ID of the screen to change to</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">updateHistory</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Whether or not to update the history (undefined defaults to true)</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getCurrent" class="method item">
+    <h3 class="name"><code>getCurrent</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_screen.js.html#l59"><code>client&#x2F;js&#x2F;screen.js:59</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the DOM ID of the current screen</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    The DOM ID of the current screen
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>screenId</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_screen.js.html#l20"><code>client&#x2F;js&#x2F;screen.js:20</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Initialise screen</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">screenId</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The DOM ID of the initial screen to display</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    this
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_previous" class="method item">
+    <h3 class="name"><code>previous</code></h3>
 
     
         <span class="paren">()</span>
@@ -279,7 +603,7 @@
             
         
         
-        <a href="../files/client_js_entities.js.html#l15"><code>client&#x2F;js&#x2F;entities.js:15</code></a>
+        <a href="../files/client_js_screen.js.html#l69"><code>client&#x2F;js&#x2F;screen.js:69</code></a>
         
         </p>
 
@@ -290,7 +614,7 @@
     </div>
 
     <div class="description">
-        <p>Calls the process() method for each tracked entity and clears up entities that have been marked for removal</p>
+        <p>Return to previous screen</p>
     </div>
 
     
@@ -312,8 +636,8 @@
 </div>
 
                 
-                    <div id="method_render" class="method item">
-    <h3 class="name"><code>render</code></h3>
+                    <div id="method_save" class="method item">
+    <h3 class="name"><code>save</code></h3>
 
     
         <span class="paren">()</span>
@@ -348,7 +672,7 @@
             
         
         
-        <a href="../files/client_js_entities.js.html#l33"><code>client&#x2F;js&#x2F;entities.js:33</code></a>
+        <a href="../files/client_js_screen.js.html#l93"><code>client&#x2F;js&#x2F;screen.js:93</code></a>
         
         </p>
 
@@ -359,7 +683,7 @@
     </div>
 
     <div class="description">
-        <p>Calls the render method for each tracked entity</p>
+        <p>Actions to take when the screen is saved</p>
     </div>
 
     
@@ -375,6 +699,60 @@
                 
             </div>
         </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_update" class="method item">
+    <h3 class="name"><code>update</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/client_js_screen.js.html#l83"><code>client&#x2F;js&#x2F;screen.js:83</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Actions to take when the current screen is updated</p>
+    </div>
+
+    
+
     
 
     

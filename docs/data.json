@@ -46,6 +46,17 @@
             "fors": {},
             "namespaces": {}
         },
+        "client/js/campaign.js": {
+            "name": "client/js/campaign.js",
+            "modules": {
+                "campaign": 1
+            },
+            "classes": {
+                "campaign": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "client/js/edit.js": {
             "name": "client/js/edit.js",
             "modules": {},
@@ -131,6 +142,17 @@
             "fors": {},
             "namespaces": {}
         },
+        "client/js/playerPrototype.js": {
+            "name": "client/js/playerPrototype.js",
+            "modules": {
+                "playerPrototype": 1
+            },
+            "classes": {
+                "playerPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "client/js/polyfills.js": {
             "name": "client/js/polyfills.js",
             "modules": {
@@ -149,6 +171,17 @@
             },
             "classes": {
                 "projectilePrototype": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/screen.js": {
+            "name": "client/js/screen.js",
+            "modules": {
+                "screen": 1
+            },
+            "classes": {
+                "screen": 1
             },
             "fors": {},
             "namespaces": {}
@@ -258,6 +291,19 @@
             "description": "Prototype for all baddies. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
             "extends": "actorPrototype"
         },
+        "campaign": {
+            "name": "campaign",
+            "submodules": {},
+            "classes": {
+                "campaign": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/campaign.js",
+            "line": 1,
+            "description": "Handles all state and behaviour for campaigns"
+        },
         "game": {
             "name": "game",
             "submodules": {},
@@ -350,6 +396,20 @@
             "line": 1,
             "description": "Command palette for the game editor"
         },
+        "playerPrototype": {
+            "name": "playerPrototype",
+            "submodules": {},
+            "classes": {
+                "playerPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/playerPrototype.js",
+            "line": 1,
+            "description": "Prototype for the player. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
+            "extends": "actorPrototype"
+        },
         "polyfills": {
             "name": "polyfills",
             "submodules": {},
@@ -376,6 +436,19 @@
             "line": 1,
             "description": "Prototype for all projectiles. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
             "extends": "entityPrototype"
+        },
+        "screen": {
+            "name": "screen",
+            "submodules": {},
+            "classes": {
+                "screen": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/screen.js",
+            "line": 1,
+            "description": "Screen methods"
         },
         "tiles": {
             "name": "tiles",
@@ -485,6 +558,20 @@
             "file": "client/js/baddyPrototype.js",
             "line": 1,
             "description": "Prototype for all baddies. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        "campaign": {
+            "name": "campaign",
+            "shortname": "campaign",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "campaign",
+            "namespace": "",
+            "file": "client/js/campaign.js",
+            "line": 1,
+            "description": "Handles all state and behaviour for campaigns"
         },
         "game": {
             "name": "game",
@@ -597,6 +684,20 @@
             "line": 1,
             "description": "Command palette for the game editor"
         },
+        "playerPrototype": {
+            "name": "playerPrototype",
+            "shortname": "playerPrototype",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "playerPrototype",
+            "namespace": "",
+            "file": "client/js/playerPrototype.js",
+            "line": 1,
+            "description": "Prototype for the player. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
         "polyfills": {
             "name": "polyfills",
             "shortname": "polyfills",
@@ -624,6 +725,20 @@
             "file": "client/js/projectilePrototype.js",
             "line": 1,
             "description": "Prototype for all projectiles. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        "screen": {
+            "name": "screen",
+            "shortname": "screen",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "screen",
+            "namespace": "",
+            "file": "client/js/screen.js",
+            "line": 1,
+            "description": "Screen methods"
         },
         "tiles": {
             "name": "tiles",
@@ -952,6 +1067,153 @@
             "module": "baddyPrototype"
         },
         {
+            "file": "client/js/campaign.js",
+            "line": 22,
+            "description": "Loads a campaign",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "campaignName",
+                    "description": "The name of the campaign. If campaignName is an object it treats that\nas the campaignObj rather than loading via ajax",
+                    "type": "String"
+                },
+                {
+                    "name": "callback",
+                    "description": "A function to execute once the campaign has been loaded successfully",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "client/js/campaign.js",
+            "line": 61,
+            "description": "Gets the name of the current map",
+            "itemtype": "method",
+            "name": "getCurrentmap",
+            "return": {
+                "description": "The name of the current map",
+                "type": "String"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "client/js/campaign.js",
+            "line": 71,
+            "description": "Populates the relevant DOM elements with campaign information",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "this;"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "client/js/campaign.js",
+            "line": 90,
+            "description": "Creates a new campaign. The only field populated is the name.\nThis method does not save the newly created campaign (use campaign.save())",
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the new campaign",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "client/js/campaign.js",
+            "line": 108,
+            "description": "Saves the current information about the campaign\nNote: this requires that the server is in 'dev' mode",
+            "itemtype": "method",
+            "name": "save",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "The function to execute once the campaign has been saved",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "client/js/campaign.js",
+            "line": 131,
+            "description": "updates the value of a field in the campaign\ncan remove the prefix campaign from property names while preserving camel-casing",
+            "itemtype": "method",
+            "name": "update",
+            "params": [
+                {
+                    "name": "field",
+                    "description": "The field to update (either the property name or a the id of a form element associated with that property)",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "The new value",
+                    "type": "Any"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "client/js/campaign.js",
+            "line": 149,
+            "description": "Adds a map to the campaign\nNote this does not check whether the map actually exists",
+            "itemtype": "method",
+            "name": "addMap",
+            "params": [
+                {
+                    "name": "mapName",
+                    "description": "The name of the map",
+                    "type": "String"
+                },
+                {
+                    "name": "index",
+                    "description": "The index which this map should occupy within the \narray (defaults to adding the map to the end)",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "client/js/campaign.js",
+            "line": 171,
+            "description": "Populates the relevant DOM ul with the campaigns",
+            "itemtype": "method",
+            "name": "list",
+            "return": {
+                "description": "this"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
             "file": "client/js/edit.js",
             "line": 15,
             "description": "Event handlers for map selection screen",
@@ -960,14 +1222,55 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 39,
+            "line": 140,
+            "description": "sends a request to the server instructing it to delete a file",
+            "itemtype": "method",
+            "name": "_deleteItem",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "The delete button. Assuumes that the parent element has sufficent info in its class and id to identify the element to be deleted",
+                    "type": "DOM element"
+                },
+                {
+                    "name": "callback",
+                    "description": "The function to be executed after the request has been completed",
+                    "type": "Function"
+                }
+            ],
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/edit.js",
+            "line": 187,
+            "description": "Updates the value of an item",
+            "itemtype": "method",
+            "name": "_editItem",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "The DOM element being updated",
+                    "type": "DOM Element"
+                }
+            ],
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/edit.js",
+            "line": 204,
             "description": "Carries out all initialisation actions",
             "itemtype": "method",
             "name": "init",
             "params": [
                 {
                     "name": "mapName",
-                    "description": "",
+                    "description": "or a mapObj",
                     "type": "String"
                 }
             ],
@@ -979,7 +1282,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 54,
+            "line": 219,
             "description": "Starts any modules that need starting and then begins the game loop",
             "itemtype": "method",
             "name": "start",
@@ -991,7 +1294,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 67,
+            "line": 235,
             "description": "The body of the game loop",
             "itemtype": "method",
             "name": "main",
@@ -1003,7 +1306,19 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 88,
+            "line": 256,
+            "description": "Resets game state when map data changes",
+            "itemtype": "method",
+            "name": "reset",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/edit.js",
+            "line": 269,
             "description": "A singleton DOM element. On first call creates the DOM element. On all calls populates the DOM element with the items\nin the game.info.items array.",
             "itemtype": "method",
             "name": "info",
@@ -1016,7 +1331,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 110,
+            "line": 291,
             "description": "Adds an item to the game.info.items array. \nIf one argument, adds the variable name and value\nIf two, adds both separated by a colon",
             "itemtype": "method",
             "name": "info.add",
@@ -1093,6 +1408,18 @@
             "description": "Initialise all required modules",
             "itemtype": "method",
             "name": "init",
+            "params": [
+                {
+                    "name": "mapName",
+                    "description": "the filename of the map minus the file extension",
+                    "type": "String"
+                },
+                {
+                    "name": "start",
+                    "description": "Whether or not to start the game once the map has loaded (defaults to true)",
+                    "type": "Boolean"
+                }
+            ],
             "return": {
                 "description": "this"
             },
@@ -1101,7 +1428,7 @@
         },
         {
             "file": "client/js/escape.js",
-            "line": 33,
+            "line": 36,
             "description": "Start the game",
             "itemtype": "method",
             "name": "start",
@@ -1113,7 +1440,7 @@
         },
         {
             "file": "client/js/escape.js",
-            "line": 43,
+            "line": 49,
             "description": "Resume the game (either from scratch of from paused)\nStarts all required modules and starts the game loop",
             "itemtype": "method",
             "name": "resume",
@@ -1125,7 +1452,7 @@
         },
         {
             "file": "client/js/escape.js",
-            "line": 57,
+            "line": 63,
             "description": "The body of the game loop",
             "itemtype": "method",
             "name": "play",
@@ -1137,7 +1464,7 @@
         },
         {
             "file": "client/js/escape.js",
-            "line": 86,
+            "line": 95,
             "description": "Displays debugging info and stats on the screen",
             "itemtype": "method",
             "name": "info",
@@ -1149,7 +1476,7 @@
         },
         {
             "file": "client/js/escape.js",
-            "line": 105,
+            "line": 114,
             "description": "Pauses the game",
             "itemtype": "method",
             "name": "pause",
@@ -1161,7 +1488,7 @@
         },
         {
             "file": "client/js/escape.js",
-            "line": 118,
+            "line": 129,
             "description": "Action to take when the game is over",
             "itemtype": "method",
             "name": "over",
@@ -1173,7 +1500,19 @@
         },
         {
             "file": "client/js/escape.js",
-            "line": 130,
+            "line": 141,
+            "description": "Action to take when map complete",
+            "itemtype": "method",
+            "name": "mapComplete",
+            "return": {
+                "description": "this"
+            },
+            "class": "game",
+            "module": "game"
+        },
+        {
+            "file": "client/js/escape.js",
+            "line": 160,
             "description": "Resets game state in order to allow a new game to start",
             "itemtype": "method",
             "name": "reset",
@@ -1185,20 +1524,13 @@
         },
         {
             "file": "client/js/escape.js",
-            "line": 143,
+            "line": 173,
             "description": "End the game",
             "itemtype": "method",
             "name": "end",
             "return": {
                 "description": "this"
             },
-            "class": "game",
-            "module": "game"
-        },
-        {
-            "file": "client/js/escape.js",
-            "line": 155,
-            "description": "Code entry point",
             "class": "game",
             "module": "game"
         },
@@ -1442,7 +1774,7 @@
         },
         {
             "file": "client/js/input.js",
-            "line": 147,
+            "line": 146,
             "description": "detach all input event handlers",
             "itemtype": "method",
             "name": "stop",
@@ -1454,14 +1786,14 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 17,
+            "line": 29,
             "description": "initialise the map based on a loaded map object",
             "itemtype": "method",
             "name": "init",
             "params": [
                 {
                     "name": "mapObj",
-                    "description": "information about the map loaded from file",
+                    "description": "information about the map loaded from file (optional)",
                     "type": "Object"
                 }
             ],
@@ -1473,25 +1805,15 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 53,
+            "line": 62,
             "description": "load the map data",
             "itemtype": "method",
             "name": "load",
             "params": [
                 {
                     "name": "mapName",
-                    "description": "the name of the map. This should also be the filename minus the extension",
+                    "description": "the name of the map. This should also be the filename minus the extension \nif mapName is an object it will be treated as the mapObj and loaded instead of requesting the object\nfrom the server",
                     "type": "String"
-                },
-                {
-                    "name": "tileWidth",
-                    "description": "the width in pixels of a tile on the map",
-                    "type": "Number"
-                },
-                {
-                    "name": "tileHeight",
-                    "description": "the height in pixels of a tile on the map",
-                    "type": "Number"
                 },
                 {
                     "name": "onLoad",
@@ -1507,7 +1829,77 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 81,
+            "line": 93,
+            "description": "takes the map object and inserts it into the engine",
+            "itemtype": "method",
+            "name": "_loadMapObj",
+            "params": [
+                {
+                    "name": "mapObj",
+                    "description": "The map object to load",
+                    "type": "Object"
+                }
+            ],
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 107,
+            "description": "Creates a new blank map object",
+            "itemtype": "method",
+            "name": "new",
+            "params": [
+                {
+                    "name": "mapName",
+                    "description": "The filename of the new map minus the json extension",
+                    "type": "String"
+                },
+                {
+                    "name": "cols",
+                    "description": "The number of columns in the map (defaults to 50)",
+                    "type": "Number"
+                },
+                {
+                    "name": "rows",
+                    "description": "The number of rows in the map (defaults to 50)",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "mapObj",
+                "type": "Object"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 133,
+            "description": "Updates map values",
+            "itemtype": "method",
+            "name": "update",
+            "params": [
+                {
+                    "name": "field",
+                    "description": "The field to update (either the property name or a the id of a form element associated with that property)",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "The new value",
+                    "type": "Any"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 150,
             "description": "Saves the map on the server (this should only be allowed on the dev server)",
             "itemtype": "method",
             "name": "save",
@@ -1519,7 +1911,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 99,
+            "line": 168,
             "description": "renders the map",
             "itemtype": "method",
             "name": "render",
@@ -1531,7 +1923,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 122,
+            "line": 191,
             "description": "Checks that a position is within the bounds of the map",
             "itemtype": "method",
             "name": "checkWithinBounds",
@@ -1551,7 +1943,19 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 136,
+            "line": 205,
+            "description": "Gets the tile object for the tile index",
+            "itemtype": "method",
+            "name": "getTileObj",
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 219,
             "description": "Checks that a particular tile is passable",
             "itemtype": "method",
             "name": "isPassable",
@@ -1571,7 +1975,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 151,
+            "line": 230,
             "itemtype": "method",
             "name": "collisionAdjust",
             "params": [
@@ -1595,7 +1999,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 216,
+            "line": 295,
             "description": "Scrolls the map so that it is looking at the passed position",
             "itemtype": "method",
             "name": "position",
@@ -1614,7 +2018,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 236,
+            "line": 315,
             "description": "Returns the index of the tile corresponding to the passed postion",
             "itemtype": "method",
             "name": "getTileIndex",
@@ -1634,7 +2038,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 252,
+            "line": 331,
             "description": "Returns a vector indicating the position of the centre of the tile",
             "itemtype": "method",
             "name": "getTileCentre",
@@ -1654,7 +2058,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 271,
+            "line": 350,
             "description": "Converts a tile index into 2d coordinates within the tiles array",
             "itemtype": "method",
             "name": "getTileCoords",
@@ -1674,7 +2078,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 285,
+            "line": 364,
             "description": "Converts 2d tile coords (not pixel coords) into a tile index",
             "itemtype": "method",
             "name": "getTileFromCoords",
@@ -1699,7 +2103,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 301,
+            "line": 380,
             "description": "Checks if a line between two points can pass unimpeeded by the map\nNote that this does not check for collisions with entities",
             "itemtype": "method",
             "name": "lineTraversable",
@@ -1724,7 +2128,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 330,
+            "line": 409,
             "description": "Higlights the tile indicated",
             "itemtype": "method",
             "name": "highlightTile",
@@ -1743,7 +2147,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 348,
+            "line": 427,
             "description": "highlights the tile under the mouse cursor",
             "itemtype": "method",
             "name": "highlightMouseTile",
@@ -1798,20 +2202,21 @@
             "module": "objectPrototype"
         },
         {
-            "file": "client/js/palette.js",
-            "line": 15,
-            "description": "change state of map to record that the current version is not saved",
+            "file": "client/js/objectPrototype.js",
+            "line": 58,
+            "description": "Creates a copy of an object rather than a reference to that object\nNote that it is not recursive and does not copy inherited properties",
             "itemtype": "method",
-            "name": "updatedMap",
+            "name": "clone",
             "return": {
-                "description": "this"
+                "description": "A new object identical to the original",
+                "type": "Object"
             },
-            "class": "palette",
-            "module": "palette"
+            "class": "objectPrototype",
+            "module": "objectPrototype"
         },
         {
             "file": "client/js/palette.js",
-            "line": 38,
+            "line": 30,
             "description": "Player tool",
             "itemtype": "method",
             "name": "tools.player.click",
@@ -1823,7 +2228,7 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 52,
+            "line": 49,
             "description": "Remove actor tool",
             "itemtype": "method",
             "name": "tools.removeActor.click",
@@ -1835,7 +2240,7 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 73,
+            "line": 70,
             "description": "Baddy tool",
             "itemtype": "method",
             "name": "tools.baddy.click",
@@ -1847,7 +2252,7 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 92,
+            "line": 89,
             "description": "Displays the command palette",
             "itemtype": "method",
             "name": "show",
@@ -1859,7 +2264,7 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 103,
+            "line": 100,
             "description": "Hides the command palette",
             "itemtype": "method",
             "name": "hide",
@@ -1871,7 +2276,7 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 114,
+            "line": 111,
             "description": "Initialises the command palette\n\nIncludes a generic event handler for using the currently selected tool",
             "itemtype": "method",
             "name": "init",
@@ -1880,6 +2285,18 @@
             },
             "class": "palette",
             "module": "palette"
+        },
+        {
+            "file": "client/js/playerPrototype.js",
+            "line": 20,
+            "description": "Actions to be taken each frame for the player",
+            "itemtype": "method",
+            "name": "process",
+            "return": {
+                "description": "this"
+            },
+            "class": "playerPrototype",
+            "module": "playerPrototype"
         },
         {
             "file": "client/js/polyfills.js",
@@ -1927,6 +2344,95 @@
             "module": "projectilePrototype"
         },
         {
+            "file": "client/js/screen.js",
+            "line": 20,
+            "description": "Initialise screen",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "screenId",
+                    "description": "The DOM ID of the initial screen to display",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "screen",
+            "module": "screen"
+        },
+        {
+            "file": "client/js/screen.js",
+            "line": 32,
+            "description": "Change to another screen",
+            "itemtype": "method",
+            "name": "change",
+            "params": [
+                {
+                    "name": "screenId",
+                    "description": "The DOM ID of the screen to change to",
+                    "type": "String"
+                },
+                {
+                    "name": "updateHistory",
+                    "description": "Whether or not to update the history (undefined defaults to true)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "screen",
+            "module": "screen"
+        },
+        {
+            "file": "client/js/screen.js",
+            "line": 59,
+            "description": "Returns the DOM ID of the current screen",
+            "itemtype": "method",
+            "name": "getCurrent",
+            "return": {
+                "description": "The DOM ID of the current screen",
+                "type": "String"
+            },
+            "class": "screen",
+            "module": "screen"
+        },
+        {
+            "file": "client/js/screen.js",
+            "line": 69,
+            "description": "Return to previous screen",
+            "itemtype": "method",
+            "name": "previous",
+            "return": {
+                "description": "this"
+            },
+            "class": "screen",
+            "module": "screen"
+        },
+        {
+            "file": "client/js/screen.js",
+            "line": 83,
+            "description": "Actions to take when the current screen is updated",
+            "itemtype": "method",
+            "name": "update",
+            "class": "screen",
+            "module": "screen"
+        },
+        {
+            "file": "client/js/screen.js",
+            "line": 93,
+            "description": "Actions to take when the screen is saved",
+            "itemtype": "method",
+            "name": "save",
+            "return": {
+                "description": "this"
+            },
+            "class": "screen",
+            "module": "screen"
+        },
+        {
             "file": "client/js/tiles.js",
             "line": 16,
             "description": "Sets tile dimensions and passability",
@@ -1940,7 +2446,7 @@
         },
         {
             "file": "client/js/tiles.js",
-            "line": 36,
+            "line": 41,
             "description": "Renders a tile\n\nPlaceholder code TODO: Update with bitmap graphics",
             "itemtype": "method",
             "name": "renderTile",
@@ -2259,10 +2765,6 @@
         {
             "message": "Missing item type\nEvent handlers for map selection screen",
             "line": " client/js/edit.js:15"
-        },
-        {
-            "message": "Missing item type\nCode entry point",
-            "line": " client/js/escape.js:155"
         },
         {
             "message": "Missing item type\nobject storing all vectors that need to be rendered this frame",

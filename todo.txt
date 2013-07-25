@@ -1,7 +1,29 @@
+BUGS:
+
+Changes in editor have not been reflected in game
+	Remember to check minimised before commiting
+
+
+TASKS:
+
+Camaign support
+	change the order of maps in a campaign
+
+Templating
+
 Improve editor so that it is a playable game
-	set exit
 	set entity direction
+	crop/expand map
+
+Implement extra baddy orders
+	patrol
+
+Create a prototype campaign
 
 Write bitmap graphics code (separate into separate tasks)
+
+Tidy up routing in server.js (there's huge repetition between camapigns and maps)
+
+Consider using backbone (or homegrown alternative for editor)
 
 Write documentation tool that better supports prototypal rather than classical inheritance

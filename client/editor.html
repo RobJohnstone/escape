@@ -6,6 +6,8 @@
 	<script type="text/javascript" src="js/lib/AStar.js"></script>
 	<script type="text/javascript" src="js/objectPrototype.js"></script>
 	<script type="text/javascript" src="js/edit.js"></script>
+	<script type="text/javascript" src="js/screen.js"></script>
+	<script type="text/javascript" src="js/campaign.js"></script>
 	<script type="text/javascript" src="js/util.js"></script>
 	<script type="text/javascript" src="js/graphics.js"></script>
 	<script type="text/javascript" src="js/vector.js"></script>
@@ -28,11 +30,40 @@
 	<div id="container">
 		<div id="palette">
 			<h2>tools</h2>
-			<p id="saveMap">Save map</p>
+			<p id="saveMap" class="save">Save</p>
+			<p class="back">Exit</p>
 			<hr />
 		</div>
-		<div id="gameContainer">
-			<p>
+		<div id="gameContainer" class="screen">
+			<h1>Escape Game Editor</h1>
+		</div>
+		<div id="selectCampaign" class="screen">
+			<h2>Campaigns</h2>
+			<label for="newCampaign">New Campaign</label>
+			<input type="text" id="newCampaign" class="field"autofocus />
+			<input type="button" id="createNewCampaign" value="Create" />
+			<p id="campaignError" class="error"></p>
+			<ul id="campaignList" class="list"></ul>
+		</div>
+		<div id="campaignScreen" class="screen">
+			<h2><span class="label">Name: </span><span contenteditable="true" id="campaignName">Loading...</span></h2>
+			<p class="editable"><span class="label">Description: </span><span contenteditable="true" id="campaignDescription"></span></p>
+			<p><span class="label">Success Title: </span><span contenteditable="true" id="campaignSuccessTitle"></span></p>
+			<p><span class="label">Success Message: </span><span contenteditable="true" id="campaignSuccessMessage"></span></p>
+			<p class="label">Maps:</p>
+			<ul id="mapList" class="list"></ul>
+			<p id="mapListError" class="error"></p>
+			<input type="button" class="back" value="back" />
+			<input type="button" id="saveCampaign" class="save" value="save" />
+		</div>
+		<div id="mapScreen" class="screen">
+			<h2><span class="label">Name: </span><span contenteditable="true" id="mapName">Loading...</span></h1>
+			<p><span class="label">Description: </span><span contenteditable="true" id="mapDescription"></span></p>
+			<input type="button" class="back" value="back" />
+			<input type="button" id="saveMapMeta" class="save" value="Save" /input>
+			<input type="button" id="editMap" value="Edit map" /input>
+		</div>
+			<!-- <p>
 				<label for="mapName">Load map:</label>
 				<input id="mapName" name="mapName" tabindex="1" type="text" />
 				<button id="load">Load map</button>
@@ -45,7 +76,6 @@
 				<label for="newMapY">Y tiles:</label>
 				<input id="newMapY" name="newMapY" tabindex="4" type="text" />
 				<button id="create" tabindex="5">Create new map</button>
-			</p>
-		</div>
+			</p> -->
 	</div>
 </body>

@@ -16,37 +16,188 @@ E.game = (function() {
 	 * Event handlers for map selection screen
 	 */
 	$(function() {
-		$('#load').click(function() {
-			var map = $('#mapName').val().trim();
-			if (map.length === 0) {
-				alert('You have not entered a map name');
-			}
-			else {
-				game.init(map);
+		$('#campaignList').on('click', '.campaign', function() {
+			var campaignName = $(this).attr('id').substr(9);
+			E.campaign.load(campaignName, function() {
+				E.screen.change('campaignScreen');
+			});
+		});
+		$('#newCampaign').on('keyup', function(e) {
+			$('#campaignError').slideUp();
+			if (e.which === 13) {
+				$('#createNewCampaign').click();
 			}
 		});
-		$('#mapName').focus().select().on({
-			keyup: function(e) {
-				if (e.which === 13) {
-					$('#load').click();
+		$('#createNewCampaign').click(function() {
+			var campaignName = $.trim($('#newCampaign').val());
+			if (campaignName === '') {
+				$('#campaignError').text('To create a campaign, please enter a name').show();
+			}
+			else if (E.campaign.campaigns.indexOf(campaignName) !== -1) {
+				$('#campaignError').text('This campaign already exists!').show();
+			}
+			else {
+				E.screen.change('campaignScreen');
+				E.campaign.newCampaign(campaignName);
+				$('.field').val('');
+			}
+		});
+		$('.back').click(function() {
+			E.screen.previous();
+		});
+		$('#saveCampaign').click(function() {
+			E.campaign.save();
+		});
+		$('.save').click(function() {
+			E.screen.save();
+		});
+		$('.list').on('click', '.delete', function(e) {
+
+			_deleteItem(this);
+			e.stopPropagation();
+		});
+		$('.editable').click(function() { // This is to make it easier to select empty elements
+			var elm = $(this).children('[contenteditable]');
+			elm.focus();
+		});
+		$('body').on('blur keyup paste', '[contenteditable]', function() {
+			_editItem(this);
+		});
+		$('#mapList').on('click', '.map', function() {
+			var mapName = $(this).attr('id').substr(4);
+			E.map.load(mapName, function() {
+				E.screen.change('mapScreen');
+			});
+		});
+		$('#mapList').on('keyup', '#newMap', function(e) {
+			var mapName = $(this).val().trim(),
+				mapObj;
+			$('#mapListError').slideUp();
+			if (e.which === 13) {
+				if (mapName.length) {
+					mapObj = E.map.newMap(mapName);
+					E.map.init(mapObj);
+					E.screen.change('mapScreen').update();
+					E.campaign.addedMap = mapName;
+					$('.field').val('');
+				}
+				else {
+					$('#mapListError').text('Please enter a name for this map').show();
 				}
 			}
 		});
-		$('#create').click(function() {
-			var mapName = $('#newMapName').val().trim(),
-				cols = $('#newMapX').val().trim(),
-				rows = $('#newMapY').val().trim(),
-				mapObj;
-			if (mapName === '' || cols === '' || rows === '') {
-				alert('You have not entered sufficient details to create a new map.');
+		$('#saveMapMeta').click(function() {
+			E.map.save();
+			/*
+			 * The next line is to cover the scenario where this is a new map being added to 
+			 * a campaign. Ideally this would be tracked rather than sending a potentially 
+			 * unnecessary ajax request. More importantly, if many users are simultaneously working on 
+			 * the same campaign, this could result in data being overwritten when it should not be.
+			 */
+			if (E.campaign.addedMap) {
+				console.log('save campaign');
+				E.campaign.addMap();
+				E.campaign.save().render();
 			}
 			else {
-				mapObj = E.map.newMap(mapName, cols, rows);
-				game.init(mapObj);
-				E.map.save();
+				console.log('map has not been added');
+			}
+		});
+		$('#editMap').click(function() {
+			if (E.screen.updated) {
+				if (confirm('This map must be saved before it can be edited. Do you wish to save the map now?')) {
+					E.map.save();
+					E.screen.save();
+					_editMap();
+				}
+			}
+			else {
+				_editMap();
+			}
+
+			function _editMap() {
+				game.reset();
+				game.init(E.map.name);
+				E.screen.change('gameContainer');
+			}
+		});
+		// keyboard shortcuts
+		$(window).bind('keydown', function(e) {
+			var key = String.fromCharCode(e.which).toLowerCase();
+			if (e.ctrlKey || e.metaKey) { // I believe (but am far from certain!) that some browsers on some operating systems consider ctrl to be the 'meta' key
+				if (key === 's') {
+					$('.save:visible').click();
+					return false;
+				}
+			}
+			if (e.which === 37) {
+				$('.back:visible').click();
+				return false;
 			}
 		});
 	});
+
+	/**
+	 * sends a request to the server instructing it to delete a file
+	 *
+	 * @method _deleteItem
+	 * @private
+	 * @param element {DOM element} The delete button. Assuumes that the parent element has sufficent info in its class and id to identify the element to be deleted
+	 * @param callback {function} The function to be executed after the request has been completed
+	 */
+	function _deleteItem(element, callback) {
+		var parent = $(element).parent(),
+			type = parent.attr('class'),
+			id = parent.attr('id').substr(type.length+1);
+		if (window.confirm('Are you sure sure you want to delete the '+type+' '+id+'?')) {
+			parent.slideUp(400, function() {
+				this.remove();
+			});
+			$.ajax({
+				url: '/'+type+'s/'+id,
+				type: 'delete',
+				success: function() {
+					if (typeof callback === 'function') {
+						callback(id);
+					}
+					else if (type === 'campaign') {
+						_deleteCampaign(id);
+					}
+					else if (type === 'map') {
+						_deleteMap(id);
+					}
+				}
+			});
+		}
+	}
+
+	function _deleteCampaign(id) {
+		var list = E.campaign.campaigns,
+			index = list.indexOf(id);
+		list.splice(index, 1);
+	}
+
+	function _deleteMap(id) {
+		var list = E.campaign.data.maps,
+			index = list.indexOf(id);
+		list.splice(index, 1);
+		E.campaign.save();
+	}
+
+	/** 
+	 * Updates the value of an item
+	 *
+	 * @method _editItem
+	 * @private
+	 * @param element {DOM Element} The DOM element being updated
+	 */
+	var _editItem = function(element) {
+		var type = E.screen.getCurrent().slice(0, -6),
+			field = $(element).attr('id'),
+			value = $(element).text();
+		E[type].update(field, value);
+		E.screen.update();
+	};
 
 	var game = {};
 
@@ -72,6 +223,9 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.start = function() {
+		if (!E.graphics.clipping) {
+			E.graphics.resizeCanvas('game', E.map.tileWidth * E.map.columns, E.map.tileHeight * E.map.rows);
+		}
 		E.input.start('edit');
 		game.update = true;
 		game.animationFrame = window.requestAnimationFrame(game.main);
@@ -149,6 +303,13 @@ E.game = (function() {
 		else if (arguments.length === 2) game.info.items.push(name+': '+value);
 		return game;
 	};
+
+	/*
+	 * Code entry point
+	 */
+	$(function() {
+		E.screen.init('selectCampaign');
+	});
 
 	return game;
 })();

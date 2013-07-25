@@ -12,18 +12,6 @@ E.palette = (function() {
 
 	var palette = {};
 
-	/**
-	 * change state of map to record that the current version is not saved
-	 *
-	 * @method updatedMap
-	 * @return this
-	 */
-	palette.updatedMap = function() {
-		$('#saveMap').text('Save map*');
-		map.updated = true;
-		return this;
-	};
-
 	palette.tools = {
 		wall: {
 			type: 'terrain',
@@ -147,7 +135,7 @@ E.palette = (function() {
 					map.data[tileIndex] = tilesetIndex;
 					E.game.update = true;
 				}
-				palette.updatedMap();
+				E.screen.update();
 			}
 		});
 		return this;
@@ -170,21 +158,10 @@ E.palette = (function() {
 		$('#palette').on({
 			click: function() {
 				map.save();
-				$('#saveMap').text('Save map');
-				map.updated = false;
+				$('#saveMap').text('Save');
 			}
 		}, '#saveMap');
 	});
 
-	map.updated = false;
-
-	/*
-	 * Confirmation message before leaving an unsaved map
-	 */
-	window.onbeforeunload = function() {
-		if (map.updated) {
-			return 'You have unsaved changes. Are you sure you wish to leave?';
-		}
-	};
 	return palette;
 })();

@@ -4,6 +4,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "actorPrototype",
         "actors",
         "baddyPrototype",
+        "campaign",
         "entities",
         "entityPrototype",
         "game",
@@ -12,8 +13,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "map",
         "objectPrototype",
         "palette",
+        "playerPrototype",
         "polyfills",
         "projectilePrototype",
+        "screen",
         "tiles",
         "timer",
         "util",
@@ -24,6 +27,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "actorPrototype",
         "actors",
         "baddyPrototype",
+        "campaign",
         "entities",
         "game",
         "graphics",
@@ -31,8 +35,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "map",
         "objectPrototype",
         "palette",
+        "playerPrototype",
         "polyfills",
         "projectilePrototype",
+        "screen",
         "tiles",
         "timer",
         "util",
@@ -54,6 +60,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "baddyPrototype",
             "name": "baddyPrototype",
             "description": "Prototype for all baddies. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        {
+            "displayName": "campaign",
+            "name": "campaign",
+            "description": "Handles all state and behaviour for campaigns"
         },
         {
             "displayName": "entities",
@@ -91,6 +102,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Command palette for the game editor"
         },
         {
+            "displayName": "playerPrototype",
+            "name": "playerPrototype",
+            "description": "Prototype for the player. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        {
             "displayName": "polyfills",
             "name": "polyfills",
             "description": "Polyfills module"
@@ -99,6 +115,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "projectilePrototype",
             "name": "projectilePrototype",
             "description": "Prototype for all projectiles. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        {
+            "displayName": "screen",
+            "name": "screen",
+            "description": "Screen methods"
         },
         {
             "displayName": "tiles",

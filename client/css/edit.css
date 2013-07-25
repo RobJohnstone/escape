@@ -2,6 +2,11 @@ body {
 	font-family: 'sans-serif';
 }
 
+.error {
+	display: none;
+	color: red;
+}
+
 #info {
 	position: fixed;
 	top: 0;
@@ -28,6 +33,10 @@ body {
 	overflow: auto;
 }
 
+.screen {
+	display: none;
+}
+
 #gameCanvas {
 	position: relative;
 }
@@ -51,4 +60,13 @@ body {
 
 .tool.selected {
 	font-weight: bold;
+}
+
+.label {
+	font-weight: bold;
+}
+
+[contenteditable] {
+	display: inline-block;
+	min-width: 50px;
 }
