@@ -26,6 +26,21 @@ E.util = (function() {
 				value = value[names[i]];
 			}
 			return value;
+		},
+
+		/**
+		 * Moves an array element from one index to another
+		 *
+		 * @param arr {array} The array to modify
+		 * @param currentIndex {number} The index the element currently occupies
+		 * @param newIndex {number} The new index for the element to occupy
+		 * @return {array} The array
+		 */
+		moveArrayElement: function(array, currentIndex, newIndex) {
+			if (newIndex >= 0 && newIndex < array.length) {
+				array.splice(newIndex, 0, array.splice(currentIndex, 1)[0]);
+			}
+			return array;
 		}
 	};
 })();

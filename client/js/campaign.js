@@ -81,7 +81,7 @@ E.campaign = (function() {
 		$('#campaignSuccessMessage').text(campaign.data.successMessage);
 		$('#mapList').html('');
 		campaign.data.maps.forEach(function(map) {
-			$('#mapList').append('<li class="map" id="map_'+map+'">'+map+' <span class="delete">delete</span></li>');
+			$('#mapList').append('<li class="map" id="map_'+map+'">'+map+'<span class="moveUp">&uarr;</span> <span class="moveDown">&darr;</span> <span class="delete">delete</span></li>');
 		});
 		$('#mapList').append('<li><input type="text" id="newMap" placeholder="new map" ></li>');
 		return this;
@@ -165,6 +165,38 @@ E.campaign = (function() {
 			campaign.data.maps.splice(index, 0, mapName);
 		}
 		E.campaign.addedMap = false;
+		return this;
+	};
+
+	/**
+	 * Moves the map up one in the order (nearer the start)
+	 *
+	 * @param mapName {string} The name of the map
+	 * @return this;
+	 */
+	campaign.moveMapUp = function(mapName) {
+		var mapsArr = campaign.data.maps,
+			currentIndex = mapsArr.indexOf(mapName);
+		if (currentIndex > 0) {
+			E.util.moveArrayElement(mapsArr, currentIndex, currentIndex-1);
+			campaign.render();
+		}
+		return this;
+	};
+
+	/**
+	 * Moves the map down one in the order (nearer the end)
+	 *
+	 * @param mapName {string} The name of the map
+	 * @return this;
+	 */
+	campaign.moveMapDown = function(mapName) {
+		var mapsArr = campaign.data.maps,
+			currentIndex = mapsArr.indexOf(mapName);
+		if (currentIndex < mapsArr.length-1) {
+			E.util.moveArrayElement(mapsArr, currentIndex, currentIndex+1);
+			campaign.render();
+		}
 		return this;
 	};
 

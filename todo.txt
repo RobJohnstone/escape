@@ -1,13 +1,4 @@
-BUGS:
-
-Changes in editor have not been reflected in game
-	Remember to check minimised before commiting
-
-
 TASKS:
-
-Camaign support
-	change the order of maps in a campaign
 
 Templating
 

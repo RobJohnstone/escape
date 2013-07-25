@@ -52,7 +52,6 @@ E.game = (function() {
 			E.screen.save();
 		});
 		$('.list').on('click', '.delete', function(e) {
-
 			_deleteItem(this);
 			e.stopPropagation();
 		});
@@ -85,6 +84,18 @@ E.game = (function() {
 					$('#mapListError').text('Please enter a name for this map').show();
 				}
 			}
+		});
+		$('#mapList').on('click', '.moveUp', function(e) {
+			var mapName = $(this).parent().attr('id').substr(4);
+			E.campaign.moveMapUp(mapName);
+			E.screen.update();
+			e.stopPropagation();
+		});
+		$('#mapList').on('click', '.moveDown', function(e) {
+			var mapName = $(this).parent().attr('id').substr(4);
+			E.campaign.moveMapDown(mapName);
+			E.screen.update();
+			e.stopPropagation();
 		});
 		$('#saveMapMeta').click(function() {
 			E.map.save();
