@@ -2,7 +2,8 @@
 <head>
 	<meta http-equiv="content-type" content="text/html" charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/escape.css" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="js/lib/underscore-min.js"></script>
 	<script type="text/javascript" src="js/lib/AStar.js"></script>
 	<script type="text/javascript" src="js/objectPrototype.js"></script>
 	<script type="text/javascript" src="js/escape.js"></script>
@@ -24,23 +25,27 @@
 	<script type="text/javascript" src="js/weapons.js"></script>
 	<script type="text/javascript" src="js/polyfills.js"></script>
 	<title>Escape!</title>
+	<!-- templates -->
+	<script type="text/template" id="campaignScreenTemplate">
+		<h2 id="campaignName"><%= name %></h2>
+		<p  id="campaignDescription"><%= description %></p>
+		<input type="button" id="campaignStart" tabindex="1" value="Start" /input>
+	</script>
+	<script type="text/template" id="mapScreenTemplate">
+		<h2 id="mapName"><%= name %></h1>
+		<p id="mapDescription"><%= description %></p>
+		<input type="button" id="playMap" tabindex="1" value="Start" /input>
+	</script>
+	<script type="text/template" id="campaignSuccessTemplate">
+		<h1 id="campaignSuccessTitle"><%= successTitle %></h1>
+		<p id="campaignSuccessMessage"><%= successMessage %></p>
+	</script>
 </head>
 <body>
 	<div id="container">
 		<div id="gameContainer" class="screen">Loading...</div>
-		<div id="campaignScreen" class="screen">
-			<h2 id="campaignName">Loading...</h2>
-			<p id="campaignDescription"></p>
-			<input type="button" id="campaignStart" tabindex="1" value="Start" /input>
-		</div>
-		<div id="mapScreen" class="screen">
-			<h1 id="mapName">Loading...</h1>
-			<p id="mapDescription"></p>
-			<input type="button" id="playMap" tabindex="1" value="Start" /input>
-		</div>
-		<div id="campaignSuccess" class="screen">
-			<h1 id="campaignSuccessTitle">Loading...</h1>
-			<p id="campaignSuccessMessage"></p>
-		</div>
+		<div id="campaignScreen" class="screen"></div>
+		<div id="mapScreen" class="screen"></div>
+		<div id="campaignSuccess" class="screen"></div>
 	</div>
 </body>

@@ -2,7 +2,8 @@
 <head>
 	<meta http-equiv="content-type" content="text/html" charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/edit.css" />
-	<script type="text/javascript" src="http://localhost/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="js/lib/underscore-min.js"></script>
 	<script type="text/javascript" src="js/lib/AStar.js"></script>
 	<script type="text/javascript" src="js/objectPrototype.js"></script>
 	<script type="text/javascript" src="js/edit.js"></script>
@@ -25,6 +26,41 @@
 	<script type="text/javascript" src="js/weapons.js"></script>
 	<script type="text/javascript" src="js/polyfills.js"></script>
 	<title>Escape Edit</title>
+	<!-- Templates -->
+	<script type="text/template" id="campaignListItemTemplate">
+		<li class="campaign"><span class="campaignName" id="campaign_<%= name %>"><%= name %></span> <span class="delete">delete</span></li>
+	</script>
+	<script type="text/template" id="selectCampaignTemplate">
+		<h2>Campaigns</h2>
+		<label for="newCampaign">New Campaign</label>
+		<input type="text" id="newCampaign" class="field"autofocus />
+		<input type="button" id="createNewCampaign" value="Create" />
+		<p id="campaignError" class="error"></p>
+		<ul id="campaignList" class="list"></ul>
+	</script>
+	<script type="text/template" id="campaignScreenTemplate">
+		<h2 class="editable"><span class="label">Name: </span><span contenteditable="true" id="campaignName"><%= name %></span></h2>
+		<p class="editable"><span class="label">Description: </span><span contenteditable="true" id="campaignDescription"><%= description %></span></p>
+		<p class="editable"><span class="label">Success Title: </span><span contenteditable="true" id="campaignSuccessTitle"><%= successTitle %></span></p>
+		<p class="editable"><span class="label">Success Message: </span><span contenteditable="true" id="campaignSuccessMessage"><%= successMessage %></span></p>
+		<p class="label" id="mapsHeading">Maps:</p>
+		<ul id="mapList" class="list">
+		<% maps.forEach(function(map) { %>
+			<li class="map"><span class="mapName" id="map_<%= map %>"><%= map %></span><span class="moveUp">&uarr;</span> <span class="moveDown">&darr;</span> <span class="delete">delete</span></li>
+		<% }); %>
+		<li><input type="text" id="newMap" placeholder="new map" ></li>
+		</ul>
+		<p id="mapListError" class="error"></p>
+		<input type="button" class="back" value="back" />
+		<input type="button" id="saveCampaign" class="save" value="Save" />
+	</script>
+	<script type="text/template" id="mapScreenTemplate">
+		<h2 class="editable"><span class="label">Name: </span><span contenteditable="true" id="mapName"><%= name %></span></h1>
+		<p class="editable"><span class="label">Description: </span><span contenteditable="true" id="mapDescription"><%= description %></span></p>
+		<input type="button" class="back" value="back" />
+		<input type="button" id="saveMapMeta" class="save" value="Save" /input>
+		<input type="button" id="editMap" value="Edit map" /input>
+	</script>
 </head>
 <body>
 	<div id="container">
@@ -45,37 +81,7 @@
 			<p id="campaignError" class="error"></p>
 			<ul id="campaignList" class="list"></ul>
 		</div>
-		<div id="campaignScreen" class="screen">
-			<h2><span class="label">Name: </span><span contenteditable="true" id="campaignName">Loading...</span></h2>
-			<p class="editable"><span class="label">Description: </span><span contenteditable="true" id="campaignDescription"></span></p>
-			<p><span class="label">Success Title: </span><span contenteditable="true" id="campaignSuccessTitle"></span></p>
-			<p><span class="label">Success Message: </span><span contenteditable="true" id="campaignSuccessMessage"></span></p>
-			<p class="label">Maps:</p>
-			<ul id="mapList" class="list"></ul>
-			<p id="mapListError" class="error"></p>
-			<input type="button" class="back" value="back" />
-			<input type="button" id="saveCampaign" class="save" value="Save" />
-		</div>
-		<div id="mapScreen" class="screen">
-			<h2><span class="label">Name: </span><span contenteditable="true" id="mapName">Loading...</span></h1>
-			<p><span class="label">Description: </span><span contenteditable="true" id="mapDescription"></span></p>
-			<input type="button" class="back" value="back" />
-			<input type="button" id="saveMapMeta" class="save" value="Save" /input>
-			<input type="button" id="editMap" value="Edit map" /input>
-		</div>
-			<!-- <p>
-				<label for="mapName">Load map:</label>
-				<input id="mapName" name="mapName" tabindex="1" type="text" />
-				<button id="load">Load map</button>
-			</p>
-			<p>
-				<label for="newMapName">New map:</label>
-				<input id="newMapName" name="newMapName" tabindex="2" type="text" />
-				<label for="newMapX">X tiles:</label>
-				<input id="newMapX" name="newMapX" tabindex="3" type="text" />
-				<label for="newMapY">Y tiles:</label>
-				<input id="newMapY" name="newMapY" tabindex="4" type="text" />
-				<button id="create" tabindex="5">Create new map</button>
-			</p> -->
+		<div id="campaignScreen" class="screen"></div>
+		<div id="mapScreen" class="screen"></div>
 	</div>
 </body>

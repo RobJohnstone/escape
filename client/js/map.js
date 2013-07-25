@@ -16,6 +16,7 @@ E.map = (function() {
 
 	var _mapTemplate = {
 		name: '',
+		description: '',
 		columns: 0,
 		rows: 0,
 		tileWidth: 0,
@@ -34,6 +35,8 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.init = function(mapObj) {
+		var template = $('#mapScreenTemplate').text().trim(),
+			compiled = _.template(template);
 		if (mapObj) {
 			map.actors = [];
 			$.extend(true, map, mapObj);
@@ -54,8 +57,9 @@ E.map = (function() {
 		if (map.playerStart) {
 			window.player = E.playerPrototype.create(map.playerStart);
 		}
-		$('#mapName').text(map.name);
-		$('#mapDescription').text(map.description);
+		$('#mapScreen').html(compiled(map));
+		/*$('#mapName').text(map.name);
+		$('#mapDescription').text(map.description);*/
 		return this;
 	};
 
@@ -70,7 +74,6 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.load = function(mapName, onLoad) {
-		console.log('map.load');
 		if (typeof mapName === "object") {
 			_loadMapObj(mapName);
 		}
@@ -157,10 +160,7 @@ E.map = (function() {
 		$.ajax({
 			url: '/maps/'+map.name,
 			type: 'post',
-			data: {data: JSON.stringify(map)},
-			success: function(result) {
-				console.log('map saved');
-			}
+			data: {data: JSON.stringify(map)}
 		});
 		return this;
 	};

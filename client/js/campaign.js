@@ -75,15 +75,12 @@ E.campaign = (function() {
 	 * @return this;
 	 */
 	campaign.render = function() {
-		$('#campaignName').text(campaign.data.name);
-		$('#campaignDescription').text(campaign.data.description);
-		$('#campaignSuccessTitle').text(campaign.data.successTitle);
-		$('#campaignSuccessMessage').text(campaign.data.successMessage);
-		$('#mapList').html('');
-		campaign.data.maps.forEach(function(map) {
-			$('#mapList').append('<li class="map" id="map_'+map+'">'+map+'<span class="moveUp">&uarr;</span> <span class="moveDown">&darr;</span> <span class="delete">delete</span></li>');
-		});
-		$('#mapList').append('<li><input type="text" id="newMap" placeholder="new map" ></li>');
+		var campaignTemplate = $('#campaignScreenTemplate').text().trim(),
+			campaignCompiled = _.template(campaignTemplate),
+			successTemplate = $('#campaignSuccessTemplate').text().trim(),
+			successCompiled = _.template(successTemplate);
+		$('#campaignScreen').html(campaignCompiled(campaign.data));
+		$('#campaignSuccess').html(successCompiled(campaign.data));
 		return this;
 	};
 
@@ -207,24 +204,27 @@ E.campaign = (function() {
 	 * @return this
 	 */
 	campaign.list = function() {
+		var template = $('#campaignListItemTemplate').text().trim(),
+			compiled = _.template(template),
+			html = [];
 		$.ajax({
 			url: '/campaigns',
 			type: 'GET',
 			dataType: 'json',
 			success: function(campaigns) {
 				campaign.campaigns = campaigns;
-				$(function() {
-					$('#campaignList').html('');
-					campaigns.forEach(function(value, index, array) {
-						$('#campaignList').append('<li class="campaign" id="campaign_'+value+'">'+value+' <span class="delete">delete</span></li>');
-					});
+				campaigns.forEach(function(campaignName) {
+					html.push(compiled({name: campaignName}));
 				});
+				$('#campaignList').html(html.join(''));
 			}
 		});
 		return this;
 	};
 
-	campaign.list();
+	$(function() {
+		campaign.list();
+	});
 
 	return campaign;
 })();

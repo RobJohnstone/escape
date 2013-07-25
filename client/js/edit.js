@@ -16,7 +16,7 @@ E.game = (function() {
 	 * Event handlers for map selection screen
 	 */
 	$(function() {
-		$('#campaignList').on('click', '.campaign', function() {
+		$('#campaignList').on('click', '.campaignName', function() {
 			var campaignName = $(this).attr('id').substr(9);
 			E.campaign.load(campaignName, function() {
 				E.screen.change('campaignScreen');
@@ -42,33 +42,33 @@ E.game = (function() {
 				$('.field').val('');
 			}
 		});
-		$('.back').click(function() {
+		$('body').on('click', '.back', function() {
 			E.screen.previous();
 		});
-		$('#saveCampaign').click(function() {
+		$('#campaignScreen').on('click', '#saveCampaign', function() {
 			E.campaign.save();
 		});
-		$('.save').click(function() {
+		$('body').on('click', '.save', function() {
 			E.screen.save();
 		});
-		$('.list').on('click', '.delete', function(e) {
+		$('body').on('click', '.list .delete', function(e) {
 			_deleteItem(this);
 			e.stopPropagation();
 		});
-		$('.editable').click(function() { // This is to make it easier to select empty elements
+		$('body').on('click', '.editable', function() { // This is to make it easier to select empty elements
 			var elm = $(this).children('[contenteditable]');
 			elm.focus();
 		});
 		$('body').on('blur keyup paste', '[contenteditable]', function() {
 			_editItem(this);
 		});
-		$('#mapList').on('click', '.map', function() {
+		$('#campaignScreen').on('click', '.mapName', function() {
 			var mapName = $(this).attr('id').substr(4);
 			E.map.load(mapName, function() {
 				E.screen.change('mapScreen');
 			});
 		});
-		$('#mapList').on('keyup', '#newMap', function(e) {
+		$('#campaignScreen').on('keyup', '#newMap', function(e) {
 			var mapName = $(this).val().trim(),
 				mapObj;
 			$('#mapListError').slideUp();
@@ -85,19 +85,19 @@ E.game = (function() {
 				}
 			}
 		});
-		$('#mapList').on('click', '.moveUp', function(e) {
-			var mapName = $(this).parent().attr('id').substr(4);
+		$('#campaignScreen').on('click', '.moveUp', function(e) {
+			var mapName = $(this).siblings('.mapName').attr('id').substr(4);
 			E.campaign.moveMapUp(mapName);
 			E.screen.update();
 			e.stopPropagation();
 		});
-		$('#mapList').on('click', '.moveDown', function(e) {
-			var mapName = $(this).parent().attr('id').substr(4);
+		$('#campaignScreen').on('click', '.moveDown', function(e) {
+			var mapName = $(this).siblings('.mapName').attr('id').substr(4);
 			E.campaign.moveMapDown(mapName);
 			E.screen.update();
 			e.stopPropagation();
 		});
-		$('#saveMapMeta').click(function() {
+		$('#mapScreen').on('click', '#saveMapMeta', function() {
 			E.map.save();
 			/*
 			 * The next line is to cover the scenario where this is a new map being added to 
@@ -106,15 +106,11 @@ E.game = (function() {
 			 * the same campaign, this could result in data being overwritten when it should not be.
 			 */
 			if (E.campaign.addedMap) {
-				console.log('save campaign');
 				E.campaign.addMap();
 				E.campaign.save().render();
 			}
-			else {
-				console.log('map has not been added');
-			}
 		});
-		$('#editMap').click(function() {
+		$('#mapScreen').on('click', '#editMap', function() {
 			if (E.screen.updated) {
 				if (confirm('This map must be saved before it can be edited. Do you wish to save the map now?')) {
 					E.map.save();
@@ -159,7 +155,7 @@ E.game = (function() {
 	function _deleteItem(element, callback) {
 		var parent = $(element).parent(),
 			type = parent.attr('class'),
-			id = parent.attr('id').substr(type.length+1);
+			id = parent.children('.'+type+'Name').attr('id').substr(type.length+1);
 		if (window.confirm('Are you sure sure you want to delete the '+type+' '+id+'?')) {
 			parent.slideUp(400, function() {
 				this.remove();

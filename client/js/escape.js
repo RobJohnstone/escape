@@ -193,10 +193,10 @@ E.game = (function() {
 		});
 
 		// event handlers
-		$('#campaignStart').click(function() {
+		$('body').on('click', '#campaignStart', function() {
 			E.screen.change('mapScreen');
 		});
-		$('#playMap').click(function() {
+		$('body').on('click', '#playMap', function() {
 			E.screen.change('gameContainer');
 			game.start();
 		});
