@@ -1,9 +1,8 @@
 TASKS:
 
-Templating
+Tidy up graphics module
 
 Improve editor so that it is a playable game
-	set entity direction
 	crop/expand map
 
 Implement extra baddy orders

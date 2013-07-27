@@ -51,15 +51,14 @@ E.map = (function() {
 				i++;
 			}
 		}
+		E.entities.instances = [];
 		for (i=0; i<map.actors.length; i++) {
-			E.actors.create(map.actors[i]);
-		}
-		if (map.playerStart) {
-			window.player = E.playerPrototype.create(map.playerStart);
+			var actor = E.actors.create(map.actors[i]);
+			if (actor.type === 'player') {
+				E.player = actor;
+			}
 		}
 		$('#mapScreen').html(compiled(map));
-		/*$('#mapName').text(map.name);
-		$('#mapDescription').text(map.description);*/
 		return this;
 	};
 
@@ -157,10 +156,26 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.save = function() {
+		var data = {
+			name: map.name,
+			description: map.description,
+			columns: map.columns,
+			rows: map.rows,
+			tileWidth: map.tileWidth,
+			tileHeight: map.tileHeight,
+			offset: map.offset,
+			actors: E.entities.instances.filter(function(entity) {
+				return entity.abbr; // ensure only actors and not other entities
+			}).map(function(entity) {
+				return entity.abbr();
+			}),
+			data: map.data
+
+		};
 		$.ajax({
 			url: '/maps/'+map.name,
 			type: 'post',
-			data: {data: JSON.stringify(map)}
+			data: {data: JSON.stringify(data)}
 		});
 		return this;
 	};
@@ -410,14 +425,15 @@ E.map = (function() {
 	 * Higlights the tile indicated
 	 *
 	 * @method highlightTile
-	 * @param tile {number} The tile to highlight
+	 * @param tileIndex {number} The tileIndex of the tile to highlight
 	 * @return this
 	 */
-	map.highlightTile = function(tile) {
+	map.highlightTile = function(tileIndex, colour) {
 		if (E.graphics.gameCanvas) {
-			var tileCentre = map.getTileCentre(tile);
+			var tileCentre = map.getTileCentre(tileIndex);
+			colour = colour || 'white';
 			E.graphics.vectors.command(function() {
-				E.graphics.gameContext.strokeStyle = 'white';
+				E.graphics.gameContext.strokeStyle = colour;
 				E.graphics.gameContext.strokeRect(Math.round(tileCentre.x-E.tiles.tileWidth/2)+0.5, Math.round(tileCentre.y-E.tiles.tileHeight/2)+0.5, E.tiles.tileWidth, E.tiles.tileHeight);
 			});
 		}

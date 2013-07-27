@@ -11,12 +11,14 @@ E.playerPrototype = (function() {
 	"use strict";
 
 	return E.actorPrototype.extend({
+		/*
 		width: 32,
 		height: 32,
 		colour: 'green',
 		speed: 5,
 		direction: {x: 1, y: 0},
-		invulnerable: true,
+		invulnerable: true,*/
+
 		/**
 		 * Actions to be taken each frame for the player
 		 *
@@ -26,7 +28,6 @@ E.playerPrototype = (function() {
 		process: function() {
 			var tileIndex = E.map.getTileIndex(this);
 			if (E.map.getTileObj(tileIndex).exit) {
-				//E.game.mapComplete();
 				E.game.mode = 'mapComplete';
 			}
 			return this;

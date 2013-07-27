@@ -130,6 +130,7 @@ E.graphics = (function() {
 			this.commands = [];
 			return this;
 		},
+
 		/**
 		 * Adds a vector command to be rendered this frame
 		 *
@@ -139,6 +140,29 @@ E.graphics = (function() {
 		 */
 		command: function(command) {
 			this.commands.push(command);
+			return this;
+		},
+
+		/**
+		 * Draws a line this frame
+		 *
+		 * @method line
+		 * @param start {vector} The start point
+		 * @param end {vector} The end point
+		 * @param colour {string} The colour of the line (defaults to white)
+		 * @return this
+		 */
+		line: function(start, end, colour) {
+			colour = colour || 'white';
+			E.graphics.vectors.command(function() {
+				var currentStrokeStyle = E.graphics.gameContext.strokeStyle;
+				E.graphics.gameContext.strokeStyle = colour;
+				E.graphics.gameContext.beginPath();
+				E.graphics.gameContext.moveTo(start.x, start.y);
+				E.graphics.gameContext.lineTo(end.x, end.y);
+				E.graphics.gameContext.stroke();
+				E.graphics.gameContext.strokeStyle = currentStrokeStyle;
+			});
 			return this;
 		}
 	};
@@ -158,6 +182,7 @@ E.graphics = (function() {
 		}
 		E.map.render();
 		E.entities.render();
+		if (E.palette) E.palette.render();
 		graphics.vectors.render();
 		graphics.renderText();
 		return this;

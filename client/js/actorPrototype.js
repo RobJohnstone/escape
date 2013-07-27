@@ -98,7 +98,7 @@ E.actorPrototype = (function () {
 				this.remove = true;
 			}
 		}
-		if (typeof this.hitHandler === 'function') { 
+		if (typeof this.hitHandler === 'function') {
 			this.hitHandler(projectile); // the AI reaction to being hit
 		}
 		return this;
@@ -156,6 +156,22 @@ E.actorPrototype = (function () {
 		E.graphics.gameContext.restore();
 		E.graphics.writeText(this.health, this.x - this.halfWidth + E.map.offset.x, this.y + E.map.offset.y);
 		return this;
+	};
+
+	/**
+	 * Outputs an abbreviated version of the entity, suitable for saving to file
+	 * 
+	 * @method abbr
+	 * @return {object}
+	 */
+	actorPrototype.abbr = function() {
+		var obj = {
+			type: this.type,
+			direction: this.direction,
+			x: this.x,
+			y: this.y
+		};
+		return obj;
 	};
 
 	return actorPrototype;

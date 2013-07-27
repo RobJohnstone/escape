@@ -43,7 +43,7 @@ E.input = (function() {
 					var key = ''+e.which;
 					if (input.keyMap[key] !== undefined) {
 						if (input.keyMap[key] === 'invulnerable' && e.type === 'keydown') {
-							player.invulnerable = !player.invulnerable;
+							E.player.invulnerable = !E.player.invulnerable;
 						}
 						input.keyState[input.keyMap[key]] = ((e.type === 'keydown') ? 1 : 0);
 						return false;
@@ -132,8 +132,8 @@ E.input = (function() {
 				if (input.keyState.up) dy += -5;
 				if (input.keyState.right) dx += 5;
 				if (input.keyState.down) dy += 5;
-				if (dx !== 0 || dy !== 0) player.move({x:dx, y:dy});
-				if (input.mouseState.left) player.fire({x:input.mouseState.x - E.map.offset.x, y:input.mouseState.y - E.map.offset.y});
+				if (dx !== 0 || dy !== 0) E.player.move({x:dx, y:dy});
+				if (input.mouseState.left) E.player.fire({x:input.mouseState.x - E.map.offset.x, y:input.mouseState.y - E.map.offset.y});
 				break;
 			case 'edit':
 				//map.mouse.x = input.mouseState.x + $('body').scrollLeft();

@@ -13,20 +13,28 @@ E.palette = (function() {
 	var palette = {};
 
 	palette.tools = {
+		saveMap: {
+			panel: 'file',
+			html: '<div id="saveMap" class="save paletteTool">Save</div>'
+		},
+		exitMap: {
+			panel: 'file',
+			html: '<div class="back paletteTool">Exit</div>'
+		},
 		wall: {
-			type: 'terrain',
+			panel: 'tools',
 			tilesetIndex: 1
 		},
 		floor: {
-			type: 'terrain',
+			panel: 'tools',
 			tilesetIndex: 0
 		},
 		exit: {
-			type: 'terrain',
+			panel: 'tools',
 			tilesetIndex: 2
 		},
 		player: {
-			type: 'entity',
+			panel: 'tools',
 			/**
 			 * Player tool
 			 *
@@ -34,17 +42,15 @@ E.palette = (function() {
 			 * @return palette
 			 */
 			click: function(tileIndex) {
-				var coords = map.getTileCentre(tileIndex);
-				map.playerStart = {
-					x: coords.x,
-					y: coords.y
-				};
+				var player = map.getTileCentre(tileIndex);
+				player.type = 'player';
+				map.actors.push(player);
 				E.game.reset();
 				return palette;
 			}
 		},
 		removeActor: {
-			type: 'eraser',
+			panel: 'tools',
 			targetType: 'actor',
 			/**
 			 * Remove actor tool
@@ -57,16 +63,15 @@ E.palette = (function() {
 				for (var i=0; i<map.actors.length; i++) {
 					if (map.actors[i].x === coords.x && map.actors[i].y === coords.y) {
 						map.actors.splice(i, 1);
-						E.entities.instances = [];
-						map.init();
-						E.game.update = true;
+						E.game.reset();
+						break;
 					}
 				}
 				return palette;
 			}
 		},
 		baddy: {
-			type: 'entity',
+			panel: 'tools',
 			/**
 			 * Baddy tool
 			 *
@@ -77,8 +82,96 @@ E.palette = (function() {
 				var baddy = map.getTileCentre(tileIndex);
 				baddy.type = 'baddy';
 				map.actors.push(baddy);
-				map.init();
+				E.game.reset();
+				return palette;
+			}
+		},
+		select: {
+			panel: 'tools',
+			/**
+			 * Selects a map tile or entity
+			 *
+			 * @method tools.select.click
+			 * @return palette
+			 */
+			click: function(tileIndex) {
+				var selectedEntity;
+				palette.selected = {};
+				E.entities.instances.some(function(entity, index) {
+					if (map.getTileIndex(entity) === tileIndex) {
+						palette.selected.entity = entity;
+						selectedEntity = entity;
+						return true;
+					}
+				});
+				palette.selected.tileIndex = tileIndex;
+				if (selectedEntity) {
+					palette.setProperties({
+						type: selectedEntity.type,
+						x: selectedEntity.x,
+						y: selectedEntity.y,
+						maxRange: selectedEntity.maxRange,
+						mode: selectedEntity.mode,
+						entityId: selectedEntity.entityId,
+						dirX: selectedEntity.direction.x,
+						dirY: selectedEntity.direction.y
+					});
+				}
 				E.game.update = true;
+				return palette;
+			},
+
+			/**
+			 * Highlights the selected tile
+			 *
+			 * @method tools.select.render
+			 * @return palette
+			 */
+			render: function() {
+				if (palette.selected && palette.selected.tileIndex !== undefined) {
+					map.highlightTile(palette.selected.tileIndex, 'orange');
+				}
+				return palette;
+			}
+		},
+		rotate: {
+			panel: 'tools',
+			/**
+			 * rotates the selected object
+			 *
+			 * @method tools.rotate.click
+			 * @return palette
+			 */
+			click: function(tileIndex) {
+				if (palette.selected && palette.selected.entity !== undefined) {
+					var mouse = E.input.mouseState,
+						diff = E.vector.subtract(palette.selected.entity, mouse),
+						xAxis = {x:1, y:0},
+						angle = E.vector.angle(xAxis, diff, true);
+					palette.selected.entity.direction = E.vector.angleToVector(angle);
+					E.game.update = true;
+					return palette;
+				}
+				else {
+					alert('Please select an entity first');
+				}
+			},
+
+			/**
+			 * Draws a line from the selected entity to the current mouse cursor position
+			 *
+			 * @method tools.rotate.render
+			 * @return palette
+			 */
+			render: function() {
+				/*E.graphics.vectors.command(function() {
+					E.graphics.gameContext.strokeStyle = 'white';
+					E.graphics.gameContext.beginPath();
+					E.graphics.gameContext.moveTo(palette.selected.entity.x, palette.selected.entity.y);
+					E.graphics.gameContext.lineTo(E.input.mouseState.x, E.input.mouseState.y);
+					E.graphics.gameContext.stroke();
+				});*/
+				E.graphics.vectors.line(palette.selected.entity, E.input.mouseState);
 				return palette;
 			}
 		}
@@ -109,6 +202,30 @@ E.palette = (function() {
 	};
 
 	/**
+	 * Changes the current tool
+	 *
+	 * @method changeTool
+	 * @return this
+	 */
+	palette.changeTool = function(toolName) {
+		palette.prevTool = palette.currentTool;
+		$('.paletteTool').removeClass('selected');
+		$('#'+toolName).addClass('selected');
+		palette.currentTool = toolName;
+		return this;
+	};
+
+	/**
+	 * Makes the previously current tool the active one
+	 *
+	 * @method relinquishTool
+	 * @return this
+	 */
+	palette.relinquishTool = function() {
+		palette.changeTool(palette.prevTool);
+	};
+
+	/**
 	 * Initialises the command palette
 	 *
 	 * Includes a generic event handler for using the currently selected tool
@@ -117,11 +234,26 @@ E.palette = (function() {
 	 * @return this
 	 */
 	palette.init = function() {
-		palette.show();
-		palette.$ = $('#palette');
+		var template = $('#paletteTemplate').text().trim(),
+			compiled = _.template(template),
+			tools = {
+				file: {},
+				tools: {}
+			};
 		for (var toolName in palette.tools) {
-			palette.$.append('<p class="tool" id="'+toolName+'">'+toolName+'<p>');
+			switch (palette.tools[toolName].panel) {
+				case 'file':
+					tools.file[toolName] = palette.tools[toolName];
+					break;
+				case 'tools':
+					tools.tools[toolName] = palette.tools[toolName];
+					break;
+				default:
+					throw new Error('The panel "'+palette.tools[toolName].panel+'" for the '+toolName+' tool does not exist');
+			}
 		}
+		$('#palette').html(compiled(tools));
+		palette.show();
 		$('#'+palette.currentTool).addClass('selected');
 		$('#gameCanvas').on({
 			click: function() {
@@ -130,14 +262,47 @@ E.palette = (function() {
 				if (typeof palette.tools[palette.currentTool].click === 'function') {
 					palette.tools[palette.currentTool].click(tileIndex);
 				}
-				else {
+				else if (typeof palette.tools[palette.currentTool].html !== 'string') {
 					tilesetIndex = palette.tools[palette.currentTool].tilesetIndex;
 					map.data[tileIndex] = tilesetIndex;
-					E.game.update = true;
+					E.game.reset();
 				}
 				E.screen.update();
 			}
 		});
+		return this;
+	};
+
+	/**
+	 * Sets the properties that are to be displayed in the properties panel
+	 *
+	 * @method setProperties
+	 * @param properties {object} The properties to be set. Note that all properties must be primatives (not objects)
+	 * @return this
+	 */
+	palette.setProperties = function(properties) {
+		var template = $('#palettePropertiesTemplate').text().trim(),
+			compiled = _.template(template),
+			propObj = {
+				properties: properties
+			};
+		$('#propertiesPanel').html(compiled(propObj));
+		return this;
+	};
+
+	/**
+	 * Carries out rendering actions on behalf of palette tools
+	 *
+	 * @method render
+	 * @return this
+	 */
+	palette.render = function() {
+		if (palette.selected) {
+			palette.tools.select.render();
+		}
+		if (palette.currentTool && palette.currentTool !== 'select' && typeof palette.tools[palette.currentTool].render === 'function') {
+			palette.tools[palette.currentTool].render();
+		}
 		return this;
 	};
 
@@ -147,20 +312,13 @@ E.palette = (function() {
 	 * Event handlers bound after dom loaded
 	 */
 	$(function() {
-		$('#palette').on({
-			click: function() {
-				var toolName = $(this).attr('id');
-				$('.tool').removeClass('selected');
-				$('#'+toolName).addClass('selected');
-				palette.currentTool = toolName;
-			}
-		}, '.tool');
-		$('#palette').on({
-			click: function() {
-				map.save();
-				$('#saveMap').text('Save');
-			}
-		}, '#saveMap');
+		$('#palette').on('click', '.paletteTool', function() {
+			var toolName = $(this).attr('id');
+			palette.changeTool(toolName);
+		});
+		$('#palette').on('click', '#saveMap', function() {
+			map.save();
+		});
 	});
 
 	return palette;

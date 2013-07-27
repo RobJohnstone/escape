@@ -176,5 +176,19 @@ E.vector = (function() {
 		}
 	};
 
+	/**
+	 * Converts an angle (in radians) to a normaLised vector
+	 *
+	 * @method angleToVector
+	 * @param angle {number} The angle (directional and in radians) to convert
+	 * @return {vector} The resulting normalised vector
+	 */
+	vector.angleToVector = function(angle) {
+		return {
+			x: Math.cos(angle),
+			y: Math.sin(angle)
+		};
+	};
+
 	return vector;
 })();

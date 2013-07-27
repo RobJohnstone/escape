@@ -58,6 +58,7 @@ E.entityPrototype = (function() {
 
 	var entityPrototype = {}.extend({
 		hittable: false,
+
 		/**
 		 * initialise entity
 		 *
@@ -77,8 +78,9 @@ E.entityPrototype = (function() {
 				return this;
 			};
 		})(),
+
 		/**
-		 * Placeholder function to be overridden
+		 * Placeholder function to be overridden by child objects
 		 * Invoked once per game loop
 		 *
 		 * @method process

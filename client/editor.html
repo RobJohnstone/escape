@@ -61,15 +61,33 @@
 		<input type="button" id="saveMapMeta" class="save" value="Save" /input>
 		<input type="button" id="editMap" value="Edit map" /input>
 	</script>
+	<script type="text/template" id="paletteTemplate">
+		<% var toolName %>
+		<h2>Tools</h2>
+		<div id="filePanel">
+			<% for (toolName in file) { %> 
+				<%= file[toolName].html %>
+			<% } %>
+		</div>
+		<div id="toolsPanel" class="palettePanel">
+			<h3>Tools:</h3>
+			<% for (toolName in tools) { %>
+				<div class="paletteTool" id="<%= toolName %>"><%= toolName %></div>
+			<% } %>
+		</div>
+		<div id="propertiesPanel" class="palettePanel"></div>
+	</script>
+	<script type="text/template" id="palettePropertiesTemplate">
+		<h3>Properties:</h3>
+		<% console.log(properties); for (var prop in properties) {
+			if (!_.isObject(properties[prop])) {%>
+			<p class="paletteProperty"><%= prop %>: <%= properties[prop] %></p>
+		<% }} %>
+	</script>
 </head>
 <body>
 	<div id="container">
-		<div id="palette">
-			<h2>tools</h2>
-			<p id="saveMap" class="save">Save</p>
-			<p class="back">Exit</p>
-			<hr />
-		</div>
+		<div id="palette"></div>
 		<div id="gameContainer" class="screen">
 			<h1>Escape Game Editor</h1>
 		</div>

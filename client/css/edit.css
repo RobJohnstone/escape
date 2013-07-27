@@ -48,17 +48,26 @@ body {
 	right: 0;
 	width: 200px;
 	height: 100%;
-	padding: 10px;
+	overflow: auto;
 	color: black;
 	background-color: #999;
 }
 
-#palette>p:hover {
+#filePanel, .palettePanel {
+	margin-bottom: 10px;
+}
+
+.paletteTool, .paletteProperty {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.paletteTool:hover {
 	color: yellow;
 	cursor: pointer;
 }
 
-.tool.selected {
+.selected {
 	font-weight: bold;
 }
 

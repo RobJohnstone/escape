@@ -70,14 +70,14 @@ E.game = (function() {
 		if (game.mode === 'play' || game.mode === 'over') {
 			E.timer.process();
 			E.entities.process();
-			E.map.position(player);
+			E.map.position(E.player);
 			if (game.mode === 'over') {
 				E.graphics.writeText('Game over!', 20, 30);
 			}
 			game.info();
 			E.graphics.render();
 			E.input.process();
-			if (player.health <= 0 && game.mode === 'play') {
+			if (E.player.health <= 0 && game.mode === 'play') {
 				game.over();
 			}
 			game.animationFrame = window.requestAnimationFrame(game.play);
@@ -102,12 +102,12 @@ E.game = (function() {
 		E.graphics.writeText('FPS: '+Math.round(E.timer.FPS), E.graphics.gameCanvas.width - 150, 30);
 		E.graphics.writeText('map.offset.x: '+E.map.offset.x, E.graphics.gameCanvas.width - 150, 50);
 		E.graphics.writeText('map.offset.y: '+E.map.offset.y, E.graphics.gameCanvas.width - 150, 70);
-		E.graphics.writeText('player.x: '+player.x, E.graphics.gameCanvas.width - 150, 90);
-		E.graphics.writeText('player.y: '+player.y, E.graphics.gameCanvas.width - 150, 110);
-		E.graphics.writeText('player.direction.x: '+player.direction.x, E.graphics.gameCanvas.width - 150, 130);
-		E.graphics.writeText('player.direction.y: '+player.direction.y, E.graphics.gameCanvas.width - 150, 150);
-		E.graphics.writeText('player.direction angle: '+E.vector.angle(player.direction), E.graphics.gameCanvas.width - 200, 170);
-		E.graphics.writeText('tile index: '+E.map.getTileIndex(player), E.graphics.gameCanvas.width - 150, 190);
+		E.graphics.writeText('player.x: '+E.player.x, E.graphics.gameCanvas.width - 150, 90);
+		E.graphics.writeText('player.y: '+E.player.y, E.graphics.gameCanvas.width - 150, 110);
+		E.graphics.writeText('player.direction.x: '+E.player.direction.x, E.graphics.gameCanvas.width - 150, 130);
+		E.graphics.writeText('player.direction.y: '+E.player.direction.y, E.graphics.gameCanvas.width - 150, 150);
+		E.graphics.writeText('player.direction angle: '+E.vector.angle(E.player.direction), E.graphics.gameCanvas.width - 200, 170);
+		E.graphics.writeText('tile index: '+E.map.getTileIndex(E.player), E.graphics.gameCanvas.width - 150, 190);
 		return this;
 	};
 

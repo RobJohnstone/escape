@@ -21,10 +21,10 @@ E.baddyPrototype = (function() {
 	 * @return this
 	 */
 	baddyPrototype.process = function() {
-		if (player.health <= 0) this.mode = 'watch';
+		if (E.player.health <= 0) this.mode = 'watch';
 		else if (this.baddySeePlayer()) {
-			this.setTarget(player);
-			this.fire(player);
+			this.setTarget(E.player);
+			this.fire(E.player);
 			if(this.targetDistance > this.idealRange) {
 				this.mode = 'chase';
 			}
@@ -68,7 +68,7 @@ E.baddyPrototype = (function() {
 	 */
 	baddyPrototype.orders.attack = function() {
 		this.direction = E.vector.subtract(this, this.target);
-		if (player.health > 0 && !this.baddySeePlayer()) {
+		if (E.player.health > 0 && !this.baddySeePlayer()) {
 			this.mode = 'chase';
 		}
 		return baddyPrototype;
@@ -150,9 +150,9 @@ E.baddyPrototype = (function() {
 	 * @return boolean
 	 */
 	baddyPrototype.baddySeePlayer = function() {
-		var targetVector = E.vector.subtract(this, player);
+		var targetVector = E.vector.subtract(this, E.player);
 		if (E.vector.mag(targetVector) > this.maxRange || E.vector.dot(this.direction, targetVector) < 0) return false;
-		return E.map.lineTraversable(this, player);
+		return E.map.lineTraversable(this, E.player);
 	};
 
 	/**
