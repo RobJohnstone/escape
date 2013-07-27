@@ -62,12 +62,11 @@ E.projectilePrototype = (function() {
 	 * @return this
 	 */
 	projectilePrototype.render = function() {
-		var x = E.map.offset.x + this.x,
-			y = E.map.offset.y + this.y;
-		E.graphics.gameContext.beginPath();
-		E.graphics.gameContext.arc(x, y, this.halfWidth, 0, 2 * Math.PI);
-		E.graphics.gameContext.fillStyle = 'yellow';
-		E.graphics.gameContext.fill();
+		var centre = {
+			x: E.map.offset.x + this.x,
+			y: E.map.offset.y + this.y
+		};
+		E.graphics.vectors.circleNow(centre, this.halfWidth, 'yellow');
 		return this;
 	};
 

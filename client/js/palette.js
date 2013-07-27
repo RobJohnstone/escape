@@ -95,7 +95,7 @@ E.palette = (function() {
 			 * @return palette
 			 */
 			click: function(tileIndex) {
-				var selectedEntity;
+				var selectedEntity, properties = {};
 				palette.selected = {};
 				E.entities.instances.some(function(entity, index) {
 					if (map.getTileIndex(entity) === tileIndex) {
@@ -106,7 +106,7 @@ E.palette = (function() {
 				});
 				palette.selected.tileIndex = tileIndex;
 				if (selectedEntity) {
-					palette.setProperties({
+					properties = {
 						type: selectedEntity.type,
 						x: selectedEntity.x,
 						y: selectedEntity.y,
@@ -115,8 +115,9 @@ E.palette = (function() {
 						entityId: selectedEntity.entityId,
 						dirX: selectedEntity.direction.x,
 						dirY: selectedEntity.direction.y
-					});
+					};
 				}
+				palette.setProperties(properties);
 				E.game.update = true;
 				return palette;
 			},
@@ -164,14 +165,9 @@ E.palette = (function() {
 			 * @return palette
 			 */
 			render: function() {
-				/*E.graphics.vectors.command(function() {
-					E.graphics.gameContext.strokeStyle = 'white';
-					E.graphics.gameContext.beginPath();
-					E.graphics.gameContext.moveTo(palette.selected.entity.x, palette.selected.entity.y);
-					E.graphics.gameContext.lineTo(E.input.mouseState.x, E.input.mouseState.y);
-					E.graphics.gameContext.stroke();
-				});*/
-				E.graphics.vectors.line(palette.selected.entity, E.input.mouseState);
+				if (palette.selected && palette.selected.entity !== undefined) {
+					E.graphics.vectors.line(palette.selected.entity, E.input.mouseState);
+				}
 				return palette;
 			}
 		}

@@ -433,8 +433,13 @@ E.map = (function() {
 			var tileCentre = map.getTileCentre(tileIndex);
 			colour = colour || 'white';
 			E.graphics.vectors.command(function() {
-				E.graphics.gameContext.strokeStyle = colour;
-				E.graphics.gameContext.strokeRect(Math.round(tileCentre.x-E.tiles.tileWidth/2)+0.5, Math.round(tileCentre.y-E.tiles.tileHeight/2)+0.5, E.tiles.tileWidth, E.tiles.tileHeight);
+				E.graphics.vectors.rect({
+					x: tileCentre.x-E.tiles.tileWidth/2,
+					y: tileCentre.y-E.tiles.tileHeight/2
+				}, {
+					x: E.tiles.tileWidth,
+					y: E.tiles.tileHeight
+				}, colour);
 			});
 		}
 		return this;

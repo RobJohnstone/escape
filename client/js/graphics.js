@@ -153,16 +153,107 @@ E.graphics = (function() {
 		 * @return this
 		 */
 		line: function(start, end, colour) {
-			colour = colour || 'white';
 			E.graphics.vectors.command(function() {
-				var currentStrokeStyle = E.graphics.gameContext.strokeStyle;
-				E.graphics.gameContext.strokeStyle = colour;
-				E.graphics.gameContext.beginPath();
-				E.graphics.gameContext.moveTo(start.x, start.y);
-				E.graphics.gameContext.lineTo(end.x, end.y);
-				E.graphics.gameContext.stroke();
-				E.graphics.gameContext.strokeStyle = currentStrokeStyle;
+				E.graphics.vectors.lineNow(start, end, colour);
 			});
+			return this;
+		},
+
+		/**
+		 * Draws a line now
+		 *
+		 * @method lineNow
+		 * @param start {vector} The start point
+		 * @param end {vector} The end point
+		 * @param colour {string} The colour of the line (defaults to white)
+		 * @return this
+		 */
+		lineNow: function(start, end, colour) {
+			var currentStrokeStyle = E.graphics.gameContext.strokeStyle;
+			start = E.vector.round(start);
+			end = E.vector.round(end);
+			colour = colour || 'white';
+			E.graphics.gameContext.strokeStyle = colour;
+			E.graphics.gameContext.beginPath();
+			E.graphics.gameContext.moveTo(start.x, start.y);
+			E.graphics.gameContext.lineTo(end.x, end.y);
+			E.graphics.gameContext.stroke();
+			E.graphics.gameContext.strokeStyle = currentStrokeStyle;
+			return this;
+		},
+
+		/**
+		 * Draws a rectangle (outline only) this frame
+		 *
+		 * @method.rect
+		 * @param topLeft {vector} The coordinates of the top left corner of the rect
+		 * @param dimensions {vector} The width and height of the rect (defailts to 50 for both);
+		 * @param colour {string} The colour of the rect (defaults to white)
+		 * @return this
+		 */
+		rect: function(topLeft, dimensions, colour) {
+			E.graphics.vectors.command(function() {
+				E.graphics.vectors.rectNow(topLeft, dimensions, colour);
+			});
+			return this;
+		},
+
+		/**
+		 * Draws a rectangle (outline only) now
+		 *
+		 * @method rectNow
+		 * @param topLeft {vector} The coordinates of the top left corner of the rect
+		 * @param dimensions {vector} The width and height of the rect (defailts to 50 for both);
+		 * @param colour {string} The colour of the rect (defaults to white)
+		 * @return this
+		 */
+		rectNow: function(topLeft, dimensions, colour) {
+			var currentStrokeStyle = E.graphics.gameContext.strokeStyle;
+			topLeft = E.vector.round(topLeft);
+			colour = colour || 'white';
+			dimensions = E.vector.round(dimensions) || {
+				x: 50,
+				y: 50
+			};
+			E.graphics.gameContext.strokeStyle = colour;
+			E.graphics.gameContext.strokeRect(topLeft.x+0.5, topLeft.y+0.5, dimensions.x, dimensions.y);
+			E.graphics.gameContext.strokeStyle = currentStrokeStyle;
+			return this;
+		},
+
+		/**
+		 * Draws a circle (filled) this frame
+		 *
+		 * @method circle
+		 * @param centre {vector} The centre of the circle
+		 * @param radius {number} The radius of the circle (defaults to 50)
+		 * @param colour {string} The colour of the circle (defaults to white)
+		 * @return this
+		 */
+		circle: function(centre, radius, colour) {
+			E.graphics.vectors.command(function() {
+				E.graphics.vectors.circleNow(centre, radius, colour);
+			});
+			return this;
+		},
+
+		/**
+		 * Draws a circle (filled) now
+		 *
+		 * @method circleNow
+		 * @param centre {vector} The centre of the circle
+		 * @param radius {number} The radius of the circle (defaults to 50)
+		 * @param colour {string} The colour of the circle (defaults to white)
+		 * @return this
+		 */
+		circleNow: function(centre, radius, colour) {
+			centre = E.vector.round(centre);
+			radius = Math.round(radius) || 50;
+			colour = colour || 'white';
+			E.graphics.gameContext.beginPath();
+			E.graphics.gameContext.arc(centre.x, centre.y, radius, 0, 2 * Math.PI);
+			E.graphics.gameContext.fillStyle = colour;
+			E.graphics.gameContext.fill();
 			return this;
 		}
 	};
