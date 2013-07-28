@@ -150,11 +150,12 @@ E.graphics = (function() {
 		 * @param start {vector} The start point
 		 * @param end {vector} The end point
 		 * @param colour {string} The colour of the line (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
 		 * @return this
 		 */
-		line: function(start, end, colour) {
+		line: function(start, end, colour, mapCoords) {
 			E.graphics.vectors.command(function() {
-				E.graphics.vectors.lineNow(start, end, colour);
+				E.graphics.vectors.lineNow(start, end, colour, mapCoords);
 			});
 			return this;
 		},
@@ -166,10 +167,15 @@ E.graphics = (function() {
 		 * @param start {vector} The start point
 		 * @param end {vector} The end point
 		 * @param colour {string} The colour of the line (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
 		 * @return this
 		 */
-		lineNow: function(start, end, colour) {
+		lineNow: function(start, end, colour, mapCoords) {
 			var currentStrokeStyle = E.graphics.gameContext.strokeStyle;
+			if (mapCoords) {
+				start = E.vector.add(E.map.offset, start);
+				end = E.vector.add(E.map.offset, end);
+			}
 			start = E.vector.round(start);
 			end = E.vector.round(end);
 			colour = colour || 'white';
@@ -189,11 +195,12 @@ E.graphics = (function() {
 		 * @param topLeft {vector} The coordinates of the top left corner of the rect
 		 * @param dimensions {vector} The width and height of the rect (defailts to 50 for both);
 		 * @param colour {string} The colour of the rect (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
 		 * @return this
 		 */
-		rect: function(topLeft, dimensions, colour) {
+		rect: function(topLeft, dimensions, colour, mapCoords) {
 			E.graphics.vectors.command(function() {
-				E.graphics.vectors.rectNow(topLeft, dimensions, colour);
+				E.graphics.vectors.rectNow(topLeft, dimensions, colour, mapCoords);
 			});
 			return this;
 		},
@@ -205,10 +212,14 @@ E.graphics = (function() {
 		 * @param topLeft {vector} The coordinates of the top left corner of the rect
 		 * @param dimensions {vector} The width and height of the rect (defailts to 50 for both);
 		 * @param colour {string} The colour of the rect (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
 		 * @return this
 		 */
-		rectNow: function(topLeft, dimensions, colour) {
+		rectNow: function(topLeft, dimensions, colour, mapCoords) {
 			var currentStrokeStyle = E.graphics.gameContext.strokeStyle;
+			if (mapCoords) {
+				topLeft = E.vector.add(E.map.offset, topLeft);
+			}
 			topLeft = E.vector.round(topLeft);
 			colour = colour || 'white';
 			dimensions = E.vector.round(dimensions) || {
@@ -228,11 +239,12 @@ E.graphics = (function() {
 		 * @param centre {vector} The centre of the circle
 		 * @param radius {number} The radius of the circle (defaults to 50)
 		 * @param colour {string} The colour of the circle (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
 		 * @return this
 		 */
-		circle: function(centre, radius, colour) {
+		circle: function(centre, radius, colour, mapCoords) {
 			E.graphics.vectors.command(function() {
-				E.graphics.vectors.circleNow(centre, radius, colour);
+				E.graphics.vectors.circleNow(centre, radius, colour, mapCoords);
 			});
 			return this;
 		},
@@ -244,9 +256,13 @@ E.graphics = (function() {
 		 * @param centre {vector} The centre of the circle
 		 * @param radius {number} The radius of the circle (defaults to 50)
 		 * @param colour {string} The colour of the circle (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
 		 * @return this
 		 */
-		circleNow: function(centre, radius, colour) {
+		circleNow: function(centre, radius, colour, mapCoords) {
+			if (mapCoords) {
+				centre = E.vector.add(E.map.offset, centre);
+			}
 			centre = E.vector.round(centre);
 			radius = Math.round(radius) || 50;
 			colour = colour || 'white';

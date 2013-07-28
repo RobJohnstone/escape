@@ -62,11 +62,7 @@ E.projectilePrototype = (function() {
 	 * @return this
 	 */
 	projectilePrototype.render = function() {
-		var centre = {
-			x: E.map.offset.x + this.x,
-			y: E.map.offset.y + this.y
-		};
-		E.graphics.vectors.circleNow(centre, this.halfWidth, 'yellow');
+		E.graphics.vectors.circleNow(this, this.halfWidth, 'yellow', true);
 		return this;
 	};
 

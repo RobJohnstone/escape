@@ -1,9 +1,8 @@
 TASKS:
 
-Graphics vector commands should be able to handle both screen and map coordinates
-
 Implement extra baddy orders
 	patrol
+	patrolLoop
 
 Create a prototype campaign
 

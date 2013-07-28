@@ -432,15 +432,13 @@ E.map = (function() {
 		if (E.graphics.gameCanvas) {
 			var tileCentre = map.getTileCentre(tileIndex);
 			colour = colour || 'white';
-			E.graphics.vectors.command(function() {
-				E.graphics.vectors.rect({
-					x: tileCentre.x-E.tiles.tileWidth/2,
-					y: tileCentre.y-E.tiles.tileHeight/2
-				}, {
-					x: E.tiles.tileWidth,
-					y: E.tiles.tileHeight
-				}, colour);
-			});
+			E.graphics.vectors.rect({
+				x: tileCentre.x-E.tiles.tileWidth/2,
+				y: tileCentre.y-E.tiles.tileHeight/2
+			}, {
+				x: E.tiles.tileWidth,
+				y: E.tiles.tileHeight
+			}, colour);
 		}
 		return this;
 	};
