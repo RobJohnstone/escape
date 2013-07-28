@@ -48,7 +48,7 @@ E.graphics = (function() {
 	graphics.initCanvas = function(name, width, height) {
 		if (!width) width = 800;
 		if (!height) height = 600;
-		$('#gameContainer').append('<canvas id="'+name+'Canvas" class="defaultBorder" width="'+ width +'px" height="' + height +'px">Your broswer does not support the "canvas element". To play this game you will need a more modern browser.</canvas>');
+		$('#gameContainer').html('<canvas id="'+name+'Canvas" class="defaultBorder" width="'+ width +'px" height="' + height +'px">Your broswer does not support the "canvas element". To play this game you will need a more modern browser.</canvas>');
 		$('#'+name+'Canvas').css({width: +width+'px', height: height+'px'});
 		graphics[name+'Canvas'] = document.getElementById(name+'Canvas');
 		graphics[name+'Context'] = graphics.gameCanvas.getContext('2d');

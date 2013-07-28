@@ -1,7 +1,5 @@
 TASKS:
 
-Tidy up graphics module
-
 Improve editor so that it is a playable game
 	crop/expand map
 

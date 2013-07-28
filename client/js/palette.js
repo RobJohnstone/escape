@@ -170,6 +170,126 @@ E.palette = (function() {
 				}
 				return palette;
 			}
+		},
+		addRowTop: {
+			panel: 'tools',
+			immediate: true,
+			/**
+			 * Adds an extra row to the top of the map
+			 *
+			 * @method tools.addRowTop.click
+			 * @return palette
+			 */
+			click: function() {
+				map.resize({top: 1});
+				E.game.update = true;
+				return palette;
+			}
+		},
+		addColumnRight: {
+			panel: 'tools',
+			immediate: true,
+			/**
+			 * Adds an extra column to the right hand edge of the map
+			 *
+			 * @method tools.addColumnsRight.click
+			 * @return palette
+			 */
+			click: function() {
+				map.resize({right: 1});
+				E.game.update = true;
+				return palette;
+			}
+		},
+		addRowBottom: {
+			panel: 'tools',
+			immediate: true,
+			/**
+			 * Adds an extra row to the top of the map
+			 *
+			 * @method tools.addRowBottom.click
+			 * @return palette
+			 */
+			click: function() {
+				map.resize({bottom: 1});
+				E.game.update = true;
+				return palette;
+			}
+		},
+		addColumnLeft: {
+			panel: 'tools',
+			immediate: true,
+			/**
+			 * Adds an extra row to the top of the map
+			 *
+			 * @method tools.addColumnLeft.click
+			 * @return palette
+			 */
+			click: function() {
+				map.resize({left: 1});
+				E.game.update = true;
+				return palette;
+			}
+		},
+		removeRowTop: {
+			panel: 'tools',
+			immediate: true,
+			/**
+			 * Removes an extra row to the top of the map
+			 *
+			 * @method tools.removeRowTop.click
+			 * @return palette
+			 */
+			click: function() {
+				map.resize({top: -1});
+				E.game.update = true;
+				return palette;
+			}
+		},
+		removeColumnRight: {
+			panel: 'tools',
+			immediate: true,
+			/**
+			 * Removes an extra column to the right hand edge of the map
+			 *
+			 * @method tools.removeColumnsRight.click
+			 * @return palette
+			 */
+			click: function() {
+				map.resize({right: -1});
+				E.game.update = true;
+				return palette;
+			}
+		},
+		removeRowBottom: {
+			panel: 'tools',
+			immediate: true,
+			/**
+			 * Removes an extra row to the top of the map
+			 *
+			 * @method tools.removeRowBottom.click
+			 * @return palette
+			 */
+			click: function() {
+				map.resize({bottom: -1});
+				E.game.update = true;
+				return palette;
+			}
+		},
+		removeColumnLeft: {
+			panel: 'tools',
+			immediate: true,
+			/**
+			 * Removes an extra row to the top of the map
+			 *
+			 * @method tools.removeColumnLeft.click
+			 * @return palette
+			 */
+			click: function() {
+				map.resize({left: -1});
+				E.game.update = true;
+				return palette;
+			}
 		}
 	};
 
@@ -204,10 +324,16 @@ E.palette = (function() {
 	 * @return this
 	 */
 	palette.changeTool = function(toolName) {
-		palette.prevTool = palette.currentTool;
-		$('.paletteTool').removeClass('selected');
-		$('#'+toolName).addClass('selected');
-		palette.currentTool = toolName;
+		if (palette.tools[toolName].immediate) {
+			palette.tools[toolName].click();
+			E.screen.update();
+		}
+		else {
+			palette.prevTool = palette.currentTool;
+			$('.paletteTool').removeClass('selected');
+			$('#'+toolName).addClass('selected');
+			palette.currentTool = toolName;
+		}
 		return this;
 	};
 
@@ -310,7 +436,7 @@ E.palette = (function() {
 	$(function() {
 		$('#palette').on('click', '.paletteTool', function() {
 			var toolName = $(this).attr('id');
-			palette.changeTool(toolName);
+			if (toolName) palette.changeTool(toolName);
 		});
 		$('#palette').on('click', '#saveMap', function() {
 			map.save();

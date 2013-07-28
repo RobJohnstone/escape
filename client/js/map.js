@@ -456,5 +456,82 @@ E.map = (function() {
 		return this;
 	};
 
+	/**
+	 * Resizes the map
+	 *
+	 * @method resize
+	 * @param delta {object} The four properties (top, right, bottom, left) indicate how many columns/rows to add. Negative numbers shrink the map
+	 * @return this
+	 */
+	map.resize = function(delta) {
+		var index;
+		delta.top = delta.top || 0;
+		delta.right = delta.right || 0;
+		delta.bottom = delta.bottom || 0;
+		delta.left = delta.left || 0;
+		if (delta.top) {
+			map.rows += delta.top;
+			if (delta.top > 0) {
+				map.data = _blankRows(delta.top).concat(map.data);
+			}
+			else if (delta.top < 0) {
+				map.data.splice(0, map.columns);
+			}
+		}
+		if (delta.right) {
+			map.columns += delta.right;
+			if (delta.right > 0) {
+				for (index=map.columns; index<map.data.length; index+= map.columns) {
+					map.data.splice(index, 0, 0);
+				}
+			}
+			else if (delta.right < 0) {
+				for (index=map.columns; index<map.data.length; index+= map.columns) {
+					map.data.splice(index, 1);
+				}
+			}
+		}
+		if (delta.bottom) {
+			map.rows += delta.bottom;
+			if (delta.bottom > 0) {
+				map.data = map.data.concat(_blankRows(delta.bottom));
+			}
+			else if (delta.bottom < 0) {
+				map.data.splice(-map.columns, map.columns);
+			}
+		}
+		if (delta.left) {
+			map.columns += delta.left;
+			if (delta.left > 0) {
+				for (index=0; index<map.data.length; index+= map.columns) {
+					map.data.splice(index, 0, 0);
+				}
+			}
+			else if (delta.left < 0) {
+				for (index=0; index<map.data.length; index+= map.columns) {
+					map.data.splice(index, 1);
+				}
+			}
+		}
+
+		E.entities.instances.forEach(function(entity, index) {
+			E.entities.instances[index].x = entity.x + (delta.left * map.tileWidth);
+			E.entities.instances[index].y = entity.y + (delta.top * map.tileHeight);
+		});
+
+		if (!E.graphics.clipping) {
+			E.graphics.resizeCanvas('game', map.columns * map.tileWidth, map.rows * map.tileHeight);
+		}
+		return this;
+
+		function _blankRows(numRows) {
+			var newData = new Array(map.columns * numRows);
+			for (var i=0; i<newData.length; i++) {
+				newData[i] = 0;
+			}
+			return newData;
+		}
+	};
+
 	return map;
 })();
