@@ -514,10 +514,17 @@ E.map = (function() {
 			}
 		}
 
+		var tempEntities = [];
+
 		E.entities.instances.forEach(function(entity, index) {
-			E.entities.instances[index].x = entity.x + (delta.left * map.tileWidth);
-			E.entities.instances[index].y = entity.y + (delta.top * map.tileHeight);
+			entity.x = entity.x + (delta.left * map.tileWidth);
+			entity.y = entity.y + (delta.top * map.tileHeight);
+			if (map.checkWithinBounds(entity)) {
+				tempEntities.push(entity);
+			}
 		});
+
+		E.entities.instances = tempEntities;
 
 		if (!E.graphics.clipping) {
 			E.graphics.resizeCanvas('game', map.columns * map.tileWidth, map.rows * map.tileHeight);

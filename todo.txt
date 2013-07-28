@@ -1,7 +1,6 @@
 TASKS:
 
-Improve editor so that it is a playable game
-	crop/expand map
+Graphics vector commands should be able to handle both screen and map coordinates
 
 Implement extra baddy orders
 	patrol

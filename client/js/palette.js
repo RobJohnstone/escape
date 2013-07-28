@@ -204,63 +204,50 @@ E.palette = (function() {
 				return palette;
 			}
 		},
-		removeRowTop: {
+		reduce: {
 			panel: 'tools',
-			immediate: true,
 			/**
-			 * Removes an extra row to the top of the map
+			 * Removes a row / column from the side of the map closest to the cursor
 			 *
-			 * @method tools.removeRowTop.click
+			 * @method tools.reduce.click
 			 * @return palette
 			 */
 			click: function() {
-				map.resize({top: -1});
+				var delta = {};
+				delta[map.sideClosestToCursor()] = -1;
+				map.resize(delta);
 				E.game.update = true;
 				return palette;
-			}
-		},
-		removeColumnRight: {
-			panel: 'tools',
-			immediate: true,
+			},
+
 			/**
-			 * Removes an extra column to the right hand edge of the map
+			 * Sets the mouse cursor to an arrow indicating which side will be expanded
 			 *
-			 * @method tools.removeColumnsRight.click
-			 * @return palette
+			 * @method tools.expand.render
+			 * @return palette;
 			 */
-			click: function() {
-				map.resize({right: -1});
-				E.game.update = true;
-				return palette;
-			}
-		},
-		removeRowBottom: {
-			panel: 'tools',
-			immediate: true,
-			/**
-			 * Removes an extra row to the top of the map
-			 *
-			 * @method tools.removeRowBottom.click
-			 * @return palette
-			 */
-			click: function() {
-				map.resize({bottom: -1});
-				E.game.update = true;
-				return palette;
-			}
-		},
-		removeColumnLeft: {
-			panel: 'tools',
-			immediate: true,
-			/**
-			 * Removes an extra row to the top of the map
-			 *
-			 * @method tools.removeColumnLeft.click
-			 * @return palette
-			 */
-			click: function() {
-				map.resize({left: -1});
-				E.game.update = true;
+			render: function() {
+				var cursorStyles = {
+					top: 'n-resize',
+					right: 'e-resize',
+					bottom: 's-resize',
+					left: 'w-resize'
+				}, side = map.sideClosestToCursor();
+				E.input.setMouseCursor(cursorStyles[side]);
+				switch (side) {
+					case 'top':
+						E.graphics.vectors.rect({x: 0, y: 0}, {x: E.map.tileWidth * E.map.columns, y: E.map.tileHeight}, 'red');
+						break;
+					case 'right':
+						E.graphics.vectors.rect({x: E.map.tileWidth * (E.map.columns-1), y: 0}, {x: E.map.tileWidth, y: E.map.tileHeight * E.map.rows}, 'red');
+						break;
+					case 'bottom':
+						E.graphics.vectors.rect({x: 0, y: E.map.tileHeight * (E.map.rows-1)}, {x: E.map.tileWidth * E.map.columns, y: E.map.tileHeight}, 'red');
+						break;
+					case 'left':
+						E.graphics.vectors.rect({x: 0, y: 0}, {x: E.map.tileWidth, y: E.map.tileHeight * E.map.rows}, 'red');
+						break;
+				}
 				return palette;
 			}
 		}
