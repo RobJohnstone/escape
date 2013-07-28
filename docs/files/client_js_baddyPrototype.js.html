@@ -189,10 +189,10 @@ E.baddyPrototype = (function() {
 	 * @return this
 	 */
 	baddyPrototype.process = function() {
-		if (player.health &lt;= 0) this.mode = &#x27;watch&#x27;;
+		if (E.player.health &lt;= 0) this.mode = &#x27;watch&#x27;;
 		else if (this.baddySeePlayer()) {
-			this.setTarget(player);
-			this.fire(player);
+			this.setTarget(E.player);
+			this.fire(E.player);
 			if(this.targetDistance &gt; this.idealRange) {
 				this.mode = &#x27;chase&#x27;;
 			}
@@ -236,7 +236,7 @@ E.baddyPrototype = (function() {
 	 */
 	baddyPrototype.orders.attack = function() {
 		this.direction = E.vector.subtract(this, this.target);
-		if (player.health &gt; 0 &amp;&amp; !this.baddySeePlayer()) {
+		if (E.player.health &gt; 0 &amp;&amp; !this.baddySeePlayer()) {
 			this.mode = &#x27;chase&#x27;;
 		}
 		return baddyPrototype;
@@ -286,15 +286,58 @@ E.baddyPrototype = (function() {
 	 * @return baddyPrototype
 	 */
 	baddyPrototype.orders.returnToStation = function() {
+		console.log(&#x27;returnToStation&#x27;);
 		var distance = E.vector.distance(this, this.initial);
 		if (distance &lt; this.speed) {
 			this.x = this.initial.x;
 			this.y = this.initial.y;
-			this.mode = &#x27;watch&#x27;;
+			this.mode = this.initial.mode;
 			this.direction = this.initial.direction;
 		}
 		else {
 			this.moveTo(this.initial);
+		}
+		return baddyPrototype;
+	};
+
+	/**
+	 * The baddy goes to its current waypoint, then reverts to its original orders
+	 *
+	 * @method orders.goto
+	 * @return baddyPrototype
+	 */
+	baddyPrototype.orders.goto = function() {
+		console.log(&#x27;goto&#x27;);
+		var distance = E.vector.distance(this, this.patrolRoute[this.currentWaypoint]);
+		if (distance &lt; this.speed) {
+			this.x = this.patrolRoute[this.currentWaypoint].x;
+			this.y = this.patrolRoute[this.currentWaypoint].y;
+			this.mode = this.initial.mode;
+		}
+		else {
+			this.moveTo(this.patrolRoute[this.currentWaypoint]);
+		}
+		return baddyPrototype;
+	};
+
+	/**
+	 * The baddy patrols between a series of waypoints. When the baddy gets to the end, he returns directly to the first way point and starts again
+	 *
+	 * @method orders.patrol
+	 * @return baddyPrototype
+	 */
+	baddyPrototype.orders.patrol = function() {
+		console.log(&#x27;patrol&#x27;);
+		if (!this.patrolRoute) {
+			throw new Error(&#x27;This baddy does not have a patrol route specified&#x27;);
+		}
+		this.currentWaypoint = (this.currentWaypoint === undefined) ? 0 : this.currentWaypoint + 1;
+		console.log(&#x27;currentWaypoint&#x27;, this.currentWaypoint);
+		if (this.currentWaypoint &gt;= this.patrolRoute.length) {
+			this.mode = &#x27;returnToStation&#x27;;
+		}
+		else {
+			this.mode = &#x27;goto&#x27;;
 		}
 		return baddyPrototype;
 	};
@@ -318,9 +361,9 @@ E.baddyPrototype = (function() {
 	 * @return boolean
 	 */
 	baddyPrototype.baddySeePlayer = function() {
-		var targetVector = E.vector.subtract(this, player);
+		var targetVector = E.vector.subtract(this, E.player);
 		if (E.vector.mag(targetVector) &gt; this.maxRange || E.vector.dot(this.direction, targetVector) &lt; 0) return false;
-		return E.map.lineTraversable(this, player);
+		return E.map.lineTraversable(this, E.player);
 	};
 
 	/**

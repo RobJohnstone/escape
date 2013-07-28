@@ -85,8 +85,7 @@ E.map = (function() {
 					_loadMapObj(mapObj);
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
-					console.log('map loading error: ');
-					console.log(textStatus);
+					throw new Error('map loading error: '+textStatus);
 				}
 			});
 		}
@@ -163,7 +162,6 @@ E.map = (function() {
 			rows: map.rows,
 			tileWidth: map.tileWidth,
 			tileHeight: map.tileHeight,
-			offset: map.offset,
 			actors: E.entities.instances.filter(function(entity) {
 				return entity.abbr; // ensure only actors and not other entities
 			}).map(function(entity) {
@@ -373,7 +371,7 @@ E.map = (function() {
 		if (Object.prototype.toString.call(tile) === '[object Array]') { // check if 2d coords rather than straight tile no
 			tile = tile[0] + tile[1] * map.columns;
 		}
-		return [tile % map.columns, Math.floor(tile / map.rows)];
+		return [tile % map.columns, Math.floor(tile / map.columns)];
 	};
 
 	/**

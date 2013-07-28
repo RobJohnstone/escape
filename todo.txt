@@ -2,7 +2,6 @@ TASKS:
 
 Implement extra baddy orders
 	patrol
-	patrolLoop
 
 Create a prototype campaign
 

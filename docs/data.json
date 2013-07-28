@@ -13,6 +13,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "client/js/lib/jquery-2.0.3.js": {
+            "name": "client/js/lib/jquery-2.0.3.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "client/js/actorPrototype.js": {
             "name": "client/js/actorPrototype.js",
             "modules": {
@@ -821,6 +828,178 @@
             "class": "actorPrototype"
         },
         {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1157,
+            "description": "Create key-value caches of limited size",
+            "return": {
+                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
+                "type": "Function(string, Object)"
+            },
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1177,
+            "description": "Mark a function for special use by Sizzle",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to mark",
+                    "type": "Function"
+                }
+            ],
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1186,
+            "description": "Support testing using an element",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Passed the created div and expects a boolean result",
+                    "type": "Function"
+                }
+            ],
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1207,
+            "description": "Adds the same handler for all of the specified attrs",
+            "params": [
+                {
+                    "name": "attrs",
+                    "description": "Pipe-separated list of attributes",
+                    "type": "String"
+                },
+                {
+                    "name": "handler",
+                    "description": "The method that will be applied",
+                    "type": "Function"
+                }
+            ],
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1221,
+            "description": "Checks document order of two siblings",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "",
+                    "type": "Element"
+                },
+                {
+                    "name": "b",
+                    "description": "",
+                    "type": "Element"
+                }
+            ],
+            "return": {
+                "description": "Returns less than 0 if a precedes b, greater than 0 if a follows b",
+                "type": "Number"
+            },
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1250,
+            "description": "Returns a function to use in pseudos for input types",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1261,
+            "description": "Returns a function to use in pseudos for buttons",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1272,
+            "description": "Returns a function to use in pseudos for positionals",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1294,
+            "description": "Detect xml",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "An element or a document",
+                    "type": "Element|Object"
+                }
+            ],
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1308,
+            "description": "Sets document-related variables once based on the current document",
+            "params": [
+                {
+                    "name": "doc",
+                    "description": "An element or document object to use to set the document",
+                    "type": "Element|Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Returns the current document",
+                "type": "Object"
+            },
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1718,
+            "description": "Document sorting and removing duplicates",
+            "params": [
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "ArrayLike"
+                }
+            ],
+            "class": "actorPrototype"
+        },
+        {
+            "file": "client/js/lib/jquery-2.0.3.js",
+            "line": 1747,
+            "description": "Utility function for retrieving the text value of an array of DOM nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "",
+                    "type": "Array|Element"
+                }
+            ],
+            "class": "actorPrototype"
+        },
+        {
             "file": "client/js/actorPrototype.js",
             "line": 21,
             "description": "Moves the actor in the direction indicated by vector v. If this would result in a collision with the map\nthen a more sensible vector is chosen and the actor moves that way instead",
@@ -843,7 +1022,9 @@
         {
             "file": "client/js/actorPrototype.js",
             "line": 50,
-            "description": "Moves actor towards the position indicated, taking into account the actor's speed\nMovement is attempted \"as the crow flies\" with no route selection\n\nmethod moveTowards",
+            "description": "Moves actor towards the position indicated, taking into account the actor's speed\nMovement is attempted \"as the crow flies\" with no route selection",
+            "itemtype": "method",
+            "name": "moveTowards",
             "params": [
                 {
                     "name": "position",
@@ -910,6 +1091,19 @@
             ],
             "return": {
                 "description": "this"
+            },
+            "class": "actorPrototype",
+            "module": "actorPrototype"
+        },
+        {
+            "file": "client/js/actorPrototype.js",
+            "line": 161,
+            "description": "Outputs an abbreviated version of the entity, suitable for saving to file",
+            "itemtype": "method",
+            "name": "abbr",
+            "return": {
+                "description": "",
+                "type": "Object"
             },
             "class": "actorPrototype",
             "module": "actorPrototype"
@@ -1026,7 +1220,31 @@
         },
         {
             "file": "client/js/baddyPrototype.js",
-            "line": 134,
+            "line": 135,
+            "description": "The baddy goes to its current waypoint, then reverts to its original orders",
+            "itemtype": "method",
+            "name": "orders.goto",
+            "return": {
+                "description": "baddyPrototype"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 155,
+            "description": "The baddy patrols between a series of waypoints. When the baddy gets to the end, he returns directly to the first way point and starts again",
+            "itemtype": "method",
+            "name": "orders.patrol",
+            "return": {
+                "description": "baddyPrototype"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "client/js/baddyPrototype.js",
+            "line": 177,
             "description": "The baddy's reaction to being hit",
             "itemtype": "method",
             "name": "hitHandler",
@@ -1044,7 +1262,7 @@
         },
         {
             "file": "client/js/baddyPrototype.js",
-            "line": 146,
+            "line": 189,
             "description": "Checks if the baddy can see the player",
             "itemtype": "method",
             "name": "baddySeePlayer",
@@ -1056,7 +1274,7 @@
         },
         {
             "file": "client/js/baddyPrototype.js",
-            "line": 158,
+            "line": 201,
             "description": "sets the baddy's target and other target related information",
             "itemtype": "method",
             "name": "setTarget",
@@ -1256,7 +1474,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 147,
+            "line": 148,
             "description": "sends a request to the server instructing it to delete a file",
             "itemtype": "method",
             "name": "_deleteItem",
@@ -1279,7 +1497,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 194,
+            "line": 195,
             "description": "Updates the value of an item",
             "itemtype": "method",
             "name": "_editItem",
@@ -1297,7 +1515,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 211,
+            "line": 212,
             "description": "Carries out all initialisation actions",
             "itemtype": "method",
             "name": "init",
@@ -1316,7 +1534,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 226,
+            "line": 228,
             "description": "Starts any modules that need starting and then begins the game loop",
             "itemtype": "method",
             "name": "start",
@@ -1328,7 +1546,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 242,
+            "line": 245,
             "description": "The body of the game loop",
             "itemtype": "method",
             "name": "main",
@@ -1340,7 +1558,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 263,
+            "line": 266,
             "description": "Resets game state when map data changes",
             "itemtype": "method",
             "name": "reset",
@@ -1352,7 +1570,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 276,
+            "line": 280,
             "description": "A singleton DOM element. On first call creates the DOM element. On all calls populates the DOM element with the items\nin the game.info.items array.",
             "itemtype": "method",
             "name": "info",
@@ -1365,7 +1583,7 @@
         },
         {
             "file": "client/js/edit.js",
-            "line": 298,
+            "line": 302,
             "description": "Adds an item to the game.info.items array. \nIf one argument, adds the variable name and value\nIf two, adds both separated by a colon",
             "itemtype": "method",
             "name": "info.add",
@@ -1414,7 +1632,7 @@
         },
         {
             "file": "client/js/entities.js",
-            "line": 61,
+            "line": 62,
             "description": "initialise entity",
             "itemtype": "method",
             "name": "init",
@@ -1426,8 +1644,8 @@
         },
         {
             "file": "client/js/entities.js",
-            "line": 80,
-            "description": "Placeholder function to be overridden\nInvoked once per game loop",
+            "line": 82,
+            "description": "Placeholder function to be overridden by child objects\nInvoked once per game loop",
             "itemtype": "method",
             "name": "process",
             "return": {
@@ -1546,10 +1764,17 @@
         },
         {
             "file": "client/js/escape.js",
-            "line": 160,
+            "line": 159,
             "description": "Resets game state in order to allow a new game to start",
             "itemtype": "method",
             "name": "reset",
+            "params": [
+                {
+                    "name": "start",
+                    "description": "Whether or not to start the game once the map has loaded (defaults to true)",
+                    "type": "Boolean"
+                }
+            ],
             "return": {
                 "description": "this"
             },
@@ -1717,7 +1942,7 @@
         },
         {
             "file": "client/js/graphics.js",
-            "line": 133,
+            "line": 134,
             "description": "Adds a vector command to be rendered this frame",
             "itemtype": "method",
             "name": "vectors.command",
@@ -1737,6 +1962,210 @@
         {
             "file": "client/js/graphics.js",
             "line": 146,
+            "description": "Draws a line this frame",
+            "itemtype": "method",
+            "name": "line",
+            "params": [
+                {
+                    "name": "start",
+                    "description": "The start point",
+                    "type": "Vector"
+                },
+                {
+                    "name": "end",
+                    "description": "The end point",
+                    "type": "Vector"
+                },
+                {
+                    "name": "colour",
+                    "description": "The colour of the line (defaults to white)",
+                    "type": "String"
+                },
+                {
+                    "name": "mapCoords",
+                    "description": "Whether to use map coords rather than canvas coords (defaults to canvas)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 163,
+            "description": "Draws a line now",
+            "itemtype": "method",
+            "name": "lineNow",
+            "params": [
+                {
+                    "name": "start",
+                    "description": "The start point",
+                    "type": "Vector"
+                },
+                {
+                    "name": "end",
+                    "description": "The end point",
+                    "type": "Vector"
+                },
+                {
+                    "name": "colour",
+                    "description": "The colour of the line (defaults to white)",
+                    "type": "String"
+                },
+                {
+                    "name": "mapCoords",
+                    "description": "Whether to use map coords rather than canvas coords (defaults to canvas)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 191,
+            "description": "Draws a rectangle (outline only) this frame",
+            "itemtype": "method",
+            "name": ".rect",
+            "params": [
+                {
+                    "name": "topLeft",
+                    "description": "The coordinates of the top left corner of the rect",
+                    "type": "Vector"
+                },
+                {
+                    "name": "dimensions",
+                    "description": "The width and height of the rect (defailts to 50 for both);",
+                    "type": "Vector"
+                },
+                {
+                    "name": "colour",
+                    "description": "The colour of the rect (defaults to white)",
+                    "type": "String"
+                },
+                {
+                    "name": "mapCoords",
+                    "description": "Whether to use map coords rather than canvas coords (defaults to canvas)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 208,
+            "description": "Draws a rectangle (outline only) now",
+            "itemtype": "method",
+            "name": "rectNow",
+            "params": [
+                {
+                    "name": "topLeft",
+                    "description": "The coordinates of the top left corner of the rect",
+                    "type": "Vector"
+                },
+                {
+                    "name": "dimensions",
+                    "description": "The width and height of the rect (defailts to 50 for both);",
+                    "type": "Vector"
+                },
+                {
+                    "name": "colour",
+                    "description": "The colour of the rect (defaults to white)",
+                    "type": "String"
+                },
+                {
+                    "name": "mapCoords",
+                    "description": "Whether to use map coords rather than canvas coords (defaults to canvas)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 235,
+            "description": "Draws a circle (filled) this frame",
+            "itemtype": "method",
+            "name": "circle",
+            "params": [
+                {
+                    "name": "centre",
+                    "description": "The centre of the circle",
+                    "type": "Vector"
+                },
+                {
+                    "name": "radius",
+                    "description": "The radius of the circle (defaults to 50)",
+                    "type": "Number"
+                },
+                {
+                    "name": "colour",
+                    "description": "The colour of the circle (defaults to white)",
+                    "type": "String"
+                },
+                {
+                    "name": "mapCoords",
+                    "description": "Whether to use map coords rather than canvas coords (defaults to canvas)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 252,
+            "description": "Draws a circle (filled) now",
+            "itemtype": "method",
+            "name": "circleNow",
+            "params": [
+                {
+                    "name": "centre",
+                    "description": "The centre of the circle",
+                    "type": "Vector"
+                },
+                {
+                    "name": "radius",
+                    "description": "The radius of the circle (defaults to 50)",
+                    "type": "Number"
+                },
+                {
+                    "name": "colour",
+                    "description": "The colour of the circle (defaults to white)",
+                    "type": "String"
+                },
+                {
+                    "name": "mapCoords",
+                    "description": "Whether to use map coords rather than canvas coords (defaults to canvas)",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "graphics",
+            "module": "graphics"
+        },
+        {
+            "file": "client/js/graphics.js",
+            "line": 277,
             "description": "Renders the canvas and all graphics",
             "itemtype": "method",
             "name": "render",
@@ -1748,7 +2177,7 @@
         },
         {
             "file": "client/js/graphics.js",
-            "line": 166,
+            "line": 299,
             "description": "Changes the size of a canvas",
             "itemtype": "method",
             "name": "resizeCanvas",
@@ -1819,6 +2248,37 @@
             "module": "input"
         },
         {
+            "file": "client/js/input.js",
+            "line": 157,
+            "description": "Sets the style of the cursor to be used for this frame",
+            "itemtype": "method",
+            "name": "setMouseCursor",
+            "params": [
+                {
+                    "name": "cursorStyle",
+                    "description": "The css cursor style",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "input",
+            "module": "input"
+        },
+        {
+            "file": "client/js/input.js",
+            "line": 168,
+            "description": "Performs any rendering required by input",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "this"
+            },
+            "class": "input",
+            "module": "input"
+        },
+        {
             "file": "client/js/map.js",
             "line": 30,
             "description": "initialise the map based on a loaded map object",
@@ -1839,7 +2299,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 66,
+            "line": 65,
             "description": "load the map data",
             "itemtype": "method",
             "name": "load",
@@ -1863,7 +2323,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 96,
+            "line": 95,
             "description": "takes the map object and inserts it into the engine",
             "itemtype": "method",
             "name": "_loadMapObj",
@@ -1879,7 +2339,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 110,
+            "line": 109,
             "description": "Creates a new blank map object",
             "itemtype": "method",
             "name": "new",
@@ -1909,7 +2369,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 136,
+            "line": 135,
             "description": "Updates map values",
             "itemtype": "method",
             "name": "update",
@@ -1933,7 +2393,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 153,
+            "line": 152,
             "description": "Saves the map on the server (this should only be allowed on the dev server)",
             "itemtype": "method",
             "name": "save",
@@ -1945,7 +2405,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 168,
+            "line": 183,
             "description": "renders the map",
             "itemtype": "method",
             "name": "render",
@@ -1957,7 +2417,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 191,
+            "line": 206,
             "description": "Checks that a position is within the bounds of the map",
             "itemtype": "method",
             "name": "checkWithinBounds",
@@ -1977,7 +2437,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 205,
+            "line": 220,
             "description": "Gets the tile object for the tile index",
             "itemtype": "method",
             "name": "getTileObj",
@@ -1989,7 +2449,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 219,
+            "line": 234,
             "description": "Checks that a particular tile is passable",
             "itemtype": "method",
             "name": "isPassable",
@@ -2009,7 +2469,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 230,
+            "line": 245,
             "itemtype": "method",
             "name": "collisionAdjust",
             "params": [
@@ -2033,7 +2493,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 295,
+            "line": 310,
             "description": "Scrolls the map so that it is looking at the passed position",
             "itemtype": "method",
             "name": "position",
@@ -2052,7 +2512,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 315,
+            "line": 330,
             "description": "Returns the index of the tile corresponding to the passed postion",
             "itemtype": "method",
             "name": "getTileIndex",
@@ -2072,7 +2532,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 331,
+            "line": 346,
             "description": "Returns a vector indicating the position of the centre of the tile",
             "itemtype": "method",
             "name": "getTileCentre",
@@ -2092,7 +2552,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 350,
+            "line": 365,
             "description": "Converts a tile index into 2d coordinates within the tiles array",
             "itemtype": "method",
             "name": "getTileCoords",
@@ -2112,7 +2572,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 364,
+            "line": 379,
             "description": "Converts 2d tile coords (not pixel coords) into a tile index",
             "itemtype": "method",
             "name": "getTileFromCoords",
@@ -2137,7 +2597,7 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 380,
+            "line": 395,
             "description": "Checks if a line between two points can pass unimpeeded by the map\nNote that this does not check for collisions with entities",
             "itemtype": "method",
             "name": "lineTraversable",
@@ -2162,14 +2622,14 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 409,
+            "line": 424,
             "description": "Higlights the tile indicated",
             "itemtype": "method",
             "name": "highlightTile",
             "params": [
                 {
-                    "name": "tile",
-                    "description": "The tile to highlight",
+                    "name": "tileIndex",
+                    "description": "The tileIndex of the tile to highlight",
                     "type": "Number"
                 }
             ],
@@ -2181,12 +2641,44 @@
         },
         {
             "file": "client/js/map.js",
-            "line": 427,
+            "line": 446,
             "description": "highlights the tile under the mouse cursor",
             "itemtype": "method",
             "name": "highlightMouseTile",
             "return": {
                 "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 457,
+            "description": "Resizes the map",
+            "itemtype": "method",
+            "name": "resize",
+            "params": [
+                {
+                    "name": "delta",
+                    "description": "The four properties (top, right, bottom, left) indicate how many columns/rows to add. Negative numbers shrink the map",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "client/js/map.js",
+            "line": 541,
+            "description": "Returns a string indicating the side of the map closest to the mouse cursor",
+            "itemtype": "method",
+            "name": "sideClosestToCursor",
+            "return": {
+                "description": "",
+                "type": "String"
             },
             "class": "map",
             "module": "map"
@@ -2250,7 +2742,7 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 30,
+            "line": 38,
             "description": "Player tool",
             "itemtype": "method",
             "name": "tools.player.click",
@@ -2262,7 +2754,7 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 49,
+            "line": 55,
             "description": "Remove actor tool",
             "itemtype": "method",
             "name": "tools.removeActor.click",
@@ -2274,7 +2766,7 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 70,
+            "line": 75,
             "description": "Baddy tool",
             "itemtype": "method",
             "name": "tools.baddy.click",
@@ -2286,7 +2778,103 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 89,
+            "line": 91,
+            "description": "Selects a map tile or entity",
+            "itemtype": "method",
+            "name": "tools.select.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 125,
+            "description": "Highlights the selected tile",
+            "itemtype": "method",
+            "name": "tools.select.render",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 140,
+            "description": "rotates the selected object",
+            "itemtype": "method",
+            "name": "tools.rotate.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 161,
+            "description": "Draws a line from the selected entity to the current mouse cursor position",
+            "itemtype": "method",
+            "name": "tools.rotate.render",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 176,
+            "description": "Adds an extra row / column to the side of the map closest to the cursor",
+            "itemtype": "method",
+            "name": "tools.expand.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 190,
+            "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
+            "itemtype": "method",
+            "name": "tools.expand.render",
+            "return": {
+                "description": "palette;"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 209,
+            "description": "Removes a row / column from the side of the map closest to the cursor",
+            "itemtype": "method",
+            "name": "tools.reduce.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 223,
+            "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
+            "itemtype": "method",
+            "name": "tools.expand.render",
+            "return": {
+                "description": "palette;"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 258,
             "description": "Displays the command palette",
             "itemtype": "method",
             "name": "show",
@@ -2298,7 +2886,7 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 100,
+            "line": 269,
             "description": "Hides the command palette",
             "itemtype": "method",
             "name": "hide",
@@ -2310,7 +2898,31 @@
         },
         {
             "file": "client/js/palette.js",
-            "line": 111,
+            "line": 280,
+            "description": "Changes the current tool",
+            "itemtype": "method",
+            "name": "changeTool",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 300,
+            "description": "Makes the previously current tool the active one",
+            "itemtype": "method",
+            "name": "relinquishTool",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 310,
             "description": "Initialises the command palette\n\nIncludes a generic event handler for using the currently selected tool",
             "itemtype": "method",
             "name": "init",
@@ -2321,8 +2933,39 @@
             "module": "palette"
         },
         {
+            "file": "client/js/palette.js",
+            "line": 358,
+            "description": "Sets the properties that are to be displayed in the properties panel",
+            "itemtype": "method",
+            "name": "setProperties",
+            "params": [
+                {
+                    "name": "properties",
+                    "description": "The properties to be set. Note that all properties must be primatives (not objects)",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "client/js/palette.js",
+            "line": 375,
+            "description": "Carries out rendering actions on behalf of palette tools",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
             "file": "client/js/playerPrototype.js",
-            "line": 20,
+            "line": 22,
             "description": "Actions to be taken each frame for the player",
             "itemtype": "method",
             "name": "process",
@@ -2804,6 +3447,26 @@
             "module": "vector"
         },
         {
+            "file": "client/js/vector.js",
+            "line": 184,
+            "description": "Converts an angle (in radians) to a normaLised vector",
+            "itemtype": "method",
+            "name": "angleToVector",
+            "params": [
+                {
+                    "name": "angle",
+                    "description": "The angle (directional and in radians) to convert",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The resulting normalised vector",
+                "type": "Vector"
+            },
+            "class": "vector",
+            "module": "vector"
+        },
+        {
             "file": "server/server.js",
             "line": 1,
             "description": "Escape server\n\nCurrently just serves static files except in 'dev' mode in which case\nIt will also allow writing to the 'maps' directory to support the \nmap editor",
@@ -2817,12 +3480,68 @@
             "line": " client/js/lib/AStar.js:3"
         },
         {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " client/js/lib/jquery-2.0.3.js:1157"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " client/js/lib/jquery-2.0.3.js:1221"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " client/js/lib/jquery-2.0.3.js:1308"
+        },
+        {
             "message": "Missing item type\nA* (A-Star) algorithm for a path finder",
             "line": " client/js/lib/AStar.js:3"
         },
         {
-            "message": "Missing item type\nMoves actor towards the position indicated, taking into account the actor's speed\nMovement is attempted \"as the crow flies\" with no route selection\n\nmethod moveTowards",
-            "line": " client/js/actorPrototype.js:50"
+            "message": "Missing item type\nCreate key-value caches of limited size",
+            "line": " client/js/lib/jquery-2.0.3.js:1157"
+        },
+        {
+            "message": "Missing item type\nMark a function for special use by Sizzle",
+            "line": " client/js/lib/jquery-2.0.3.js:1177"
+        },
+        {
+            "message": "Missing item type\nSupport testing using an element",
+            "line": " client/js/lib/jquery-2.0.3.js:1186"
+        },
+        {
+            "message": "Missing item type\nAdds the same handler for all of the specified attrs",
+            "line": " client/js/lib/jquery-2.0.3.js:1207"
+        },
+        {
+            "message": "Missing item type\nChecks document order of two siblings",
+            "line": " client/js/lib/jquery-2.0.3.js:1221"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for input types",
+            "line": " client/js/lib/jquery-2.0.3.js:1250"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for buttons",
+            "line": " client/js/lib/jquery-2.0.3.js:1261"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for positionals",
+            "line": " client/js/lib/jquery-2.0.3.js:1272"
+        },
+        {
+            "message": "Missing item type\nDetect xml",
+            "line": " client/js/lib/jquery-2.0.3.js:1294"
+        },
+        {
+            "message": "Missing item type\nSets document-related variables once based on the current document",
+            "line": " client/js/lib/jquery-2.0.3.js:1308"
+        },
+        {
+            "message": "Missing item type\nDocument sorting and removing duplicates",
+            "line": " client/js/lib/jquery-2.0.3.js:1718"
+        },
+        {
+            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
+            "line": " client/js/lib/jquery-2.0.3.js:1747"
         },
         {
             "message": "Missing item type\nMoves the map up one in the order (nearer the start)",

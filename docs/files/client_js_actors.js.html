@@ -187,13 +187,13 @@ E.actors = (function() {
 		 * @return {object} An actor object
 		 */
 		create: function(actor) {
-			var actorDefinition = this[actor.type];
+			var actorDefinition = $.extend({}, this[actor.type]);
 			$.extend(actorDefinition, actor);
 			actorDefinition.initial = $.extend({}, actorDefinition);
 			return E[actorDefinition.prototype].create(actorDefinition);
 		},
 		player: {
-			prototype: &#x27;actorPrototype&#x27;,
+			prototype: &#x27;playerPrototype&#x27;,
 			width: 32,
 			height: 32,
 			colour: &#x27;green&#x27;,

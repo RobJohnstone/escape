@@ -211,7 +211,7 @@ E.input = (function() {
 					var key = &#x27;&#x27;+e.which;
 					if (input.keyMap[key] !== undefined) {
 						if (input.keyMap[key] === &#x27;invulnerable&#x27; &amp;&amp; e.type === &#x27;keydown&#x27;) {
-							player.invulnerable = !player.invulnerable;
+							E.player.invulnerable = !E.player.invulnerable;
 						}
 						input.keyState[input.keyMap[key]] = ((e.type === &#x27;keydown&#x27;) ? 1 : 0);
 						return false;
@@ -300,8 +300,8 @@ E.input = (function() {
 				if (input.keyState.up) dy += -5;
 				if (input.keyState.right) dx += 5;
 				if (input.keyState.down) dy += 5;
-				if (dx !== 0 || dy !== 0) player.move({x:dx, y:dy});
-				if (input.mouseState.left) player.fire({x:input.mouseState.x - E.map.offset.x, y:input.mouseState.y - E.map.offset.y});
+				if (dx !== 0 || dy !== 0) E.player.move({x:dx, y:dy});
+				if (input.mouseState.left) E.player.fire({x:input.mouseState.x - E.map.offset.x, y:input.mouseState.y - E.map.offset.y});
 				break;
 			case &#x27;edit&#x27;:
 				//map.mouse.x = input.mouseState.x + $(&#x27;body&#x27;).scrollLeft();
@@ -320,6 +320,30 @@ E.input = (function() {
 	input.stop = function() {
 		$(document).off();
 		return this;
+	};
+
+	/**
+	 * Sets the style of the cursor to be used for this frame
+	 *
+	 * @method setMouseCursor
+	 * @param cursorStyle {string} The css cursor style
+	 * @return this
+	 */
+	input.setMouseCursor = function(cursorStyle) {
+		input._cursorStyle = cursorStyle;
+	};
+
+	/**
+	 * Performs any rendering required by input
+	 *
+	 * @method render
+	 * @return this
+	 */
+	input.render = function() {
+		if (input._cursorStyle) {
+			$(&#x27;#gameCanvas&#x27;).css(&#x27;cursor&#x27;, input._cursorStyle);
+			input._cursorStyle = &#x27;default&#x27;;
+		}
 	};
 
 	return input;

@@ -219,15 +219,14 @@ E.map = (function() {
 				i++;
 			}
 		}
+		E.entities.instances = [];
 		for (i=0; i&lt;map.actors.length; i++) {
-			E.actors.create(map.actors[i]);
-		}
-		if (map.playerStart) {
-			window.player = E.playerPrototype.create(map.playerStart);
+			var actor = E.actors.create(map.actors[i]);
+			if (actor.type === &#x27;player&#x27;) {
+				E.player = actor;
+			}
 		}
 		$(&#x27;#mapScreen&#x27;).html(compiled(map));
-		/*$(&#x27;#mapName&#x27;).text(map.name);
-		$(&#x27;#mapDescription&#x27;).text(map.description);*/
 		return this;
 	};
 
@@ -325,10 +324,26 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.save = function() {
+		var data = {
+			name: map.name,
+			description: map.description,
+			columns: map.columns,
+			rows: map.rows,
+			tileWidth: map.tileWidth,
+			tileHeight: map.tileHeight,
+			offset: map.offset,
+			actors: E.entities.instances.filter(function(entity) {
+				return entity.abbr; // ensure only actors and not other entities
+			}).map(function(entity) {
+				return entity.abbr();
+			}),
+			data: map.data
+
+		};
 		$.ajax({
 			url: &#x27;/maps/&#x27;+map.name,
 			type: &#x27;post&#x27;,
-			data: {data: JSON.stringify(map)}
+			data: {data: JSON.stringify(data)}
 		});
 		return this;
 	};
@@ -578,16 +593,20 @@ E.map = (function() {
 	 * Higlights the tile indicated
 	 *
 	 * @method highlightTile
-	 * @param tile {number} The tile to highlight
+	 * @param tileIndex {number} The tileIndex of the tile to highlight
 	 * @return this
 	 */
-	map.highlightTile = function(tile) {
+	map.highlightTile = function(tileIndex, colour) {
 		if (E.graphics.gameCanvas) {
-			var tileCentre = map.getTileCentre(tile);
-			E.graphics.vectors.command(function() {
-				E.graphics.gameContext.strokeStyle = &#x27;white&#x27;;
-				E.graphics.gameContext.strokeRect(Math.round(tileCentre.x-E.tiles.tileWidth/2)+0.5, Math.round(tileCentre.y-E.tiles.tileHeight/2)+0.5, E.tiles.tileWidth, E.tiles.tileHeight);
-			});
+			var tileCentre = map.getTileCentre(tileIndex);
+			colour = colour || &#x27;white&#x27;;
+			E.graphics.vectors.rect({
+				x: tileCentre.x-E.tiles.tileWidth/2,
+				y: tileCentre.y-E.tiles.tileHeight/2
+			}, {
+				x: E.tiles.tileWidth,
+				y: E.tiles.tileHeight
+			}, colour);
 		}
 		return this;
 	};
@@ -601,6 +620,112 @@ E.map = (function() {
 	map.highlightMouseTile = function() {
 		map.highlightTile(map.getTileIndex(E.input.mouseState));
 		return this;
+	};
+
+	/**
+	 * Resizes the map
+	 *
+	 * @method resize
+	 * @param delta {object} The four properties (top, right, bottom, left) indicate how many columns/rows to add. Negative numbers shrink the map
+	 * @return this
+	 */
+	map.resize = function(delta) {
+		var index;
+		delta.top = delta.top || 0;
+		delta.right = delta.right || 0;
+		delta.bottom = delta.bottom || 0;
+		delta.left = delta.left || 0;
+		if (delta.top) {
+			map.rows += delta.top;
+			if (delta.top &gt; 0) {
+				map.data = _blankRows(delta.top).concat(map.data);
+			}
+			else if (delta.top &lt; 0) {
+				map.data.splice(0, map.columns);
+			}
+		}
+		if (delta.right) {
+			map.columns += delta.right;
+			if (delta.right &gt; 0) {
+				for (index=map.columns; index&lt;map.data.length; index+= map.columns) {
+					map.data.splice(index, 0, 0);
+				}
+			}
+			else if (delta.right &lt; 0) {
+				for (index=map.columns; index&lt;map.data.length; index+= map.columns) {
+					map.data.splice(index, 1);
+				}
+			}
+		}
+		if (delta.bottom) {
+			map.rows += delta.bottom;
+			if (delta.bottom &gt; 0) {
+				map.data = map.data.concat(_blankRows(delta.bottom));
+			}
+			else if (delta.bottom &lt; 0) {
+				map.data.splice(-map.columns, map.columns);
+			}
+		}
+		if (delta.left) {
+			map.columns += delta.left;
+			if (delta.left &gt; 0) {
+				for (index=0; index&lt;map.data.length; index+= map.columns) {
+					map.data.splice(index, 0, 0);
+				}
+			}
+			else if (delta.left &lt; 0) {
+				for (index=0; index&lt;map.data.length; index+= map.columns) {
+					map.data.splice(index, 1);
+				}
+			}
+		}
+
+		var tempEntities = [];
+
+		E.entities.instances.forEach(function(entity, index) {
+			entity.x = entity.x + (delta.left * map.tileWidth);
+			entity.y = entity.y + (delta.top * map.tileHeight);
+			if (map.checkWithinBounds(entity)) {
+				tempEntities.push(entity);
+			}
+		});
+
+		E.entities.instances = tempEntities;
+
+		if (!E.graphics.clipping) {
+			E.graphics.resizeCanvas(&#x27;game&#x27;, map.columns * map.tileWidth, map.rows * map.tileHeight);
+		}
+		return this;
+
+		function _blankRows(numRows) {
+			var newData = new Array(map.columns * numRows);
+			for (var i=0; i&lt;newData.length; i++) {
+				newData[i] = 0;
+			}
+			return newData;
+		}
+	};
+
+	/**
+	 * Returns a string indicating the side of the map closest to the mouse cursor
+	 *
+	 * @method sideClosestToCursor
+	 * @return {string}
+	 */
+	map.sideClosestToCursor = function() {
+		var mapWidth, mapHeight, mapCentre, diff, angle, quadrant,
+			quadrants = [&#x27;top&#x27;, &#x27;right&#x27;, &#x27;bottom&#x27;, &#x27;left&#x27;];
+		mapWidth = map.tileWidth * map.columns;
+		mapHeight = map.tileHeight * map.rows;
+		mapCentre = {x: mapWidth/2, y: mapHeight/2};
+		diff = E.vector.subtract(mapCentre, E.input.mouseState);
+		diff = { // adjust for the fact that the map is unlikely to be perfectly square
+			x: diff.x / mapWidth,
+			y: diff.y / mapHeight
+		};
+		angle = E.vector.angle({x: mapCentre.x/mapWidth, y: mapCentre.y/mapHeight}, diff, true);
+		quadrant = Math.floor(angle * 2 / Math.PI) + 2;
+		return quadrants[quadrant];
 	};
 
 	return map;

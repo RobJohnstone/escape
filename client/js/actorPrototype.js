@@ -51,7 +51,7 @@ E.actorPrototype = (function () {
 	 * Moves actor towards the position indicated, taking into account the actor's speed
 	 * Movement is attempted "as the crow flies" with no route selection
 	 * 
-	 * method moveTowards
+	 * @method moveTowards
 	 * @param position {vector} the location to move towards
 	 * @return this
 	 */

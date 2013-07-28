@@ -217,7 +217,6 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.init = function(mapName) {
-		console.log('game.init('+mapName+')');
 		game.mode = 'edit';
 		E.graphics.init(800, 600, false);
 		E.map.load(mapName, game.start);
@@ -232,7 +231,6 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.start = function() {
-		console.log('game.start');
 		if (!E.graphics.clipping) {
 			E.graphics.resizeCanvas('game', E.map.tileWidth * E.map.columns, E.map.tileHeight * E.map.rows);
 		}
@@ -270,7 +268,6 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.reset = function() {
-		console.log('game.reset');
 		E.entities.instances = [];
 		E.map.init();
 		game.update = true;

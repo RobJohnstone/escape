@@ -336,12 +336,31 @@ E.vector = (function() {
 		v2 = vector.normalise(v2);
 		if (dirMatters) {
 			var v1Angle = Math.atan2(v1.y, v1.x),
-				v2Angle = Math.atan2(v2.y, v2.x);
-			return v2Angle - v1Angle;
+				v2Angle = Math.atan2(v2.y, v2.x),
+				result = v2Angle - v1Angle,
+				abs = Math.abs(result);
+			if (abs &gt; Math.PI) {
+				result = result - (result/abs) * 2 * Math.PI;
+			}
+			return result;
 		}
 		else {
 			return Math.acos(vector.dot(v1, v2));
 		}
+	};
+
+	/**
+	 * Converts an angle (in radians) to a normaLised vector
+	 *
+	 * @method angleToVector
+	 * @param angle {number} The angle (directional and in radians) to convert
+	 * @return {vector} The resulting normalised vector
+	 */
+	vector.angleToVector = function(angle) {
+		return {
+			x: Math.cos(angle),
+			y: Math.sin(angle)
+		};
 	};
 
 	return vector;

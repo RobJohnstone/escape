@@ -179,12 +179,14 @@ E.playerPrototype = (function() {
 	&quot;use strict&quot;;
 
 	return E.actorPrototype.extend({
+		/*
 		width: 32,
 		height: 32,
 		colour: &#x27;green&#x27;,
 		speed: 5,
 		direction: {x: 1, y: 0},
-		invulnerable: true,
+		invulnerable: true,*/
+
 		/**
 		 * Actions to be taken each frame for the player
 		 *
@@ -194,7 +196,6 @@ E.playerPrototype = (function() {
 		process: function() {
 			var tileIndex = E.map.getTileIndex(this);
 			if (E.map.getTileObj(tileIndex).exit) {
-				//E.game.mapComplete();
 				E.game.mode = &#x27;mapComplete&#x27;;
 			}
 			return this;

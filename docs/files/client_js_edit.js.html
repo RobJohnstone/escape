@@ -217,6 +217,7 @@ E.game = (function() {
 			E.campaign.save();
 		});
 		$(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.save&#x27;, function() {
+			E.palette.relinquishTool();
 			E.screen.save();
 		});
 		$(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;.list .delete&#x27;, function(e) {
@@ -384,6 +385,7 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.init = function(mapName) {
+		console.log(&#x27;game.init(&#x27;+mapName+&#x27;)&#x27;);
 		game.mode = &#x27;edit&#x27;;
 		E.graphics.init(800, 600, false);
 		E.map.load(mapName, game.start);
@@ -398,6 +400,7 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.start = function() {
+		console.log(&#x27;game.start&#x27;);
 		if (!E.graphics.clipping) {
 			E.graphics.resizeCanvas(&#x27;game&#x27;, E.map.tileWidth * E.map.columns, E.map.tileHeight * E.map.rows);
 		}
@@ -435,6 +438,7 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.reset = function() {
+		console.log(&#x27;game.reset&#x27;);
 		E.entities.instances = [];
 		E.map.init();
 		game.update = true;

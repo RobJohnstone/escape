@@ -122,11 +122,52 @@ E.baddyPrototype = (function() {
 		if (distance < this.speed) {
 			this.x = this.initial.x;
 			this.y = this.initial.y;
-			this.mode = 'watch';
+			this.mode = this.initial.mode;
 			this.direction = this.initial.direction;
 		}
 		else {
 			this.moveTo(this.initial);
+		}
+		return baddyPrototype;
+	};
+
+	/**
+	 * The baddy goes to its current waypoint, then reverts to its original orders
+	 *
+	 * @method orders.goto
+	 * @return baddyPrototype
+	 */
+	baddyPrototype.orders.goto = function() {
+		var to = E.map.getTileCentre(this.patrolRoute[this.currentWaypoint]);
+		var distance = E.vector.distance(this, to);
+		if (distance < this.speed) {
+			this.x = to.x;
+			this.y = to.y;
+			this.mode = this.initial.mode;
+		}
+		else {
+			this.moveTo(to);
+		}
+		return baddyPrototype;
+	};
+
+	/**
+	 * The baddy patrols between a series of waypoints. When the baddy gets to the end, he returns directly to the first way point and starts again
+	 *
+	 * @method orders.patrol
+	 * @return baddyPrototype
+	 */
+	baddyPrototype.orders.patrol = function() {
+		if (!this.patrolRoute) {
+			throw new Error('This baddy does not have a patrol route specified');
+		}
+		this.currentWaypoint = (this.currentWaypoint === undefined) ? 0 : this.currentWaypoint + 1;
+		if (this.currentWaypoint >= this.patrolRoute.length) {
+			this.currentWaypoint = 0;
+			this.mode = 'returnToStation';
+		}
+		else {
+			this.mode = 'goto';
 		}
 		return baddyPrototype;
 	};

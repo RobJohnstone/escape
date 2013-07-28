@@ -147,8 +147,7 @@ E.game = (function() {
 	game.mapComplete = function() {
 		if (E.campaign.current < E.campaign.data.maps.length -1) {
 			E.campaign.current++;
-			game.pause();
-			game.reset();
+			game.reset(false);
 			E.screen.change('mapScreen');
 		}
 		else {
@@ -161,12 +160,13 @@ E.game = (function() {
 	 * Resets game state in order to allow a new game to start
 	 *
 	 * @method reset
+	 * @param start {boolean} Whether or not to start the game once the map has loaded (defaults to true)
 	 * @return this
 	 */
-	game.reset = function() {
+	game.reset = function(start) {
 		E.entities.instances = [];
 		cancelAnimationFrame(game.animationFrame);
-		game.init(E.campaign.getCurrentmap());
+		game.init(E.campaign.getCurrentmap(), start);
 		return this;
 	};
 

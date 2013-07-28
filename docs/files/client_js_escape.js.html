@@ -238,14 +238,14 @@ E.game = (function() {
 		if (game.mode === &#x27;play&#x27; || game.mode === &#x27;over&#x27;) {
 			E.timer.process();
 			E.entities.process();
-			E.map.position(player);
+			E.map.position(E.player);
 			if (game.mode === &#x27;over&#x27;) {
 				E.graphics.writeText(&#x27;Game over!&#x27;, 20, 30);
 			}
 			game.info();
 			E.graphics.render();
 			E.input.process();
-			if (player.health &lt;= 0 &amp;&amp; game.mode === &#x27;play&#x27;) {
+			if (E.player.health &lt;= 0 &amp;&amp; game.mode === &#x27;play&#x27;) {
 				game.over();
 			}
 			game.animationFrame = window.requestAnimationFrame(game.play);
@@ -270,12 +270,12 @@ E.game = (function() {
 		E.graphics.writeText(&#x27;FPS: &#x27;+Math.round(E.timer.FPS), E.graphics.gameCanvas.width - 150, 30);
 		E.graphics.writeText(&#x27;map.offset.x: &#x27;+E.map.offset.x, E.graphics.gameCanvas.width - 150, 50);
 		E.graphics.writeText(&#x27;map.offset.y: &#x27;+E.map.offset.y, E.graphics.gameCanvas.width - 150, 70);
-		E.graphics.writeText(&#x27;player.x: &#x27;+player.x, E.graphics.gameCanvas.width - 150, 90);
-		E.graphics.writeText(&#x27;player.y: &#x27;+player.y, E.graphics.gameCanvas.width - 150, 110);
-		E.graphics.writeText(&#x27;player.direction.x: &#x27;+player.direction.x, E.graphics.gameCanvas.width - 150, 130);
-		E.graphics.writeText(&#x27;player.direction.y: &#x27;+player.direction.y, E.graphics.gameCanvas.width - 150, 150);
-		E.graphics.writeText(&#x27;player.direction angle: &#x27;+E.vector.angle(player.direction), E.graphics.gameCanvas.width - 200, 170);
-		E.graphics.writeText(&#x27;tile index: &#x27;+E.map.getTileIndex(player), E.graphics.gameCanvas.width - 150, 190);
+		E.graphics.writeText(&#x27;player.x: &#x27;+E.player.x, E.graphics.gameCanvas.width - 150, 90);
+		E.graphics.writeText(&#x27;player.y: &#x27;+E.player.y, E.graphics.gameCanvas.width - 150, 110);
+		E.graphics.writeText(&#x27;player.direction.x: &#x27;+E.player.direction.x, E.graphics.gameCanvas.width - 150, 130);
+		E.graphics.writeText(&#x27;player.direction.y: &#x27;+E.player.direction.y, E.graphics.gameCanvas.width - 150, 150);
+		E.graphics.writeText(&#x27;player.direction angle: &#x27;+E.vector.angle(E.player.direction), E.graphics.gameCanvas.width - 200, 170);
+		E.graphics.writeText(&#x27;tile index: &#x27;+E.map.getTileIndex(E.player), E.graphics.gameCanvas.width - 150, 190);
 		return this;
 	};
 
@@ -315,8 +315,7 @@ E.game = (function() {
 	game.mapComplete = function() {
 		if (E.campaign.current &lt; E.campaign.data.maps.length -1) {
 			E.campaign.current++;
-			game.pause();
-			game.reset();
+			game.reset(false);
 			E.screen.change(&#x27;mapScreen&#x27;);
 		}
 		else {
@@ -329,12 +328,13 @@ E.game = (function() {
 	 * Resets game state in order to allow a new game to start
 	 *
 	 * @method reset
+	 * @param start {boolean} Whether or not to start the game once the map has loaded (defaults to true)
 	 * @return this
 	 */
-	game.reset = function() {
+	game.reset = function(start) {
 		E.entities.instances = [];
 		cancelAnimationFrame(game.animationFrame);
-		game.init(E.campaign.getCurrentmap());
+		game.init(E.campaign.getCurrentmap(), start);
 		return this;
 	};
 

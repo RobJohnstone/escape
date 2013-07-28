@@ -216,7 +216,7 @@ E.graphics = (function() {
 	graphics.initCanvas = function(name, width, height) {
 		if (!width) width = 800;
 		if (!height) height = 600;
-		$(&#x27;#gameContainer&#x27;).append(&#x27;&lt;canvas id=&quot;&#x27;+name+&#x27;Canvas&quot; class=&quot;defaultBorder&quot; width=&quot;&#x27;+ width +&#x27;px&quot; height=&quot;&#x27; + height +&#x27;px&quot;&gt;Your broswer does not support the &quot;canvas element&quot;. To play this game you will need a more modern browser.&lt;/canvas&gt;&#x27;);
+		$(&#x27;#gameContainer&#x27;).html(&#x27;&lt;canvas id=&quot;&#x27;+name+&#x27;Canvas&quot; class=&quot;defaultBorder&quot; width=&quot;&#x27;+ width +&#x27;px&quot; height=&quot;&#x27; + height +&#x27;px&quot;&gt;Your broswer does not support the &quot;canvas element&quot;. To play this game you will need a more modern browser.&lt;/canvas&gt;&#x27;);
 		$(&#x27;#&#x27;+name+&#x27;Canvas&#x27;).css({width: +width+&#x27;px&#x27;, height: height+&#x27;px&#x27;});
 		graphics[name+&#x27;Canvas&#x27;] = document.getElementById(name+&#x27;Canvas&#x27;);
 		graphics[name+&#x27;Context&#x27;] = graphics.gameCanvas.getContext(&#x27;2d&#x27;);
@@ -298,6 +298,7 @@ E.graphics = (function() {
 			this.commands = [];
 			return this;
 		},
+
 		/**
 		 * Adds a vector command to be rendered this frame
 		 *
@@ -307,6 +308,136 @@ E.graphics = (function() {
 		 */
 		command: function(command) {
 			this.commands.push(command);
+			return this;
+		},
+
+		/**
+		 * Draws a line this frame
+		 *
+		 * @method line
+		 * @param start {vector} The start point
+		 * @param end {vector} The end point
+		 * @param colour {string} The colour of the line (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
+		 * @return this
+		 */
+		line: function(start, end, colour, mapCoords) {
+			E.graphics.vectors.command(function() {
+				E.graphics.vectors.lineNow(start, end, colour, mapCoords);
+			});
+			return this;
+		},
+
+		/**
+		 * Draws a line now
+		 *
+		 * @method lineNow
+		 * @param start {vector} The start point
+		 * @param end {vector} The end point
+		 * @param colour {string} The colour of the line (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
+		 * @return this
+		 */
+		lineNow: function(start, end, colour, mapCoords) {
+			var currentStrokeStyle = E.graphics.gameContext.strokeStyle;
+			if (mapCoords) {
+				start = E.vector.add(E.map.offset, start);
+				end = E.vector.add(E.map.offset, end);
+			}
+			start = E.vector.round(start);
+			end = E.vector.round(end);
+			colour = colour || &#x27;white&#x27;;
+			E.graphics.gameContext.strokeStyle = colour;
+			E.graphics.gameContext.beginPath();
+			E.graphics.gameContext.moveTo(start.x, start.y);
+			E.graphics.gameContext.lineTo(end.x, end.y);
+			E.graphics.gameContext.stroke();
+			E.graphics.gameContext.strokeStyle = currentStrokeStyle;
+			return this;
+		},
+
+		/**
+		 * Draws a rectangle (outline only) this frame
+		 *
+		 * @method.rect
+		 * @param topLeft {vector} The coordinates of the top left corner of the rect
+		 * @param dimensions {vector} The width and height of the rect (defailts to 50 for both);
+		 * @param colour {string} The colour of the rect (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
+		 * @return this
+		 */
+		rect: function(topLeft, dimensions, colour, mapCoords) {
+			E.graphics.vectors.command(function() {
+				E.graphics.vectors.rectNow(topLeft, dimensions, colour, mapCoords);
+			});
+			return this;
+		},
+
+		/**
+		 * Draws a rectangle (outline only) now
+		 *
+		 * @method rectNow
+		 * @param topLeft {vector} The coordinates of the top left corner of the rect
+		 * @param dimensions {vector} The width and height of the rect (defailts to 50 for both);
+		 * @param colour {string} The colour of the rect (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
+		 * @return this
+		 */
+		rectNow: function(topLeft, dimensions, colour, mapCoords) {
+			var currentStrokeStyle = E.graphics.gameContext.strokeStyle;
+			if (mapCoords) {
+				topLeft = E.vector.add(E.map.offset, topLeft);
+			}
+			topLeft = E.vector.round(topLeft);
+			colour = colour || &#x27;white&#x27;;
+			dimensions = E.vector.round(dimensions) || {
+				x: 50,
+				y: 50
+			};
+			E.graphics.gameContext.strokeStyle = colour;
+			E.graphics.gameContext.strokeRect(topLeft.x+0.5, topLeft.y+0.5, dimensions.x, dimensions.y);
+			E.graphics.gameContext.strokeStyle = currentStrokeStyle;
+			return this;
+		},
+
+		/**
+		 * Draws a circle (filled) this frame
+		 *
+		 * @method circle
+		 * @param centre {vector} The centre of the circle
+		 * @param radius {number} The radius of the circle (defaults to 50)
+		 * @param colour {string} The colour of the circle (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
+		 * @return this
+		 */
+		circle: function(centre, radius, colour, mapCoords) {
+			E.graphics.vectors.command(function() {
+				E.graphics.vectors.circleNow(centre, radius, colour, mapCoords);
+			});
+			return this;
+		},
+
+		/**
+		 * Draws a circle (filled) now
+		 *
+		 * @method circleNow
+		 * @param centre {vector} The centre of the circle
+		 * @param radius {number} The radius of the circle (defaults to 50)
+		 * @param colour {string} The colour of the circle (defaults to white)
+		 * @param mapCoords {boolean} Whether to use map coords rather than canvas coords (defaults to canvas)
+		 * @return this
+		 */
+		circleNow: function(centre, radius, colour, mapCoords) {
+			if (mapCoords) {
+				centre = E.vector.add(E.map.offset, centre);
+			}
+			centre = E.vector.round(centre);
+			radius = Math.round(radius) || 50;
+			colour = colour || &#x27;white&#x27;;
+			E.graphics.gameContext.beginPath();
+			E.graphics.gameContext.arc(centre.x, centre.y, radius, 0, 2 * Math.PI);
+			E.graphics.gameContext.fillStyle = colour;
+			E.graphics.gameContext.fill();
 			return this;
 		}
 	};
@@ -326,6 +457,8 @@ E.graphics = (function() {
 		}
 		E.map.render();
 		E.entities.render();
+		if (E.palette) E.palette.render();
+		E.input.render();
 		graphics.vectors.render();
 		graphics.renderText();
 		return this;

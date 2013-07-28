@@ -181,20 +181,28 @@ E.palette = (function() {
 	var palette = {};
 
 	palette.tools = {
+		saveMap: {
+			panel: &#x27;file&#x27;,
+			html: &#x27;&lt;div id=&quot;saveMap&quot; class=&quot;save paletteTool&quot;&gt;Save&lt;/div&gt;&#x27;
+		},
+		exitMap: {
+			panel: &#x27;file&#x27;,
+			html: &#x27;&lt;div class=&quot;back paletteTool&quot;&gt;Exit&lt;/div&gt;&#x27;
+		},
 		wall: {
-			type: &#x27;terrain&#x27;,
+			panel: &#x27;tools&#x27;,
 			tilesetIndex: 1
 		},
 		floor: {
-			type: &#x27;terrain&#x27;,
+			panel: &#x27;tools&#x27;,
 			tilesetIndex: 0
 		},
 		exit: {
-			type: &#x27;terrain&#x27;,
+			panel: &#x27;tools&#x27;,
 			tilesetIndex: 2
 		},
 		player: {
-			type: &#x27;entity&#x27;,
+			panel: &#x27;tools&#x27;,
 			/**
 			 * Player tool
 			 *
@@ -202,17 +210,15 @@ E.palette = (function() {
 			 * @return palette
 			 */
 			click: function(tileIndex) {
-				var coords = map.getTileCentre(tileIndex);
-				map.playerStart = {
-					x: coords.x,
-					y: coords.y
-				};
+				var player = map.getTileCentre(tileIndex);
+				player.type = &#x27;player&#x27;;
+				map.actors.push(player);
 				E.game.reset();
 				return palette;
 			}
 		},
 		removeActor: {
-			type: &#x27;eraser&#x27;,
+			panel: &#x27;tools&#x27;,
 			targetType: &#x27;actor&#x27;,
 			/**
 			 * Remove actor tool
@@ -225,16 +231,15 @@ E.palette = (function() {
 				for (var i=0; i&lt;map.actors.length; i++) {
 					if (map.actors[i].x === coords.x &amp;&amp; map.actors[i].y === coords.y) {
 						map.actors.splice(i, 1);
-						E.entities.instances = [];
-						map.init();
-						E.game.update = true;
+						E.game.reset();
+						break;
 					}
 				}
 				return palette;
 			}
 		},
 		baddy: {
-			type: &#x27;entity&#x27;,
+			panel: &#x27;tools&#x27;,
 			/**
 			 * Baddy tool
 			 *
@@ -245,8 +250,172 @@ E.palette = (function() {
 				var baddy = map.getTileCentre(tileIndex);
 				baddy.type = &#x27;baddy&#x27;;
 				map.actors.push(baddy);
-				map.init();
+				E.game.reset();
+				return palette;
+			}
+		},
+		select: {
+			panel: &#x27;tools&#x27;,
+			/**
+			 * Selects a map tile or entity
+			 *
+			 * @method tools.select.click
+			 * @return palette
+			 */
+			click: function(tileIndex) {
+				var selectedEntity, properties = {};
+				palette.selected = {};
+				E.entities.instances.some(function(entity, index) {
+					if (map.getTileIndex(entity) === tileIndex) {
+						palette.selected.entity = entity;
+						selectedEntity = entity;
+						return true;
+					}
+				});
+				palette.selected.tileIndex = tileIndex;
+				if (selectedEntity) {
+					properties = {
+						type: selectedEntity.type,
+						x: selectedEntity.x,
+						y: selectedEntity.y,
+						maxRange: selectedEntity.maxRange,
+						mode: selectedEntity.mode,
+						entityId: selectedEntity.entityId,
+						dirX: selectedEntity.direction.x,
+						dirY: selectedEntity.direction.y
+					};
+				}
+				palette.setProperties(properties);
 				E.game.update = true;
+				return palette;
+			},
+
+			/**
+			 * Highlights the selected tile
+			 *
+			 * @method tools.select.render
+			 * @return palette
+			 */
+			render: function() {
+				if (palette.selected &amp;&amp; palette.selected.tileIndex !== undefined) {
+					map.highlightTile(palette.selected.tileIndex, &#x27;orange&#x27;);
+				}
+				return palette;
+			}
+		},
+		rotate: {
+			panel: &#x27;tools&#x27;,
+			/**
+			 * rotates the selected object
+			 *
+			 * @method tools.rotate.click
+			 * @return palette
+			 */
+			click: function(tileIndex) {
+				if (palette.selected &amp;&amp; palette.selected.entity !== undefined) {
+					var mouse = E.input.mouseState,
+						diff = E.vector.subtract(palette.selected.entity, mouse),
+						xAxis = {x:1, y:0},
+						angle = E.vector.angle(xAxis, diff, true);
+					palette.selected.entity.direction = E.vector.angleToVector(angle);
+					E.game.update = true;
+					return palette;
+				}
+				else {
+					alert(&#x27;Please select an entity first&#x27;);
+				}
+			},
+
+			/**
+			 * Draws a line from the selected entity to the current mouse cursor position
+			 *
+			 * @method tools.rotate.render
+			 * @return palette
+			 */
+			render: function() {
+				if (palette.selected &amp;&amp; palette.selected.entity !== undefined) {
+					E.graphics.vectors.line(palette.selected.entity, E.input.mouseState);
+				}
+				return palette;
+			}
+		},
+		expand: {
+			panel: &#x27;tools&#x27;,
+			/**
+			 * Adds an extra row / column to the side of the map closest to the cursor
+			 *
+			 * @method tools.expand.click
+			 * @return palette
+			 */
+			click: function() {
+				var delta = {};
+				delta[map.sideClosestToCursor()] = 1;
+				map.resize(delta);
+				E.game.update = true;
+				return palette;
+			},
+
+			/**
+			 * Sets the mouse cursor to an arrow indicating which side will be expanded
+			 *
+			 * @method tools.expand.render
+			 * @return palette;
+			 */
+			render: function() {
+				var cursorStyles = {
+					top: &#x27;n-resize&#x27;,
+					right: &#x27;e-resize&#x27;,
+					bottom: &#x27;s-resize&#x27;,
+					left: &#x27;w-resize&#x27;
+				}, side = map.sideClosestToCursor();
+				E.input.setMouseCursor(cursorStyles[side]);
+				return palette;
+			}
+		},
+		reduce: {
+			panel: &#x27;tools&#x27;,
+			/**
+			 * Removes a row / column from the side of the map closest to the cursor
+			 *
+			 * @method tools.reduce.click
+			 * @return palette
+			 */
+			click: function() {
+				var delta = {};
+				delta[map.sideClosestToCursor()] = -1;
+				map.resize(delta);
+				E.game.update = true;
+				return palette;
+			},
+
+			/**
+			 * Sets the mouse cursor to an arrow indicating which side will be expanded
+			 *
+			 * @method tools.expand.render
+			 * @return palette;
+			 */
+			render: function() {
+				var cursorStyles = {
+					top: &#x27;n-resize&#x27;,
+					right: &#x27;e-resize&#x27;,
+					bottom: &#x27;s-resize&#x27;,
+					left: &#x27;w-resize&#x27;
+				}, side = map.sideClosestToCursor();
+				E.input.setMouseCursor(cursorStyles[side]);
+				switch (side) {
+					case &#x27;top&#x27;:
+						E.graphics.vectors.rect({x: 0, y: 0}, {x: E.map.tileWidth * E.map.columns, y: E.map.tileHeight}, &#x27;red&#x27;);
+						break;
+					case &#x27;right&#x27;:
+						E.graphics.vectors.rect({x: E.map.tileWidth * (E.map.columns-1), y: 0}, {x: E.map.tileWidth, y: E.map.tileHeight * E.map.rows}, &#x27;red&#x27;);
+						break;
+					case &#x27;bottom&#x27;:
+						E.graphics.vectors.rect({x: 0, y: E.map.tileHeight * (E.map.rows-1)}, {x: E.map.tileWidth * E.map.columns, y: E.map.tileHeight}, &#x27;red&#x27;);
+						break;
+					case &#x27;left&#x27;:
+						E.graphics.vectors.rect({x: 0, y: 0}, {x: E.map.tileWidth, y: E.map.tileHeight * E.map.rows}, &#x27;red&#x27;);
+						break;
+				}
 				return palette;
 			}
 		}
@@ -277,6 +446,36 @@ E.palette = (function() {
 	};
 
 	/**
+	 * Changes the current tool
+	 *
+	 * @method changeTool
+	 * @return this
+	 */
+	palette.changeTool = function(toolName) {
+		if (palette.tools[toolName].immediate) {
+			palette.tools[toolName].click();
+			E.screen.update();
+		}
+		else {
+			palette.prevTool = palette.currentTool;
+			$(&#x27;.paletteTool&#x27;).removeClass(&#x27;selected&#x27;);
+			$(&#x27;#&#x27;+toolName).addClass(&#x27;selected&#x27;);
+			palette.currentTool = toolName;
+		}
+		return this;
+	};
+
+	/**
+	 * Makes the previously current tool the active one
+	 *
+	 * @method relinquishTool
+	 * @return this
+	 */
+	palette.relinquishTool = function() {
+		palette.changeTool(palette.prevTool);
+	};
+
+	/**
 	 * Initialises the command palette
 	 *
 	 * Includes a generic event handler for using the currently selected tool
@@ -285,11 +484,26 @@ E.palette = (function() {
 	 * @return this
 	 */
 	palette.init = function() {
-		palette.show();
-		palette.$ = $(&#x27;#palette&#x27;);
+		var template = $(&#x27;#paletteTemplate&#x27;).text().trim(),
+			compiled = _.template(template),
+			tools = {
+				file: {},
+				tools: {}
+			};
 		for (var toolName in palette.tools) {
-			palette.$.append(&#x27;&lt;p class=&quot;tool&quot; id=&quot;&#x27;+toolName+&#x27;&quot;&gt;&#x27;+toolName+&#x27;&lt;p&gt;&#x27;);
+			switch (palette.tools[toolName].panel) {
+				case &#x27;file&#x27;:
+					tools.file[toolName] = palette.tools[toolName];
+					break;
+				case &#x27;tools&#x27;:
+					tools.tools[toolName] = palette.tools[toolName];
+					break;
+				default:
+					throw new Error(&#x27;The panel &quot;&#x27;+palette.tools[toolName].panel+&#x27;&quot; for the &#x27;+toolName+&#x27; tool does not exist&#x27;);
+			}
 		}
+		$(&#x27;#palette&#x27;).html(compiled(tools));
+		palette.show();
 		$(&#x27;#&#x27;+palette.currentTool).addClass(&#x27;selected&#x27;);
 		$(&#x27;#gameCanvas&#x27;).on({
 			click: function() {
@@ -298,14 +512,47 @@ E.palette = (function() {
 				if (typeof palette.tools[palette.currentTool].click === &#x27;function&#x27;) {
 					palette.tools[palette.currentTool].click(tileIndex);
 				}
-				else {
+				else if (typeof palette.tools[palette.currentTool].html !== &#x27;string&#x27;) {
 					tilesetIndex = palette.tools[palette.currentTool].tilesetIndex;
 					map.data[tileIndex] = tilesetIndex;
-					E.game.update = true;
+					E.game.reset();
 				}
 				E.screen.update();
 			}
 		});
+		return this;
+	};
+
+	/**
+	 * Sets the properties that are to be displayed in the properties panel
+	 *
+	 * @method setProperties
+	 * @param properties {object} The properties to be set. Note that all properties must be primatives (not objects)
+	 * @return this
+	 */
+	palette.setProperties = function(properties) {
+		var template = $(&#x27;#palettePropertiesTemplate&#x27;).text().trim(),
+			compiled = _.template(template),
+			propObj = {
+				properties: properties
+			};
+		$(&#x27;#propertiesPanel&#x27;).html(compiled(propObj));
+		return this;
+	};
+
+	/**
+	 * Carries out rendering actions on behalf of palette tools
+	 *
+	 * @method render
+	 * @return this
+	 */
+	palette.render = function() {
+		if (palette.selected) {
+			palette.tools.select.render();
+		}
+		if (palette.currentTool &amp;&amp; palette.currentTool !== &#x27;select&#x27; &amp;&amp; typeof palette.tools[palette.currentTool].render === &#x27;function&#x27;) {
+			palette.tools[palette.currentTool].render();
+		}
 		return this;
 	};
 
@@ -315,20 +562,13 @@ E.palette = (function() {
 	 * Event handlers bound after dom loaded
 	 */
 	$(function() {
-		$(&#x27;#palette&#x27;).on({
-			click: function() {
-				var toolName = $(this).attr(&#x27;id&#x27;);
-				$(&#x27;.tool&#x27;).removeClass(&#x27;selected&#x27;);
-				$(&#x27;#&#x27;+toolName).addClass(&#x27;selected&#x27;);
-				palette.currentTool = toolName;
-			}
-		}, &#x27;.tool&#x27;);
-		$(&#x27;#palette&#x27;).on({
-			click: function() {
-				map.save();
-				$(&#x27;#saveMap&#x27;).text(&#x27;Save&#x27;);
-			}
-		}, &#x27;#saveMap&#x27;);
+		$(&#x27;#palette&#x27;).on(&#x27;click&#x27;, &#x27;.paletteTool&#x27;, function() {
+			var toolName = $(this).attr(&#x27;id&#x27;);
+			if (toolName) palette.changeTool(toolName);
+		});
+		$(&#x27;#palette&#x27;).on(&#x27;click&#x27;, &#x27;#saveMap&#x27;, function() {
+			map.save();
+		});
 	});
 
 	return palette;

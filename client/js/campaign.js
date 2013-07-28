@@ -41,8 +41,7 @@ E.campaign = (function() {
 					_successHandler(campaignObj);
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
-					console.log('campaign loading error: ');
-					console.log(textStatus);
+					throw new Error('campaign loading error: '+textStatus);
 				}
 			});
 		}

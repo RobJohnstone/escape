@@ -230,12 +230,7 @@ E.projectilePrototype = (function() {
 	 * @return this
 	 */
 	projectilePrototype.render = function() {
-		var x = E.map.offset.x + this.x,
-			y = E.map.offset.y + this.y;
-		E.graphics.gameContext.beginPath();
-		E.graphics.gameContext.arc(x, y, this.halfWidth, 0, 2 * Math.PI);
-		E.graphics.gameContext.fillStyle = &#x27;yellow&#x27;;
-		E.graphics.gameContext.fill();
+		E.graphics.vectors.circleNow(this, this.halfWidth, &#x27;yellow&#x27;, true);
 		return this;
 	};
 
