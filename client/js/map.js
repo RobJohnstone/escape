@@ -533,5 +533,27 @@ E.map = (function() {
 		}
 	};
 
+	/**
+	 * Returns a string indicating the side of the map closest to the mouse cursor
+	 *
+	 * @method sideClosestToCursor
+	 * @return {string}
+	 */
+	map.sideClosestToCursor = function() {
+		var mapWidth, mapHeight, mapCentre, diff, angle, quadrant,
+			quadrants = ['top', 'right', 'bottom', 'left'];
+		mapWidth = map.tileWidth * map.columns;
+		mapHeight = map.tileHeight * map.rows;
+		mapCentre = {x: mapWidth/2, y: mapHeight/2};
+		diff = E.vector.subtract(mapCentre, E.input.mouseState);
+		diff = { // adjust for the fact that the map is unlikely to be perfectly square
+			x: diff.x / mapWidth,
+			y: diff.y / mapHeight
+		};
+		angle = E.vector.angle({x: mapCentre.x/mapWidth, y: mapCentre.y/mapHeight}, diff, true);
+		quadrant = Math.floor(angle * 2 / Math.PI) + 2;
+		return quadrants[quadrant];
+	};
+
 	return map;
 })();

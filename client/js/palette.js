@@ -171,63 +171,36 @@ E.palette = (function() {
 				return palette;
 			}
 		},
-		addRowTop: {
+		expand: {
 			panel: 'tools',
-			immediate: true,
 			/**
-			 * Adds an extra row to the top of the map
+			 * Adds an extra row / column to the side of the map closest to the cursor
 			 *
-			 * @method tools.addRowTop.click
+			 * @method tools.expand.click
 			 * @return palette
 			 */
 			click: function() {
-				map.resize({top: 1});
+				var delta = {};
+				delta[map.sideClosestToCursor()] = 1;
+				map.resize(delta);
 				E.game.update = true;
 				return palette;
-			}
-		},
-		addColumnRight: {
-			panel: 'tools',
-			immediate: true,
+			},
+
 			/**
-			 * Adds an extra column to the right hand edge of the map
+			 * Sets the mouse cursor to an arrow indicating which side will be expanded
 			 *
-			 * @method tools.addColumnsRight.click
-			 * @return palette
+			 * @method tools.expand.render
+			 * @return palette;
 			 */
-			click: function() {
-				map.resize({right: 1});
-				E.game.update = true;
-				return palette;
-			}
-		},
-		addRowBottom: {
-			panel: 'tools',
-			immediate: true,
-			/**
-			 * Adds an extra row to the top of the map
-			 *
-			 * @method tools.addRowBottom.click
-			 * @return palette
-			 */
-			click: function() {
-				map.resize({bottom: 1});
-				E.game.update = true;
-				return palette;
-			}
-		},
-		addColumnLeft: {
-			panel: 'tools',
-			immediate: true,
-			/**
-			 * Adds an extra row to the top of the map
-			 *
-			 * @method tools.addColumnLeft.click
-			 * @return palette
-			 */
-			click: function() {
-				map.resize({left: 1});
-				E.game.update = true;
+			render: function() {
+				var cursorStyles = {
+					top: 'n-resize',
+					right: 'e-resize',
+					bottom: 's-resize',
+					left: 'w-resize'
+				}, side = map.sideClosestToCursor();
+				E.input.setMouseCursor(cursorStyles[side]);
 				return palette;
 			}
 		},

@@ -154,5 +154,29 @@ E.input = (function() {
 		return this;
 	};
 
+	/**
+	 * Sets the style of the cursor to be used for this frame
+	 *
+	 * @method setMouseCursor
+	 * @param cursorStyle {string} The css cursor style
+	 * @return this
+	 */
+	input.setMouseCursor = function(cursorStyle) {
+		input._cursorStyle = cursorStyle;
+	};
+
+	/**
+	 * Performs any rendering required by input
+	 *
+	 * @method render
+	 * @return this
+	 */
+	input.render = function() {
+		if (input._cursorStyle) {
+			$('#gameCanvas').css('cursor', input._cursorStyle);
+			input._cursorStyle = 'default';
+		}
+	};
+
 	return input;
 })();

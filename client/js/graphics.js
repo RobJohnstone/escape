@@ -274,6 +274,7 @@ E.graphics = (function() {
 		E.map.render();
 		E.entities.render();
 		if (E.palette) E.palette.render();
+		E.input.render();
 		graphics.vectors.render();
 		graphics.renderText();
 		return this;
