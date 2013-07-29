@@ -236,7 +236,7 @@ E.palette = (function() {
 			/**
 			 * Sets the mouse cursor to an arrow indicating which side will be expanded
 			 *
-			 * @method tools.expand.render
+			 * @method tools.reduce.render
 			 * @return palette;
 			 */
 			render: function() {

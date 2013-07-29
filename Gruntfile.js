@@ -4,12 +4,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-bumpup');
   grunt.loadNpmTasks('grunt-open');
+  grunt.loadNpmTasks('grunt-contrib-yuidoc');
 
   // set working directory to client
   grunt.file.setBase('client');
 
   // config
   grunt.initConfig({
+    pkg: grunt.file.readJSON('../package.json'),
     jshint: {
       all: ['../Gruntfile.js', 'js/**/*.js', '!js/lib/*.js']
     },
@@ -43,12 +45,27 @@ module.exports = function(grunt) {
       dev: {
         path: 'http://localhost:8080/dev.html'
       }
+    },
+    yuidoc: {
+      compile: {
+        name: '<%= pkg.name %>',
+        description: '<%= pkg.description %>',
+        version: '<%= pkg.version %>',
+        url: '<%= pkg.homepage %>',
+        options: {
+            paths: ".",
+            linkNatives: "true",
+            outdir: "../docs",
+            tabtospace: 4
+        }
+      }
     }
   });
   grunt.registerTask('default', ['build', 'bumpup:build']);
   grunt.registerTask('build', function() {
     grunt.task.run('jshint');
     grunt.task.run('uglify');
+    grunt.task.run('yuidoc');
   });
   grunt.registerTask('patch', ['build', 'bumpup:patch']);
   grunt.registerTask('minor', ['build', 'bumpup:minor']);
