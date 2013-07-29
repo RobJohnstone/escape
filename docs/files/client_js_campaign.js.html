@@ -209,8 +209,7 @@ E.campaign = (function() {
 					_successHandler(campaignObj);
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
-					console.log(&#x27;campaign loading error: &#x27;);
-					console.log(textStatus);
+					throw new Error(&#x27;campaign loading error: &#x27;+textStatus);
 				}
 			});
 		}

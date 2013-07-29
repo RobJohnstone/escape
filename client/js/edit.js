@@ -49,7 +49,6 @@ E.game = (function() {
 			E.campaign.save();
 		});
 		$('body').on('click', '.save', function() {
-			E.palette.relinquishTool();
 			E.screen.save();
 		});
 		$('body').on('click', '.list .delete', function(e) {

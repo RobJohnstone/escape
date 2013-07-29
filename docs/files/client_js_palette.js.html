@@ -183,10 +183,12 @@ E.palette = (function() {
 	palette.tools = {
 		saveMap: {
 			panel: &#x27;file&#x27;,
+			immediate: true,
 			html: &#x27;&lt;div id=&quot;saveMap&quot; class=&quot;save paletteTool&quot;&gt;Save&lt;/div&gt;&#x27;
 		},
 		exitMap: {
 			panel: &#x27;file&#x27;,
+			immediate: true,
 			html: &#x27;&lt;div class=&quot;back paletteTool&quot;&gt;Exit&lt;/div&gt;&#x27;
 		},
 		wall: {
@@ -286,6 +288,7 @@ E.palette = (function() {
 					};
 				}
 				palette.setProperties(properties);
+				palette.refresh();
 				E.game.update = true;
 				return palette;
 			},
@@ -297,14 +300,24 @@ E.palette = (function() {
 			 * @return palette
 			 */
 			render: function() {
-				if (palette.selected &amp;&amp; palette.selected.tileIndex !== undefined) {
-					map.highlightTile(palette.selected.tileIndex, &#x27;orange&#x27;);
+				var entity;
+				if (palette.selected) {
+					entity = palette.selected.entity;
+					if (palette.selected.tileIndex !== undefined) {
+						map.highlightTile(palette.selected.tileIndex, &#x27;orange&#x27;);
+						if (entity &amp;&amp; entity.renderPatrolRoute) {
+							entity.renderPatrolRoute();
+						}
+					}
 				}
 				return palette;
 			}
 		},
 		rotate: {
 			panel: &#x27;tools&#x27;,
+			testPreconditions: function() {
+				return !!(palette.selected &amp;&amp; palette.selected.entity);
+			},
 			/**
 			 * rotates the selected object
 			 *
@@ -418,6 +431,63 @@ E.palette = (function() {
 				}
 				return palette;
 			}
+		},
+		patrol: {
+			panel: &#x27;tools&#x27;,
+			testPreconditions: function() {
+				return !!(palette.selected &amp;&amp; palette.selected.entity &amp;&amp; palette.selected.entity.renderPatrolRoute);
+			},
+
+			/**
+			 * Initialises the patrol tool by clearing the currently selected entity&#x27;s patrol route
+			 *
+			 * @method init
+			 * @return palette
+			 */
+			init: function() {
+				if (palette.selected &amp;&amp; palette.selected.entity !== undefined) {
+					var entity = palette.selected.entity;
+					entity.patrolRoute = [map.getTileIndex(entity)];
+					E.game.update = true;
+				}
+				return palette;		
+			},
+
+			/**
+			 * Sets a patrol route for an actor
+			 *
+			 * @method tools.patrol.click
+			 * @return palette
+			 */
+			click: function() {
+				if (palette.selected &amp;&amp; palette.selected.entity !== undefined) {
+					var entity = palette.selected.entity;
+					if (entity.patrolRoute === undefined) {
+						entity.patrolRoute = [map.getTileIndex(entity)];
+					}
+					entity.patrolRoute.push(map.getTileIndex(E.input.mouseState));
+					entity.mode = &#x27;patrol&#x27;;
+					E.game.update = true;
+					return palette;
+				}
+			},
+			/**
+			 * Displays the patrol route
+			 *
+			 * @method tools.patrol.render
+			 * @return palette
+			 */
+			render: function() {
+				var entity = palette.selected.entity,
+					lineStart,
+					lineEnd;
+				if (palette.selected &amp;&amp; palette.selected.entity !== undefined) {
+					lineStart = map.getTileCentre(entity.patrolRoute.slice(-1)[0]);
+					lineEnd = map.getTileCentre(map.getTileIndex(E.input.mouseState));
+					E.graphics.vectors.line(lineStart, lineEnd, &#x27;grey&#x27;, true);
+				}
+				return palette;
+			}
 		}
 	};
 
@@ -452,27 +522,22 @@ E.palette = (function() {
 	 * @return this
 	 */
 	palette.changeTool = function(toolName) {
-		if (palette.tools[toolName].immediate) {
-			palette.tools[toolName].click();
+		var toolObj = palette.tools[toolName];
+		if (typeof toolObj.init === &#x27;function&#x27;) {
+			toolObj.init();
+		}
+		if (toolObj.immediate) {
+			if (toolObj.click) toolObj.click();
 			E.screen.update();
 		}
 		else {
 			palette.prevTool = palette.currentTool;
+			palette.currentTool = toolName;
+			palette.refresh();
 			$(&#x27;.paletteTool&#x27;).removeClass(&#x27;selected&#x27;);
 			$(&#x27;#&#x27;+toolName).addClass(&#x27;selected&#x27;);
-			palette.currentTool = toolName;
 		}
 		return this;
-	};
-
-	/**
-	 * Makes the previously current tool the active one
-	 *
-	 * @method relinquishTool
-	 * @return this
-	 */
-	palette.relinquishTool = function() {
-		palette.changeTool(palette.prevTool);
 	};
 
 	/**
@@ -484,25 +549,7 @@ E.palette = (function() {
 	 * @return this
 	 */
 	palette.init = function() {
-		var template = $(&#x27;#paletteTemplate&#x27;).text().trim(),
-			compiled = _.template(template),
-			tools = {
-				file: {},
-				tools: {}
-			};
-		for (var toolName in palette.tools) {
-			switch (palette.tools[toolName].panel) {
-				case &#x27;file&#x27;:
-					tools.file[toolName] = palette.tools[toolName];
-					break;
-				case &#x27;tools&#x27;:
-					tools.tools[toolName] = palette.tools[toolName];
-					break;
-				default:
-					throw new Error(&#x27;The panel &quot;&#x27;+palette.tools[toolName].panel+&#x27;&quot; for the &#x27;+toolName+&#x27; tool does not exist&#x27;);
-			}
-		}
-		$(&#x27;#palette&#x27;).html(compiled(tools));
+		palette.refresh();
 		palette.show();
 		$(&#x27;#&#x27;+palette.currentTool).addClass(&#x27;selected&#x27;);
 		$(&#x27;#gameCanvas&#x27;).on({
@@ -556,6 +603,43 @@ E.palette = (function() {
 		return this;
 	};
 
+	/**
+	 * refreshes the display of the palette
+	 *
+	 * @method refresh
+	 * @return this
+	 */
+	palette.refresh = function() {
+		var template = $(&#x27;#paletteTemplate&#x27;).text().trim(),
+			compiled = _.template(template),
+			tools = {
+				file: {},
+				tools: {}
+			},
+			testPreconditions;
+		for (var toolName in palette.tools) {
+			switch (palette.tools[toolName].panel) {
+				case &#x27;file&#x27;:
+					tools.file[toolName] = palette.tools[toolName];
+					break;
+				case &#x27;tools&#x27;:
+					tools.tools[toolName] = palette.tools[toolName];
+					break;
+				default:
+					throw new Error(&#x27;The panel &quot;&#x27;+palette.tools[toolName].panel+&#x27;&quot; for the &#x27;+toolName+&#x27; tool does not exist&#x27;);
+			}
+			testPreconditions = palette.tools[toolName].testPreconditions; 
+			if (typeof testPreconditions === &#x27;function&#x27; &amp;&amp; !testPreconditions()) {
+				tools[palette.tools[toolName].panel][toolName].disabled = true;
+			}
+			else {
+				tools[palette.tools[toolName].panel][toolName].disabled = false;
+			}
+		}
+		$(&#x27;#palette&#x27;).html(compiled(tools));
+		return this;
+	};
+
 	/*
 	 * Event handlers
 	 *
@@ -563,8 +647,10 @@ E.palette = (function() {
 	 */
 	$(function() {
 		$(&#x27;#palette&#x27;).on(&#x27;click&#x27;, &#x27;.paletteTool&#x27;, function() {
-			var toolName = $(this).attr(&#x27;id&#x27;);
-			if (toolName) palette.changeTool(toolName);
+			if (!$(this).hasClass(&#x27;disabled&#x27;)) {
+				var toolName = $(this).attr(&#x27;id&#x27;);
+				if (toolName) palette.changeTool(toolName);
+			}
 		});
 		$(&#x27;#palette&#x27;).on(&#x27;click&#x27;, &#x27;#saveMap&#x27;, function() {
 			map.save();

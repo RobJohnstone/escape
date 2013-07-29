@@ -79,3 +79,7 @@ body {
 	display: inline-block;
 	min-width: 50px;
 }
+
+.disabled {
+	color: gray;
+}

@@ -72,14 +72,14 @@
 		<div id="toolsPanel" class="palettePanel">
 			<h3>Tools:</h3>
 			<% for (toolName in tools) { %>
-				<div class="paletteTool" id="<%= toolName %>"><%= toolName %></div>
+				<div class="paletteTool <% if(tools[toolName].disabled) print('disabled'); %>" id="<%= toolName %>"><%= toolName %></div>
 			<% } %>
 		</div>
 		<div id="propertiesPanel" class="palettePanel"></div>
 	</script>
 	<script type="text/template" id="palettePropertiesTemplate">
 		<h3>Properties:</h3>
-		<% console.log(properties); for (var prop in properties) {
+		<% for (var prop in properties) {
 			if (!_.isObject(properties[prop])) {%>
 			<p class="paletteProperty"><%= prop %>: <%= properties[prop] %></p>
 		<% }} %>

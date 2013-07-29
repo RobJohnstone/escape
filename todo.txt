@@ -1,11 +1,26 @@
+BUGS:
+
+Selecting an item removes the highlight from the select command
+Event handlers still firing even when the map editor has exited to the other screens
+There is too much anti-aliasing on the lines drawn with graphics.lineNow - is a half picel offset required?
+
 TASKS:
 
-Implement extra baddy orders
-	patrol
+Check use Strict
+
+Add patrol tool to editor (done but shit. Must be able to overwrite existing info rather than merely adding new waypoints)
+
+Improve modularisation of code (modules are way to long)
+
+Add support for walking rather than travelling at max velocity
 
 Create a prototype campaign
 
+Tests!
+
 Write bitmap graphics code (separate into separate tasks)
+
+Improve path finding so that if there are no obstacles, move directly rather than going from tile centre to tile centre as used with A*
 
 Tidy up routing in server.js (there's huge repetition between camapigns and maps)
 

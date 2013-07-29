@@ -208,5 +208,22 @@ E.baddyPrototype = (function() {
 		this.target.direction = E.vector.clone(target.direction);
 		return this;
 	};
+
+	/**
+	 * Renders the current patrol route
+	 *
+	 * @method renderPatrolRoute
+	 * @return this
+	 */
+	baddyPrototype.renderPatrolRoute = function() {
+		var route = this.patrolRoute;
+		if (route) {
+			for (var i=0, len=route.length-1; i<len; i++) {
+				E.graphics.vectors.line(E.map.getTileCentre(route[i]), E.map.getTileCentre(route[i+1]), 'white', true);
+			}
+		}
+		return this;
+	};
+
 	return baddyPrototype;
 })();

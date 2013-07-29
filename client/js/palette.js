@@ -15,10 +15,12 @@ E.palette = (function() {
 	palette.tools = {
 		saveMap: {
 			panel: 'file',
+			immediate: true,
 			html: '<div id="saveMap" class="save paletteTool">Save</div>'
 		},
 		exitMap: {
 			panel: 'file',
+			immediate: true,
 			html: '<div class="back paletteTool">Exit</div>'
 		},
 		wall: {
@@ -118,6 +120,7 @@ E.palette = (function() {
 					};
 				}
 				palette.setProperties(properties);
+				palette.refresh();
 				E.game.update = true;
 				return palette;
 			},
@@ -129,14 +132,24 @@ E.palette = (function() {
 			 * @return palette
 			 */
 			render: function() {
-				if (palette.selected && palette.selected.tileIndex !== undefined) {
-					map.highlightTile(palette.selected.tileIndex, 'orange');
+				var entity;
+				if (palette.selected) {
+					entity = palette.selected.entity;
+					if (palette.selected.tileIndex !== undefined) {
+						map.highlightTile(palette.selected.tileIndex, 'orange');
+						if (entity && entity.renderPatrolRoute) {
+							entity.renderPatrolRoute();
+						}
+					}
 				}
 				return palette;
 			}
 		},
 		rotate: {
 			panel: 'tools',
+			testPreconditions: function() {
+				return !!(palette.selected && palette.selected.entity);
+			},
 			/**
 			 * rotates the selected object
 			 *
@@ -250,6 +263,63 @@ E.palette = (function() {
 				}
 				return palette;
 			}
+		},
+		patrol: {
+			panel: 'tools',
+			testPreconditions: function() {
+				return !!(palette.selected && palette.selected.entity && palette.selected.entity.renderPatrolRoute);
+			},
+
+			/**
+			 * Initialises the patrol tool by clearing the currently selected entity's patrol route
+			 *
+			 * @method init
+			 * @return palette
+			 */
+			init: function() {
+				if (palette.selected && palette.selected.entity !== undefined) {
+					var entity = palette.selected.entity;
+					entity.patrolRoute = [map.getTileIndex(entity)];
+					E.game.update = true;
+				}
+				return palette;		
+			},
+
+			/**
+			 * Sets a patrol route for an actor
+			 *
+			 * @method tools.patrol.click
+			 * @return palette
+			 */
+			click: function() {
+				if (palette.selected && palette.selected.entity !== undefined) {
+					var entity = palette.selected.entity;
+					if (entity.patrolRoute === undefined) {
+						entity.patrolRoute = [map.getTileIndex(entity)];
+					}
+					entity.patrolRoute.push(map.getTileIndex(E.input.mouseState));
+					entity.mode = 'patrol';
+					E.game.update = true;
+					return palette;
+				}
+			},
+			/**
+			 * Displays the patrol route
+			 *
+			 * @method tools.patrol.render
+			 * @return palette
+			 */
+			render: function() {
+				var entity = palette.selected.entity,
+					lineStart,
+					lineEnd;
+				if (palette.selected && palette.selected.entity !== undefined) {
+					lineStart = map.getTileCentre(entity.patrolRoute.slice(-1)[0]);
+					lineEnd = map.getTileCentre(map.getTileIndex(E.input.mouseState));
+					E.graphics.vectors.line(lineStart, lineEnd, 'grey', true);
+				}
+				return palette;
+			}
 		}
 	};
 
@@ -284,27 +354,22 @@ E.palette = (function() {
 	 * @return this
 	 */
 	palette.changeTool = function(toolName) {
-		if (palette.tools[toolName].immediate) {
-			palette.tools[toolName].click();
+		var toolObj = palette.tools[toolName];
+		if (typeof toolObj.init === 'function') {
+			toolObj.init();
+		}
+		if (toolObj.immediate) {
+			if (toolObj.click) toolObj.click();
 			E.screen.update();
 		}
 		else {
 			palette.prevTool = palette.currentTool;
+			palette.currentTool = toolName;
+			palette.refresh();
 			$('.paletteTool').removeClass('selected');
 			$('#'+toolName).addClass('selected');
-			palette.currentTool = toolName;
 		}
 		return this;
-	};
-
-	/**
-	 * Makes the previously current tool the active one
-	 *
-	 * @method relinquishTool
-	 * @return this
-	 */
-	palette.relinquishTool = function() {
-		palette.changeTool(palette.prevTool);
 	};
 
 	/**
@@ -316,25 +381,7 @@ E.palette = (function() {
 	 * @return this
 	 */
 	palette.init = function() {
-		var template = $('#paletteTemplate').text().trim(),
-			compiled = _.template(template),
-			tools = {
-				file: {},
-				tools: {}
-			};
-		for (var toolName in palette.tools) {
-			switch (palette.tools[toolName].panel) {
-				case 'file':
-					tools.file[toolName] = palette.tools[toolName];
-					break;
-				case 'tools':
-					tools.tools[toolName] = palette.tools[toolName];
-					break;
-				default:
-					throw new Error('The panel "'+palette.tools[toolName].panel+'" for the '+toolName+' tool does not exist');
-			}
-		}
-		$('#palette').html(compiled(tools));
+		palette.refresh();
 		palette.show();
 		$('#'+palette.currentTool).addClass('selected');
 		$('#gameCanvas').on({
@@ -388,6 +435,43 @@ E.palette = (function() {
 		return this;
 	};
 
+	/**
+	 * refreshes the display of the palette
+	 *
+	 * @method refresh
+	 * @return this
+	 */
+	palette.refresh = function() {
+		var template = $('#paletteTemplate').text().trim(),
+			compiled = _.template(template),
+			tools = {
+				file: {},
+				tools: {}
+			},
+			testPreconditions;
+		for (var toolName in palette.tools) {
+			switch (palette.tools[toolName].panel) {
+				case 'file':
+					tools.file[toolName] = palette.tools[toolName];
+					break;
+				case 'tools':
+					tools.tools[toolName] = palette.tools[toolName];
+					break;
+				default:
+					throw new Error('The panel "'+palette.tools[toolName].panel+'" for the '+toolName+' tool does not exist');
+			}
+			testPreconditions = palette.tools[toolName].testPreconditions; 
+			if (typeof testPreconditions === 'function' && !testPreconditions()) {
+				tools[palette.tools[toolName].panel][toolName].disabled = true;
+			}
+			else {
+				tools[palette.tools[toolName].panel][toolName].disabled = false;
+			}
+		}
+		$('#palette').html(compiled(tools));
+		return this;
+	};
+
 	/*
 	 * Event handlers
 	 *
@@ -395,8 +479,10 @@ E.palette = (function() {
 	 */
 	$(function() {
 		$('#palette').on('click', '.paletteTool', function() {
-			var toolName = $(this).attr('id');
-			if (toolName) palette.changeTool(toolName);
+			if (!$(this).hasClass('disabled')) {
+				var toolName = $(this).attr('id');
+				if (toolName) palette.changeTool(toolName);
+			}
 		});
 		$('#palette').on('click', '#saveMap', function() {
 			map.save();

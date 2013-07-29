@@ -286,7 +286,6 @@ E.baddyPrototype = (function() {
 	 * @return baddyPrototype
 	 */
 	baddyPrototype.orders.returnToStation = function() {
-		console.log(&#x27;returnToStation&#x27;);
 		var distance = E.vector.distance(this, this.initial);
 		if (distance &lt; this.speed) {
 			this.x = this.initial.x;
@@ -307,15 +306,15 @@ E.baddyPrototype = (function() {
 	 * @return baddyPrototype
 	 */
 	baddyPrototype.orders.goto = function() {
-		console.log(&#x27;goto&#x27;);
-		var distance = E.vector.distance(this, this.patrolRoute[this.currentWaypoint]);
+		var to = E.map.getTileCentre(this.patrolRoute[this.currentWaypoint]);
+		var distance = E.vector.distance(this, to);
 		if (distance &lt; this.speed) {
-			this.x = this.patrolRoute[this.currentWaypoint].x;
-			this.y = this.patrolRoute[this.currentWaypoint].y;
+			this.x = to.x;
+			this.y = to.y;
 			this.mode = this.initial.mode;
 		}
 		else {
-			this.moveTo(this.patrolRoute[this.currentWaypoint]);
+			this.moveTo(to);
 		}
 		return baddyPrototype;
 	};
@@ -327,13 +326,12 @@ E.baddyPrototype = (function() {
 	 * @return baddyPrototype
 	 */
 	baddyPrototype.orders.patrol = function() {
-		console.log(&#x27;patrol&#x27;);
 		if (!this.patrolRoute) {
 			throw new Error(&#x27;This baddy does not have a patrol route specified&#x27;);
 		}
 		this.currentWaypoint = (this.currentWaypoint === undefined) ? 0 : this.currentWaypoint + 1;
-		console.log(&#x27;currentWaypoint&#x27;, this.currentWaypoint);
 		if (this.currentWaypoint &gt;= this.patrolRoute.length) {
+			this.currentWaypoint = 0;
 			this.mode = &#x27;returnToStation&#x27;;
 		}
 		else {
@@ -378,6 +376,23 @@ E.baddyPrototype = (function() {
 		this.target.direction = E.vector.clone(target.direction);
 		return this;
 	};
+
+	/**
+	 * Renders the current patrol route
+	 *
+	 * @method renderPatrolRoute
+	 * @return this
+	 */
+	baddyPrototype.renderPatrolRoute = function() {
+		var route = this.patrolRoute;
+		if (route) {
+			for (var i=0, len=route.length-1; i&lt;len; i++) {
+				E.graphics.vectors.line(E.map.getTileCentre(route[i]), E.map.getTileCentre(route[i+1]), &#x27;white&#x27;, true);
+			}
+		}
+		return this;
+	};
+
 	return baddyPrototype;
 })();
     </pre>
