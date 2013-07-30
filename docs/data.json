@@ -2,7 +2,7 @@
     "project": {
         "name": "escape",
         "description": "HTML5 Game - 1942: You are a British paratrooper captured in France during a raid on a secret German radar installation. Taken to a Gestapo interrogation centre you must now escape and return to Britain.",
-        "version": "0.1.4-14",
+        "version": "0.1.4-15",
         "url": ""
     },
     "files": {
@@ -2783,7 +2783,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 93,
+            "line": 94,
             "description": "Selects a map tile or entity",
             "itemtype": "method",
             "name": "tools.select.click",
@@ -2795,7 +2795,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 128,
+            "line": 129,
             "description": "Highlights the selected tile",
             "itemtype": "method",
             "name": "tools.select.render",
@@ -2807,7 +2807,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 153,
+            "line": 154,
             "description": "rotates the selected object",
             "itemtype": "method",
             "name": "tools.rotate.click",
@@ -2819,7 +2819,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 174,
+            "line": 175,
             "description": "Draws a line from the selected entity to the current mouse cursor position",
             "itemtype": "method",
             "name": "tools.rotate.render",
@@ -2831,7 +2831,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 189,
+            "line": 190,
             "description": "Adds an extra row / column to the side of the map closest to the cursor",
             "itemtype": "method",
             "name": "tools.expand.click",
@@ -2843,7 +2843,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 203,
+            "line": 204,
             "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
             "itemtype": "method",
             "name": "tools.expand.render",
@@ -2855,7 +2855,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 222,
+            "line": 223,
             "description": "Removes a row / column from the side of the map closest to the cursor",
             "itemtype": "method",
             "name": "tools.reduce.click",
@@ -2867,7 +2867,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 236,
+            "line": 237,
             "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
             "itemtype": "method",
             "name": "tools.reduce.render",
@@ -2879,7 +2879,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 273,
+            "line": 274,
             "description": "Initialises the patrol tool by clearing the currently selected entity's patrol route",
             "itemtype": "method",
             "name": "init",
@@ -2891,7 +2891,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 288,
+            "line": 289,
             "description": "Sets a patrol route for an actor",
             "itemtype": "method",
             "name": "tools.patrol.click",
@@ -2903,7 +2903,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 306,
+            "line": 307,
             "description": "Displays the patrol route",
             "itemtype": "method",
             "name": "tools.patrol.render",
@@ -2915,7 +2915,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 328,
+            "line": 329,
             "description": "Displays the command palette",
             "itemtype": "method",
             "name": "show",
@@ -2927,7 +2927,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 339,
+            "line": 340,
             "description": "Hides the command palette",
             "itemtype": "method",
             "name": "hide",
@@ -2939,7 +2939,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 350,
+            "line": 351,
             "description": "Changes the current tool",
             "itemtype": "method",
             "name": "changeTool",
@@ -2951,7 +2951,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 375,
+            "line": 374,
             "description": "Initialises the command palette\n\nIncludes a generic event handler for using the currently selected tool",
             "itemtype": "method",
             "name": "init",
@@ -2963,7 +2963,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 404,
+            "line": 405,
             "description": "Sets the properties that are to be displayed in the properties panel",
             "itemtype": "method",
             "name": "setProperties",
@@ -2982,7 +2982,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 421,
+            "line": 422,
             "description": "Carries out rendering actions on behalf of palette tools",
             "itemtype": "method",
             "name": "render",
@@ -2994,7 +2994,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 437,
+            "line": 438,
             "description": "refreshes the display of the palette",
             "itemtype": "method",
             "name": "refresh",
@@ -3146,6 +3146,19 @@
             "name": "save",
             "return": {
                 "description": "this"
+            },
+            "class": "screen",
+            "module": "screen"
+        },
+        {
+            "file": "js/screen.js",
+            "line": 104,
+            "description": "Gets the current save state for the screen",
+            "itemtype": "method",
+            "name": "isUnsaved",
+            "return": {
+                "description": "true means unsaved",
+                "type": "Boolean"
             },
             "class": "screen",
             "module": "screen"

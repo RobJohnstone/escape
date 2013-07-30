@@ -1,8 +1,6 @@
 BUGS:
 
-Selecting an item removes the highlight from the select command
-Event handlers still firing even when the map editor has exited to the other screens
-There is too much anti-aliasing on the lines drawn with graphics.lineNow - is a half picel offset required?
+None (at least that I know about!)
 
 TASKS:
 
@@ -14,14 +12,18 @@ Add support for walking rather than travelling at max velocity
 
 Tests!
 
+Re-engineer non-game code (e.g. screen, campaign and palette modules). This code is more or less universally terrible. Some kind of UI library would be best.
+
 Create a prototype campaign
 
 Write bitmap graphics code (separate into separate tasks)
 
 Improve path finding so that if there are no obstacles, move directly rather than going from tile centre to tile centre as used with A*
 
+Add steering behaviour to path finding code
+
 Tidy up routing in server.js (there's huge repetition between camapigns and maps)
 
 Consider using backbone (or homegrown alternative for editor)
 
-Write documentation tool that better supports prototypal rather than classical inheritance
+Find (or write) documentation tool that better supports prototypal rather than classical inheritance

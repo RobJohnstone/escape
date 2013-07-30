@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-14</em>
+            <em>API Docs for: 0.1.4-15</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -258,6 +258,7 @@ E.palette = (function() {
 		},
 		select: {
 			panel: &#x27;tools&#x27;,
+			update: false,
 			/**
 			 * Selects a map tile or entity
 			 *
@@ -347,7 +348,7 @@ E.palette = (function() {
 			 */
 			render: function() {
 				if (palette.selected &amp;&amp; palette.selected.entity !== undefined) {
-					E.graphics.vectors.line(palette.selected.entity, E.input.mouseState);
+					E.graphics.vectors.line(palette.selected.entity, E.input.mouseState, &#x27;grey&#x27;);
 				}
 				return palette;
 			}
@@ -534,8 +535,6 @@ E.palette = (function() {
 			palette.prevTool = palette.currentTool;
 			palette.currentTool = toolName;
 			palette.refresh();
-			$(&#x27;.paletteTool&#x27;).removeClass(&#x27;selected&#x27;);
-			$(&#x27;#&#x27;+toolName).addClass(&#x27;selected&#x27;);
 		}
 		return this;
 	};
@@ -563,7 +562,9 @@ E.palette = (function() {
 					map.data[tileIndex] = tilesetIndex;
 					E.game.reset();
 				}
-				E.screen.update();
+				if (palette.tools[palette.currentTool].update !== false) {
+					E.screen.update();
+				}
 			}
 		});
 		return this;
@@ -636,7 +637,11 @@ E.palette = (function() {
 			}
 		}
 		$(&#x27;#palette&#x27;).html(compiled(tools));
+		$(&#x27;.paletteTool&#x27;).removeClass(&#x27;selected&#x27;);
 		$(&#x27;#&#x27;+palette.currentTool).addClass(&#x27;selected&#x27;);
+		if (E.screen.isUnsaved()) {
+			E.screen.update();
+		}
 		return this;
 	};
 

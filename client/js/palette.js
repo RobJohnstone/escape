@@ -90,6 +90,7 @@ E.palette = (function() {
 		},
 		select: {
 			panel: 'tools',
+			update: false,
 			/**
 			 * Selects a map tile or entity
 			 *
@@ -179,7 +180,7 @@ E.palette = (function() {
 			 */
 			render: function() {
 				if (palette.selected && palette.selected.entity !== undefined) {
-					E.graphics.vectors.line(palette.selected.entity, E.input.mouseState);
+					E.graphics.vectors.line(palette.selected.entity, E.input.mouseState, 'grey');
 				}
 				return palette;
 			}
@@ -366,8 +367,6 @@ E.palette = (function() {
 			palette.prevTool = palette.currentTool;
 			palette.currentTool = toolName;
 			palette.refresh();
-			$('.paletteTool').removeClass('selected');
-			$('#'+toolName).addClass('selected');
 		}
 		return this;
 	};
@@ -395,7 +394,9 @@ E.palette = (function() {
 					map.data[tileIndex] = tilesetIndex;
 					E.game.reset();
 				}
-				E.screen.update();
+				if (palette.tools[palette.currentTool].update !== false) {
+					E.screen.update();
+				}
 			}
 		});
 		return this;
@@ -468,7 +469,11 @@ E.palette = (function() {
 			}
 		}
 		$('#palette').html(compiled(tools));
+		$('.paletteTool').removeClass('selected');
 		$('#'+palette.currentTool).addClass('selected');
+		if (E.screen.isUnsaved()) {
+			E.screen.update();
+		}
 		return this;
 	};
 

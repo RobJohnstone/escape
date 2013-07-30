@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-14</em>
+            <em>API Docs for: 0.1.4-15</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -349,8 +349,8 @@ E.graphics = (function() {
 			colour = colour || &#x27;white&#x27;;
 			E.graphics.gameContext.strokeStyle = colour;
 			E.graphics.gameContext.beginPath();
-			E.graphics.gameContext.moveTo(start.x, start.y);
-			E.graphics.gameContext.lineTo(end.x, end.y);
+			E.graphics.gameContext.moveTo(start.x-0.5, start.y-0.5); // subtract .5 to minimise antialiasing for lines of 1 pixel thickness
+			E.graphics.gameContext.lineTo(end.x-0.5, end.y-0.5);
 			E.graphics.gameContext.stroke();
 			E.graphics.gameContext.strokeStyle = currentStrokeStyle;
 			return this;

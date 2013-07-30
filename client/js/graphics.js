@@ -181,8 +181,8 @@ E.graphics = (function() {
 			colour = colour || 'white';
 			E.graphics.gameContext.strokeStyle = colour;
 			E.graphics.gameContext.beginPath();
-			E.graphics.gameContext.moveTo(start.x, start.y);
-			E.graphics.gameContext.lineTo(end.x, end.y);
+			E.graphics.gameContext.moveTo(start.x-0.5, start.y-0.5); // subtract .5 to minimise antialiasing for lines of 1 pixel thickness
+			E.graphics.gameContext.lineTo(end.x-0.5, end.y-0.5);
 			E.graphics.gameContext.stroke();
 			E.graphics.gameContext.strokeStyle = currentStrokeStyle;
 			return this;

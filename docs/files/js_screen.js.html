@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-14</em>
+            <em>API Docs for: 0.1.4-15</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -267,6 +267,16 @@ E.screen = (function() {
 		save: function() {
 			$(&#x27;.save&#x27;).val(&#x27;Save&#x27;).text(&#x27;save&#x27;);
 			this.updated = false;
+		},
+
+		/**
+		 * Gets the current save state for the screen
+		 *
+		 * @method isUnsaved
+		 * @return {boolean} true means unsaved
+		 */
+		isUnsaved: function() {
+			return this.updated;
 		}
 	};
 })();

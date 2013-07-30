@@ -99,6 +99,16 @@ E.screen = (function() {
 		save: function() {
 			$('.save').val('Save').text('save');
 			this.updated = false;
+		},
+
+		/**
+		 * Gets the current save state for the screen
+		 *
+		 * @method isUnsaved
+		 * @return {boolean} true means unsaved
+		 */
+		isUnsaved: function() {
+			return this.updated;
 		}
 	};
 })();
