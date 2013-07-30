@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-13</em>
+            <em>API Docs for: 0.1.4-14</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -551,7 +551,6 @@ E.palette = (function() {
 	palette.init = function() {
 		palette.refresh();
 		palette.show();
-		$(&#x27;#&#x27;+palette.currentTool).addClass(&#x27;selected&#x27;);
 		$(&#x27;#gameCanvas&#x27;).on({
 			click: function() {
 				var tileIndex = map.getTileIndex(E.input.mouseState),
@@ -637,6 +636,7 @@ E.palette = (function() {
 			}
 		}
 		$(&#x27;#palette&#x27;).html(compiled(tools));
+		$(&#x27;#&#x27;+palette.currentTool).addClass(&#x27;selected&#x27;);
 		return this;
 	};
 

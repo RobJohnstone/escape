@@ -1,7 +1,7 @@
 {
   "name": "escape",
   "description": "HTML5 Game - 1942: You are a British paratrooper captured in France during a raid on a secret German radar installation. Taken to a Gestapo interrogation centre you must now escape and return to Britain.",
-  "version": "0.1.4-14",
+  "version": "0.1.4-15",
   "url": "https://github.com/RobJohnstone/escape",
   "scripts": {
     "start": "node server/server.js"

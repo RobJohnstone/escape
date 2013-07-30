@@ -383,7 +383,6 @@ E.palette = (function() {
 	palette.init = function() {
 		palette.refresh();
 		palette.show();
-		$('#'+palette.currentTool).addClass('selected');
 		$('#gameCanvas').on({
 			click: function() {
 				var tileIndex = map.getTileIndex(E.input.mouseState),
@@ -469,6 +468,7 @@ E.palette = (function() {
 			}
 		}
 		$('#palette').html(compiled(tools));
+		$('#'+palette.currentTool).addClass('selected');
 		return this;
 	};
 

@@ -8,15 +8,13 @@ TASKS:
 
 Check use Strict
 
-Add patrol tool to editor (done but shit. Must be able to overwrite existing info rather than merely adding new waypoints)
-
 Improve modularisation of code (modules are way to long)
 
 Add support for walking rather than travelling at max velocity
 
-Create a prototype campaign
-
 Tests!
+
+Create a prototype campaign
 
 Write bitmap graphics code (separate into separate tasks)
 

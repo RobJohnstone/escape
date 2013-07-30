@@ -2,7 +2,7 @@
     "project": {
         "name": "escape",
         "description": "HTML5 Game - 1942: You are a British paratrooper captured in France during a raid on a secret German radar installation. Taken to a Gestapo interrogation centre you must now escape and return to Britain.",
-        "version": "0.1.4-13",
+        "version": "0.1.4-14",
         "url": ""
     },
     "files": {
@@ -2963,7 +2963,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 405,
+            "line": 404,
             "description": "Sets the properties that are to be displayed in the properties panel",
             "itemtype": "method",
             "name": "setProperties",
@@ -2982,7 +2982,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 422,
+            "line": 421,
             "description": "Carries out rendering actions on behalf of palette tools",
             "itemtype": "method",
             "name": "render",
@@ -2994,7 +2994,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 438,
+            "line": 437,
             "description": "refreshes the display of the palette",
             "itemtype": "method",
             "name": "refresh",
