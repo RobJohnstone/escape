@@ -1,6 +1,6 @@
 BUGS:
 
-None (at least that I know about!)
+Taking focus away from the tab running the game rightly prompts the browser to reduce the frame rate. Very low frame rates cause bugs with collision detection (and probably other things) meaning that the game is rarely in a sensible state when you return to the tab
 
 TASKS:
 

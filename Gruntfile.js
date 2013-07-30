@@ -13,7 +13,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('../package.json'),
     jshint: {
-      all: ['../Gruntfile.js', 'js/**/*.js', '!js/lib/*.js']
+      all: ['../Gruntfile.js', 'js/**/*.js', '!js/lib/*.js', 'js/lib/util.js']
     },
     uglify: {
       options: {
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         sourceMappingURL: '/production/sourceMap.js'
       },
       files: {
-        src: ['js/objectPrototype.js', 'js/escape.js', 'js/map.js', 'js/entities.js', 'js/actorPrototype.js', 'js/baddyPrototype.js', 'js/**/*.js', '!js/edit.js', '!js/palette.js'],
+        src: ['js/lib/*.js', 'js/objectPrototype.js', 'js/escape.js', 'js/map.js', 'js/entities.js', 'js/actorPrototype.js', 'js/baddyPrototype.js', 'js/**/*.js', '!js/edit.js', '!js/palette.js'],
         dest: 'production/app-min.js'
       }
     },

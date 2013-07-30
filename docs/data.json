@@ -2,7 +2,7 @@
     "project": {
         "name": "escape",
         "description": "HTML5 Game - 1942: You are a British paratrooper captured in France during a raid on a secret German radar installation. Taken to a Gestapo interrogation centre you must now escape and return to Britain.",
-        "version": "0.1.4-15",
+        "version": "0.1.4-17",
         "url": ""
     },
     "files": {
@@ -17,6 +17,17 @@
             "name": "js/lib/jquery-2.0.3.js",
             "modules": {},
             "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "js/lib/util.js": {
+            "name": "js/lib/util.js",
+            "modules": {
+                "util": 1
+            },
+            "classes": {
+                "util": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -215,17 +226,6 @@
             "fors": {},
             "namespaces": {}
         },
-        "js/util.js": {
-            "name": "js/util.js",
-            "modules": {
-                "util": 1
-            },
-            "classes": {
-                "util": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
         "js/vector.js": {
             "name": "js/vector.js",
             "modules": {
@@ -250,6 +250,19 @@
         }
     },
     "modules": {
+        "util": {
+            "name": "util",
+            "submodules": {},
+            "classes": {
+                "util": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "js/lib/util.js",
+            "line": 1,
+            "description": "Utility methods that do not really belong any where else"
+        },
         "actorPrototype": {
             "name": "actorPrototype",
             "submodules": {},
@@ -476,19 +489,6 @@
             "line": 1,
             "description": "Keeps track of the time between frames\n\nTODO: expand with functionality to set custom timers"
         },
-        "util": {
-            "name": "util",
-            "submodules": {},
-            "classes": {
-                "util": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "tag": "module",
-            "file": "js/util.js",
-            "line": 1,
-            "description": "Utility methods that do not really belong any where else"
-        },
         "vector": {
             "name": "vector",
             "submodules": {},
@@ -517,6 +517,20 @@
         }
     },
     "classes": {
+        "util": {
+            "name": "util",
+            "shortname": "util",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "util",
+            "namespace": "",
+            "file": "js/lib/util.js",
+            "line": 1,
+            "description": "Utility methods that do not really belong any where else"
+        },
         "actorPrototype": {
             "name": "actorPrototype",
             "shortname": "actorPrototype",
@@ -768,20 +782,6 @@
             "line": 1,
             "description": "Keeps track of the time between frames\n\nTODO: expand with functionality to set custom timers"
         },
-        "util": {
-            "name": "util",
-            "shortname": "util",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "util",
-            "namespace": "",
-            "file": "js/util.js",
-            "line": 1,
-            "description": "Utility methods that do not really belong any where else"
-        },
         "vector": {
             "name": "vector",
             "shortname": "vector",
@@ -818,7 +818,7 @@
             "description": "A* (A-Star) algorithm for a path finder",
             "author": "Andrea Giammarchi",
             "license": "Mit Style License",
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -828,7 +828,7 @@
                 "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
                 "type": "Function(string, Object)"
             },
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -841,7 +841,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -854,7 +854,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -872,7 +872,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -894,7 +894,7 @@
                 "description": "Returns less than 0 if a precedes b, greater than 0 if a follows b",
                 "type": "Number"
             },
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -907,7 +907,7 @@
                     "type": "String"
                 }
             ],
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -920,7 +920,7 @@
                     "type": "String"
                 }
             ],
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -933,7 +933,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -946,7 +946,7 @@
                     "type": "Element|Object"
                 }
             ],
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -964,7 +964,7 @@
                 "description": "Returns the current document",
                 "type": "Object"
             },
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -977,7 +977,7 @@
                     "type": "ArrayLike"
                 }
             ],
-            "class": "actorPrototype"
+            "class": "util"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -990,7 +990,66 @@
                     "type": "Array|Element"
                 }
             ],
-            "class": "actorPrototype"
+            "class": "util"
+        },
+        {
+            "file": "js/lib/util.js",
+            "line": 12,
+            "description": "Takes a string and returns the value of the global variable with that name\n\nTo avoid global cluttering this method understands '.' syntax to follow the namespace/object chain\nThe only usage envisaged so far is the loading of variable names from JSON. Any other usage probably means \nwe're doing something wrong. Even the json example may mean that but I've not yet thought of a better way!",
+            "itemtype": "method",
+            "name": "valFromString",
+            "return": {
+                "description": "value",
+                "type": "Any"
+            },
+            "class": "util",
+            "module": "util"
+        },
+        {
+            "file": "js/lib/util.js",
+            "line": 31,
+            "description": "Moves an array element from one index to another",
+            "params": [
+                {
+                    "name": "arr",
+                    "description": "The array to modify",
+                    "type": "Array"
+                },
+                {
+                    "name": "currentIndex",
+                    "description": "The index the element currently occupies",
+                    "type": "Number"
+                },
+                {
+                    "name": "newIndex",
+                    "description": "The new index for the element to occupy",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The array",
+                "type": "Array"
+            },
+            "class": "util",
+            "module": "util"
+        },
+        {
+            "file": "js/lib/util.js",
+            "line": 46,
+            "description": "Detect whether the current tab has lost focus (only works in some modern browsers)",
+            "itemtype": "method",
+            "name": "onVisibilityChange",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "util",
+            "module": "util"
         },
         {
             "file": "js/actorPrototype.js",
@@ -3212,47 +3271,6 @@
             "module": "timer"
         },
         {
-            "file": "js/util.js",
-            "line": 12,
-            "description": "Takes a string and returns the value of the global variable with that name\n\nTo avoid global cluttering this method understands '.' syntax to follow the namespace/object chain\nThe only usage envisaged so far is the loading of variable names from JSON. Any other usage probably means \nwe're doing something wrong. Even the json example may mean that but I've not yet thought of a better way!",
-            "itemtype": "method",
-            "name": "valFromString",
-            "return": {
-                "description": "value",
-                "type": "Any"
-            },
-            "class": "util",
-            "module": "util"
-        },
-        {
-            "file": "js/util.js",
-            "line": 31,
-            "description": "Moves an array element from one index to another",
-            "params": [
-                {
-                    "name": "arr",
-                    "description": "The array to modify",
-                    "type": "Array"
-                },
-                {
-                    "name": "currentIndex",
-                    "description": "The index the element currently occupies",
-                    "type": "Number"
-                },
-                {
-                    "name": "newIndex",
-                    "description": "The new index for the element to occupy",
-                    "type": "Number"
-                }
-            ],
-            "return": {
-                "description": "The array",
-                "type": "Array"
-            },
-            "class": "util",
-            "module": "util"
-        },
-        {
             "file": "js/vector.js",
             "line": 19,
             "description": "returns a vector with integer values for both x and y coordinates\n\nThis is particularly useful when rendering to the canvas where there is a big performance hit for non-integer values",
@@ -3591,6 +3609,10 @@
             "line": " js/lib/jquery-2.0.3.js:1747"
         },
         {
+            "message": "Missing item type\nMoves an array element from one index to another",
+            "line": " js/lib/util.js:31"
+        },
+        {
             "message": "Missing item type\nMoves the map up one in the order (nearer the start)",
             "line": " js/campaign.js:167"
         },
@@ -3605,10 +3627,6 @@
         {
             "message": "Missing item type\nobject storing all vectors that need to be rendered this frame",
             "line": " js/graphics.js:115"
-        },
-        {
-            "message": "Missing item type\nMoves an array element from one index to another",
-            "line": " js/util.js:31"
         }
     ]
 }

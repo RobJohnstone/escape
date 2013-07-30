@@ -174,7 +174,7 @@ E.campaign = (function() {
 		var mapsArr = campaign.data.maps,
 			currentIndex = mapsArr.indexOf(mapName);
 		if (currentIndex > 0) {
-			E.util.moveArrayElement(mapsArr, currentIndex, currentIndex-1);
+			util.moveArrayElement(mapsArr, currentIndex, currentIndex-1);
 			campaign.render();
 		}
 		return this;
@@ -190,7 +190,7 @@ E.campaign = (function() {
 		var mapsArr = campaign.data.maps,
 			currentIndex = mapsArr.indexOf(mapName);
 		if (currentIndex < mapsArr.length-1) {
-			E.util.moveArrayElement(mapsArr, currentIndex, currentIndex+1);
+			util.moveArrayElement(mapsArr, currentIndex, currentIndex+1);
 			campaign.render();
 		}
 		return this;

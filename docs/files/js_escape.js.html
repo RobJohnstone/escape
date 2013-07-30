@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-15</em>
+            <em>API Docs for: 0.1.4-17</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -368,6 +368,9 @@ E.game = (function() {
 			E.screen.change(&#x27;gameContainer&#x27;);
 			game.start();
 		});
+	});
+	util.onVisibilityChange(function() {
+		E.game.pause();
 	});
 
 	return game;

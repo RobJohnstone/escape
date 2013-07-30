@@ -306,7 +306,7 @@ E.game = (function() {
 	 * @return game {object}
 	 */
 	game.info.add = function(name, value) {
-		if (arguments.length === 1) game.info.items.push(name+': '+E.util.valFromString(name));
+		if (arguments.length === 1) game.info.items.push(name+': '+util.valFromString(name));
 		else if (arguments.length === 2) game.info.items.push(name+': '+value);
 		return game;
 	};

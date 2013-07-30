@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-15</em>
+            <em>API Docs for: 0.1.4-17</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -474,7 +474,7 @@ E.game = (function() {
 	 * @return game {object}
 	 */
 	game.info.add = function(name, value) {
-		if (arguments.length === 1) game.info.items.push(name+&#x27;: &#x27;+E.util.valFromString(name));
+		if (arguments.length === 1) game.info.items.push(name+&#x27;: &#x27;+util.valFromString(name));
 		else if (arguments.length === 2) game.info.items.push(name+&#x27;: &#x27;+value);
 		return game;
 	};

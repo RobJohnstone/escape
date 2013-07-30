@@ -201,6 +201,9 @@ E.game = (function() {
 			game.start();
 		});
 	});
+	util.onVisibilityChange(function() {
+		E.game.pause();
+	});
 
 	return game;
 })();
