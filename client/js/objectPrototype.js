@@ -17,6 +17,13 @@
  */
 
 (function(Object) { // pass in Object as an argument to prevent minification bugs
+	"use strict";
+
+	/* The pattern used here is to define methods first and then add them to Object.prototype afterwards
+	 * This is necessary to solve the enumeration problem but it confuses jsHint which thinks that 'this' is
+	 * being used in a function rather than a method of an object. The following comment is required
+	 * to solve the problem: */
+	/* jshint validthis: true */
 
 	/**
 	 * Return a new object inheriting from the previous one

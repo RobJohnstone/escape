@@ -5,6 +5,8 @@
  * @class screen
  */
 E.screen = (function() {
+	"use strict";
+	
 	/*
 	 * Confirmation message before leaving with unsaved changes
 	 */

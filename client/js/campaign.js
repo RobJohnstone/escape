@@ -6,6 +6,8 @@
  */
 
 E.campaign = (function() {
+	"use strict";
+
 	var campaign = {
 		campaigns: [],
 		addedMap: false

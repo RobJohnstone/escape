@@ -14,6 +14,8 @@
  * @method requestAnimationFrame
  */
 window.requestAnimationFrame = (function(){
+	"use strict";
+
 	return window.requestAnimationFrame ||
 			window.webkitRequestAnimationFrame ||
 			window.mozRequestAnimationFrame    ||

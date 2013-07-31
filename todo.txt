@@ -1,10 +1,8 @@
 BUGS:
 
-Taking focus away from the tab running the game rightly prompts the browser to reduce the frame rate. Very low frame rates cause bugs with collision detection (and probably other things) meaning that the game is rarely in a sensible state when you return to the tab
+None (alright, there are bound to be some, but I haven't found them yet!)
 
 TASKS:
-
-Check use Strict
 
 Improve modularisation of code (modules are way to long)
 
