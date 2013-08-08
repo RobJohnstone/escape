@@ -2,7 +2,7 @@
     "project": {
         "name": "escape",
         "description": "HTML5 Game - 1942: You are a British paratrooper captured in France during a raid on a secret German radar installation. Taken to a Gestapo interrogation centre you must now escape and return to Britain.",
-        "version": "0.1.4-17",
+        "version": "0.1.4-18",
         "url": ""
     },
     "files": {
@@ -247,6 +247,13 @@
             },
             "fors": {},
             "namespaces": {}
+        },
+        "specs/lib/jasmine-1.3.1/jasmine.js": {
+            "name": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
         }
     },
     "modules": {
@@ -273,7 +280,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/actorPrototype.js",
-            "line": 1,
+            "line": 3,
             "description": "Prototype for all actors. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
             "extends": "entityPrototype"
         },
@@ -287,7 +294,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/actors.js",
-            "line": 1,
+            "line": 3,
             "description": "Definitions for all the actor types in the game. Also includes a factory method (create)\nto create an actor of that type"
         },
         "baddyPrototype": {
@@ -300,7 +307,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/baddyPrototype.js",
-            "line": 1,
+            "line": 3,
             "description": "Prototype for all baddies. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
             "extends": "actorPrototype"
         },
@@ -314,7 +321,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/campaign.js",
-            "line": 1,
+            "line": 3,
             "description": "Handles all state and behaviour for campaigns"
         },
         "game": {
@@ -341,7 +348,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/entities.js",
-            "line": 49,
+            "line": 51,
             "description": "entities object contains code for tracking, processing and rendering entities"
         },
         "graphics": {
@@ -354,7 +361,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/graphics.js",
-            "line": 1,
+            "line": 3,
             "description": "Graphics module\nContains all code that outputs to the canvas"
         },
         "input": {
@@ -367,7 +374,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/input.js",
-            "line": 1,
+            "line": 3,
             "description": "Input module\nContains all code relating to input"
         },
         "map": {
@@ -380,7 +387,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/map.js",
-            "line": 1,
+            "line": 3,
             "description": "Map module. Objects and methods concerning the map"
         },
         "objectPrototype": {
@@ -406,7 +413,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/palette.js",
-            "line": 1,
+            "line": 3,
             "description": "Command palette for the game editor"
         },
         "playerPrototype": {
@@ -419,7 +426,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/playerPrototype.js",
-            "line": 1,
+            "line": 3,
             "description": "Prototype for the player. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
             "extends": "actorPrototype"
         },
@@ -446,7 +453,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/projectilePrototype.js",
-            "line": 1,
+            "line": 3,
             "description": "Prototype for all projectiles. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js",
             "extends": "entityPrototype"
         },
@@ -460,7 +467,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/screen.js",
-            "line": 1,
+            "line": 3,
             "description": "Screen methods"
         },
         "tiles": {
@@ -473,7 +480,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/tiles.js",
-            "line": 1,
+            "line": 3,
             "description": "Tiles module.\n\nHandles all functionality associated with map tiles\nIf you're looking for something and can't find it then try the map module"
         },
         "timer": {
@@ -486,7 +493,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/timer.js",
-            "line": 1,
+            "line": 3,
             "description": "Keeps track of the time between frames\n\nTODO: expand with functionality to set custom timers"
         },
         "vector": {
@@ -499,7 +506,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/vector.js",
-            "line": 1,
+            "line": 3,
             "description": "A library of useful vector math functions\n\nAt first glance it may appear that a nicer syntax could be obtained by creating a vector type\nand attaching these methods to the prototype. However, the most common use case is an object\nof a different type that happens to have x and y properties. As using apply/call is fiddly\nin terms of syntax and multiple inheritance is memory inefficient in javascript (an object can \nonly be linked to a single prototype), I believe this approach to be best."
         },
         "weapons": {
@@ -512,7 +519,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "js/weapons.js",
-            "line": 1,
+            "line": 3,
             "description": "Weapon definitions"
         }
     },
@@ -542,7 +549,7 @@
             "module": "actorPrototype",
             "namespace": "",
             "file": "js/actorPrototype.js",
-            "line": 1,
+            "line": 3,
             "description": "Prototype for all actors. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
         },
         "actors": {
@@ -556,7 +563,7 @@
             "module": "actors",
             "namespace": "",
             "file": "js/actors.js",
-            "line": 1,
+            "line": 3,
             "description": "Definitions for all the actor types in the game. Also includes a factory method (create)\nto create an actor of that type"
         },
         "baddyPrototype": {
@@ -570,7 +577,7 @@
             "module": "baddyPrototype",
             "namespace": "",
             "file": "js/baddyPrototype.js",
-            "line": 1,
+            "line": 3,
             "description": "Prototype for all baddies. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
         },
         "campaign": {
@@ -584,7 +591,7 @@
             "module": "campaign",
             "namespace": "",
             "file": "js/campaign.js",
-            "line": 1,
+            "line": 3,
             "description": "Handles all state and behaviour for campaigns"
         },
         "game": {
@@ -611,7 +618,7 @@
             "module": "entities",
             "namespace": "",
             "file": "js/entities.js",
-            "line": 1,
+            "line": 3,
             "description": "entities object contains code for tracking, processing and rendering entities"
         },
         "entityPrototype": {
@@ -625,7 +632,7 @@
             "module": "entities",
             "namespace": "",
             "file": "js/entities.js",
-            "line": 49,
+            "line": 51,
             "description": "Prototype for all entities\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
         },
         "graphics": {
@@ -639,7 +646,7 @@
             "module": "graphics",
             "namespace": "",
             "file": "js/graphics.js",
-            "line": 1,
+            "line": 3,
             "description": "Graphics module\nContains all code that outputs to the canvas"
         },
         "input": {
@@ -653,7 +660,7 @@
             "module": "input",
             "namespace": "",
             "file": "js/input.js",
-            "line": 1,
+            "line": 3,
             "description": "Input module\nContains all code relating to input"
         },
         "map": {
@@ -667,7 +674,7 @@
             "module": "map",
             "namespace": "",
             "file": "js/map.js",
-            "line": 1,
+            "line": 3,
             "description": "Map module. Objects and methods concerning the map"
         },
         "objectPrototype": {
@@ -695,7 +702,7 @@
             "module": "palette",
             "namespace": "",
             "file": "js/palette.js",
-            "line": 1,
+            "line": 3,
             "description": "Command palette for the game editor"
         },
         "playerPrototype": {
@@ -709,7 +716,7 @@
             "module": "playerPrototype",
             "namespace": "",
             "file": "js/playerPrototype.js",
-            "line": 1,
+            "line": 3,
             "description": "Prototype for the player. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
         },
         "polyfills": {
@@ -737,7 +744,7 @@
             "module": "projectilePrototype",
             "namespace": "",
             "file": "js/projectilePrototype.js",
-            "line": 1,
+            "line": 3,
             "description": "Prototype for all projectiles. Inherits from entity prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
         },
         "screen": {
@@ -751,7 +758,7 @@
             "module": "screen",
             "namespace": "",
             "file": "js/screen.js",
-            "line": 1,
+            "line": 3,
             "description": "Screen methods"
         },
         "tiles": {
@@ -765,7 +772,7 @@
             "module": "tiles",
             "namespace": "",
             "file": "js/tiles.js",
-            "line": 1,
+            "line": 3,
             "description": "Tiles module.\n\nHandles all functionality associated with map tiles\nIf you're looking for something and can't find it then try the map module"
         },
         "timer": {
@@ -779,7 +786,7 @@
             "module": "timer",
             "namespace": "",
             "file": "js/timer.js",
-            "line": 1,
+            "line": 3,
             "description": "Keeps track of the time between frames\n\nTODO: expand with functionality to set custom timers"
         },
         "vector": {
@@ -793,7 +800,7 @@
             "module": "vector",
             "namespace": "",
             "file": "js/vector.js",
-            "line": 1,
+            "line": 3,
             "description": "A library of useful vector math functions\n\nAt first glance it may appear that a nicer syntax could be obtained by creating a vector type\nand attaching these methods to the prototype. However, the most common use case is an object\nof a different type that happens to have x and y properties. As using apply/call is fiddly\nin terms of syntax and multiple inheritance is memory inefficient in javascript (an object can \nonly be linked to a single prototype), I believe this approach to be best."
         },
         "weapons": {
@@ -807,7 +814,7 @@
             "module": "weapons",
             "namespace": "",
             "file": "js/weapons.js",
-            "line": 1,
+            "line": 3,
             "description": "Weapon definitions"
         }
     },
@@ -1008,7 +1015,7 @@
         {
             "file": "js/lib/util.js",
             "line": 31,
-            "description": "Moves an array element from one index to another",
+            "description": "Returns a new array with an array element from one index to another",
             "params": [
                 {
                     "name": "arr",
@@ -1035,7 +1042,7 @@
         },
         {
             "file": "js/lib/util.js",
-            "line": 46,
+            "line": 55,
             "description": "Detect whether the current tab has lost focus (only works in some modern browsers)",
             "itemtype": "method",
             "name": "onVisibilityChange",
@@ -1053,7 +1060,7 @@
         },
         {
             "file": "js/actorPrototype.js",
-            "line": 21,
+            "line": 23,
             "description": "Moves the actor in the direction indicated by vector v. If this would result in a collision with the map\nthen a more sensible vector is chosen and the actor moves that way instead",
             "itemtype": "method",
             "name": "move",
@@ -1073,7 +1080,7 @@
         },
         {
             "file": "js/actorPrototype.js",
-            "line": 50,
+            "line": 52,
             "description": "Moves actor towards the position indicated, taking into account the actor's speed\nMovement is attempted \"as the crow flies\" with no route selection",
             "itemtype": "method",
             "name": "moveTowards",
@@ -1092,7 +1099,7 @@
         },
         {
             "file": "js/actorPrototype.js",
-            "line": 65,
+            "line": 67,
             "description": "Moves actor towards the position indicated, while performing sensible route selection\nRoute selection algorithm is A*",
             "itemtype": "method",
             "name": "moveTo",
@@ -1111,7 +1118,7 @@
         },
         {
             "file": "js/actorPrototype.js",
-            "line": 87,
+            "line": 89,
             "description": "handles being hit by a projectile, including effect on health and action to take upon death",
             "itemtype": "method",
             "name": "hit",
@@ -1130,7 +1137,7 @@
         },
         {
             "file": "js/actorPrototype.js",
-            "line": 107,
+            "line": 109,
             "description": "Fires the actor's weapon",
             "itemtype": "method",
             "name": "fire",
@@ -1149,7 +1156,7 @@
         },
         {
             "file": "js/actorPrototype.js",
-            "line": 161,
+            "line": 163,
             "description": "Outputs an abbreviated version of the entity, suitable for saving to file",
             "itemtype": "method",
             "name": "abbr",
@@ -1162,7 +1169,7 @@
         },
         {
             "file": "js/actors.js",
-            "line": 13,
+            "line": 15,
             "description": "Creates an actor of the specified type",
             "itemtype": "method",
             "name": "create",
@@ -1182,7 +1189,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 17,
+            "line": 19,
             "description": "Defines the action to be taken by baddies each frame",
             "itemtype": "method",
             "name": "process",
@@ -1194,7 +1201,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 39,
+            "line": 41,
             "description": "Takes the current orders and calls the appropriate function in the appropriate context",
             "itemtype": "method",
             "name": "processOrders",
@@ -1212,7 +1219,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 53,
+            "line": 55,
             "description": "The baddy's default state. Currently does nothing",
             "itemtype": "method",
             "name": "orders.watch",
@@ -1224,7 +1231,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 63,
+            "line": 65,
             "description": "Baddy attacks its target. If the baddy can no longer see the target it gives chase",
             "itemtype": "method",
             "name": "orders.attack",
@@ -1236,7 +1243,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 77,
+            "line": 79,
             "description": "Baddy chases after target based upon its last known location\nIf the baddy gets to this location and still cannot see the player\nit goes into search mode",
             "itemtype": "method",
             "name": "orders.chase",
@@ -1248,7 +1255,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 99,
+            "line": 101,
             "description": "The baddy searches for the target by heading off in the direction the target\nwas last seen moving",
             "itemtype": "method",
             "name": "orders.search",
@@ -1260,7 +1267,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 114,
+            "line": 116,
             "description": "The baddy returns to its start location. It then enters watch mode",
             "itemtype": "method",
             "name": "orders.returnToStation",
@@ -1272,7 +1279,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 134,
+            "line": 136,
             "description": "The baddy goes to its current waypoint, then reverts to its original orders",
             "itemtype": "method",
             "name": "orders.goto",
@@ -1284,7 +1291,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 154,
+            "line": 156,
             "description": "The baddy patrols between a series of waypoints. When the baddy gets to the end, he returns directly to the first way point and starts again",
             "itemtype": "method",
             "name": "orders.patrol",
@@ -1296,7 +1303,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 175,
+            "line": 177,
             "description": "The baddy's reaction to being hit",
             "itemtype": "method",
             "name": "hitHandler",
@@ -1314,7 +1321,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 187,
+            "line": 189,
             "description": "Checks if the baddy can see the player",
             "itemtype": "method",
             "name": "baddySeePlayer",
@@ -1326,7 +1333,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 199,
+            "line": 201,
             "description": "sets the baddy's target and other target related information",
             "itemtype": "method",
             "name": "setTarget",
@@ -1338,7 +1345,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 212,
+            "line": 214,
             "description": "Renders the current patrol route",
             "itemtype": "method",
             "name": "renderPatrolRoute",
@@ -1350,7 +1357,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 22,
+            "line": 26,
             "description": "Loads a campaign",
             "itemtype": "method",
             "name": "load",
@@ -1374,7 +1381,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 60,
+            "line": 64,
             "description": "Gets the name of the current map",
             "itemtype": "method",
             "name": "getCurrentmap",
@@ -1387,7 +1394,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 70,
+            "line": 74,
             "description": "Populates the relevant DOM elements with campaign information",
             "itemtype": "method",
             "name": "render",
@@ -1399,7 +1406,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 86,
+            "line": 90,
             "description": "Creates a new campaign. The only field populated is the name.\nThis method does not save the newly created campaign (use campaign.save())",
             "itemtype": "method",
             "name": "create",
@@ -1418,7 +1425,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 104,
+            "line": 108,
             "description": "Saves the current information about the campaign\nNote: this requires that the server is in 'dev' mode",
             "itemtype": "method",
             "name": "save",
@@ -1437,7 +1444,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 127,
+            "line": 131,
             "description": "updates the value of a field in the campaign\ncan remove the prefix campaign from property names while preserving camel-casing",
             "itemtype": "method",
             "name": "update",
@@ -1461,7 +1468,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 145,
+            "line": 149,
             "description": "Adds a map to the campaign\nNote this does not check whether the map actually exists",
             "itemtype": "method",
             "name": "addMap",
@@ -1485,7 +1492,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 167,
+            "line": 171,
             "description": "Moves the map up one in the order (nearer the start)",
             "params": [
                 {
@@ -1502,7 +1509,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 183,
+            "line": 187,
             "description": "Moves the map down one in the order (nearer the end)",
             "params": [
                 {
@@ -1519,7 +1526,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 199,
+            "line": 203,
             "description": "Populates the relevant DOM ul with the campaigns",
             "itemtype": "method",
             "name": "list",
@@ -1672,7 +1679,7 @@
         },
         {
             "file": "js/entities.js",
-            "line": 15,
+            "line": 17,
             "description": "Calls the process() method for each tracked entity and clears up entities that have been marked for removal",
             "itemtype": "method",
             "name": "process",
@@ -1684,7 +1691,7 @@
         },
         {
             "file": "js/entities.js",
-            "line": 33,
+            "line": 35,
             "description": "Calls the render method for each tracked entity",
             "itemtype": "method",
             "name": "render",
@@ -1696,7 +1703,7 @@
         },
         {
             "file": "js/entities.js",
-            "line": 62,
+            "line": 64,
             "description": "initialise entity",
             "itemtype": "method",
             "name": "init",
@@ -1708,7 +1715,7 @@
         },
         {
             "file": "js/entities.js",
-            "line": 82,
+            "line": 84,
             "description": "Placeholder function to be overridden by child objects\nInvoked once per game loop",
             "itemtype": "method",
             "name": "process",
@@ -1859,7 +1866,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 13,
+            "line": 15,
             "description": "Initialise graphics settings and call specific graphics initialisation methods",
             "itemtype": "method",
             "name": "init",
@@ -1888,7 +1895,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 39,
+            "line": 41,
             "description": "Create and initialise the canvas",
             "itemtype": "method",
             "name": "initCanvas",
@@ -1917,7 +1924,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 62,
+            "line": 64,
             "description": "Adds text to graphics.textQueue to be rendered later this frame",
             "itemtype": "method",
             "name": "writeText",
@@ -1946,7 +1953,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 76,
+            "line": 78,
             "description": "renders the passed string immediately without taking measures to ensure that other\nrendered items this frame do not obscure the text",
             "itemtype": "method",
             "name": "writeTextNow",
@@ -1975,7 +1982,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 101,
+            "line": 103,
             "description": "Renders all text in the queue",
             "itemtype": "method",
             "name": "renderText",
@@ -1987,14 +1994,14 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 115,
+            "line": 117,
             "description": "object storing all vectors that need to be rendered this frame",
             "class": "graphics",
             "module": "graphics"
         },
         {
             "file": "js/graphics.js",
-            "line": 120,
+            "line": 122,
             "description": "Renders each vector",
             "itemtype": "method",
             "name": "vectors.render",
@@ -2006,7 +2013,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 134,
+            "line": 136,
             "description": "Adds a vector command to be rendered this frame",
             "itemtype": "method",
             "name": "vectors.command",
@@ -2025,7 +2032,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 146,
+            "line": 148,
             "description": "Draws a line this frame",
             "itemtype": "method",
             "name": "line",
@@ -2059,7 +2066,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 163,
+            "line": 165,
             "description": "Draws a line now",
             "itemtype": "method",
             "name": "lineNow",
@@ -2093,7 +2100,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 191,
+            "line": 193,
             "description": "Draws a rectangle (outline only) this frame",
             "itemtype": "method",
             "name": ".rect",
@@ -2127,7 +2134,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 208,
+            "line": 210,
             "description": "Draws a rectangle (outline only) now",
             "itemtype": "method",
             "name": "rectNow",
@@ -2161,7 +2168,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 235,
+            "line": 237,
             "description": "Draws a circle (filled) this frame",
             "itemtype": "method",
             "name": "circle",
@@ -2195,7 +2202,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 252,
+            "line": 254,
             "description": "Draws a circle (filled) now",
             "itemtype": "method",
             "name": "circleNow",
@@ -2229,7 +2236,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 277,
+            "line": 279,
             "description": "Renders the canvas and all graphics",
             "itemtype": "method",
             "name": "render",
@@ -2241,7 +2248,7 @@
         },
         {
             "file": "js/graphics.js",
-            "line": 299,
+            "line": 301,
             "description": "Changes the size of a canvas",
             "itemtype": "method",
             "name": "resizeCanvas",
@@ -2270,7 +2277,7 @@
         },
         {
             "file": "js/input.js",
-            "line": 23,
+            "line": 25,
             "description": "starts observing input",
             "itemtype": "method",
             "name": "start",
@@ -2289,7 +2296,7 @@
         },
         {
             "file": "js/input.js",
-            "line": 115,
+            "line": 117,
             "description": "invoke event handlers",
             "itemtype": "method",
             "name": "process",
@@ -2301,7 +2308,7 @@
         },
         {
             "file": "js/input.js",
-            "line": 146,
+            "line": 148,
             "description": "detach all input event handlers",
             "itemtype": "method",
             "name": "stop",
@@ -2313,7 +2320,7 @@
         },
         {
             "file": "js/input.js",
-            "line": 157,
+            "line": 159,
             "description": "Sets the style of the cursor to be used for this frame",
             "itemtype": "method",
             "name": "setMouseCursor",
@@ -2332,7 +2339,7 @@
         },
         {
             "file": "js/input.js",
-            "line": 168,
+            "line": 170,
             "description": "Performs any rendering required by input",
             "itemtype": "method",
             "name": "render",
@@ -2344,7 +2351,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 30,
+            "line": 32,
             "description": "initialise the map based on a loaded map object",
             "itemtype": "method",
             "name": "init",
@@ -2363,7 +2370,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 65,
+            "line": 67,
             "description": "load the map data",
             "itemtype": "method",
             "name": "load",
@@ -2387,7 +2394,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 94,
+            "line": 96,
             "description": "takes the map object and inserts it into the engine",
             "itemtype": "method",
             "name": "_loadMapObj",
@@ -2403,7 +2410,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 108,
+            "line": 110,
             "description": "Creates a new blank map object",
             "itemtype": "method",
             "name": "new",
@@ -2433,7 +2440,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 134,
+            "line": 136,
             "description": "Updates map values",
             "itemtype": "method",
             "name": "update",
@@ -2457,7 +2464,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 151,
+            "line": 153,
             "description": "Saves the map on the server (this should only be allowed on the dev server)",
             "itemtype": "method",
             "name": "save",
@@ -2469,7 +2476,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 181,
+            "line": 183,
             "description": "renders the map",
             "itemtype": "method",
             "name": "render",
@@ -2481,7 +2488,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 204,
+            "line": 206,
             "description": "Checks that a position is within the bounds of the map",
             "itemtype": "method",
             "name": "checkWithinBounds",
@@ -2501,7 +2508,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 218,
+            "line": 220,
             "description": "Gets the tile object for the tile index",
             "itemtype": "method",
             "name": "getTileObj",
@@ -2513,7 +2520,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 232,
+            "line": 234,
             "description": "Checks that a particular tile is passable",
             "itemtype": "method",
             "name": "isPassable",
@@ -2533,7 +2540,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 243,
+            "line": 245,
             "itemtype": "method",
             "name": "collisionAdjust",
             "params": [
@@ -2557,7 +2564,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 308,
+            "line": 310,
             "description": "Scrolls the map so that it is looking at the passed position",
             "itemtype": "method",
             "name": "position",
@@ -2576,7 +2583,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 328,
+            "line": 330,
             "description": "Returns the index of the tile corresponding to the passed postion",
             "itemtype": "method",
             "name": "getTileIndex",
@@ -2596,7 +2603,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 344,
+            "line": 346,
             "description": "Returns a vector indicating the position of the centre of the tile",
             "itemtype": "method",
             "name": "getTileCentre",
@@ -2616,7 +2623,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 363,
+            "line": 365,
             "description": "Converts a tile index into 2d coordinates within the tiles array",
             "itemtype": "method",
             "name": "getTileCoords",
@@ -2636,7 +2643,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 377,
+            "line": 379,
             "description": "Converts 2d tile coords (not pixel coords) into a tile index",
             "itemtype": "method",
             "name": "getTileFromCoords",
@@ -2661,7 +2668,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 393,
+            "line": 395,
             "description": "Checks if a line between two points can pass unimpeeded by the map\nNote that this does not check for collisions with entities",
             "itemtype": "method",
             "name": "lineTraversable",
@@ -2686,7 +2693,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 422,
+            "line": 424,
             "description": "Higlights the tile indicated",
             "itemtype": "method",
             "name": "highlightTile",
@@ -2705,7 +2712,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 444,
+            "line": 446,
             "description": "highlights the tile under the mouse cursor",
             "itemtype": "method",
             "name": "highlightMouseTile",
@@ -2717,7 +2724,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 455,
+            "line": 457,
             "description": "Resizes the map",
             "itemtype": "method",
             "name": "resize",
@@ -2736,7 +2743,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 539,
+            "line": 541,
             "description": "Returns a string indicating the side of the map closest to the mouse cursor",
             "itemtype": "method",
             "name": "sideClosestToCursor",
@@ -2749,7 +2756,7 @@
         },
         {
             "file": "js/objectPrototype.js",
-            "line": 21,
+            "line": 28,
             "description": "Return a new object inheriting from the previous one",
             "itemtype": "method",
             "name": "extend",
@@ -2768,7 +2775,7 @@
         },
         {
             "file": "js/objectPrototype.js",
-            "line": 40,
+            "line": 47,
             "description": "Create a new object based on this prototype, modify according to the passed in parameters and run the init method if available",
             "itemtype": "method",
             "name": "create",
@@ -2793,7 +2800,7 @@
         },
         {
             "file": "js/objectPrototype.js",
-            "line": 58,
+            "line": 65,
             "description": "Creates a copy of an object rather than a reference to that object\nNote that it is not recursive and does not copy inherited properties",
             "itemtype": "method",
             "name": "clone",
@@ -2806,7 +2813,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 40,
+            "line": 42,
             "description": "Player tool",
             "itemtype": "method",
             "name": "tools.player.click",
@@ -2818,7 +2825,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 57,
+            "line": 59,
             "description": "Remove actor tool",
             "itemtype": "method",
             "name": "tools.removeActor.click",
@@ -2830,7 +2837,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 77,
+            "line": 79,
             "description": "Baddy tool",
             "itemtype": "method",
             "name": "tools.baddy.click",
@@ -2842,7 +2849,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 94,
+            "line": 96,
             "description": "Selects a map tile or entity",
             "itemtype": "method",
             "name": "tools.select.click",
@@ -2854,7 +2861,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 129,
+            "line": 131,
             "description": "Highlights the selected tile",
             "itemtype": "method",
             "name": "tools.select.render",
@@ -2866,7 +2873,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 154,
+            "line": 156,
             "description": "rotates the selected object",
             "itemtype": "method",
             "name": "tools.rotate.click",
@@ -2878,7 +2885,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 175,
+            "line": 177,
             "description": "Draws a line from the selected entity to the current mouse cursor position",
             "itemtype": "method",
             "name": "tools.rotate.render",
@@ -2890,7 +2897,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 190,
+            "line": 192,
             "description": "Adds an extra row / column to the side of the map closest to the cursor",
             "itemtype": "method",
             "name": "tools.expand.click",
@@ -2902,7 +2909,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 204,
+            "line": 206,
             "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
             "itemtype": "method",
             "name": "tools.expand.render",
@@ -2914,7 +2921,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 223,
+            "line": 225,
             "description": "Removes a row / column from the side of the map closest to the cursor",
             "itemtype": "method",
             "name": "tools.reduce.click",
@@ -2926,7 +2933,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 237,
+            "line": 239,
             "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
             "itemtype": "method",
             "name": "tools.reduce.render",
@@ -2938,7 +2945,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 274,
+            "line": 276,
             "description": "Initialises the patrol tool by clearing the currently selected entity's patrol route",
             "itemtype": "method",
             "name": "init",
@@ -2950,7 +2957,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 289,
+            "line": 291,
             "description": "Sets a patrol route for an actor",
             "itemtype": "method",
             "name": "tools.patrol.click",
@@ -2962,7 +2969,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 307,
+            "line": 309,
             "description": "Displays the patrol route",
             "itemtype": "method",
             "name": "tools.patrol.render",
@@ -2974,7 +2981,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 329,
+            "line": 331,
             "description": "Displays the command palette",
             "itemtype": "method",
             "name": "show",
@@ -2986,7 +2993,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 340,
+            "line": 342,
             "description": "Hides the command palette",
             "itemtype": "method",
             "name": "hide",
@@ -2998,7 +3005,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 351,
+            "line": 353,
             "description": "Changes the current tool",
             "itemtype": "method",
             "name": "changeTool",
@@ -3010,7 +3017,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 374,
+            "line": 376,
             "description": "Initialises the command palette\n\nIncludes a generic event handler for using the currently selected tool",
             "itemtype": "method",
             "name": "init",
@@ -3022,7 +3029,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 405,
+            "line": 407,
             "description": "Sets the properties that are to be displayed in the properties panel",
             "itemtype": "method",
             "name": "setProperties",
@@ -3041,7 +3048,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 422,
+            "line": 424,
             "description": "Carries out rendering actions on behalf of palette tools",
             "itemtype": "method",
             "name": "render",
@@ -3053,7 +3060,7 @@
         },
         {
             "file": "js/palette.js",
-            "line": 438,
+            "line": 440,
             "description": "refreshes the display of the palette",
             "itemtype": "method",
             "name": "refresh",
@@ -3065,7 +3072,7 @@
         },
         {
             "file": "js/playerPrototype.js",
-            "line": 22,
+            "line": 24,
             "description": "Actions to be taken each frame for the player",
             "itemtype": "method",
             "name": "process",
@@ -3086,7 +3093,7 @@
         },
         {
             "file": "js/projectilePrototype.js",
-            "line": 17,
+            "line": 19,
             "description": "Carries out the processing required by a projectile each frame",
             "itemtype": "method",
             "name": "process",
@@ -3098,7 +3105,7 @@
         },
         {
             "file": "js/projectilePrototype.js",
-            "line": 28,
+            "line": 30,
             "description": "Moves the projectile testing for collisions and calling the appropriate hit handlers",
             "itemtype": "method",
             "name": "move",
@@ -3110,7 +3117,7 @@
         },
         {
             "file": "js/projectilePrototype.js",
-            "line": 56,
+            "line": 58,
             "description": "Renders the projectile\n\nPlaceholder graphics TODO: replace with bitmaps",
             "itemtype": "method",
             "name": "render",
@@ -3122,7 +3129,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 20,
+            "line": 24,
             "description": "Initialise screen",
             "itemtype": "method",
             "name": "init",
@@ -3141,7 +3148,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 32,
+            "line": 36,
             "description": "Change to another screen",
             "itemtype": "method",
             "name": "change",
@@ -3165,7 +3172,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 59,
+            "line": 63,
             "description": "Returns the DOM ID of the current screen",
             "itemtype": "method",
             "name": "getCurrent",
@@ -3178,7 +3185,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 69,
+            "line": 73,
             "description": "Return to previous screen",
             "itemtype": "method",
             "name": "previous",
@@ -3190,7 +3197,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 83,
+            "line": 87,
             "description": "Actions to take when the current screen is updated",
             "itemtype": "method",
             "name": "update",
@@ -3199,7 +3206,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 93,
+            "line": 97,
             "description": "Actions to take when the screen is saved",
             "itemtype": "method",
             "name": "save",
@@ -3211,7 +3218,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 104,
+            "line": 108,
             "description": "Gets the current save state for the screen",
             "itemtype": "method",
             "name": "isUnsaved",
@@ -3224,7 +3231,7 @@
         },
         {
             "file": "js/tiles.js",
-            "line": 16,
+            "line": 18,
             "description": "Sets tile dimensions and passability",
             "itemtype": "method",
             "name": "init",
@@ -3236,7 +3243,7 @@
         },
         {
             "file": "js/tiles.js",
-            "line": 41,
+            "line": 43,
             "description": "Renders a tile\n\nPlaceholder code TODO: Update with bitmap graphics",
             "itemtype": "method",
             "name": "renderTile",
@@ -3248,7 +3255,7 @@
         },
         {
             "file": "js/timer.js",
-            "line": 15,
+            "line": 17,
             "description": "Starts the timer",
             "itemtype": "method",
             "name": "start",
@@ -3260,7 +3267,7 @@
         },
         {
             "file": "js/timer.js",
-            "line": 30,
+            "line": 32,
             "description": "updates the timer",
             "itemtype": "method",
             "name": "process",
@@ -3272,7 +3279,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 19,
+            "line": 21,
             "description": "returns a vector with integer values for both x and y coordinates\n\nThis is particularly useful when rendering to the canvas where there is a big performance hit for non-integer values",
             "itemtype": "method",
             "name": "round",
@@ -3292,7 +3299,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 35,
+            "line": 37,
             "description": "Adds two vectors together, returning the resulting vector",
             "itemtype": "method",
             "name": "add",
@@ -3317,7 +3324,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 50,
+            "line": 52,
             "description": "Returns a new vector that is a copy of the inital vector",
             "itemtype": "method",
             "name": "clone",
@@ -3330,7 +3337,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 60,
+            "line": 62,
             "description": "Subtracts one vector from another",
             "itemtype": "method",
             "name": "subtract",
@@ -3355,7 +3362,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 75,
+            "line": 77,
             "description": "Returns a vector of the same magnitude pointing in the opposite direction",
             "itemtype": "method",
             "name": "reverse",
@@ -3375,7 +3382,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 86,
+            "line": 88,
             "description": "Calculates the magnitude (length) of a vector",
             "itemtype": "method",
             "name": "mag",
@@ -3395,7 +3402,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 97,
+            "line": 99,
             "description": "Calculates the distance between two vectors (imagine they represent points)",
             "itemtype": "method",
             "name": "distance",
@@ -3420,7 +3427,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 109,
+            "line": 111,
             "description": "Returns a new vector pointing the same direction but with length 1",
             "itemtype": "method",
             "name": "normalise",
@@ -3440,7 +3447,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 124,
+            "line": 126,
             "description": "Returns a new vector pointing in the same direction but of the specified length",
             "itemtype": "method",
             "name": "setLength",
@@ -3465,7 +3472,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 140,
+            "line": 142,
             "description": "Calculates the dot product between two vectors\n\nThis can be thought of as a number indicating how closely the two vectors are aligned",
             "itemtype": "method",
             "name": "dot",
@@ -3490,7 +3497,7 @@
         },
         {
             "file": "js/vector.js",
-            "line": 154,
+            "line": 156,
             "description": "The angle between two vectors (in radians)",
             "itemtype": "method",
             "name": "angle",
@@ -3520,8 +3527,8 @@
         },
         {
             "file": "js/vector.js",
-            "line": 184,
-            "description": "Converts an angle (in radians) to a normaLised vector",
+            "line": 186,
+            "description": "Converts an angle (in radians) to a normalised vector (where the angle is from the positive x-axis)",
             "itemtype": "method",
             "name": "angleToVector",
             "params": [
@@ -3537,6 +3544,1327 @@
             },
             "class": "vector",
             "module": "vector"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 3,
+            "description": "Top level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 10,
+            "access": "private",
+            "tagname": "",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 17,
+            "description": "Use <code>jasmine.undefined</code> instead of <code>undefined</code>, since <code>undefined</code> is just\na plain old variable and may be redefined by somebody else.",
+            "access": "private",
+            "tagname": "",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 25,
+            "description": "Show diagnostic messages in the console if set to true",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 31,
+            "description": "Default interval in milliseconds for event loop yields (e.g. to allow network activity or to refresh the screen with the HTML-based runner). Small values here may result in slow test running. Zero means no updates until all tests have completed.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 37,
+            "description": "Maximum levels of nesting that will be included when an object is pretty-printed",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 42,
+            "description": "Default timeout interval in milliseconds for waitsFor() blocks.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 47,
+            "description": "By default exceptions thrown in the context of a test are caught by jasmine so that it can run the remaining tests in the suite.\nSet to false to let the exception bubble up in the browser.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 62,
+            "description": "Allows for bound functions to be compared.  Internal use only.",
+            "ignore": "",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "base",
+                    "description": "bound 'this' for the function",
+                    "type": "Object"
+                },
+                {
+                    "name": "name",
+                    "description": "function to find",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 126,
+            "description": "Getter for the Jasmine environment. Ensures one gets created",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 134,
+            "ignore": "",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "value",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 144,
+            "ignore": "",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "value",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 154,
+            "ignore": "",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "value",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 164,
+            "ignore": "",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "typeName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 175,
+            "description": "Pretty printer for expecations.  Takes any object and turns it into a human-readable string.",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "an object to be outputted",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 187,
+            "description": "Returns true if the object is a DOM Node.",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "object to check",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 197,
+            "description": "Returns a matchable 'generic' object of the class type.  For use in expecations of type when values don't matter.",
+            "example": [
+                "\n// don't care about which function is passed in, as long as it's a function\nexpect(mySpy).toHaveBeenCalledWith(jasmine.any(Function));"
+            ],
+            "params": [
+                {
+                    "name": "clazz",
+                    "description": "",
+                    "type": "Class"
+                }
+            ],
+            "return": {
+                "description": "matchable object of the type clazz"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 211,
+            "description": "Returns a matchable subset of a JSON object. For use in expectations when you don't care about all of the\nattributes on the object.",
+            "example": [
+                "\n// don't care about any other attributes than foo.\nexpect(mySpy).toHaveBeenCalledWith(jasmine.objectContaining({foo: \"bar\"});"
+            ],
+            "params": [
+                {
+                    "name": "sample",
+                    "description": "sample",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "matchable object for the sample"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 226,
+            "description": "Jasmine Spies are test doubles that can act as stubs, spies, fakes or when used in an expecation, mocks.\n\nSpies should be created in test setup, before expectations.  They can then be checked, using the standard Jasmine\nexpectation syntax. Spies can be checked if they were called or not and what the calling params were.\n\nA Spy has the following fields: wasCalled, callCount, mostRecentCall, and argsForCall (see docs).\n\nSpies are torn down at the end of every spec.\n\nNote: Do <b>not</b> call new jasmine.Spy() directly - a spy must be created using spyOn, jasmine.createSpy or jasmine.createSpyObj.",
+            "example": [
+                "\n// a stub\nvar myStub = jasmine.createSpy('myStub');  // can be used anywhere\n\n// spy example\nvar foo = {\n  not: function(bool) { return !bool; }\n}\n\n// actual foo.not will not be called, execution stops\nspyOn(foo, 'not');\n\n// foo.not spied upon, execution will continue to implementation\nspyOn(foo, 'not').andCallThrough();\n\n// fake example\nvar foo = {\n  not: function(bool) { return !bool; }\n}\n\n// foo.not(val) will return val\nspyOn(foo, 'not').andCallFake(function(value) {return value;});\n\n// mock example\nfoo.not(7 == 7);\nexpect(foo.not).toHaveBeenCalled();\nexpect(foo.not).toHaveBeenCalledWith(true);"
+            ],
+            "is_constructor": 1,
+            "see": [
+                "spyOn",
+                "jasmine.createSpy",
+                "jasmine.createSpyObj"
+            ],
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 271,
+            "description": "The name of the spy, if provided.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 275,
+            "description": "Is this Object a spy?",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 279,
+            "description": "The actual function this spy stubs.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 284,
+            "description": "Tracking of the most recent call to the spy.",
+            "example": [
+                "\nvar mySpy = jasmine.createSpy('foo');\nmySpy(1, 2);\nmySpy.mostRecentCall.args = [1, 2];"
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 293,
+            "description": "Holds arguments for each call to the spy, indexed by call count",
+            "example": [
+                "\nvar mySpy = jasmine.createSpy('foo');\nmySpy(1, 2);\nmySpy(7, 8);\nmySpy.mostRecentCall.args = [7, 8];\nmySpy.argsForCall[0] = [1, 2];\nmySpy.argsForCall[1] = [7, 8];"
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 307,
+            "description": "Tells a spy to call through to the actual implemenatation.",
+            "example": [
+                "\nvar foo = {\n  bar: function() { // do some stuff }\n}\n\n// defining a spy on an existing property: foo.bar\nspyOn(foo, 'bar').andCallThrough();"
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 323,
+            "description": "For setting the return value of a spy.",
+            "example": [
+                "\n// defining a spy from scratch: foo() returns 'baz'\nvar foo = jasmine.createSpy('spy on foo').andReturn('baz');\n\n// defining a spy on an existing property: foo.bar() returns 'baz'\nspyOn(foo, 'bar').andReturn('baz');"
+            ],
+            "params": [
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 342,
+            "description": "For throwing an exception when a spy is called.",
+            "example": [
+                "\n// defining a spy from scratch: foo() throws an exception w/ message 'ouch'\nvar foo = jasmine.createSpy('spy on foo').andThrow('baz');\n\n// defining a spy on an existing property: foo.bar() throws an exception w/ message 'ouch'\nspyOn(foo, 'bar').andThrow('baz');"
+            ],
+            "params": [
+                {
+                    "name": "exceptionMsg",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 361,
+            "description": "Calls an alternate implementation when a spy is called.",
+            "example": [
+                "\nvar baz = function() {\n  // do some stuff, return something\n}\n// defining a spy from scratch: foo() calls the function baz\nvar foo = jasmine.createSpy('spy on foo').andCall(baz);\n\n// defining a spy on an existing property: foo.bar() calls an anonymnous function\nspyOn(foo, 'bar').andCall(function() { return 'baz';} );"
+            ],
+            "params": [
+                {
+                    "name": "fakeFunc",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 381,
+            "description": "Resets all of a spy's the tracking variables so that it can be used again.",
+            "example": [
+                "\nspyOn(foo, 'bar');\n\nfoo.bar();\n\nexpect(foo.bar.callCount).toEqual(1);\n\nfoo.bar.reset();\n\nexpect(foo.bar.callCount).toEqual(0);"
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 427,
+            "description": "Determines whether an object is a spy.",
+            "params": [
+                {
+                    "name": "putativeSpy",
+                    "description": "",
+                    "type": "jasmine.Spy|Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 437,
+            "description": "Creates a more complicated spy: an Object that has every property a function that is a spy.  Used for stubbing something\nlarge in one call.",
+            "params": [
+                {
+                    "name": "baseName",
+                    "description": "name of spy class",
+                    "type": "String"
+                },
+                {
+                    "name": "methodNames",
+                    "description": "array of names of methods to make spies",
+                    "type": "Array"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 455,
+            "description": "All parameters are pretty-printed and concatenated together, then written to the current spec's output.\n\nBe careful not to leave calls to <code>jasmine.log</code> in production code.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 465,
+            "description": "Function that installs a spy on an existing object's method name.  Used within a Spec to create a spy.",
+            "example": [
+                "\n// spy example\nvar foo = {\n  not: function(bool) { return !bool; }\n}\nspyOn(foo, 'not'); // actual foo.not will not be called, execution stops"
+            ],
+            "see": [
+                "jasmine.createSpy"
+            ],
+            "params": [
+                {
+                    "name": "obj",
+                    "description": ""
+                },
+                {
+                    "name": "methodName",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "a Jasmine spy that can be chained with all spy methods",
+                "type": "jasmine.Spy"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 485,
+            "description": "Creates a Jasmine spec that will be added to the current suite.\n\n// TODO: pending tests",
+            "example": [
+                "\nit('should be true', function() {\n  expect(true).toEqual(true);\n});"
+            ],
+            "params": [
+                {
+                    "name": "desc",
+                    "description": "description of this specification",
+                    "type": "String"
+                },
+                {
+                    "name": "func",
+                    "description": "defines the preconditions and expectations of the spec",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 503,
+            "description": "Creates a <em>disabled</em> Jasmine spec.\n\nA convenience method that allows existing specs to be disabled temporarily during development.",
+            "params": [
+                {
+                    "name": "desc",
+                    "description": "description of this specification",
+                    "type": "String"
+                },
+                {
+                    "name": "func",
+                    "description": "defines the preconditions and expectations of the spec",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 516,
+            "description": "Starts a chain for a Jasmine expectation.\n\nIt is passed an Object that is the actual value and should chain to one of the many\njasmine.Matchers functions.",
+            "params": [
+                {
+                    "name": "actual",
+                    "description": "Actual value to test against and expected value",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "jasmine.Matchers"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 530,
+            "description": "Defines part of a jasmine spec.  Used in cominbination with waits or waitsFor in asynchrnous specs.",
+            "params": [
+                {
+                    "name": "func",
+                    "description": "Function that defines part of a jasmine spec.",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 540,
+            "description": "Waits a fixed time period before moving to the next block.",
+            "deprecated": true,
+            "deprecationMessage": "Use waitsFor() instead",
+            "params": [
+                {
+                    "name": "timeout",
+                    "description": "milliseconds to wait",
+                    "type": "Number"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 551,
+            "description": "Waits for the latchFunction to return true before proceeding to the next block.",
+            "params": [
+                {
+                    "name": "latchFunction",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "optional_timeoutMessage",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "optional_timeout",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 563,
+            "description": "A function that is called before each spec in a suite.\n\nUsed for spec setup, including validating assumptions.",
+            "params": [
+                {
+                    "name": "beforeEachFunction",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 575,
+            "description": "A function that is called after each spec in a suite.\n\nUsed for restoring any state that is hijacked during spec execution.",
+            "params": [
+                {
+                    "name": "afterEachFunction",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 587,
+            "description": "Defines a suite of specifications.\n\nStores the description and all defined specs in the Jasmine environment as one suite of specs. Variables declared\nare accessible by calls to beforeEach, it, and afterEach. Describe blocks can be nested, allowing for specialization\nof setup in some tests.",
+            "example": [
+                "\n// TODO: a simple suite\n\n// TODO: a simple suite with a nested describe block"
+            ],
+            "params": [
+                {
+                    "name": "description",
+                    "description": "A string, usually the class under test.",
+                    "type": "String"
+                },
+                {
+                    "name": "specDefinitions",
+                    "description": "function that defines several specs.",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 607,
+            "description": "Disables a suite of specifications.  Used to disable some suites in a file, or files, temporarily during development.",
+            "params": [
+                {
+                    "name": "description",
+                    "description": "A string, usually the class under test.",
+                    "type": "String"
+                },
+                {
+                    "name": "specDefinitions",
+                    "description": "function that defines several specs.",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 646,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 651,
+            "description": "Declare that a child class inherit it's prototype from the parent class.",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "childClass",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "parentClass",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 659,
+            "access": "private",
+            "tagname": "",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 713,
+            "description": "Environment for Jasmine",
+            "is_constructor": 1,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 751,
+            "return": {
+                "description": "an object containing jasmine version build info, if set."
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 762,
+            "return": {
+                "description": "string containing jasmine version build info, if set."
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 779,
+            "return": {
+                "description": "a sequential integer starting at 0"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 786,
+            "return": {
+                "description": "a sequential integer starting at 0"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 793,
+            "description": "Register a reporter to receive status updates from Jasmine.",
+            "params": [
+                {
+                    "name": "reporter",
+                    "description": "An object which will receive status updates.",
+                    "type": "jasmine.Reporter"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1013,
+            "is_constructor": 1,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1044,
+            "description": "Blocks are functions with executable code that make up a spec.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "jasmine.Env"
+                },
+                {
+                    "name": "func",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "spec",
+                    "description": "",
+                    "type": "jasmine.Spec"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1071,
+            "is_constructor": 1,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1173,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "jasmine.Env"
+                },
+                {
+                    "name": "actual",
+                    "description": ""
+                },
+                {
+                    "name": "spec",
+                    "description": "",
+                    "type": "jasmine.Spec"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1250,
+            "description": "toBe: compares the actual to the expected using ===",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": ""
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1258,
+            "description": "toNotBe: compares the actual to the expected using !==",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": ""
+                }
+            ],
+            "deprecated": true,
+            "deprecationMessage": "as of 1.0. Use not.toBe() instead.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1267,
+            "description": "toEqual: compares the actual to the expected using common sense equality. Handles Objects, Arrays, etc.",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": ""
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1276,
+            "description": "toNotEqual: compares the actual to the expected using the ! of jasmine.Matchers.toEqual",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": ""
+                }
+            ],
+            "deprecated": true,
+            "deprecationMessage": "as of 1.0. Use not.toEqual() instead.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1285,
+            "description": "Matcher that compares the actual to the expected using a regular expression.  Constructs a RegExp, so takes\na pattern or a String.",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": ""
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1295,
+            "description": "Matcher that compares the actual to the expected using the boolean inverse of jasmine.Matchers.toMatch",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": ""
+                }
+            ],
+            "deprecated": true,
+            "deprecationMessage": "as of 1.0. Use not.toMatch() instead.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1304,
+            "description": "Matcher that compares the actual to jasmine.undefined.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1311,
+            "description": "Matcher that compares the actual to jasmine.undefined.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1318,
+            "description": "Matcher that compares the actual to null.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1325,
+            "description": "Matcher that compares the actual to NaN.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1336,
+            "description": "Matcher that boolean not-nots the actual.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1344,
+            "description": "Matcher that boolean nots the actual.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1352,
+            "description": "Matcher that checks to see if the actual, a Jasmine spy, was called.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1374,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1377,
+            "description": "Matcher that checks to see if the actual, a Jasmine spy, was not called.",
+            "deprecated": true,
+            "deprecationMessage": "Use expect(xxx).not.toHaveBeenCalled() instead",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1401,
+            "description": "Matcher that checks to see if the actual, a Jasmine spy, was called with a set of parameters.",
+            "example": [
+                "\n"
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1426,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1429,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1446,
+            "description": "Matcher that checks that the expected item is an element in the actual Array.",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1455,
+            "description": "Matcher that checks that the expected item is NOT an element in the actual Array.",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "deprecated": true,
+            "deprecationMessage": "as of 1.0. Use not.toContain() instead.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1473,
+            "description": "Matcher that checks that the expected item is equal to the actual item\nup to a given level of decimal precision (default 2).",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "precision,",
+                    "description": "as number of decimal places",
+                    "type": "Number"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1487,
+            "description": "Matcher that checks that the expected exception was thrown by the actual.",
+            "params": [
+                {
+                    "name": "expected",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1664,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1760,
+            "is_constructor": 1,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1795,
+            "description": "Holds results for a set of Jasmine spec. Allows for the results array to hold another jasmine.NestedResults",
+            "is_constructor": 1,
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1801,
+            "description": "The total count of results",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1805,
+            "description": "Number of passed results",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1809,
+            "description": "Number of failed results",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1813,
+            "description": "Was this suite/spec skipped?",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1817,
+            "ignore": "",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1823,
+            "description": "Roll up the result counts.",
+            "params": [
+                {
+                    "name": "result",
+                    "description": ""
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1834,
+            "description": "Adds a log message.",
+            "params": [
+                {
+                    "name": "values",
+                    "description": "Array of message parts which will be concatenated later."
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1842,
+            "description": "Getter for the results: message & results.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1849,
+            "description": "Adds a result, tracking counts (total, passed, & failed)",
+            "params": [
+                {
+                    "name": "result",
+                    "description": "",
+                    "type": "jasmine.ExpectationResult|jasmine.NestedResults"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1869,
+            "return": {
+                "description": "True if <b>everything</b> below passed",
+                "type": "Boolean"
+            },
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1875,
+            "description": "Base class for pretty printing for expectation results.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 1882,
+            "description": "Formats a value in a nice, human-readable string.",
+            "params": [
+                {
+                    "name": "value",
+                    "description": ""
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 2123,
+            "description": "Runner",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "jasmine.Env"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 2200,
+            "description": "Internal representation of a Jasmine specification, or test.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "jasmine.Env"
+                },
+                {
+                    "name": "suite",
+                    "description": "",
+                    "type": "jasmine.Suite"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 2239,
+            "description": "All parameters are pretty-printed and concatenated together, then written to the spec's output.\n\nBe careful not to leave calls to <code>jasmine.log</code> in production code.",
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 2262,
+            "params": [
+                {
+                    "name": "result",
+                    "description": "",
+                    "type": "jasmine.ExpectationResult"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 2275,
+            "description": "Waits a fixed time period before moving to the next block.",
+            "deprecated": true,
+            "deprecationMessage": "Use waitsFor() instead",
+            "params": [
+                {
+                    "name": "timeout",
+                    "description": "milliseconds to wait",
+                    "type": "Number"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 2287,
+            "description": "Waits for the latchFunction to return true before proceeding to the next block.",
+            "params": [
+                {
+                    "name": "latchFunction",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "optional_timeoutMessage",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "optional_timeout",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 2443,
+            "description": "Internal representation of a Jasmine suite.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "env",
+                    "description": "",
+                    "type": "jasmine.Env"
+                },
+                {
+                    "name": "description",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "specDefinitions",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "parentSuite",
+                    "description": "",
+                    "type": "jasmine.Suite"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
+        },
+        {
+            "file": "specs/lib/jasmine-1.3.1/jasmine.js",
+            "line": 2540,
+            "description": "A block which waits for some condition to become true, with timeout.",
+            "is_constructor": 1,
+            "extends": "jasmine.Block",
+            "params": [
+                {
+                    "name": "env",
+                    "description": "The Jasmine environment.",
+                    "type": "jasmine.Env"
+                },
+                {
+                    "name": "timeout",
+                    "description": "The maximum time in milliseconds to wait for the condition to become true.",
+                    "type": "Number"
+                },
+                {
+                    "name": "latchFunction",
+                    "description": "A function which returns true when the desired condition has been met.",
+                    "type": "Function"
+                },
+                {
+                    "name": "message",
+                    "description": "The message to display if the desired condition hasn't been met within the given time period.",
+                    "type": "String"
+                },
+                {
+                    "name": "spec",
+                    "description": "The Jasmine spec.",
+                    "type": "jasmine.Spec"
+                }
+            ],
+            "class": "",
+            "module": "weapons"
         }
     ],
     "warnings": [
@@ -3555,6 +4883,86 @@
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " js/lib/jquery-2.0.3.js:1308"
+        },
+        {
+            "message": "unknown tag: ignore",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:62"
+        },
+        {
+            "message": "unknown tag: ignore",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:134"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:134"
+        },
+        {
+            "message": "unknown tag: ignore",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:144"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:144"
+        },
+        {
+            "message": "unknown tag: ignore",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:154"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:154"
+        },
+        {
+            "message": "unknown tag: ignore",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:164"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:164"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:175"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:187"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:197"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:211"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:427"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:751"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:762"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:779"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:786"
+        },
+        {
+            "message": "unknown tag: ignore",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1817"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1869"
         },
         {
             "message": "Missing item type\nA* (A-Star) algorithm for a path finder",
@@ -3609,16 +5017,16 @@
             "line": " js/lib/jquery-2.0.3.js:1747"
         },
         {
-            "message": "Missing item type\nMoves an array element from one index to another",
+            "message": "Missing item type\nReturns a new array with an array element from one index to another",
             "line": " js/lib/util.js:31"
         },
         {
             "message": "Missing item type\nMoves the map up one in the order (nearer the start)",
-            "line": " js/campaign.js:167"
+            "line": " js/campaign.js:171"
         },
         {
             "message": "Missing item type\nMoves the map down one in the order (nearer the end)",
-            "line": " js/campaign.js:183"
+            "line": " js/campaign.js:187"
         },
         {
             "message": "Missing item type\nEvent handlers for map selection screen",
@@ -3626,7 +5034,411 @@
         },
         {
             "message": "Missing item type\nobject storing all vectors that need to be rendered this frame",
-            "line": " js/graphics.js:115"
+            "line": " js/graphics.js:117"
+        },
+        {
+            "message": "Missing item type\nTop level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:3"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:10"
+        },
+        {
+            "message": "Missing item type\nUse <code>jasmine.undefined</code> instead of <code>undefined</code>, since <code>undefined</code> is just\na plain old variable and may be redefined by somebody else.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:17"
+        },
+        {
+            "message": "Missing item type\nShow diagnostic messages in the console if set to true",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:25"
+        },
+        {
+            "message": "Missing item type\nDefault interval in milliseconds for event loop yields (e.g. to allow network activity or to refresh the screen with the HTML-based runner). Small values here may result in slow test running. Zero means no updates until all tests have completed.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:31"
+        },
+        {
+            "message": "Missing item type\nMaximum levels of nesting that will be included when an object is pretty-printed",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:37"
+        },
+        {
+            "message": "Missing item type\nDefault timeout interval in milliseconds for waitsFor() blocks.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:42"
+        },
+        {
+            "message": "Missing item type\nBy default exceptions thrown in the context of a test are caught by jasmine so that it can run the remaining tests in the suite.\nSet to false to let the exception bubble up in the browser.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:47"
+        },
+        {
+            "message": "Missing item type\nAllows for bound functions to be compared.  Internal use only.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:62"
+        },
+        {
+            "message": "Missing item type\nGetter for the Jasmine environment. Ensures one gets created",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:126"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:134"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:144"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:154"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:164"
+        },
+        {
+            "message": "Missing item type\nPretty printer for expecations.  Takes any object and turns it into a human-readable string.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:175"
+        },
+        {
+            "message": "Missing item type\nReturns true if the object is a DOM Node.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:187"
+        },
+        {
+            "message": "Missing item type\nReturns a matchable 'generic' object of the class type.  For use in expecations of type when values don't matter.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:197"
+        },
+        {
+            "message": "Missing item type\nReturns a matchable subset of a JSON object. For use in expectations when you don't care about all of the\nattributes on the object.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:211"
+        },
+        {
+            "message": "Missing item type\nJasmine Spies are test doubles that can act as stubs, spies, fakes or when used in an expecation, mocks.\n\nSpies should be created in test setup, before expectations.  They can then be checked, using the standard Jasmine\nexpectation syntax. Spies can be checked if they were called or not and what the calling params were.\n\nA Spy has the following fields: wasCalled, callCount, mostRecentCall, and argsForCall (see docs).\n\nSpies are torn down at the end of every spec.\n\nNote: Do <b>not</b> call new jasmine.Spy() directly - a spy must be created using spyOn, jasmine.createSpy or jasmine.createSpyObj.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:226"
+        },
+        {
+            "message": "Missing item type\nThe name of the spy, if provided.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:271"
+        },
+        {
+            "message": "Missing item type\nIs this Object a spy?",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:275"
+        },
+        {
+            "message": "Missing item type\nThe actual function this spy stubs.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:279"
+        },
+        {
+            "message": "Missing item type\nTracking of the most recent call to the spy.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:284"
+        },
+        {
+            "message": "Missing item type\nHolds arguments for each call to the spy, indexed by call count",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:293"
+        },
+        {
+            "message": "Missing item type\nTells a spy to call through to the actual implemenatation.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:307"
+        },
+        {
+            "message": "Missing item type\nFor setting the return value of a spy.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:323"
+        },
+        {
+            "message": "Missing item type\nFor throwing an exception when a spy is called.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:342"
+        },
+        {
+            "message": "Missing item type\nCalls an alternate implementation when a spy is called.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:361"
+        },
+        {
+            "message": "Missing item type\nResets all of a spy's the tracking variables so that it can be used again.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:381"
+        },
+        {
+            "message": "Missing item type\nDetermines whether an object is a spy.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:427"
+        },
+        {
+            "message": "Missing item type\nCreates a more complicated spy: an Object that has every property a function that is a spy.  Used for stubbing something\nlarge in one call.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:437"
+        },
+        {
+            "message": "Missing item type\nAll parameters are pretty-printed and concatenated together, then written to the current spec's output.\n\nBe careful not to leave calls to <code>jasmine.log</code> in production code.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:455"
+        },
+        {
+            "message": "Missing item type\nFunction that installs a spy on an existing object's method name.  Used within a Spec to create a spy.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:465"
+        },
+        {
+            "message": "Missing item type\nCreates a Jasmine spec that will be added to the current suite.\n\n// TODO: pending tests",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:485"
+        },
+        {
+            "message": "Missing item type\nCreates a <em>disabled</em> Jasmine spec.\n\nA convenience method that allows existing specs to be disabled temporarily during development.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:503"
+        },
+        {
+            "message": "Missing item type\nStarts a chain for a Jasmine expectation.\n\nIt is passed an Object that is the actual value and should chain to one of the many\njasmine.Matchers functions.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:516"
+        },
+        {
+            "message": "Missing item type\nDefines part of a jasmine spec.  Used in cominbination with waits or waitsFor in asynchrnous specs.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:530"
+        },
+        {
+            "message": "Missing item type\nWaits a fixed time period before moving to the next block.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:540"
+        },
+        {
+            "message": "Missing item type\nWaits for the latchFunction to return true before proceeding to the next block.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:551"
+        },
+        {
+            "message": "Missing item type\nA function that is called before each spec in a suite.\n\nUsed for spec setup, including validating assumptions.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:563"
+        },
+        {
+            "message": "Missing item type\nA function that is called after each spec in a suite.\n\nUsed for restoring any state that is hijacked during spec execution.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:575"
+        },
+        {
+            "message": "Missing item type\nDefines a suite of specifications.\n\nStores the description and all defined specs in the Jasmine environment as one suite of specs. Variables declared\nare accessible by calls to beforeEach, it, and afterEach. Describe blocks can be nested, allowing for specialization\nof setup in some tests.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:587"
+        },
+        {
+            "message": "Missing item type\nDisables a suite of specifications.  Used to disable some suites in a file, or files, temporarily during development.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:607"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:646"
+        },
+        {
+            "message": "Missing item type\nDeclare that a child class inherit it's prototype from the parent class.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:651"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:659"
+        },
+        {
+            "message": "Missing item type\nEnvironment for Jasmine",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:713"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:751"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:762"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:779"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:786"
+        },
+        {
+            "message": "Missing item type\nRegister a reporter to receive status updates from Jasmine.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:793"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1013"
+        },
+        {
+            "message": "Missing item type\nBlocks are functions with executable code that make up a spec.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1044"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1071"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1173"
+        },
+        {
+            "message": "Missing item type\ntoBe: compares the actual to the expected using ===",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1250"
+        },
+        {
+            "message": "Missing item type\ntoNotBe: compares the actual to the expected using !==",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1258"
+        },
+        {
+            "message": "Missing item type\ntoEqual: compares the actual to the expected using common sense equality. Handles Objects, Arrays, etc.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1267"
+        },
+        {
+            "message": "Missing item type\ntoNotEqual: compares the actual to the expected using the ! of jasmine.Matchers.toEqual",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1276"
+        },
+        {
+            "message": "Missing item type\nMatcher that compares the actual to the expected using a regular expression.  Constructs a RegExp, so takes\na pattern or a String.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1285"
+        },
+        {
+            "message": "Missing item type\nMatcher that compares the actual to the expected using the boolean inverse of jasmine.Matchers.toMatch",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1295"
+        },
+        {
+            "message": "Missing item type\nMatcher that compares the actual to jasmine.undefined.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1304"
+        },
+        {
+            "message": "Missing item type\nMatcher that compares the actual to jasmine.undefined.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1311"
+        },
+        {
+            "message": "Missing item type\nMatcher that compares the actual to null.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1318"
+        },
+        {
+            "message": "Missing item type\nMatcher that compares the actual to NaN.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1325"
+        },
+        {
+            "message": "Missing item type\nMatcher that boolean not-nots the actual.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1336"
+        },
+        {
+            "message": "Missing item type\nMatcher that boolean nots the actual.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1344"
+        },
+        {
+            "message": "Missing item type\nMatcher that checks to see if the actual, a Jasmine spy, was called.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1352"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1374"
+        },
+        {
+            "message": "Missing item type\nMatcher that checks to see if the actual, a Jasmine spy, was not called.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1377"
+        },
+        {
+            "message": "Missing item type\nMatcher that checks to see if the actual, a Jasmine spy, was called with a set of parameters.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1401"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1426"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1429"
+        },
+        {
+            "message": "Missing item type\nMatcher that checks that the expected item is an element in the actual Array.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1446"
+        },
+        {
+            "message": "Missing item type\nMatcher that checks that the expected item is NOT an element in the actual Array.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1455"
+        },
+        {
+            "message": "Missing item type\nMatcher that checks that the expected item is equal to the actual item\nup to a given level of decimal precision (default 2).",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1473"
+        },
+        {
+            "message": "Missing item type\nMatcher that checks that the expected exception was thrown by the actual.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1487"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1664"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1760"
+        },
+        {
+            "message": "Missing item type\nHolds results for a set of Jasmine spec. Allows for the results array to hold another jasmine.NestedResults",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1795"
+        },
+        {
+            "message": "Missing item type\nThe total count of results",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1801"
+        },
+        {
+            "message": "Missing item type\nNumber of passed results",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1805"
+        },
+        {
+            "message": "Missing item type\nNumber of failed results",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1809"
+        },
+        {
+            "message": "Missing item type\nWas this suite/spec skipped?",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1813"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1817"
+        },
+        {
+            "message": "Missing item type\nRoll up the result counts.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1823"
+        },
+        {
+            "message": "Missing item type\nAdds a log message.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1834"
+        },
+        {
+            "message": "Missing item type\nGetter for the results: message & results.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1842"
+        },
+        {
+            "message": "Missing item type\nAdds a result, tracking counts (total, passed, & failed)",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1849"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1869"
+        },
+        {
+            "message": "Missing item type\nBase class for pretty printing for expectation results.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1875"
+        },
+        {
+            "message": "Missing item type\nFormats a value in a nice, human-readable string.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:1882"
+        },
+        {
+            "message": "Missing item type\nRunner",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:2123"
+        },
+        {
+            "message": "Missing item type\nInternal representation of a Jasmine specification, or test.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:2200"
+        },
+        {
+            "message": "Missing item type\nAll parameters are pretty-printed and concatenated together, then written to the spec's output.\n\nBe careful not to leave calls to <code>jasmine.log</code> in production code.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:2239"
+        },
+        {
+            "message": "Missing item type",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:2262"
+        },
+        {
+            "message": "Missing item type\nWaits a fixed time period before moving to the next block.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:2275"
+        },
+        {
+            "message": "Missing item type\nWaits for the latchFunction to return true before proceeding to the next block.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:2287"
+        },
+        {
+            "message": "Missing item type\nInternal representation of a Jasmine suite.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:2443"
+        },
+        {
+            "message": "Missing item type\nA block which waits for some condition to become true, with timeout.",
+            "line": " specs/lib/jasmine-1.3.1/jasmine.js:2540"
         }
     ]
 }

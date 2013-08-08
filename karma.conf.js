@@ -14,9 +14,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        'client/js/lib/jquery-2.0.3.min.js',
         'client/js/vector.js',
         'client/js/objectPrototype.js',
         'client/js/lib/util.js',
+        'client/js/screen.js',
         'client/specs/*.js'
     ],
 
