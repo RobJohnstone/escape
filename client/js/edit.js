@@ -315,6 +315,7 @@ E.game = (function() {
 	 * Code entry point
 	 */
 	$(function() {
+		E.campaign.list();
 		E.screen.init('selectCampaign');
 	});
 

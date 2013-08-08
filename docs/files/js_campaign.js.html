@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-18</em>
+            <em>API Docs for: 0.1.4-19</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -346,7 +346,7 @@ E.campaign = (function() {
 		var mapsArr = campaign.data.maps,
 			currentIndex = mapsArr.indexOf(mapName);
 		if (currentIndex &gt; 0) {
-			mapsArr = util.moveArrayElement(mapsArr, currentIndex, currentIndex-1);
+			campaign.data.maps = util.moveArrayElement(mapsArr, currentIndex, currentIndex-1);
 			campaign.render();
 		}
 		return this;
@@ -362,7 +362,7 @@ E.campaign = (function() {
 		var mapsArr = campaign.data.maps,
 			currentIndex = mapsArr.indexOf(mapName);
 		if (currentIndex &lt; mapsArr.length-1) {
-			mapsArr = util.moveArrayElement(mapsArr, currentIndex, currentIndex+1);
+			campaign.data.maps = util.moveArrayElement(mapsArr, currentIndex, currentIndex+1);
 			campaign.render();
 		}
 		return this;
@@ -392,10 +392,6 @@ E.campaign = (function() {
 		});
 		return this;
 	};
-
-	$(function() {
-		campaign.list();
-	});
 
 	return campaign;
 })();
