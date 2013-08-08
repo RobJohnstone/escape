@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * A library of useful vector math functions
  *
@@ -182,7 +184,7 @@ E.vector = (function() {
 	};
 
 	/**
-	 * Converts an angle (in radians) to a normaLised vector
+	 * Converts an angle (in radians) to a normalised vector (where the angle is from the positive x-axis)
 	 *
 	 * @method angleToVector
 	 * @param angle {number} The angle (directional and in radians) to convert

@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Graphics module
  * Contains all code that outputs to the canvas

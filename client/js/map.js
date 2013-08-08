@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Map module. Objects and methods concerning the map
  *

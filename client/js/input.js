@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Input module
  * Contains all code relating to input

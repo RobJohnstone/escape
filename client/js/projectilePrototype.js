@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Prototype for all projectiles. Inherits from entity prototype
  *

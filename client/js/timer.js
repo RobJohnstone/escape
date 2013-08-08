@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Keeps track of the time between frames
  *

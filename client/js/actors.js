@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Definitions for all the actor types in the game. Also includes a factory method (create)
  * to create an actor of that type

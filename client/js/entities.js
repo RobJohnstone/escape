@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
 * entities object contains code for tracking, processing and rendering entities
 *

@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Command palette for the game editor
  *

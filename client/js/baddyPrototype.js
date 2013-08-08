@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Prototype for all baddies. Inherits from actor prototype
  *

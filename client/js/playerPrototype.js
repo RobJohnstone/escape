@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Prototype for the player. Inherits from actor prototype
  *

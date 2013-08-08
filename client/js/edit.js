@@ -4,7 +4,7 @@
  * @module game
  */
 
-var E = {}; // global namespace object
+var E = E || {}; // global namespace object
 
 /**
  * @class game

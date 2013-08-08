@@ -1,4 +1,4 @@
-/**
+	/**
  * Extend Object.prototype with helper methods to simplify inheritance
  *
  * Escape uses prototypal style inheritance rather than the constructor / pseudo-classical 

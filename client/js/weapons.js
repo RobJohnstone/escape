@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Weapon definitions
  *

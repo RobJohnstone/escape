@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Handles all state and behaviour for campaigns
  *

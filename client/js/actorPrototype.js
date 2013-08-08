@@ -1,3 +1,5 @@
+var E = E || {};
+
 /**
  * Prototype for all actors. Inherits from entity prototype
  *
