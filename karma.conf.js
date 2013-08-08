@@ -16,6 +16,7 @@ module.exports = function(config) {
     files: [
         'client/js/vector.js',
         'client/js/objectPrototype.js',
+        'client/js/lib/util.js',
         'client/specs/*.js'
     ],
 

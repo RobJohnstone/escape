@@ -29,7 +29,7 @@ var util = (function() {
 		},
 
 		/**
-		 * Moves an array element from one index to another
+		 * Returns a new array with an array element from one index to another
 		 *
 		 * @param arr {array} The array to modify
 		 * @param currentIndex {number} The index the element currently occupies
@@ -37,10 +37,19 @@ var util = (function() {
 		 * @return {array} The array
 		 */
 		moveArrayElement: function(array, currentIndex, newIndex) {
-			if (newIndex >= 0 && newIndex < array.length) {
-				array.splice(newIndex, 0, array.splice(currentIndex, 1)[0]);
+			var result = array.slice(0);
+			if (newIndex >= 0) {
+				if (newIndex < result.length) {
+					result.splice(newIndex, 0, result.splice(currentIndex, 1)[0]);
+				}
+				else {
+					result[newIndex] = result.splice(currentIndex, 1)[0];
+				}
 			}
-			return array;
+			else {
+				throw new Error('The new index cannot be negative');
+			}
+			return result;
 		},
 
 		/**
