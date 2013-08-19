@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-19</em>
+            <em>API Docs for: 0.1.4-20</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -221,7 +221,7 @@ E.graphics = (function() {
 		$(&#x27;#gameContainer&#x27;).html(&#x27;&lt;canvas id=&quot;&#x27;+name+&#x27;Canvas&quot; class=&quot;defaultBorder&quot; width=&quot;&#x27;+ width +&#x27;px&quot; height=&quot;&#x27; + height +&#x27;px&quot;&gt;Your broswer does not support the &quot;canvas element&quot;. To play this game you will need a more modern browser.&lt;/canvas&gt;&#x27;);
 		$(&#x27;#&#x27;+name+&#x27;Canvas&#x27;).css({width: +width+&#x27;px&#x27;, height: height+&#x27;px&#x27;});
 		graphics[name+&#x27;Canvas&#x27;] = document.getElementById(name+&#x27;Canvas&#x27;);
-		graphics[name+&#x27;Context&#x27;] = graphics.gameCanvas.getContext(&#x27;2d&#x27;);
+		graphics[name+&#x27;Context&#x27;] = graphics[name+&#x27;Canvas&#x27;].getContext(&#x27;2d&#x27;);
 		graphics[name+&#x27;Canvas&#x27;].width = width;
 		graphics[name+&#x27;Canvas&#x27;].height = height;
 		return this;
