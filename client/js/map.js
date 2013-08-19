@@ -49,7 +49,7 @@ E.map = (function() {
 		for (var row=0; row<map.rows; row++) {
 			map.pathGrid.push([]);
 			for (var col=0; col<map.columns; col++) {
-				map.pathGrid[row].push(!map.getTileObj(map.data[i]).passable); // need to modify to check if tile is passable rather than this hack
+				map.pathGrid[row].push(!map.getTileObj(map.data[i]).passable);
 				i++;
 			}
 		}

@@ -53,7 +53,7 @@ E.graphics = (function() {
 		$('#gameContainer').html('<canvas id="'+name+'Canvas" class="defaultBorder" width="'+ width +'px" height="' + height +'px">Your broswer does not support the "canvas element". To play this game you will need a more modern browser.</canvas>');
 		$('#'+name+'Canvas').css({width: +width+'px', height: height+'px'});
 		graphics[name+'Canvas'] = document.getElementById(name+'Canvas');
-		graphics[name+'Context'] = graphics.gameCanvas.getContext('2d');
+		graphics[name+'Context'] = graphics[name+'Canvas'].getContext('2d');
 		graphics[name+'Canvas'].width = width;
 		graphics[name+'Canvas'].height = height;
 		return this;

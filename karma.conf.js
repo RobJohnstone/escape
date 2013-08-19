@@ -16,11 +16,16 @@ module.exports = function(config) {
     files: [
         'client/js/lib/jquery-2.0.3.min.js',
         'client/js/lib/underscore-min.js',
-        'client/js/vector.js',
         'client/js/objectPrototype.js',
         'client/js/lib/util.js',
         'client/js/screen.js',
         'client/js/campaign.js',
+        'client/js/graphics.js',
+        'client/js/vector.js',
+        'client/js/map.js',
+        'client/js/tiles.js',
+        'client/js/entities.js',
+        'client/js/actors.js',
         'client/specs/*.js'
     ],
 
