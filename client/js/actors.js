@@ -43,7 +43,9 @@ E.actors = (function() {
 			maxRange: 500,
 			mode: 'watch',
 			idealRange: 500,
-			speed: 5,
+			//speed: 2,
+			walkVel: 2,
+			runVel: 5,
 			direction: {x: 1, y: 0}
 		}
 	};

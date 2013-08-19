@@ -6,8 +6,6 @@ TASKS:
 
 Improve modularisation of code (modules are way to long)
 
-Add support for walking rather than travelling at max velocity
-
 Tests!
 
 Re-engineer non-game code (e.g. screen, campaign and palette modules). This code is more or less universally terrible. Some kind of UI library would be best.

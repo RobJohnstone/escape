@@ -23,6 +23,7 @@ E.baddyPrototype = (function() {
 	 * @return this
 	 */
 	baddyPrototype.process = function() {
+		this.speed = this.speed || this.runVel;
 		if (E.player.health <= 0) this.mode = 'watch';
 		else if (this.baddySeePlayer()) {
 			this.setTarget(E.player);
@@ -86,6 +87,7 @@ E.baddyPrototype = (function() {
 	 */
 	baddyPrototype.orders.chase = function() {
 		var distance = E.vector.distance(this, this.target);
+		this.run();
 		if (distance < this.speed) {
 			this.x = this.target.x;
 			this.y = this.target.y;
@@ -107,6 +109,7 @@ E.baddyPrototype = (function() {
 	 */
 	baddyPrototype.orders.search = function() {
 		var velocity = E.vector.setLength(this.direction, this.speed);
+		this.walk();
 		if (!this.move(velocity)) { // if path is blocked
 			this.mode = 'returnToStation';
 		}
@@ -121,6 +124,7 @@ E.baddyPrototype = (function() {
 	 */
 	baddyPrototype.orders.returnToStation = function() {
 		var distance = E.vector.distance(this, this.initial);
+		this.walk();
 		if (distance < this.speed) {
 			this.x = this.initial.x;
 			this.y = this.initial.y;
@@ -140,8 +144,8 @@ E.baddyPrototype = (function() {
 	 * @return baddyPrototype
 	 */
 	baddyPrototype.orders.goto = function() {
-		var to = E.map.getTileCentre(this.patrolRoute[this.currentWaypoint]);
-		var distance = E.vector.distance(this, to);
+		var to = E.map.getTileCentre(this.patrolRoute[this.currentWaypoint]),
+			distance = E.vector.distance(this, to);
 		if (distance < this.speed) {
 			this.x = to.x;
 			this.y = to.y;
@@ -163,6 +167,7 @@ E.baddyPrototype = (function() {
 		if (!this.patrolRoute) {
 			throw new Error('This baddy does not have a patrol route specified');
 		}
+		this.walk();
 		this.currentWaypoint = (this.currentWaypoint === undefined) ? 0 : this.currentWaypoint + 1;
 		if (this.currentWaypoint >= this.patrolRoute.length) {
 			this.currentWaypoint = 0;
@@ -224,6 +229,28 @@ E.baddyPrototype = (function() {
 				E.graphics.vectors.line(E.map.getTileCentre(route[i]), E.map.getTileCentre(route[i+1]), 'white', true);
 			}
 		}
+		return this;
+	};
+
+	/**
+	 * Makes the baddy walk rather than run
+	 *
+	 * @method walk
+	 * @return this
+	 */
+	baddyPrototype.walk = function() {
+		this.speed = this.walkVel;
+		return this;
+	};
+
+	/**
+	 * Makes the baddy run rather than walk
+	 *
+	 * @method run
+	 * @return this;
+	 */
+	baddyPrototype.run = function() {
+		this.speed = this.runVel;
 		return this;
 	};
 
