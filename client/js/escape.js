@@ -27,9 +27,10 @@ E.game = (function() {
 	 * @return this
 	 */
 	game.init = function(mapName, start) {
-		var callback = (start || start === undefined) ? game.start : null;
+		var callback = (start || start === undefined) ? game.start : null,
+			assetLoader = E.assetLoader;
 		E.graphics.init('fullscreen', '');
-		E.map.load(mapName, callback);
+		assetLoader.load('map', callback, mapName);
 		return this;
 	};
 

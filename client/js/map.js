@@ -49,7 +49,7 @@ E.map = (function() {
 		for (var row=0; row<map.rows; row++) {
 			map.pathGrid.push([]);
 			for (var col=0; col<map.columns; col++) {
-				map.pathGrid[row].push(!map.getTileObj(map.data[i]).passable);
+				map.pathGrid[row].push(!map.getTileObj(i).passable);
 				i++;
 			}
 		}
@@ -62,49 +62,6 @@ E.map = (function() {
 		}
 		$('#mapScreen').html(compiled(map));
 		return this;
-	};
-
-	/**
-	 * load the map data
-	 *
-	 * @method load
-	 * @param mapName {string} the name of the map. This should also be the filename minus the extension 
-	 * if mapName is an object it will be treated as the mapObj and loaded instead of requesting the object
-	 * from the server
-	 * @param onLoad {function} the function to be called once the map has loaded
-	 * @return this
-	 */
-	map.load = function(mapName, onLoad) {
-		if (typeof mapName === "object") {
-			_loadMapObj(mapName);
-		}
-		else {
-			$.ajax({
-				url: '/maps/'+mapName,
-				type: 'get',
-				dataType: 'json',
-				success: function(mapObj) {
-					_loadMapObj(mapObj);
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-					throw new Error('map loading error: '+textStatus);
-				}
-			});
-		}
-		return this;
-
-		/**
-		 * takes the map object and inserts it into the engine
-		 *
-		 * @method _loadMapObj
-		 * @param mapObj {object} The map object to load
-		 */
-		function _loadMapObj(mapObj) {
-			map.init(mapObj);
-			if (typeof onLoad === 'function') {
-				onLoad();
-			}
-		}
 	};
 
 	/**

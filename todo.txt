@@ -10,7 +10,11 @@ Tests!
 
 Re-engineer non-game code (e.g. screen, campaign and palette modules). This code is more or less universally terrible. Some kind of UI library would be best.
 
-Create a prototype campaign
+Baddies should check if they have a clear line of shot
+
+Allow health to regenerate over time
+
+Intelligent save - based on when you last killed a baddie (with a suitable delay)
 
 Write bitmap graphics code (separate into separate tasks)
 

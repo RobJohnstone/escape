@@ -82,6 +82,18 @@ var util = (function() {
 					}
 				});
 			}
+		},
+
+		/**
+		 * Invokes a callback after checking that it is a function
+		 *
+		 * @param callback {function}
+		 * @return {any} The value returned by the callback
+		 */
+		invokeCallback: function(callback) {
+			if (typeof callback === 'function') {
+				return callback();
+			}
 		}
 	};
 })();

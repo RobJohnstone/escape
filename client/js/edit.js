@@ -63,10 +63,11 @@ E.game = (function() {
 			_editItem(this);
 		});
 		$('#campaignScreen').on('click', '.mapName', function() {
-			var mapName = $(this).attr('id').substr(4);
-			E.map.load(mapName, function() {
-				E.screen.change('mapScreen');
-			});
+			var mapName = $(this).attr('id').substr(4),
+				callback = function() {
+					E.screen.change('mapScreen');
+				};
+			E.assetLoader.load('map', callback, mapName);
 		});
 		$('#campaignScreen').on('keyup', '#newMap', function(e) {
 			var mapName = $(this).val().trim(),
@@ -218,7 +219,7 @@ E.game = (function() {
 	game.init = function(mapName) {
 		game.mode = 'edit';
 		E.graphics.init(800, 600, false);
-		E.map.load(mapName, game.start);
+		E.assetLoader.load('map', game.start, mapName);
 		E.palette.init();
 		return this;
 	};
