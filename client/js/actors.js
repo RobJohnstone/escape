@@ -33,7 +33,7 @@ E.actors = (function() {
 			colour: 'green',
 			speed: 5,
 			direction: {x: 1, y: 0},
-			invulnerable: false
+			invulnerable: false,
 		},
 		baddy: {
 			prototype: 'baddyPrototype',
@@ -46,7 +46,8 @@ E.actors = (function() {
 			//speed: 2,
 			walkVel: 2,
 			runVel: 5,
-			direction: {x: 1, y: 0}
+			direction: {x: 1, y: 0},
+			health: 10
 		}
 	};
 })();

@@ -15,6 +15,7 @@ E.baddyPrototype = (function() {
 	var baddyPrototype = E.actorPrototype.extend();
 
 	baddyPrototype.target = {x: 0, y: 0}; // note that currently all baddies share the same target as objects are passed by reference. This is fine as there's only one player. If it becomes necessary to change this it is probably best done in Object.prototype.extend()
+	baddyPrototype.alertState = 0;
 
 	/**
 	 * Defines the action to be taken by baddies each frame
@@ -37,6 +38,21 @@ E.baddyPrototype = (function() {
 		}
 		this.processOrders();
 		return this;
+	};
+
+	/**
+	 * Determines whether or not the baddy is alert and therefore how quickly he reacts
+	 *
+	 * @return {boolean} true is alert, false otherwise
+	 */
+	baddyPrototype.alert = function() {
+		if (this.alertState >= 1) {
+			return true;
+		}
+		else {
+			this.alertState += 0.2 / E.timer.FPS;
+			return false;
+		}
 	};
 
 	/**
@@ -187,7 +203,9 @@ E.baddyPrototype = (function() {
 	 * @return this
 	 */
 	baddyPrototype.hitHandler = function(projectile) {
-		this.direction = E.vector.reverse(projectile.speed);
+		if (!this.remove) {
+			this.direction = E.vector.reverse(projectile.speed);
+		}
 		return this;
 	};
 
