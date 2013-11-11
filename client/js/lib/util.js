@@ -88,11 +88,13 @@ var util = (function() {
 		 * Invokes a callback after checking that it is a function
 		 *
 		 * @param callback {function}
+		 * @param [args]* {any} arguments to be passed into the callback
 		 * @return {any} The value returned by the callback
 		 */
 		invokeCallback: function(callback) {
+			var args = Array.prototype.slice.call(arguments, 1);
 			if (typeof callback === 'function') {
-				return callback();
+				return callback.apply(null, args);
 			}
 		}
 	};

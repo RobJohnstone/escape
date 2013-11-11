@@ -4,6 +4,10 @@ None (alright, there are bound to be some, but I haven't found them yet!)
 
 TASKS:
 
+Need an asynchronous asset loading pipeline that copes with assets (e.g. json directing that other assets should be loaded) Best approach would be to ensure that the check for loaded count occurs after assets have been loaded
+
+Write bitmap graphics code (separate into separate tasks)
+
 Improve modularisation of code (modules are way to long)
 
 Tests!
@@ -15,8 +19,6 @@ Baddies should check if they have a clear line of shot
 Allow health to regenerate over time
 
 Intelligent save - based on when you last killed a baddie (with a suitable delay)
-
-Write bitmap graphics code (separate into separate tasks)
 
 Improve path finding so that if there are no obstacles, move directly rather than going from tile centre to tile centre as used with A*
 

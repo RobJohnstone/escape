@@ -30,6 +30,17 @@ E.map = (function() {
 	};
 
 	/**
+	 * Loads the assets required by the map
+	 *
+	 * @param mapObj {object} information about the map loaded from file
+	 * @return this
+	 */
+	map.load = function(mapObj) {
+		E.tiles.load('assets/images/tileset/png', mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
+		return this;
+	};
+
+	/**
 	 * initialise the map based on a loaded map object
 	 *
 	 * @method init
@@ -43,7 +54,6 @@ E.map = (function() {
 			map.actors = [];
 			$.extend(true, map, mapObj);
 		}
-		E.tiles.init('', map.tileWidth, map.tileHeight);
 		map.pathGrid = [];
 		var i = 0;
 		for (var row=0; row<map.rows; row++) {
@@ -54,10 +64,12 @@ E.map = (function() {
 			}
 		}
 		E.entities.instances = [];
-		for (i=0; i<map.actors.length; i++) {
-			var actor = E.actors.create(map.actors[i]);
-			if (actor.type === 'player') {
-				E.player = actor;
+		if (map.actors) {
+			for (i=0; i<map.actors.length; i++) {
+				var actor = E.actors.create(map.actors[i]);
+				if (actor.type === 'player') {
+					E.player = actor;
+				}
 			}
 		}
 		$('#mapScreen').html(compiled(map));

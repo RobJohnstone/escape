@@ -16,12 +16,26 @@ E.tiles = (function() {
 	var tiles = {};
 
 	/**
+	 * Loads the tile assets
+	 *
+	 * @param imageUrl {String} The url of the image file
+	 * @return this
+	 */
+	tiles.load = function(url, tileWidth, tileHeight, callback) {
+		E.assetLoader.load('image', function() {
+			tiles.init(tileWidth, tileHeight);
+			callback();
+		}, 'assets/images/tileset.png');
+	};
+
+	/**
 	 * Sets tile dimensions and passability
 	 *
 	 * @method init
 	 * @return this
 	 */
-	tiles.init = function(source, tileWidth, tileHeight) {
+	tiles.init = function(tileWidth, tileHeight) {
+		tiles.tilesetImage = E.assetLoader.getFromCache('assets/images/tileset.png');
 		tiles.tileWidth = tileWidth;
 		tiles.tileHeight = tileHeight;
 		tiles.tileset = [{ // floor
@@ -43,14 +57,13 @@ E.tiles = (function() {
 	/**
 	 * Renders a tile
 	 *
-	 * Placeholder code TODO: Update with bitmap graphics
+	 * Placeholder code TODO: wrap canvas call in a graphics module facade
 	 *
 	 * @method renderTile
 	 * @return this
 	 */
 	tiles.renderTile = function(tile, x, y) {
-		E.graphics.gameContext.fillStyle = tiles.tileset[tile].colour;
-		E.graphics.gameContext.fillRect(x, y, tiles.tileWidth, tiles.tileHeight);
+		E.graphics.gameContext.drawImage(tiles.tilesetImage, tile*tiles.tileWidth, 0, tiles.tileWidth, tiles.tileHeight, x, y, tiles.tileWidth, tiles.tileHeight);
 		return this;
 	};
 
