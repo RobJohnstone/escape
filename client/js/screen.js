@@ -9,16 +9,7 @@ var E = E || {};
 E.screen = (function() {
 	"use strict";
 	
-	/*
-	 * Confirmation message before leaving with unsaved changes
-	 */
-	window.onbeforeunload = function() {
-		if (E.screen.updated) {
-			return 'You have unsaved changes. Are you sure you wish to leave?';
-		}
-	};
-
-	return {
+	var screen = {
 		updated: false,
 
 		/**
@@ -77,10 +68,10 @@ E.screen = (function() {
 		 * @return this
 		 */
 		previous: function() {
-			if (!this.updated || window.confirm('You have unsaved changes. Are you sure you wish to continue?')) {
-				this.history.pop();
-				this.save();
-				this.change(this.getCurrent(), false);
+			if (!screen.updated || window.confirm('You have unsaved changes. Are you sure you wish to continue?')) {
+				screen.history.pop();
+				screen.save();
+				screen.change(screen.getCurrent(), false);
 			}
 		},
 
@@ -115,4 +106,15 @@ E.screen = (function() {
 			return this.updated;
 		}
 	};
+
+	/*
+	 * Confirmation message before leaving with unsaved changes
+	 */
+	window.onbeforeunload = function() {
+		if (E.screen.updated) {
+			return 'You have unsaved changes. Are you sure you wish to leave?';
+		}
+	};
+
+	return screen;
 })();

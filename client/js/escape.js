@@ -19,19 +19,6 @@ E.game = (function() {
 	};
 
 	/**
-	 * Loads all assets required by the game
-	 *
-	 * @param callback {function} The callback invoked once all assets required by the game have been loaded
-	 * @return this
-	 */
-	game.load = function(callback) {
-		var assetLoader = E.assetLoader;
-		//assetLoader.onLoad = callback;
-		//assetLoader.load('image', null, 'assets/images/tileset.png');
-		return this;
-	};
-
-	/**
 	 * Initialise all required modules
 	 *
 	 * @method init

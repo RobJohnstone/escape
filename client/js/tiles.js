@@ -22,10 +22,11 @@ E.tiles = (function() {
 	 * @return this
 	 */
 	tiles.load = function(url, tileWidth, tileHeight, callback) {
+		this._imageUrl = url;
 		E.assetLoader.load('image', function() {
 			tiles.init(tileWidth, tileHeight);
 			callback();
-		}, 'assets/images/tileset.png');
+		}, url);
 	};
 
 	/**
@@ -35,15 +36,16 @@ E.tiles = (function() {
 	 * @return this
 	 */
 	tiles.init = function(tileWidth, tileHeight) {
-		tiles.tilesetImage = E.assetLoader.getFromCache('assets/images/tileset.png');
+		tiles.tilesetImage = E.assetLoader.getFromCache(this._imageUrl);
 		tiles.tileWidth = tileWidth;
 		tiles.tileHeight = tileHeight;
 		tiles.tileset = [{ // floor
-							colour: 'black',
 							passable: true
 						},
-						{ // wall
-							colour: 'blue',
+						{ // hwall
+							passable: false
+						},
+						{ // vwall
 							passable: false
 						},
 						{ // exit

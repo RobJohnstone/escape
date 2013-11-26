@@ -36,7 +36,8 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.load = function(mapObj) {
-		E.tiles.load('assets/images/tileset/png', mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
+		map.mapObj = mapObj;
+		E.tiles.load('assets/images/tileset.png', mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
 		return this;
 	};
 
@@ -47,8 +48,9 @@ E.map = (function() {
 	 * @param mapObj {object} information about the map loaded from file (optional)
 	 * @return this
 	 */
-	map.init = function(mapObj) {
-		var template = $('#mapScreenTemplate').text().trim(),
+	map.init = function() {
+		var mapObj = map.mapObj,
+			template = $('#mapScreenTemplate').text().trim(),
 			compiled = _.template(template);
 		if (mapObj) {
 			map.actors = [];
@@ -126,7 +128,7 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.save = function() {
-		var data = {
+		map.mapObj = {
 			name: map.name,
 			description: map.description,
 			columns: map.columns,
@@ -139,13 +141,15 @@ E.map = (function() {
 				return entity.abbr();
 			}),
 			data: map.data
-
 		};
 		$.ajax({
 			url: '/maps/'+map.name,
 			type: 'post',
-			data: {data: JSON.stringify(data)}
+			data: {data: JSON.stringify(map.mapObj)}
 		});
+		// save updated map in asset cache
+		E.assetLoader.addToCache('/maps/'+map.name, map.mapObj);
+
 		return this;
 	};
 

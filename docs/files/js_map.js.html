@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-20</em>
+            <em>API Docs for: 0.1.4-23</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -44,6 +44,8 @@
                 <li><a href="../classes/actorPrototype.html">actorPrototype</a></li>
             
                 <li><a href="../classes/actors.html">actors</a></li>
+            
+                <li><a href="../classes/assetLoader.html">assetLoader</a></li>
             
                 <li><a href="../classes/baddyPrototype.html">baddyPrototype</a></li>
             
@@ -73,9 +75,15 @@
             
                 <li><a href="../classes/screen.html">screen</a></li>
             
+                <li><a href="../classes/tabPrototype.html">tabPrototype</a></li>
+            
                 <li><a href="../classes/tiles.html">tiles</a></li>
             
+                <li><a href="../classes/tilesTab.html">tilesTab</a></li>
+            
                 <li><a href="../classes/timer.html">timer</a></li>
+            
+                <li><a href="../classes/tools.html">tools</a></li>
             
                 <li><a href="../classes/util.html">util</a></li>
             
@@ -91,9 +99,13 @@
             
                 <li><a href="../modules/actors.html">actors</a></li>
             
+                <li><a href="../modules/assetLoader.html">assetLoader</a></li>
+            
                 <li><a href="../modules/baddyPrototype.html">baddyPrototype</a></li>
             
                 <li><a href="../modules/campaign.html">campaign</a></li>
+            
+                <li><a href="../modules/edit.html">edit</a></li>
             
                 <li><a href="../modules/entities.html">entities</a></li>
             
@@ -198,81 +210,52 @@ E.map = (function() {
 	};
 
 	/**
+	 * Loads the assets required by the map
+	 *
+	 * @param mapObj {object} information about the map loaded from file
+	 * @return this
+	 */
+	map.load = function(mapObj) {
+		map.mapObj = mapObj;
+		E.tiles.load(&#x27;assets/images/tileset.png&#x27;, mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
+		return this;
+	};
+
+	/**
 	 * initialise the map based on a loaded map object
 	 *
 	 * @method init
 	 * @param mapObj {object} information about the map loaded from file (optional)
 	 * @return this
 	 */
-	map.init = function(mapObj) {
-		var template = $(&#x27;#mapScreenTemplate&#x27;).text().trim(),
+	map.init = function() {
+		var mapObj = map.mapObj,
+			template = $(&#x27;#mapScreenTemplate&#x27;).text().trim(),
 			compiled = _.template(template);
 		if (mapObj) {
 			map.actors = [];
 			$.extend(true, map, mapObj);
 		}
-		E.tiles.init(&#x27;&#x27;, map.tileWidth, map.tileHeight);
 		map.pathGrid = [];
 		var i = 0;
 		for (var row=0; row&lt;map.rows; row++) {
 			map.pathGrid.push([]);
 			for (var col=0; col&lt;map.columns; col++) {
-				map.pathGrid[row].push(!map.getTileObj(map.data[i]).passable);
+				map.pathGrid[row].push(!map.getTileObj(i).passable);
 				i++;
 			}
 		}
 		E.entities.instances = [];
-		for (i=0; i&lt;map.actors.length; i++) {
-			var actor = E.actors.create(map.actors[i]);
-			if (actor.type === &#x27;player&#x27;) {
-				E.player = actor;
+		if (map.actors) {
+			for (i=0; i&lt;map.actors.length; i++) {
+				var actor = E.actors.create(map.actors[i]);
+				if (actor.type === &#x27;player&#x27;) {
+					E.player = actor;
+				}
 			}
 		}
 		$(&#x27;#mapScreen&#x27;).html(compiled(map));
 		return this;
-	};
-
-	/**
-	 * load the map data
-	 *
-	 * @method load
-	 * @param mapName {string} the name of the map. This should also be the filename minus the extension 
-	 * if mapName is an object it will be treated as the mapObj and loaded instead of requesting the object
-	 * from the server
-	 * @param onLoad {function} the function to be called once the map has loaded
-	 * @return this
-	 */
-	map.load = function(mapName, onLoad) {
-		if (typeof mapName === &quot;object&quot;) {
-			_loadMapObj(mapName);
-		}
-		else {
-			$.ajax({
-				url: &#x27;/maps/&#x27;+mapName,
-				type: &#x27;get&#x27;,
-				dataType: &#x27;json&#x27;,
-				success: function(mapObj) {
-					_loadMapObj(mapObj);
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-					throw new Error(&#x27;map loading error: &#x27;+textStatus);
-				}
-			});
-		}
-		return this;
-
-		/**
-		 * takes the map object and inserts it into the engine
-		 *
-		 * @method _loadMapObj
-		 * @param mapObj {object} The map object to load
-		 */
-		function _loadMapObj(mapObj) {
-			map.init(mapObj);
-			if (typeof onLoad === &#x27;function&#x27;) {
-				onLoad();
-			}
-		}
 	};
 
 	/**
@@ -325,7 +308,7 @@ E.map = (function() {
 	 * @return this
 	 */
 	map.save = function() {
-		var data = {
+		map.mapObj = {
 			name: map.name,
 			description: map.description,
 			columns: map.columns,
@@ -338,13 +321,15 @@ E.map = (function() {
 				return entity.abbr();
 			}),
 			data: map.data
-
 		};
 		$.ajax({
 			url: &#x27;/maps/&#x27;+map.name,
 			type: &#x27;post&#x27;,
-			data: {data: JSON.stringify(data)}
+			data: {data: JSON.stringify(map.mapObj)}
 		});
+		// save updated map in asset cache
+		E.assetLoader.addToCache(&#x27;/maps/&#x27;+map.name, map.mapObj);
+
 		return this;
 	};
 

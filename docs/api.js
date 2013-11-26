@@ -3,6 +3,7 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "actorPrototype",
         "actors",
+        "assetLoader",
         "baddyPrototype",
         "campaign",
         "entities",
@@ -17,8 +18,11 @@ YUI.add("yuidoc-meta", function(Y) {
         "polyfills",
         "projectilePrototype",
         "screen",
+        "tabPrototype",
         "tiles",
+        "tilesTab",
         "timer",
+        "tools",
         "util",
         "vector",
         "weapons"
@@ -26,8 +30,10 @@ YUI.add("yuidoc-meta", function(Y) {
     "modules": [
         "actorPrototype",
         "actors",
+        "assetLoader",
         "baddyPrototype",
         "campaign",
+        "edit",
         "entities",
         "game",
         "graphics",
@@ -57,6 +63,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Definitions for all the actor types in the game. Also includes a factory method (create)\nto create an actor of that type"
         },
         {
+            "displayName": "assetLoader",
+            "name": "assetLoader",
+            "description": "Loads remote assets"
+        },
+        {
             "displayName": "baddyPrototype",
             "name": "baddyPrototype",
             "description": "Prototype for all baddies. Inherits from actor prototype\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
@@ -65,6 +76,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "campaign",
             "name": "campaign",
             "description": "Handles all state and behaviour for campaigns"
+        },
+        {
+            "displayName": "edit",
+            "name": "edit",
+            "description": "Command palette for the game editor"
         },
         {
             "displayName": "entities",

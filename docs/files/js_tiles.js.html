@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-20</em>
+            <em>API Docs for: 0.1.4-23</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -44,6 +44,8 @@
                 <li><a href="../classes/actorPrototype.html">actorPrototype</a></li>
             
                 <li><a href="../classes/actors.html">actors</a></li>
+            
+                <li><a href="../classes/assetLoader.html">assetLoader</a></li>
             
                 <li><a href="../classes/baddyPrototype.html">baddyPrototype</a></li>
             
@@ -73,9 +75,15 @@
             
                 <li><a href="../classes/screen.html">screen</a></li>
             
+                <li><a href="../classes/tabPrototype.html">tabPrototype</a></li>
+            
                 <li><a href="../classes/tiles.html">tiles</a></li>
             
+                <li><a href="../classes/tilesTab.html">tilesTab</a></li>
+            
                 <li><a href="../classes/timer.html">timer</a></li>
+            
+                <li><a href="../classes/tools.html">tools</a></li>
             
                 <li><a href="../classes/util.html">util</a></li>
             
@@ -91,9 +99,13 @@
             
                 <li><a href="../modules/actors.html">actors</a></li>
             
+                <li><a href="../modules/assetLoader.html">assetLoader</a></li>
+            
                 <li><a href="../modules/baddyPrototype.html">baddyPrototype</a></li>
             
                 <li><a href="../modules/campaign.html">campaign</a></li>
+            
+                <li><a href="../modules/edit.html">edit</a></li>
             
                 <li><a href="../modules/entities.html">entities</a></li>
             
@@ -184,20 +196,36 @@ E.tiles = (function() {
 	var tiles = {};
 
 	/**
+	 * Loads the tile assets
+	 *
+	 * @param imageUrl {String} The url of the image file
+	 * @return this
+	 */
+	tiles.load = function(url, tileWidth, tileHeight, callback) {
+		this._imageUrl = url;
+		E.assetLoader.load(&#x27;image&#x27;, function() {
+			tiles.init(tileWidth, tileHeight);
+			callback();
+		}, url);
+	};
+
+	/**
 	 * Sets tile dimensions and passability
 	 *
 	 * @method init
 	 * @return this
 	 */
-	tiles.init = function(source, tileWidth, tileHeight) {
+	tiles.init = function(tileWidth, tileHeight) {
+		tiles.tilesetImage = E.assetLoader.getFromCache(this._imageUrl);
 		tiles.tileWidth = tileWidth;
 		tiles.tileHeight = tileHeight;
 		tiles.tileset = [{ // floor
-							colour: &#x27;black&#x27;,
 							passable: true
 						},
-						{ // wall
-							colour: &#x27;blue&#x27;,
+						{ // hwall
+							passable: false
+						},
+						{ // vwall
 							passable: false
 						},
 						{ // exit
@@ -211,14 +239,13 @@ E.tiles = (function() {
 	/**
 	 * Renders a tile
 	 *
-	 * Placeholder code TODO: Update with bitmap graphics
+	 * Placeholder code TODO: wrap canvas call in a graphics module facade
 	 *
 	 * @method renderTile
 	 * @return this
 	 */
 	tiles.renderTile = function(tile, x, y) {
-		E.graphics.gameContext.fillStyle = tiles.tileset[tile].colour;
-		E.graphics.gameContext.fillRect(x, y, tiles.tileWidth, tiles.tileHeight);
+		E.graphics.gameContext.drawImage(tiles.tilesetImage, tile*tiles.tileWidth, 0, tiles.tileWidth, tiles.tileHeight, x, y, tiles.tileWidth, tiles.tileHeight);
 		return this;
 	};
 

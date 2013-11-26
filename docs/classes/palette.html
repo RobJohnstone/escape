@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-20</em>
+            <em>API Docs for: 0.1.4-23</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -44,6 +44,8 @@
                 <li><a href="../classes/actorPrototype.html">actorPrototype</a></li>
             
                 <li><a href="../classes/actors.html">actors</a></li>
+            
+                <li><a href="../classes/assetLoader.html">assetLoader</a></li>
             
                 <li><a href="../classes/baddyPrototype.html">baddyPrototype</a></li>
             
@@ -73,9 +75,15 @@
             
                 <li><a href="../classes/screen.html">screen</a></li>
             
+                <li><a href="../classes/tabPrototype.html">tabPrototype</a></li>
+            
                 <li><a href="../classes/tiles.html">tiles</a></li>
             
+                <li><a href="../classes/tilesTab.html">tilesTab</a></li>
+            
                 <li><a href="../classes/timer.html">timer</a></li>
+            
+                <li><a href="../classes/tools.html">tools</a></li>
             
                 <li><a href="../classes/util.html">util</a></li>
             
@@ -91,9 +99,13 @@
             
                 <li><a href="../modules/actors.html">actors</a></li>
             
+                <li><a href="../modules/assetLoader.html">assetLoader</a></li>
+            
                 <li><a href="../modules/baddyPrototype.html">baddyPrototype</a></li>
             
                 <li><a href="../modules/campaign.html">campaign</a></li>
+            
+                <li><a href="../modules/edit.html">edit</a></li>
             
                 <li><a href="../modules/entities.html">entities</a></li>
             
@@ -170,13 +182,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/js_palette.js.html#l3"><code>js&#x2F;palette.js:3</code></a>
+            Defined in: <a href="../files/js_edit_palette.js.html#l1"><code>js&#x2F;edit&#x2F;palette.js:1</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/palette.html">palette</a>
+            Module: <a href="../modules/edit.html">edit</a>
         
     
 
@@ -214,6 +226,55 @@
 
                     <ul class="index-list methods">
                         
+                            <li class="index-item method private">
+                                <a href="#method__addTilesTab">_addTilesTab</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__addToolsTab">_addToolsTab</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__renderTab">_renderTab</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__renderTabButton">_renderTabButton</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__renderTabs">_renderTabs</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__useSelectedTool">_useSelectedTool</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_addTab">addTab</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method">
                                 <a href="#method_changeTool">changeTool</a>
 
@@ -222,7 +283,35 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_clickTabButton">clickTabButton</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getCurrentTool">getCurrentTool</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_hide">hide</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_hide">hide</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_init">init</a>
 
                                 
                                 
@@ -257,7 +346,42 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_render">render</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_renderPalette">renderPalette</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setCurrentTab">setCurrentTab</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setCurrentTool">setCurrentTool</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_setProperties">setProperties</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_show">show</a>
 
                                 
                                 
@@ -377,8 +501,913 @@
                 <h2 class="off-left">Methods</h2>
 
                 
+                    <div id="method__addTilesTab" class="method item private">
+    <h3 class="name"><code>_addTilesTab</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l72"><code>js&#x2F;edit&#x2F;palette.js:72</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Initialises the tiles tab and adds it to the palette</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__addToolsTab" class="method item private">
+    <h3 class="name"><code>_addToolsTab</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l56"><code>js&#x2F;edit&#x2F;palette.js:56</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Initialises the tools tab and adds it to the palette</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__renderTab" class="method item private">
+    <h3 class="name"><code>_renderTab</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>tab</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>id</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l143"><code>js&#x2F;edit&#x2F;palette.js:143</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Renders a tab</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">tab</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the object representing the tab</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>an id uniquely identifying the tab</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__renderTabButton" class="method item private">
+    <h3 class="name"><code>_renderTabButton</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>tab</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>id</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l162"><code>js&#x2F;edit&#x2F;palette.js:162</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Renders the button used to select the tab</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">tab</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>the object representing the tab</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>an id uniquely identifying the tab</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__renderTabs" class="method item private">
+    <h3 class="name"><code>_renderTabs</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l126"><code>js&#x2F;edit&#x2F;palette.js:126</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Renders the tabs</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__useSelectedTool" class="method item private">
+    <h3 class="name"><code>_useSelectedTool</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l210"><code>js&#x2F;edit&#x2F;palette.js:210</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Uses the current tool at the mouse cursor position over the map</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this;</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_addTab" class="method item">
+    <h3 class="name"><code>addTab</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>tab</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l88"><code>js&#x2F;edit&#x2F;palette.js:88</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Adds a tab to the palette</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">tab</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The object representing the tab</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method_changeTool" class="method item">
     <h3 class="name"><code>changeTool</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette(old).js.html#l357"><code>js&#x2F;edit&#x2F;palette(old).js:357</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Changes the current tool</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_clickTabButton" class="method item">
+    <h3 class="name"><code>clickTabButton</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l100"><code>js&#x2F;edit&#x2F;palette.js:100</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Event handler for when a tab button is clicked</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type">JEvent</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this;</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getCurrentTool" class="method item">
+    <h3 class="name"><code>getCurrentTool</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l191"><code>js&#x2F;edit&#x2F;palette.js:191</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Gets the current tool</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    <p>The current tool</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_hide" class="method item">
+    <h3 class="name"><code>hide</code></h3>
 
     
         <span class="paren">()</span>
@@ -413,7 +1442,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l353"><code>js&#x2F;palette.js:353</code></a>
+        <a href="../files/js_edit_palette.js.html#l24"><code>js&#x2F;edit&#x2F;palette.js:24</code></a>
         
         </p>
 
@@ -424,7 +1453,7 @@
     </div>
 
     <div class="description">
-        <p>Changes the current tool</p>
+        <p>Hides the command palette</p>
 
     </div>
 
@@ -477,6 +1506,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -484,7 +1515,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l342"><code>js&#x2F;palette.js:342</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l346"><code>js&#x2F;edit&#x2F;palette(old).js:346</code></a>
         
         </p>
 
@@ -548,6 +1579,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -555,7 +1588,80 @@
             
         
         
-        <a href="../files/js_palette.js.html#l376"><code>js&#x2F;palette.js:376</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l280"><code>js&#x2F;edit&#x2F;palette(old).js:280</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Initialises the patrol tool by clearing the currently selected entity&#39;s patrol route</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>palette</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette(old).js.html#l380"><code>js&#x2F;edit&#x2F;palette(old).js:380</code></a>
         
         </p>
 
@@ -627,7 +1733,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l276"><code>js&#x2F;palette.js:276</code></a>
+        <a href="../files/js_edit_palette.js.html#l35"><code>js&#x2F;edit&#x2F;palette.js:35</code></a>
         
         </p>
 
@@ -638,7 +1744,7 @@
     </div>
 
     <div class="description">
-        <p>Initialises the patrol tool by clearing the currently selected entity&#39;s patrol route</p>
+        <p>Initialises the command palette</p>
 
     </div>
 
@@ -651,7 +1757,7 @@
             <div class="returns-description">
                 
                     
-                    <p>palette</p>
+                    <p>this</p>
 
                 
             </div>
@@ -691,6 +1797,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -698,7 +1806,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l440"><code>js&#x2F;palette.js:440</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l444"><code>js&#x2F;edit&#x2F;palette(old).js:444</code></a>
         
         </p>
 
@@ -762,6 +1870,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -769,7 +1879,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l424"><code>js&#x2F;palette.js:424</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l428"><code>js&#x2F;edit&#x2F;palette(old).js:428</code></a>
         
         </p>
 
@@ -784,6 +1894,342 @@
 
     </div>
 
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_render" class="method item">
+    <h3 class="name"><code>render</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l227"><code>js&#x2F;edit&#x2F;palette.js:227</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Renders the tool overlays on the canvas
+But not the palette itself - see renderPalette</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_renderPalette" class="method item">
+    <h3 class="name"><code>renderPalette</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l201"><code>js&#x2F;edit&#x2F;palette.js:201</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Renders palette</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_setCurrentTab" class="method item">
+    <h3 class="name"><code>setCurrentTab</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l113"><code>js&#x2F;edit&#x2F;palette.js:113</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Sets the current tab</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the tab</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_setCurrentTool" class="method item">
+    <h3 class="name"><code>setCurrentTool</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>tool</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette.js.html#l179"><code>js&#x2F;edit&#x2F;palette.js:179</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Sets the current tool</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">tool</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
     
@@ -843,6 +2289,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -850,7 +2298,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l407"><code>js&#x2F;palette.js:407</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l411"><code>js&#x2F;edit&#x2F;palette(old).js:411</code></a>
         
         </p>
 
@@ -945,7 +2393,80 @@
             
         
         
-        <a href="../files/js_palette.js.html#l331"><code>js&#x2F;palette.js:331</code></a>
+        <a href="../files/js_edit_palette.js.html#l13"><code>js&#x2F;edit&#x2F;palette.js:13</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Displays the command palette</p>
+
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>this</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_show" class="method item">
+    <h3 class="name"><code>show</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/js_edit_palette(old).js.html#l335"><code>js&#x2F;edit&#x2F;palette(old).js:335</code></a>
         
         </p>
 
@@ -1009,6 +2530,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1016,7 +2539,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l79"><code>js&#x2F;palette.js:79</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l83"><code>js&#x2F;edit&#x2F;palette(old).js:83</code></a>
         
         </p>
 
@@ -1080,6 +2603,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1087,7 +2612,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l192"><code>js&#x2F;palette.js:192</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l196"><code>js&#x2F;edit&#x2F;palette(old).js:196</code></a>
         
         </p>
 
@@ -1151,6 +2676,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1158,7 +2685,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l206"><code>js&#x2F;palette.js:206</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l210"><code>js&#x2F;edit&#x2F;palette(old).js:210</code></a>
         
         </p>
 
@@ -1222,6 +2749,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1229,7 +2758,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l291"><code>js&#x2F;palette.js:291</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l295"><code>js&#x2F;edit&#x2F;palette(old).js:295</code></a>
         
         </p>
 
@@ -1293,6 +2822,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1300,7 +2831,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l309"><code>js&#x2F;palette.js:309</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l313"><code>js&#x2F;edit&#x2F;palette(old).js:313</code></a>
         
         </p>
 
@@ -1364,6 +2895,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1371,7 +2904,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l42"><code>js&#x2F;palette.js:42</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l46"><code>js&#x2F;edit&#x2F;palette(old).js:46</code></a>
         
         </p>
 
@@ -1435,6 +2968,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1442,7 +2977,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l225"><code>js&#x2F;palette.js:225</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l229"><code>js&#x2F;edit&#x2F;palette(old).js:229</code></a>
         
         </p>
 
@@ -1506,6 +3041,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1513,7 +3050,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l239"><code>js&#x2F;palette.js:239</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l243"><code>js&#x2F;edit&#x2F;palette(old).js:243</code></a>
         
         </p>
 
@@ -1577,6 +3114,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1584,7 +3123,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l59"><code>js&#x2F;palette.js:59</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l63"><code>js&#x2F;edit&#x2F;palette(old).js:63</code></a>
         
         </p>
 
@@ -1648,6 +3187,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1655,7 +3196,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l156"><code>js&#x2F;palette.js:156</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l160"><code>js&#x2F;edit&#x2F;palette(old).js:160</code></a>
         
         </p>
 
@@ -1719,6 +3260,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1726,7 +3269,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l177"><code>js&#x2F;palette.js:177</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l181"><code>js&#x2F;edit&#x2F;palette(old).js:181</code></a>
         
         </p>
 
@@ -1790,6 +3333,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1797,7 +3342,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l96"><code>js&#x2F;palette.js:96</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l100"><code>js&#x2F;edit&#x2F;palette(old).js:100</code></a>
         
         </p>
 
@@ -1861,6 +3406,8 @@
         
             
                 
+                    <p>Provided by the <a href="../modules/palette.html">palette</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -1868,7 +3415,7 @@
             
         
         
-        <a href="../files/js_palette.js.html#l131"><code>js&#x2F;palette.js:131</code></a>
+        <a href="../files/js_edit_palette(old).js.html#l135"><code>js&#x2F;edit&#x2F;palette(old).js:135</code></a>
         
         </p>
 

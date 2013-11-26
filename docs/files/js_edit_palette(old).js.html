@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>js/palette.js - escape</title>
+    <title>js/edit/palette(old).js - escape</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-20</em>
+            <em>API Docs for: 0.1.4-23</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -44,6 +44,8 @@
                 <li><a href="../classes/actorPrototype.html">actorPrototype</a></li>
             
                 <li><a href="../classes/actors.html">actors</a></li>
+            
+                <li><a href="../classes/assetLoader.html">assetLoader</a></li>
             
                 <li><a href="../classes/baddyPrototype.html">baddyPrototype</a></li>
             
@@ -73,9 +75,15 @@
             
                 <li><a href="../classes/screen.html">screen</a></li>
             
+                <li><a href="../classes/tabPrototype.html">tabPrototype</a></li>
+            
                 <li><a href="../classes/tiles.html">tiles</a></li>
             
+                <li><a href="../classes/tilesTab.html">tilesTab</a></li>
+            
                 <li><a href="../classes/timer.html">timer</a></li>
+            
+                <li><a href="../classes/tools.html">tools</a></li>
             
                 <li><a href="../classes/util.html">util</a></li>
             
@@ -91,9 +99,13 @@
             
                 <li><a href="../modules/actors.html">actors</a></li>
             
+                <li><a href="../modules/assetLoader.html">assetLoader</a></li>
+            
                 <li><a href="../modules/baddyPrototype.html">baddyPrototype</a></li>
             
                 <li><a href="../modules/campaign.html">campaign</a></li>
+            
+                <li><a href="../modules/edit.html">edit</a></li>
             
                 <li><a href="../modules/entities.html">entities</a></li>
             
@@ -162,7 +174,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: js/palette.js</h1>
+                        <h1 class="file-heading">File: js/edit/palette(old).js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -193,9 +205,13 @@ E.palette = (function() {
 			immediate: true,
 			html: &#x27;&lt;div class=&quot;back paletteTool&quot;&gt;Exit&lt;/div&gt;&#x27;
 		},
-		wall: {
+		hwall: {
 			panel: &#x27;tools&#x27;,
 			tilesetIndex: 1
+		},
+		vwall: {
+			panel: &#x27;tools&#x27;,
+			tilesetIndex: 2
 		},
 		floor: {
 			panel: &#x27;tools&#x27;,
@@ -453,7 +469,7 @@ E.palette = (function() {
 					entity.patrolRoute = [map.getTileIndex(entity)];
 					E.game.update = true;
 				}
-				return palette;		
+				return palette;
 			},
 
 			/**
@@ -494,7 +510,7 @@ E.palette = (function() {
 		}
 	};
 
-	palette.currentTool = &#x27;wall&#x27;;
+	palette.currentTool = &#x27;hwall&#x27;;
 
 	/**
 	 * Displays the command palette
@@ -562,7 +578,7 @@ E.palette = (function() {
 				else if (typeof palette.tools[palette.currentTool].html !== &#x27;string&#x27;) {
 					tilesetIndex = palette.tools[palette.currentTool].tilesetIndex;
 					map.data[tileIndex] = tilesetIndex;
-					E.game.reset();
+					E.map.render();
 				}
 				if (palette.tools[palette.currentTool].update !== false) {
 					E.screen.update();

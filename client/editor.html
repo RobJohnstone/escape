@@ -13,7 +13,10 @@
 	<script type="text/javascript" src="js/graphics.js"></script>
 	<script type="text/javascript" src="js/vector.js"></script>
 	<script type="text/javascript" src="js/map.js"></script>
-	<script type="text/javascript" src="js/palette.js"></script>
+	<script type="text/javascript" src="js/edit/palette.js"></script>
+	<script type="text/javascript" src="js/edit/tabPrototype.js"></script>
+	<script type="text/javascript" src="js/edit/tilesTab.js"></script>
+	<script type="text/javascript" src="js/edit/tools.js"></script>
 	<script type="text/javascript" src="js/tiles.js"></script>
 	<script type="text/javascript" src="js/entities.js"></script>
 	<script type="text/javascript" src="js/actorPrototype.js"></script>
@@ -62,22 +65,6 @@
 		<input type="button" id="saveMapMeta" class="save" value="Save" /input>
 		<input type="button" id="editMap" value="Edit map" /input>
 	</script>
-	<script type="text/template" id="paletteTemplate">
-		<% var toolName %>
-		<h2>Tools</h2>
-		<div id="filePanel">
-			<% for (toolName in file) { %> 
-				<%= file[toolName].html %>
-			<% } %>
-		</div>
-		<div id="toolsPanel" class="palettePanel">
-			<h3>Tools:</h3>
-			<% for (toolName in tools) { %>
-				<div class="paletteTool <% if(tools[toolName].disabled) print('disabled'); %>" id="<%= toolName %>"><%= toolName %></div>
-			<% } %>
-		</div>
-		<div id="propertiesPanel" class="palettePanel"></div>
-	</script>
 	<script type="text/template" id="palettePropertiesTemplate">
 		<h3>Properties:</h3>
 		<% for (var prop in properties) {
@@ -88,7 +75,10 @@
 </head>
 <body>
 	<div id="container">
-		<div id="palette"></div>
+		<div id="palette">
+			<div class="tabsBar"></div>
+			<div class="tabs"></div>
+		</div>
 		<div id="gameContainer" class="screen">
 			<h1>Escape Game Editor</h1>
 		</div>

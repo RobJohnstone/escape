@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-20</em>
+            <em>API Docs for: 0.1.4-23</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -44,6 +44,8 @@
                 <li><a href="../classes/actorPrototype.html">actorPrototype</a></li>
             
                 <li><a href="../classes/actors.html">actors</a></li>
+            
+                <li><a href="../classes/assetLoader.html">assetLoader</a></li>
             
                 <li><a href="../classes/baddyPrototype.html">baddyPrototype</a></li>
             
@@ -73,9 +75,15 @@
             
                 <li><a href="../classes/screen.html">screen</a></li>
             
+                <li><a href="../classes/tabPrototype.html">tabPrototype</a></li>
+            
                 <li><a href="../classes/tiles.html">tiles</a></li>
             
+                <li><a href="../classes/tilesTab.html">tilesTab</a></li>
+            
                 <li><a href="../classes/timer.html">timer</a></li>
+            
+                <li><a href="../classes/tools.html">tools</a></li>
             
                 <li><a href="../classes/util.html">util</a></li>
             
@@ -91,9 +99,13 @@
             
                 <li><a href="../modules/actors.html">actors</a></li>
             
+                <li><a href="../modules/assetLoader.html">assetLoader</a></li>
+            
                 <li><a href="../modules/baddyPrototype.html">baddyPrototype</a></li>
             
                 <li><a href="../modules/campaign.html">campaign</a></li>
+            
+                <li><a href="../modules/edit.html">edit</a></li>
             
                 <li><a href="../modules/entities.html">entities</a></li>
             
@@ -183,6 +195,7 @@ E.baddyPrototype = (function() {
 	var baddyPrototype = E.actorPrototype.extend();
 
 	baddyPrototype.target = {x: 0, y: 0}; // note that currently all baddies share the same target as objects are passed by reference. This is fine as there&#x27;s only one player. If it becomes necessary to change this it is probably best done in Object.prototype.extend()
+	baddyPrototype.alertState = 0;
 
 	/**
 	 * Defines the action to be taken by baddies each frame
@@ -205,6 +218,21 @@ E.baddyPrototype = (function() {
 		}
 		this.processOrders();
 		return this;
+	};
+
+	/**
+	 * Determines whether or not the baddy is alert and therefore how quickly he reacts
+	 *
+	 * @return {boolean} true is alert, false otherwise
+	 */
+	baddyPrototype.alert = function() {
+		if (this.alertState &gt;= 1) {
+			return true;
+		}
+		else {
+			this.alertState += 0.2 / E.timer.FPS;
+			return false;
+		}
 	};
 
 	/**
@@ -355,7 +383,9 @@ E.baddyPrototype = (function() {
 	 * @return this
 	 */
 	baddyPrototype.hitHandler = function(projectile) {
-		this.direction = E.vector.reverse(projectile.speed);
+		if (!this.remove) {
+			this.direction = E.vector.reverse(projectile.speed);
+		}
 		return this;
 	};
 
@@ -394,7 +424,7 @@ E.baddyPrototype = (function() {
 		var route = this.patrolRoute;
 		if (route) {
 			for (var i=0, len=route.length-1; i&lt;len; i++) {
-				E.graphics.vectors.line(E.map.getTileCentre(route[i]), E.map.getTileCentre(route[i+1]), &#x27;white&#x27;, true);
+				E.graphics.vectors.line(E.map.getTileCentre(route[i]), E.map.getTileCentre(route[i+1]), &#x27;red&#x27;, true);
 			}
 		}
 		return this;

@@ -25,9 +25,13 @@ E.palette = (function() {
 			immediate: true,
 			html: '<div class="back paletteTool">Exit</div>'
 		},
-		wall: {
+		hwall: {
 			panel: 'tools',
 			tilesetIndex: 1
+		},
+		vwall: {
+			panel: 'tools',
+			tilesetIndex: 2
 		},
 		floor: {
 			panel: 'tools',
@@ -285,7 +289,7 @@ E.palette = (function() {
 					entity.patrolRoute = [map.getTileIndex(entity)];
 					E.game.update = true;
 				}
-				return palette;		
+				return palette;
 			},
 
 			/**
@@ -326,7 +330,7 @@ E.palette = (function() {
 		}
 	};
 
-	palette.currentTool = 'wall';
+	palette.currentTool = 'hwall';
 
 	/**
 	 * Displays the command palette
@@ -394,7 +398,7 @@ E.palette = (function() {
 				else if (typeof palette.tools[palette.currentTool].html !== 'string') {
 					tilesetIndex = palette.tools[palette.currentTool].tilesetIndex;
 					map.data[tileIndex] = tilesetIndex;
-					E.game.reset();
+					E.map.render();
 				}
 				if (palette.tools[palette.currentTool].update !== false) {
 					E.screen.update();

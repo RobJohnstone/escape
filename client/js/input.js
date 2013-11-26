@@ -104,7 +104,8 @@ E.input = (function() {
 					'y': 0
 				};
 				$(document).on('mousemove', function(e) {
-					var canvasOffset = $('#gameCanvas').offset();
+					var canvasOffset;
+					canvasOffset = $('#gameCanvas').offset();
 					input.mouseState.x = e.pageX - canvasOffset.left;
 					input.mouseState.y = e.pageY - canvasOffset.top ;
 					E.game.update = true;

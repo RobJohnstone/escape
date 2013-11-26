@@ -2,10 +2,57 @@
     "project": {
         "name": "escape",
         "description": "HTML5 Game - 1942: You are a British paratrooper captured in France during a raid on a secret German radar installation. Taken to a Gestapo interrogation centre you must now escape and return to Britain.",
-        "version": "0.1.4-20",
+        "version": "0.1.4-23",
         "url": ""
     },
     "files": {
+        "js/edit/palette(old).js": {
+            "name": "js/edit/palette(old).js",
+            "modules": {
+                "palette": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "js/edit/palette.js": {
+            "name": "js/edit/palette.js",
+            "modules": {
+                "edit": 1
+            },
+            "classes": {
+                "palette": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js/edit/tabPrototype.js": {
+            "name": "js/edit/tabPrototype.js",
+            "modules": {},
+            "classes": {
+                "tabPrototype": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js/edit/tilesTab.js": {
+            "name": "js/edit/tilesTab.js",
+            "modules": {},
+            "classes": {
+                "tilesTab": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js/edit/tools.js": {
+            "name": "js/edit/tools.js",
+            "modules": {},
+            "classes": {
+                "tools": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "js/lib/AStar.js": {
             "name": "js/lib/AStar.js",
             "modules": {},
@@ -49,6 +96,17 @@
             },
             "classes": {
                 "actors": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "js/assetLoader.js": {
+            "name": "js/assetLoader.js",
+            "modules": {
+                "assetLoader": 1
+            },
+            "classes": {
+                "assetLoader": 1
             },
             "fors": {},
             "namespaces": {}
@@ -145,17 +203,6 @@
             },
             "classes": {
                 "objectPrototype": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
-        "js/palette.js": {
-            "name": "js/palette.js",
-            "modules": {
-                "palette": 1
-            },
-            "classes": {
-                "palette": 1
             },
             "fors": {},
             "namespaces": {}
@@ -257,6 +304,34 @@
         }
     },
     "modules": {
+        "palette": {
+            "name": "palette",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "js/edit/palette(old).js",
+            "line": 3,
+            "description": "Command palette for the game editor"
+        },
+        "edit": {
+            "name": "edit",
+            "submodules": {},
+            "classes": {
+                "palette": 1,
+                "tabPrototype": 1,
+                "tilesTab": 1,
+                "tools": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "js/edit/tools.js",
+            "line": 1,
+            "description": "Command palette for the game editor",
+            "extends": "tabPrototype"
+        },
         "util": {
             "name": "util",
             "submodules": {},
@@ -296,6 +371,19 @@
             "file": "js/actors.js",
             "line": 3,
             "description": "Definitions for all the actor types in the game. Also includes a factory method (create)\nto create an actor of that type"
+        },
+        "assetLoader": {
+            "name": "assetLoader",
+            "submodules": {},
+            "classes": {
+                "assetLoader": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "js/assetLoader.js",
+            "line": 3,
+            "description": "Loads remote assets"
         },
         "baddyPrototype": {
             "name": "baddyPrototype",
@@ -402,19 +490,6 @@
             "file": "js/objectPrototype.js",
             "line": 1,
             "description": "Extend Object.prototype with helper methods to simplify inheritance\n\nEscape uses prototypal style inheritance rather than the constructor / pseudo-classical \napproach used by many javascript developers. The \"blueprints\" for each type of object\nare defined as objects in files named \"<type>Prototype.js\". A new object of that type can \nbe created using \"var newObj = <type>Prototype.create();\". To create a new prototype based\nupon a previous one use \"var newPrototype = <type>Prototype.extend();\"\n\nIt could be argued that extending Object.prototype in this way is an anti-pattern due to the\neffect it could have on code written by those who are unaware that it has been extended. However,\nthe code below takes account of the most common types of conflict and employs suitable preventative\nmeasures so this sort of problem should not occur."
-        },
-        "palette": {
-            "name": "palette",
-            "submodules": {},
-            "classes": {
-                "palette": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "tag": "module",
-            "file": "js/palette.js",
-            "line": 3,
-            "description": "Command palette for the game editor"
         },
         "playerPrototype": {
             "name": "playerPrototype",
@@ -524,6 +599,62 @@
         }
     },
     "classes": {
+        "palette": {
+            "name": "palette",
+            "shortname": "palette",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "edit",
+            "namespace": "",
+            "file": "js/edit/palette.js",
+            "line": 1,
+            "description": "Command palette for the game editor"
+        },
+        "tabPrototype": {
+            "name": "tabPrototype",
+            "shortname": "tabPrototype",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "edit",
+            "namespace": "",
+            "file": "js/edit/tabPrototype.js",
+            "line": 1,
+            "description": "Prototype for all editor palette tabs.\n\nFor more information on how Escape uses inheritance see objectPrototype.js"
+        },
+        "tilesTab": {
+            "name": "tilesTab",
+            "shortname": "tilesTab",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "edit",
+            "namespace": "",
+            "file": "js/edit/tilesTab.js",
+            "line": 1,
+            "description": "The tiles tab"
+        },
+        "tools": {
+            "name": "tools",
+            "shortname": "tools",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "edit",
+            "namespace": "",
+            "file": "js/edit/tools.js",
+            "line": 1,
+            "description": "Editor Tools\n\nEach tools requires a label {String} and may contain any of the following methods\n\nexecute: invoked when a command is clicked. Does not change the current tool. E.g. save\nselect: invoked when a command is clicked. Will also result in the tool being made the current tool\nuse: invoked when clicking on the map. If this tool is the current tool then this method will be invoked\nrender: renders the map overlay for this tool if is the currently selected tool"
+        },
         "util": {
             "name": "util",
             "shortname": "util",
@@ -565,6 +696,20 @@
             "file": "js/actors.js",
             "line": 3,
             "description": "Definitions for all the actor types in the game. Also includes a factory method (create)\nto create an actor of that type"
+        },
+        "assetLoader": {
+            "name": "assetLoader",
+            "shortname": "assetLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "assetLoader",
+            "namespace": "",
+            "file": "js/assetLoader.js",
+            "line": 3,
+            "description": "Loads remote assets"
         },
         "baddyPrototype": {
             "name": "baddyPrototype",
@@ -691,20 +836,6 @@
             "line": 1,
             "description": "Extend Object.prototype with helper methods to simplify inheritance\n\nEscape uses prototypal style inheritance rather than the constructor / pseudo-classical \napproach used by many javascript developers. The \"blueprints\" for each type of object\nare defined as objects in files named \"<type>Prototype.js\". A new object of that type can \nbe created using \"var newObj = <type>Prototype.create();\". To create a new prototype based\nupon a previous one use \"var newPrototype = <type>Prototype.extend();\"\n\nIt could be argued that extending Object.prototype in this way is an anti-pattern due to the\neffect it could have on code written by those who are unaware that it has been extended. However,\nthe code below takes account of the most common types of conflict and employs suitable preventative\nmeasures so this sort of problem should not occur."
         },
-        "palette": {
-            "name": "palette",
-            "shortname": "palette",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "palette",
-            "namespace": "",
-            "file": "js/palette.js",
-            "line": 3,
-            "description": "Command palette for the game editor"
-        },
         "playerPrototype": {
             "name": "playerPrototype",
             "shortname": "playerPrototype",
@@ -820,12 +951,787 @@
     },
     "classitems": [
         {
+            "file": "js/edit/palette(old).js",
+            "line": 46,
+            "description": "Player tool",
+            "itemtype": "method",
+            "name": "tools.player.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 63,
+            "description": "Remove actor tool",
+            "itemtype": "method",
+            "name": "tools.removeActor.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 83,
+            "description": "Baddy tool",
+            "itemtype": "method",
+            "name": "tools.baddy.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 100,
+            "description": "Selects a map tile or entity",
+            "itemtype": "method",
+            "name": "tools.select.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 135,
+            "description": "Highlights the selected tile",
+            "itemtype": "method",
+            "name": "tools.select.render",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 160,
+            "description": "rotates the selected object",
+            "itemtype": "method",
+            "name": "tools.rotate.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 181,
+            "description": "Draws a line from the selected entity to the current mouse cursor position",
+            "itemtype": "method",
+            "name": "tools.rotate.render",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 196,
+            "description": "Adds an extra row / column to the side of the map closest to the cursor",
+            "itemtype": "method",
+            "name": "tools.expand.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 210,
+            "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
+            "itemtype": "method",
+            "name": "tools.expand.render",
+            "return": {
+                "description": "palette;"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 229,
+            "description": "Removes a row / column from the side of the map closest to the cursor",
+            "itemtype": "method",
+            "name": "tools.reduce.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 243,
+            "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
+            "itemtype": "method",
+            "name": "tools.reduce.render",
+            "return": {
+                "description": "palette;"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 280,
+            "description": "Initialises the patrol tool by clearing the currently selected entity's patrol route",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 295,
+            "description": "Sets a patrol route for an actor",
+            "itemtype": "method",
+            "name": "tools.patrol.click",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 313,
+            "description": "Displays the patrol route",
+            "itemtype": "method",
+            "name": "tools.patrol.render",
+            "return": {
+                "description": "palette"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 335,
+            "description": "Displays the command palette",
+            "itemtype": "method",
+            "name": "show",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 346,
+            "description": "Hides the command palette",
+            "itemtype": "method",
+            "name": "hide",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 357,
+            "description": "Changes the current tool",
+            "itemtype": "method",
+            "name": "changeTool",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 380,
+            "description": "Initialises the command palette\n\nIncludes a generic event handler for using the currently selected tool",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 411,
+            "description": "Sets the properties that are to be displayed in the properties panel",
+            "itemtype": "method",
+            "name": "setProperties",
+            "params": [
+                {
+                    "name": "properties",
+                    "description": "The properties to be set. Note that all properties must be primatives (not objects)",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 428,
+            "description": "Carries out rendering actions on behalf of palette tools",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette(old).js",
+            "line": 444,
+            "description": "refreshes the display of the palette",
+            "itemtype": "method",
+            "name": "refresh",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "palette"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 13,
+            "description": "Displays the command palette",
+            "itemtype": "method",
+            "name": "show",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 24,
+            "description": "Hides the command palette",
+            "itemtype": "method",
+            "name": "hide",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 35,
+            "description": "Initialises the command palette",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 56,
+            "description": "Initialises the tools tab and adds it to the palette",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_addToolsTab",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 72,
+            "description": "Initialises the tiles tab and adds it to the palette",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_addTilesTab",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 88,
+            "description": "Adds a tab to the palette",
+            "itemtype": "method",
+            "name": "addTab",
+            "params": [
+                {
+                    "name": "tab",
+                    "description": "The object representing the tab",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 100,
+            "description": "Event handler for when a tab button is clicked",
+            "itemtype": "method",
+            "name": "clickTabButton",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "",
+                    "type": "JEvent"
+                }
+            ],
+            "return": {
+                "description": "this;"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 113,
+            "description": "Sets the current tab",
+            "itemtype": "method",
+            "name": "setCurrentTab",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the tab",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 126,
+            "description": "Renders the tabs",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_renderTabs",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 143,
+            "description": "Renders a tab",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_renderTab",
+            "params": [
+                {
+                    "name": "tab",
+                    "description": "the object representing the tab",
+                    "type": "Object"
+                },
+                {
+                    "name": "id",
+                    "description": "an id uniquely identifying the tab",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 162,
+            "description": "Renders the button used to select the tab",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_renderTabButton",
+            "params": [
+                {
+                    "name": "tab",
+                    "description": "the object representing the tab",
+                    "type": "Object"
+                },
+                {
+                    "name": "id",
+                    "description": "an id uniquely identifying the tab",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 179,
+            "description": "Sets the current tool",
+            "itemtype": "method",
+            "name": "setCurrentTool",
+            "params": [
+                {
+                    "name": "tool",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 191,
+            "description": "Gets the current tool",
+            "itemtype": "method",
+            "name": "getCurrentTool",
+            "return": {
+                "description": "The current tool",
+                "type": "Object"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 201,
+            "description": "Renders palette",
+            "itemtype": "method",
+            "name": "renderPalette",
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 210,
+            "description": "Uses the current tool at the mouse cursor position over the map",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_useSelectedTool",
+            "return": {
+                "description": "this;"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/palette.js",
+            "line": 227,
+            "description": "Renders the tool overlays on the canvas\nBut not the palette itself - see renderPalette",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "this"
+            },
+            "class": "palette",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tabPrototype.js",
+            "line": 15,
+            "description": "Initialises the tab",
+            "itemtype": "method",
+            "name": "init\nreturn this",
+            "class": "tabPrototype",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tabPrototype.js",
+            "line": 26,
+            "description": "Adds a tool to the tab",
+            "itemtype": "method",
+            "name": "addTool",
+            "params": [
+                {
+                    "name": "tool",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "tabPrototype",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tabPrototype.js",
+            "line": 38,
+            "description": "Adds many tools to the tab in one go",
+            "itemtype": "method",
+            "name": "@addTools",
+            "params": [
+                {
+                    "name": "tools",
+                    "description": "Each property of tools is expected to be an indvidual tool",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "tabPrototype",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tabPrototype.js",
+            "line": 54,
+            "description": "Renders the tab",
+            "itemtype": "method",
+            "name": "render",
+            "params": [
+                {
+                    "name": "tabContainer",
+                    "description": "",
+                    "type": "JElement"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "tabPrototype",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tabPrototype.js",
+            "line": 70,
+            "description": "Initialises the tab's events",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_initialiseEvents",
+            "params": [
+                {
+                    "name": "tabContainer",
+                    "description": "",
+                    "type": "JElement"
+                }
+            ],
+            "return": {
+                "description": "this;"
+            },
+            "class": "tabPrototype",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tabPrototype.js",
+            "line": 83,
+            "description": "Handles clicking on a tool in the tab",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_commandClickHandler",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "The click event",
+                    "type": "JEvent"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "tabPrototype",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tilesTab.js",
+            "line": 14,
+            "description": "Initialises the tab",
+            "itemtype": "method",
+            "name": "init\nreturn this",
+            "class": "tilesTab",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tilesTab.js",
+            "line": 26,
+            "description": "Tells the tab which tiles to use",
+            "itemtype": "method",
+            "name": "setTiles",
+            "params": [
+                {
+                    "name": "tiles",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "tilesTab",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tilesTab.js",
+            "line": 38,
+            "description": "Renders the tiles within the tab",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_renderTiles",
+            "return": {
+                "description": "a jQuery object representing a DOM node containing the tile buttons",
+                "type": "JElement"
+            },
+            "class": "tilesTab",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tilesTab.js",
+            "line": 64,
+            "description": "Renders the tiles tab\nAlso initialises the event handlers that depend on the tab being rendered",
+            "itemtype": "method",
+            "name": "render",
+            "params": [
+                {
+                    "name": "tabContainer",
+                    "description": "",
+                    "type": "JElement"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "tilesTab",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tilesTab.js",
+            "line": 80,
+            "description": "Handles clicking on a tool in the tab",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "_commandClickHandler",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "The click event",
+                    "type": "JEvent"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "tilesTab",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 21,
+            "description": "Saves the map",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 32,
+            "description": "Quits the editor and goes back to the map screen",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 40,
+            "description": "Sets the player start location\nIf one already exists, the old one is removed",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 61,
+            "description": "Removes an actor from the map",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 81,
+            "description": "Adds a baddy to the map",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 96,
+            "description": "Selects both the entity and the tile at the mouse cursors location",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 127,
+            "description": "Rotates the selected entity",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 154,
+            "description": "Expands the size of the map",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 177,
+            "description": "Reduces the size of the map",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
+            "file": "js/edit/tools.js",
+            "line": 214,
+            "description": "Sets the patrol route for an actor\nIf one already exists then it is deleted rather than edited",
+            "class": "tools",
+            "module": "edit"
+        },
+        {
             "file": "js/lib/AStar.js",
             "line": 3,
             "description": "A* (A-Star) algorithm for a path finder",
             "author": "Andrea Giammarchi",
             "license": "Mit Style License",
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -835,7 +1741,8 @@
                 "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
                 "type": "Function(string, Object)"
             },
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -848,7 +1755,8 @@
                     "type": "Function"
                 }
             ],
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -861,7 +1769,8 @@
                     "type": "Function"
                 }
             ],
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -879,7 +1788,8 @@
                     "type": "Function"
                 }
             ],
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -901,7 +1811,8 @@
                 "description": "Returns less than 0 if a precedes b, greater than 0 if a follows b",
                 "type": "Number"
             },
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -914,7 +1825,8 @@
                     "type": "String"
                 }
             ],
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -927,7 +1839,8 @@
                     "type": "String"
                 }
             ],
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -940,7 +1853,8 @@
                     "type": "Function"
                 }
             ],
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -953,7 +1867,8 @@
                     "type": "Element|Object"
                 }
             ],
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -971,7 +1886,8 @@
                 "description": "Returns the current document",
                 "type": "Object"
             },
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -984,7 +1900,8 @@
                     "type": "ArrayLike"
                 }
             ],
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/jquery-2.0.3.js",
@@ -997,7 +1914,8 @@
                     "type": "Array|Element"
                 }
             ],
-            "class": "util"
+            "class": "util",
+            "module": "edit"
         },
         {
             "file": "js/lib/util.js",
@@ -1054,6 +1972,31 @@
             ],
             "return": {
                 "description": "this"
+            },
+            "class": "util",
+            "module": "util"
+        },
+        {
+            "file": "js/lib/util.js",
+            "line": 87,
+            "description": "Invokes a callback after checking that it is a function",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "args",
+                    "description": "arguments to be passed into the callback",
+                    "type": "Any",
+                    "optional": true,
+                    "multiple": true
+                }
+            ],
+            "return": {
+                "description": "The value returned by the callback",
+                "type": "Any"
             },
             "class": "util",
             "module": "util"
@@ -1188,8 +2131,177 @@
             "module": "actors"
         },
         {
+            "file": "js/assetLoader.js",
+            "line": 20,
+            "description": "Loads an asset",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "The type of asset to be loaded",
+                    "type": "String"
+                },
+                {
+                    "name": "onLoad",
+                    "description": "The callback to be used once the asset has been loaded (the asset will be passed as the argument)",
+                    "type": "Function"
+                },
+                {
+                    "name": "args",
+                    "description": "arguments specific to the type of asset being loaded",
+                    "type": "Any",
+                    "multiple": true
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "assetLoader",
+            "module": "assetLoader"
+        },
+        {
+            "file": "js/assetLoader.js",
+            "line": 40,
+            "description": "Loads maps",
+            "params": [
+                {
+                    "name": "onLoad",
+                    "description": "The callback to be invoked once the image has loaded",
+                    "type": "Function"
+                },
+                {
+                    "name": "mapName",
+                    "description": "The name of the map",
+                    "type": "String"
+                }
+            ],
+            "class": "assetLoader",
+            "module": "assetLoader"
+        },
+        {
+            "file": "js/assetLoader.js",
+            "line": 51,
+            "description": "Loads images",
+            "params": [
+                {
+                    "name": "onLoad",
+                    "description": "The callback to be invoked once the image has loaded",
+                    "type": "Function"
+                }
+            ],
+            "class": "assetLoader",
+            "module": "assetLoader"
+        },
+        {
+            "file": "js/assetLoader.js",
+            "line": 70,
+            "description": "Conducts the ajax request to load an asset",
+            "params": [
+                {
+                    "name": "onLoad",
+                    "description": "The callback for once this asset has loaded",
+                    "type": "Function"
+                },
+                {
+                    "name": "url",
+                    "description": "The url of the asset",
+                    "type": "String"
+                },
+                {
+                    "name": "dataType",
+                    "description": "The type of the data returned from the server (follows jQuery ajax API)",
+                    "type": "String",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "assetLoader",
+            "module": "assetLoader"
+        },
+        {
+            "file": "js/assetLoader.js",
+            "line": 99,
+            "description": "The action to take when an asset has been successfully loaded",
+            "params": [
+                {
+                    "name": "result",
+                    "description": "",
+                    "type": "string or as determined by dataType param passed into assetLoader.load.generic"
+                },
+                {
+                    "name": "onLoad",
+                    "description": "The callback following a successful load",
+                    "type": "Function"
+                }
+            ],
+            "class": "assetLoader",
+            "module": "assetLoader"
+        },
+        {
+            "file": "js/assetLoader.js",
+            "line": 114,
+            "description": "The action to take when an asset has failed to load",
+            "params": [
+                {
+                    "name": "jqXHR",
+                    "description": ""
+                },
+                {
+                    "name": "textStatus",
+                    "description": ""
+                },
+                {
+                    "name": "errorThrown",
+                    "description": ""
+                }
+            ],
+            "class": "assetLoader",
+            "module": "assetLoader"
+        },
+        {
+            "file": "js/assetLoader.js",
+            "line": 125,
+            "description": "Adds an asset to the asset cache",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "the url of the asset (used as an id)",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "the asset data",
+                    "type": "Any"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "assetLoader",
+            "module": "assetLoader"
+        },
+        {
+            "file": "js/assetLoader.js",
+            "line": 137,
+            "description": "Retrieves an asset from the cache if it exists or returns null",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "The url of the asset",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The asset if it is in cache, undefined otherwise",
+                "type": "Any"
+            },
+            "class": "assetLoader",
+            "module": "assetLoader"
+        },
+        {
             "file": "js/baddyPrototype.js",
-            "line": 19,
+            "line": 20,
             "description": "Defines the action to be taken by baddies each frame",
             "itemtype": "method",
             "name": "process",
@@ -1201,7 +2313,18 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 42,
+            "line": 43,
+            "description": "Determines whether or not the baddy is alert and therefore how quickly he reacts",
+            "return": {
+                "description": "true is alert, false otherwise",
+                "type": "Boolean"
+            },
+            "class": "baddyPrototype",
+            "module": "baddyPrototype"
+        },
+        {
+            "file": "js/baddyPrototype.js",
+            "line": 58,
             "description": "Takes the current orders and calls the appropriate function in the appropriate context",
             "itemtype": "method",
             "name": "processOrders",
@@ -1219,7 +2342,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 56,
+            "line": 72,
             "description": "The baddy's default state. Currently does nothing",
             "itemtype": "method",
             "name": "orders.watch",
@@ -1231,7 +2354,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 66,
+            "line": 82,
             "description": "Baddy attacks its target. If the baddy can no longer see the target it gives chase",
             "itemtype": "method",
             "name": "orders.attack",
@@ -1243,7 +2366,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 80,
+            "line": 96,
             "description": "Baddy chases after target based upon its last known location\nIf the baddy gets to this location and still cannot see the player\nit goes into search mode",
             "itemtype": "method",
             "name": "orders.chase",
@@ -1255,7 +2378,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 103,
+            "line": 119,
             "description": "The baddy searches for the target by heading off in the direction the target\nwas last seen moving",
             "itemtype": "method",
             "name": "orders.search",
@@ -1267,7 +2390,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 119,
+            "line": 135,
             "description": "The baddy returns to its start location. It then enters watch mode",
             "itemtype": "method",
             "name": "orders.returnToStation",
@@ -1279,7 +2402,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 140,
+            "line": 156,
             "description": "The baddy goes to its current waypoint, then reverts to its original orders",
             "itemtype": "method",
             "name": "orders.goto",
@@ -1291,7 +2414,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 160,
+            "line": 176,
             "description": "The baddy patrols between a series of waypoints. When the baddy gets to the end, he returns directly to the first way point and starts again",
             "itemtype": "method",
             "name": "orders.patrol",
@@ -1303,7 +2426,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 182,
+            "line": 198,
             "description": "The baddy's reaction to being hit",
             "itemtype": "method",
             "name": "hitHandler",
@@ -1321,7 +2444,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 194,
+            "line": 212,
             "description": "Checks if the baddy can see the player",
             "itemtype": "method",
             "name": "baddySeePlayer",
@@ -1333,7 +2456,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 206,
+            "line": 224,
             "description": "sets the baddy's target and other target related information",
             "itemtype": "method",
             "name": "setTarget",
@@ -1345,7 +2468,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 219,
+            "line": 237,
             "description": "Renders the current patrol route",
             "itemtype": "method",
             "name": "renderPatrolRoute",
@@ -1357,7 +2480,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 235,
+            "line": 253,
             "description": "Makes the baddy walk rather than run",
             "itemtype": "method",
             "name": "walk",
@@ -1369,7 +2492,7 @@
         },
         {
             "file": "js/baddyPrototype.js",
-            "line": 246,
+            "line": 264,
             "description": "Makes the baddy run rather than walk",
             "itemtype": "method",
             "name": "run",
@@ -1562,14 +2685,14 @@
         },
         {
             "file": "js/edit.js",
-            "line": 15,
+            "line": 17,
             "description": "Event handlers for map selection screen",
             "class": "game",
             "module": "game"
         },
         {
             "file": "js/edit.js",
-            "line": 147,
+            "line": 151,
             "description": "sends a request to the server instructing it to delete a file",
             "itemtype": "method",
             "name": "_deleteItem",
@@ -1592,7 +2715,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 194,
+            "line": 198,
             "description": "Updates the value of an item",
             "itemtype": "method",
             "name": "_editItem",
@@ -1610,7 +2733,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 211,
+            "line": 215,
             "description": "Carries out all initialisation actions",
             "itemtype": "method",
             "name": "init",
@@ -1629,7 +2752,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 226,
+            "line": 233,
             "description": "Starts any modules that need starting and then begins the game loop",
             "itemtype": "method",
             "name": "start",
@@ -1641,7 +2764,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 242,
+            "line": 250,
             "description": "The body of the game loop",
             "itemtype": "method",
             "name": "main",
@@ -1653,7 +2776,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 263,
+            "line": 271,
             "description": "Resets game state when map data changes",
             "itemtype": "method",
             "name": "reset",
@@ -1665,7 +2788,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 276,
+            "line": 284,
             "description": "A singleton DOM element. On first call creates the DOM element. On all calls populates the DOM element with the items\nin the game.info.items array.",
             "itemtype": "method",
             "name": "info",
@@ -1678,7 +2801,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 298,
+            "line": 306,
             "description": "Adds an item to the game.info.items array. \nIf one argument, adds the variable name and value\nIf two, adds both separated by a colon",
             "itemtype": "method",
             "name": "info.add",
@@ -1775,7 +2898,7 @@
         },
         {
             "file": "js/escape.js",
-            "line": 36,
+            "line": 38,
             "description": "Start the game",
             "itemtype": "method",
             "name": "start",
@@ -1787,7 +2910,7 @@
         },
         {
             "file": "js/escape.js",
-            "line": 49,
+            "line": 51,
             "description": "Resume the game (either from scratch of from paused)\nStarts all required modules and starts the game loop",
             "itemtype": "method",
             "name": "resume",
@@ -1799,7 +2922,7 @@
         },
         {
             "file": "js/escape.js",
-            "line": 63,
+            "line": 65,
             "description": "The body of the game loop",
             "itemtype": "method",
             "name": "play",
@@ -1811,7 +2934,7 @@
         },
         {
             "file": "js/escape.js",
-            "line": 95,
+            "line": 97,
             "description": "Displays debugging info and stats on the screen",
             "itemtype": "method",
             "name": "info",
@@ -1823,7 +2946,7 @@
         },
         {
             "file": "js/escape.js",
-            "line": 114,
+            "line": 116,
             "description": "Pauses the game",
             "itemtype": "method",
             "name": "pause",
@@ -1835,7 +2958,7 @@
         },
         {
             "file": "js/escape.js",
-            "line": 129,
+            "line": 131,
             "description": "Action to take when the game is over",
             "itemtype": "method",
             "name": "over",
@@ -1847,7 +2970,7 @@
         },
         {
             "file": "js/escape.js",
-            "line": 141,
+            "line": 143,
             "description": "Action to take when map complete",
             "itemtype": "method",
             "name": "mapComplete",
@@ -1859,7 +2982,7 @@
         },
         {
             "file": "js/escape.js",
-            "line": 159,
+            "line": 161,
             "description": "Resets game state in order to allow a new game to start",
             "itemtype": "method",
             "name": "reset",
@@ -1878,7 +3001,7 @@
         },
         {
             "file": "js/escape.js",
-            "line": 173,
+            "line": 175,
             "description": "End the game",
             "itemtype": "method",
             "name": "end",
@@ -2320,7 +3443,7 @@
         },
         {
             "file": "js/input.js",
-            "line": 117,
+            "line": 118,
             "description": "invoke event handlers",
             "itemtype": "method",
             "name": "process",
@@ -2332,7 +3455,7 @@
         },
         {
             "file": "js/input.js",
-            "line": 148,
+            "line": 149,
             "description": "detach all input event handlers",
             "itemtype": "method",
             "name": "stop",
@@ -2344,7 +3467,7 @@
         },
         {
             "file": "js/input.js",
-            "line": 159,
+            "line": 160,
             "description": "Sets the style of the cursor to be used for this frame",
             "itemtype": "method",
             "name": "setMouseCursor",
@@ -2363,7 +3486,7 @@
         },
         {
             "file": "js/input.js",
-            "line": 170,
+            "line": 171,
             "description": "Performs any rendering required by input",
             "itemtype": "method",
             "name": "render",
@@ -2376,6 +3499,23 @@
         {
             "file": "js/map.js",
             "line": 32,
+            "description": "Loads the assets required by the map",
+            "params": [
+                {
+                    "name": "mapObj",
+                    "description": "information about the map loaded from file",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "map",
+            "module": "map"
+        },
+        {
+            "file": "js/map.js",
+            "line": 44,
             "description": "initialise the map based on a loaded map object",
             "itemtype": "method",
             "name": "init",
@@ -2394,47 +3534,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 67,
-            "description": "load the map data",
-            "itemtype": "method",
-            "name": "load",
-            "params": [
-                {
-                    "name": "mapName",
-                    "description": "the name of the map. This should also be the filename minus the extension \nif mapName is an object it will be treated as the mapObj and loaded instead of requesting the object\nfrom the server",
-                    "type": "String"
-                },
-                {
-                    "name": "onLoad",
-                    "description": "the function to be called once the map has loaded",
-                    "type": "Function"
-                }
-            ],
-            "return": {
-                "description": "this"
-            },
-            "class": "map",
-            "module": "map"
-        },
-        {
-            "file": "js/map.js",
-            "line": 96,
-            "description": "takes the map object and inserts it into the engine",
-            "itemtype": "method",
-            "name": "_loadMapObj",
-            "params": [
-                {
-                    "name": "mapObj",
-                    "description": "The map object to load",
-                    "type": "Object"
-                }
-            ],
-            "class": "map",
-            "module": "map"
-        },
-        {
-            "file": "js/map.js",
-            "line": 110,
+            "line": 81,
             "description": "Creates a new blank map object",
             "itemtype": "method",
             "name": "new",
@@ -2464,7 +3564,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 136,
+            "line": 107,
             "description": "Updates map values",
             "itemtype": "method",
             "name": "update",
@@ -2488,7 +3588,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 153,
+            "line": 124,
             "description": "Saves the map on the server (this should only be allowed on the dev server)",
             "itemtype": "method",
             "name": "save",
@@ -2500,7 +3600,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 183,
+            "line": 156,
             "description": "renders the map",
             "itemtype": "method",
             "name": "render",
@@ -2512,7 +3612,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 206,
+            "line": 179,
             "description": "Checks that a position is within the bounds of the map",
             "itemtype": "method",
             "name": "checkWithinBounds",
@@ -2532,7 +3632,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 220,
+            "line": 193,
             "description": "Gets the tile object for the tile index",
             "itemtype": "method",
             "name": "getTileObj",
@@ -2544,7 +3644,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 234,
+            "line": 207,
             "description": "Checks that a particular tile is passable",
             "itemtype": "method",
             "name": "isPassable",
@@ -2564,7 +3664,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 245,
+            "line": 218,
             "itemtype": "method",
             "name": "collisionAdjust",
             "params": [
@@ -2588,7 +3688,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 310,
+            "line": 283,
             "description": "Scrolls the map so that it is looking at the passed position",
             "itemtype": "method",
             "name": "position",
@@ -2607,7 +3707,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 330,
+            "line": 303,
             "description": "Returns the index of the tile corresponding to the passed postion",
             "itemtype": "method",
             "name": "getTileIndex",
@@ -2627,7 +3727,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 346,
+            "line": 319,
             "description": "Returns a vector indicating the position of the centre of the tile",
             "itemtype": "method",
             "name": "getTileCentre",
@@ -2647,7 +3747,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 365,
+            "line": 338,
             "description": "Converts a tile index into 2d coordinates within the tiles array",
             "itemtype": "method",
             "name": "getTileCoords",
@@ -2667,7 +3767,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 379,
+            "line": 352,
             "description": "Converts 2d tile coords (not pixel coords) into a tile index",
             "itemtype": "method",
             "name": "getTileFromCoords",
@@ -2692,7 +3792,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 395,
+            "line": 368,
             "description": "Checks if a line between two points can pass unimpeeded by the map\nNote that this does not check for collisions with entities",
             "itemtype": "method",
             "name": "lineTraversable",
@@ -2717,7 +3817,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 424,
+            "line": 397,
             "description": "Higlights the tile indicated",
             "itemtype": "method",
             "name": "highlightTile",
@@ -2736,7 +3836,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 446,
+            "line": 419,
             "description": "highlights the tile under the mouse cursor",
             "itemtype": "method",
             "name": "highlightMouseTile",
@@ -2748,7 +3848,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 457,
+            "line": 430,
             "description": "Resizes the map",
             "itemtype": "method",
             "name": "resize",
@@ -2767,7 +3867,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 541,
+            "line": 514,
             "description": "Returns a string indicating the side of the map closest to the mouse cursor",
             "itemtype": "method",
             "name": "sideClosestToCursor",
@@ -2836,265 +3936,6 @@
             "module": "objectPrototype"
         },
         {
-            "file": "js/palette.js",
-            "line": 42,
-            "description": "Player tool",
-            "itemtype": "method",
-            "name": "tools.player.click",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 59,
-            "description": "Remove actor tool",
-            "itemtype": "method",
-            "name": "tools.removeActor.click",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 79,
-            "description": "Baddy tool",
-            "itemtype": "method",
-            "name": "tools.baddy.click",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 96,
-            "description": "Selects a map tile or entity",
-            "itemtype": "method",
-            "name": "tools.select.click",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 131,
-            "description": "Highlights the selected tile",
-            "itemtype": "method",
-            "name": "tools.select.render",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 156,
-            "description": "rotates the selected object",
-            "itemtype": "method",
-            "name": "tools.rotate.click",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 177,
-            "description": "Draws a line from the selected entity to the current mouse cursor position",
-            "itemtype": "method",
-            "name": "tools.rotate.render",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 192,
-            "description": "Adds an extra row / column to the side of the map closest to the cursor",
-            "itemtype": "method",
-            "name": "tools.expand.click",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 206,
-            "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
-            "itemtype": "method",
-            "name": "tools.expand.render",
-            "return": {
-                "description": "palette;"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 225,
-            "description": "Removes a row / column from the side of the map closest to the cursor",
-            "itemtype": "method",
-            "name": "tools.reduce.click",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 239,
-            "description": "Sets the mouse cursor to an arrow indicating which side will be expanded",
-            "itemtype": "method",
-            "name": "tools.reduce.render",
-            "return": {
-                "description": "palette;"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 276,
-            "description": "Initialises the patrol tool by clearing the currently selected entity's patrol route",
-            "itemtype": "method",
-            "name": "init",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 291,
-            "description": "Sets a patrol route for an actor",
-            "itemtype": "method",
-            "name": "tools.patrol.click",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 309,
-            "description": "Displays the patrol route",
-            "itemtype": "method",
-            "name": "tools.patrol.render",
-            "return": {
-                "description": "palette"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 331,
-            "description": "Displays the command palette",
-            "itemtype": "method",
-            "name": "show",
-            "return": {
-                "description": "this"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 342,
-            "description": "Hides the command palette",
-            "itemtype": "method",
-            "name": "hide",
-            "return": {
-                "description": "this"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 353,
-            "description": "Changes the current tool",
-            "itemtype": "method",
-            "name": "changeTool",
-            "return": {
-                "description": "this"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 376,
-            "description": "Initialises the command palette\n\nIncludes a generic event handler for using the currently selected tool",
-            "itemtype": "method",
-            "name": "init",
-            "return": {
-                "description": "this"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 407,
-            "description": "Sets the properties that are to be displayed in the properties panel",
-            "itemtype": "method",
-            "name": "setProperties",
-            "params": [
-                {
-                    "name": "properties",
-                    "description": "The properties to be set. Note that all properties must be primatives (not objects)",
-                    "type": "Object"
-                }
-            ],
-            "return": {
-                "description": "this"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 424,
-            "description": "Carries out rendering actions on behalf of palette tools",
-            "itemtype": "method",
-            "name": "render",
-            "return": {
-                "description": "this"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
-            "file": "js/palette.js",
-            "line": 440,
-            "description": "refreshes the display of the palette",
-            "itemtype": "method",
-            "name": "refresh",
-            "return": {
-                "description": "this"
-            },
-            "class": "palette",
-            "module": "palette"
-        },
-        {
             "file": "js/playerPrototype.js",
             "line": 24,
             "description": "Actions to be taken each frame for the player",
@@ -3153,7 +3994,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 24,
+            "line": 15,
             "description": "Initialise screen",
             "itemtype": "method",
             "name": "init",
@@ -3172,7 +4013,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 36,
+            "line": 27,
             "description": "Change to another screen",
             "itemtype": "method",
             "name": "change",
@@ -3196,7 +4037,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 63,
+            "line": 54,
             "description": "Returns the DOM ID of the current screen",
             "itemtype": "method",
             "name": "getCurrent",
@@ -3209,7 +4050,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 73,
+            "line": 64,
             "description": "Return to previous screen",
             "itemtype": "method",
             "name": "previous",
@@ -3221,7 +4062,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 87,
+            "line": 78,
             "description": "Actions to take when the current screen is updated",
             "itemtype": "method",
             "name": "update",
@@ -3230,7 +4071,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 97,
+            "line": 88,
             "description": "Actions to take when the screen is saved",
             "itemtype": "method",
             "name": "save",
@@ -3242,7 +4083,7 @@
         },
         {
             "file": "js/screen.js",
-            "line": 108,
+            "line": 99,
             "description": "Gets the current save state for the screen",
             "itemtype": "method",
             "name": "isUnsaved",
@@ -3256,6 +4097,23 @@
         {
             "file": "js/tiles.js",
             "line": 18,
+            "description": "Loads the tile assets",
+            "params": [
+                {
+                    "name": "imageUrl",
+                    "description": "The url of the image file",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this"
+            },
+            "class": "tiles",
+            "module": "tiles"
+        },
+        {
+            "file": "js/tiles.js",
+            "line": 32,
             "description": "Sets tile dimensions and passability",
             "itemtype": "method",
             "name": "init",
@@ -3267,8 +4125,8 @@
         },
         {
             "file": "js/tiles.js",
-            "line": 43,
-            "description": "Renders a tile\n\nPlaceholder code TODO: Update with bitmap graphics",
+            "line": 59,
+            "description": "Renders a tile\n\nPlaceholder code TODO: wrap canvas call in a graphics module facade",
             "itemtype": "method",
             "name": "renderTile",
             "return": {
@@ -4989,6 +5847,46 @@
             "line": " specs/lib/jasmine-1.3.1/jasmine.js:1869"
         },
         {
+            "message": "Missing item type\nSaves the map",
+            "line": " js/edit/tools.js:21"
+        },
+        {
+            "message": "Missing item type\nQuits the editor and goes back to the map screen",
+            "line": " js/edit/tools.js:32"
+        },
+        {
+            "message": "Missing item type\nSets the player start location\nIf one already exists, the old one is removed",
+            "line": " js/edit/tools.js:40"
+        },
+        {
+            "message": "Missing item type\nRemoves an actor from the map",
+            "line": " js/edit/tools.js:61"
+        },
+        {
+            "message": "Missing item type\nAdds a baddy to the map",
+            "line": " js/edit/tools.js:81"
+        },
+        {
+            "message": "Missing item type\nSelects both the entity and the tile at the mouse cursors location",
+            "line": " js/edit/tools.js:96"
+        },
+        {
+            "message": "Missing item type\nRotates the selected entity",
+            "line": " js/edit/tools.js:127"
+        },
+        {
+            "message": "Missing item type\nExpands the size of the map",
+            "line": " js/edit/tools.js:154"
+        },
+        {
+            "message": "Missing item type\nReduces the size of the map",
+            "line": " js/edit/tools.js:177"
+        },
+        {
+            "message": "Missing item type\nSets the patrol route for an actor\nIf one already exists then it is deleted rather than edited",
+            "line": " js/edit/tools.js:214"
+        },
+        {
             "message": "Missing item type\nA* (A-Star) algorithm for a path finder",
             "line": " js/lib/AStar.js:3"
         },
@@ -5045,6 +5943,46 @@
             "line": " js/lib/util.js:31"
         },
         {
+            "message": "Missing item type\nInvokes a callback after checking that it is a function",
+            "line": " js/lib/util.js:87"
+        },
+        {
+            "message": "Missing item type\nLoads an asset",
+            "line": " js/assetLoader.js:20"
+        },
+        {
+            "message": "Missing item type\nLoads maps",
+            "line": " js/assetLoader.js:40"
+        },
+        {
+            "message": "Missing item type\nLoads images",
+            "line": " js/assetLoader.js:51"
+        },
+        {
+            "message": "Missing item type\nConducts the ajax request to load an asset",
+            "line": " js/assetLoader.js:70"
+        },
+        {
+            "message": "Missing item type\nThe action to take when an asset has been successfully loaded",
+            "line": " js/assetLoader.js:99"
+        },
+        {
+            "message": "Missing item type\nThe action to take when an asset has failed to load",
+            "line": " js/assetLoader.js:114"
+        },
+        {
+            "message": "Missing item type\nAdds an asset to the asset cache",
+            "line": " js/assetLoader.js:125"
+        },
+        {
+            "message": "Missing item type\nRetrieves an asset from the cache if it exists or returns null",
+            "line": " js/assetLoader.js:137"
+        },
+        {
+            "message": "Missing item type\nDetermines whether or not the baddy is alert and therefore how quickly he reacts",
+            "line": " js/baddyPrototype.js:43"
+        },
+        {
             "message": "Missing item type\nMoves the map up one in the order (nearer the start)",
             "line": " js/campaign.js:171"
         },
@@ -5054,11 +5992,19 @@
         },
         {
             "message": "Missing item type\nEvent handlers for map selection screen",
-            "line": " js/edit.js:15"
+            "line": " js/edit.js:17"
         },
         {
             "message": "Missing item type\nobject storing all vectors that need to be rendered this frame",
             "line": " js/graphics.js:117"
+        },
+        {
+            "message": "Missing item type\nLoads the assets required by the map",
+            "line": " js/map.js:32"
+        },
+        {
+            "message": "Missing item type\nLoads the tile assets",
+            "line": " js/tiles.js:18"
         },
         {
             "message": "Missing item type\nTop level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.",

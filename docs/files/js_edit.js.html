@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-20</em>
+            <em>API Docs for: 0.1.4-23</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -44,6 +44,8 @@
                 <li><a href="../classes/actorPrototype.html">actorPrototype</a></li>
             
                 <li><a href="../classes/actors.html">actors</a></li>
+            
+                <li><a href="../classes/assetLoader.html">assetLoader</a></li>
             
                 <li><a href="../classes/baddyPrototype.html">baddyPrototype</a></li>
             
@@ -73,9 +75,15 @@
             
                 <li><a href="../classes/screen.html">screen</a></li>
             
+                <li><a href="../classes/tabPrototype.html">tabPrototype</a></li>
+            
                 <li><a href="../classes/tiles.html">tiles</a></li>
             
+                <li><a href="../classes/tilesTab.html">tilesTab</a></li>
+            
                 <li><a href="../classes/timer.html">timer</a></li>
+            
+                <li><a href="../classes/tools.html">tools</a></li>
             
                 <li><a href="../classes/util.html">util</a></li>
             
@@ -91,9 +99,13 @@
             
                 <li><a href="../modules/actors.html">actors</a></li>
             
+                <li><a href="../modules/assetLoader.html">assetLoader</a></li>
+            
                 <li><a href="../modules/baddyPrototype.html">baddyPrototype</a></li>
             
                 <li><a href="../modules/campaign.html">campaign</a></li>
+            
+                <li><a href="../modules/edit.html">edit</a></li>
             
                 <li><a href="../modules/entities.html">entities</a></li>
             
@@ -174,6 +186,8 @@
 
 var E = E || {}; // global namespace object
 
+E.edit = {}; // edit namespace
+
 /**
  * @class game
  */
@@ -231,10 +245,12 @@ E.game = (function() {
 			_editItem(this);
 		});
 		$(&#x27;#campaignScreen&#x27;).on(&#x27;click&#x27;, &#x27;.mapName&#x27;, function() {
-			var mapName = $(this).attr(&#x27;id&#x27;).substr(4);
-			E.map.load(mapName, function() {
-				E.screen.change(&#x27;mapScreen&#x27;);
-			});
+			var mapName = $(this).attr(&#x27;id&#x27;).substr(4),
+				callback = function(mapObj) {
+					E.map.load(mapObj);
+					E.screen.change(&#x27;mapScreen&#x27;);
+				};
+			E.assetLoader.load(&#x27;map&#x27;, callback, mapName);
 		});
 		$(&#x27;#campaignScreen&#x27;).on(&#x27;keyup&#x27;, &#x27;#newMap&#x27;, function(e) {
 			var mapName = $(this).val().trim(),
@@ -292,7 +308,7 @@ E.game = (function() {
 
 			function _editMap() {
 				game.reset();
-				game.init(E.map.name);
+				game.start();
 				E.screen.change(&#x27;gameContainer&#x27;);
 			}
 		});
@@ -383,11 +399,14 @@ E.game = (function() {
 	 * @param mapName {string} or a mapObj
 	 * @return this
 	 */
-	game.init = function(mapName) {
+	game.init = function(mapName, start) {
+		var callback = (start || start === undefined) ? game.start : null,
+			assetLoader = E.assetLoader;
 		game.mode = &#x27;edit&#x27;;
 		E.graphics.init(800, 600, false);
-		E.map.load(mapName, game.start);
-		E.palette.init();
+		assetLoader.onLoad = callback;
+		assetLoader.load(&#x27;map&#x27;, E.map.load, mapName);
+		E.edit.palette.init();
 		return this;
 	};
 
@@ -403,6 +422,7 @@ E.game = (function() {
 		}
 		E.input.start(&#x27;edit&#x27;);
 		game.update = true;
+		E.edit.palette.renderPalette();
 		game.animationFrame = window.requestAnimationFrame(game.main);
 		return this;
 	};
@@ -434,9 +454,9 @@ E.game = (function() {
 	 * @method reset
 	 * @return this
 	 */
-	game.reset = function() {
+	game.reset = function(start) {
 		E.entities.instances = [];
-		E.map.init();
+		game.init(E.campaign.getCurrentmap(), start);
 		game.update = true;
 		return this;
 	};

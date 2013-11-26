@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         sourceMappingURL: '/production/sourceMap.js'
       },
       files: {
-        src: ['js/lib/*.js', 'js/objectPrototype.js', 'js/escape.js', 'js/map.js', 'js/entities.js', 'js/actorPrototype.js', 'js/baddyPrototype.js', 'js/**/*.js', '!js/edit.js', '!js/palette.js'],
+        src: ['js/lib/*.js', 'js/objectPrototype.js', 'js/escape.js', 'js/map.js', 'js/entities.js', 'js/actorPrototype.js', 'js/baddyPrototype.js', 'js/**/*.js', '!js/edit.js', '!js/edit/*'],
         dest: 'production/app-min.js'
       }
     },

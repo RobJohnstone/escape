@@ -4,7 +4,12 @@ None (alright, there are bound to be some, but I haven't found them yet!)
 
 TASKS:
 
-Need an asynchronous asset loading pipeline that copes with assets (e.g. json directing that other assets should be loaded) Best approach would be to ensure that the check for loaded count occurs after assets have been loaded
+Refactor tiles.js
+	- load tileset object as an asset
+Commit
+
+Add additional tile graphics and update tileset object
+Commit
 
 Write bitmap graphics code (separate into separate tasks)
 
@@ -12,7 +17,7 @@ Improve modularisation of code (modules are way to long)
 
 Tests!
 
-Re-engineer non-game code (e.g. screen, campaign and palette modules). This code is more or less universally terrible. Some kind of UI library would be best.
+Re-engineer non-game code (e.g. screen, campaign, game.js, edit.js). This code is more or less universally terrible.
 
 Baddies should check if they have a clear line of shot
 
@@ -25,7 +30,3 @@ Improve path finding so that if there are no obstacles, move directly rather tha
 Add steering behaviour to path finding code
 
 Tidy up routing in server.js (there's huge repetition between camapigns and maps)
-
-Consider using backbone (or homegrown alternative for editor)
-
-Find (or write) documentation tool that better supports prototypal rather than classical inheritance

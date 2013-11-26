@@ -291,7 +291,7 @@ E.graphics = (function() {
 		}
 		E.map.render();
 		E.entities.render();
-		if (E.palette) E.palette.render();
+		if (E.edit && E.edit.palette && E.edit.palette.render) E.edit.palette.render();
 		E.input.render();
 		graphics.vectors.render();
 		graphics.renderText();

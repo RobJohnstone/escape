@@ -50,25 +50,33 @@ body {
 	height: 100%;
 	overflow: auto;
 	color: black;
-	background-color: #999;
+	background-color: #E9E9E9;
 }
 
-#filePanel, .palettePanel {
-	margin-bottom: 10px;
+.tabsBar {
+	margin: 0;
 }
 
-.paletteTool, .paletteProperty {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.paletteTool:hover {
-	color: yellow;
+.tabButton {
+	display: inline-block;
+	border: 1px solid #666666;
+	border-bottom: 0 none;
+	border-radius: 3px 3px 0 0;
+	padding: 5px;
 	cursor: pointer;
+	margin: 0;
+	color: #666666;
+	background-color: #A9A9A9;
 }
 
-.selected {
+.selectedTabButton {
+	border-color: black;
 	font-weight: bold;
+	border-bottom-style: none;
+	border-bottom-color: transparent;
+	border-bottom-width: 0;
+	background-color: gray;
+	color: black;
 }
 
 .label {
@@ -82,4 +90,44 @@ body {
 
 .disabled {
 	color: gray;
+}
+
+.tabs {
+	background-color: gray;
+	height: 100%;
+}
+
+.tab {
+	display: none;
+	padding: 10px;
+}
+
+.tab.selectedTab {
+	display: block;
+}
+
+.tab .command {
+	margin: 0;
+	cursor: pointer;
+}
+
+.tab .currentTool {
+	font-weight: bold;
+}
+
+.tab .tileButtons {
+	list-style-type: none;
+	padding: 0;
+}
+
+.tab .tileButton {
+	display: inline-block;
+	margin: 6px;
+}
+
+.tab .tileButton.selected {
+	border-style: solid;
+	border-width: 1px;
+	border-color: blue;
+	margin: 5px;
 }

@@ -6,6 +6,8 @@
 
 var E = E || {}; // global namespace object
 
+E.edit = {}; // edit namespace
+
 /**
  * @class game
  */
@@ -64,7 +66,8 @@ E.game = (function() {
 		});
 		$('#campaignScreen').on('click', '.mapName', function() {
 			var mapName = $(this).attr('id').substr(4),
-				callback = function() {
+				callback = function(mapObj) {
+					E.map.load(mapObj);
 					E.screen.change('mapScreen');
 				};
 			E.assetLoader.load('map', callback, mapName);
@@ -125,7 +128,7 @@ E.game = (function() {
 
 			function _editMap() {
 				game.reset();
-				game.init(E.map.name);
+				game.start();
 				E.screen.change('gameContainer');
 			}
 		});
@@ -216,11 +219,14 @@ E.game = (function() {
 	 * @param mapName {string} or a mapObj
 	 * @return this
 	 */
-	game.init = function(mapName) {
+	game.init = function(mapName, start) {
+		var callback = (start || start === undefined) ? game.start : null,
+			assetLoader = E.assetLoader;
 		game.mode = 'edit';
 		E.graphics.init(800, 600, false);
-		E.assetLoader.load('map', game.start, mapName);
-		E.palette.init();
+		assetLoader.onLoad = callback;
+		assetLoader.load('map', E.map.load, mapName);
+		E.edit.palette.init();
 		return this;
 	};
 
@@ -236,6 +242,7 @@ E.game = (function() {
 		}
 		E.input.start('edit');
 		game.update = true;
+		E.edit.palette.renderPalette();
 		game.animationFrame = window.requestAnimationFrame(game.main);
 		return this;
 	};
@@ -267,9 +274,9 @@ E.game = (function() {
 	 * @method reset
 	 * @return this
 	 */
-	game.reset = function() {
+	game.reset = function(start) {
 		E.entities.instances = [];
-		E.map.init();
+		game.init(E.campaign.getCurrentmap(), start);
 		game.update = true;
 		return this;
 	};

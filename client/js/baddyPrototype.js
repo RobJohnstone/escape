@@ -244,7 +244,7 @@ E.baddyPrototype = (function() {
 		var route = this.patrolRoute;
 		if (route) {
 			for (var i=0, len=route.length-1; i<len; i++) {
-				E.graphics.vectors.line(E.map.getTileCentre(route[i]), E.map.getTileCentre(route[i+1]), 'white', true);
+				E.graphics.vectors.line(E.map.getTileCentre(route[i]), E.map.getTileCentre(route[i+1]), 'red', true);
 			}
 		}
 		return this;

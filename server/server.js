@@ -55,6 +55,7 @@ app.returnFile = function(filename, res) {
 };
 
 app.saveFile = function(filename, data) {
+	console.log('Saving file: '+filename);
 	fs.writeFile(filename, data, function(err) {
 		if (err) console.log(err);
 	});
