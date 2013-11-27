@@ -52,7 +52,7 @@
 			tileButton.width(this._tiles.tileWidth);
 			tileButton.height(this._tiles.tileHeight);
 			tileButton.css({
-				'background-image': 'url('+this._tiles._imageUrl+')',
+				'background-image': 'url('+this._tiles.tilesetImage.src+')',
 				'background-position': (-index * this._tiles.tileWidth)+'px 0'
 			});
 

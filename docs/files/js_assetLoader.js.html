@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-23</em>
+            <em>API Docs for: 0.1.4-25</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -226,6 +226,27 @@ E.assetLoader = (function() {
 	assetLoader.load.map = function(onLoad, mapName) {
 		var url = &#x27;/maps/&#x27;+mapName;
 		assetLoader.load.generic(onLoad, url, &#x27;json&#x27;);
+	};
+
+	/**
+	 * Loads tilesets
+	 *
+	 * @param onLoad {function} The callback to be invoked once the tileset has loaded
+	 * @param tilesetUrl {string} The tilesetName of the tileset
+	 */
+	assetLoader.load.tileset = function(onLoad, tilesetName) {
+		var tilesetUrl = &#x27;assets/tilesets/&#x27;+tilesetName+&#x27;.json&#x27;,
+			imageUrl = &#x27;assets/images/&#x27;+tilesetName+&#x27;.png&#x27;,
+			tilesetObj = {};
+		assetLoader.load.image(checkLoaded.bind(null, &#x27;image&#x27;), imageUrl);
+		assetLoader.load.generic(checkLoaded.bind(null, &#x27;tileset&#x27;), tilesetUrl, &#x27;json&#x27;);
+
+		function checkLoaded(type, result) {
+			tilesetObj[type] = result;
+			if (tilesetObj.image &amp;&amp; tilesetObj.tileset) {
+				util.invokeCallback(onLoad, tilesetObj);
+			}
+		}
 	};
 
 	/**

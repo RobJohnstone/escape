@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-23</em>
+            <em>API Docs for: 0.1.4-25</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -249,6 +249,19 @@ E.campaign = (function() {
 	 */
 	campaign.getCurrentmap = function() {
 		return campaign.data.maps[campaign.current];
+	};
+
+	/**
+	 * Sets the current map
+	 *
+	 * @method setCurrentmap
+	 * @param the name of the map
+	 * @return {Number} The index of the current map, -1 if the map does not exist in the campaign
+	 */
+	campaign.setCurrentmap = function(mapName) {
+		var index = campaign.data.maps.indexOf(mapName);
+		campaign.current = (index !== -1) ? index : campaign.current;
+		return index;
 	};
 
 	/**

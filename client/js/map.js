@@ -23,6 +23,7 @@ E.map = (function() {
 		rows: 0,
 		tileWidth: 0,
 		tileHeight: 0,
+		tileset: 'tileset',
 		width: 0,
 		height: 0,
 		data: [],
@@ -37,7 +38,12 @@ E.map = (function() {
 	 */
 	map.load = function(mapObj) {
 		map.mapObj = mapObj;
-		E.tiles.load('tileset', mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
+		if (mapObj.tileset) {
+			E.tiles.load(mapObj.tileset, mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
+		}
+		else {
+			throw new Exception('map does not specify tileset');
+		}
 		return this;
 	};
 

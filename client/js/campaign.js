@@ -72,6 +72,19 @@ E.campaign = (function() {
 	};
 
 	/**
+	 * Sets the current map
+	 *
+	 * @method setCurrentmap
+	 * @param the name of the map
+	 * @return {Number} The index of the current map, -1 if the map does not exist in the campaign
+	 */
+	campaign.setCurrentmap = function(mapName) {
+		var index = campaign.data.maps.indexOf(mapName);
+		campaign.current = (index !== -1) ? index : campaign.current;
+		return index;
+	};
+
+	/**
 	 * Populates the relevant DOM elements with campaign information
 	 *
 	 * @method render

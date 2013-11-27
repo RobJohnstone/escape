@@ -4,14 +4,12 @@ None (alright, there are bound to be some, but I haven't found them yet!)
 
 TASKS:
 
-Refactor tiles.js
-	- load tileset object as an asset
-Commit
-
 Add additional tile graphics and update tileset object
 Commit
 
-Write bitmap graphics code (separate into separate tasks)
+tileset editor
+
+Write entity bitmap graphics code (separate into separate tasks)
 
 Improve modularisation of code (modules are way to long)
 

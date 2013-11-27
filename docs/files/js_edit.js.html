@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-23</em>
+            <em>API Docs for: 0.1.4-25</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -247,6 +247,7 @@ E.game = (function() {
 		$(&#x27;#campaignScreen&#x27;).on(&#x27;click&#x27;, &#x27;.mapName&#x27;, function() {
 			var mapName = $(this).attr(&#x27;id&#x27;).substr(4),
 				callback = function(mapObj) {
+					E.campaign.setCurrentmap(mapName);
 					E.map.load(mapObj);
 					E.screen.change(&#x27;mapScreen&#x27;);
 				};
@@ -454,9 +455,9 @@ E.game = (function() {
 	 * @method reset
 	 * @return this
 	 */
-	game.reset = function(start) {
+	game.reset = function() {
 		E.entities.instances = [];
-		game.init(E.campaign.getCurrentmap(), start);
+		game.init(E.campaign.getCurrentmap());
 		game.update = true;
 		return this;
 	};

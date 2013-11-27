@@ -2,7 +2,7 @@
     "project": {
         "name": "escape",
         "description": "HTML5 Game - 1942: You are a British paratrooper captured in France during a raid on a secret German radar installation. Taken to a Gestapo interrogation centre you must now escape and return to Britain.",
-        "version": "0.1.4-23",
+        "version": "0.1.4-25",
         "url": ""
     },
     "files": {
@@ -1576,7 +1576,10 @@
             "line": 14,
             "description": "Initialises the tab",
             "itemtype": "method",
-            "name": "init\nreturn this",
+            "name": "init",
+            "return": {
+                "description": "this"
+            },
             "class": "tilesTab",
             "module": "edit"
         },
@@ -2180,6 +2183,25 @@
         {
             "file": "js/assetLoader.js",
             "line": 51,
+            "description": "Loads tilesets",
+            "params": [
+                {
+                    "name": "onLoad",
+                    "description": "The callback to be invoked once the tileset has loaded",
+                    "type": "Function"
+                },
+                {
+                    "name": "tilesetUrl",
+                    "description": "The tilesetName of the tileset",
+                    "type": "String"
+                }
+            ],
+            "class": "assetLoader",
+            "module": "assetLoader"
+        },
+        {
+            "file": "js/assetLoader.js",
+            "line": 72,
             "description": "Loads images",
             "params": [
                 {
@@ -2193,7 +2215,7 @@
         },
         {
             "file": "js/assetLoader.js",
-            "line": 70,
+            "line": 91,
             "description": "Conducts the ajax request to load an asset",
             "params": [
                 {
@@ -2221,7 +2243,7 @@
         },
         {
             "file": "js/assetLoader.js",
-            "line": 99,
+            "line": 120,
             "description": "The action to take when an asset has been successfully loaded",
             "params": [
                 {
@@ -2240,7 +2262,7 @@
         },
         {
             "file": "js/assetLoader.js",
-            "line": 114,
+            "line": 135,
             "description": "The action to take when an asset has failed to load",
             "params": [
                 {
@@ -2261,7 +2283,7 @@
         },
         {
             "file": "js/assetLoader.js",
-            "line": 125,
+            "line": 146,
             "description": "Adds an asset to the asset cache",
             "params": [
                 {
@@ -2283,7 +2305,7 @@
         },
         {
             "file": "js/assetLoader.js",
-            "line": 137,
+            "line": 158,
             "description": "Retrieves an asset from the cache if it exists or returns null",
             "params": [
                 {
@@ -2542,6 +2564,25 @@
         {
             "file": "js/campaign.js",
             "line": 74,
+            "description": "Sets the current map",
+            "itemtype": "method",
+            "name": "setCurrentmap",
+            "params": [
+                {
+                    "name": "the",
+                    "description": "name of the map"
+                }
+            ],
+            "return": {
+                "description": "The index of the current map, -1 if the map does not exist in the campaign",
+                "type": "Number"
+            },
+            "class": "campaign",
+            "module": "campaign"
+        },
+        {
+            "file": "js/campaign.js",
+            "line": 87,
             "description": "Populates the relevant DOM elements with campaign information",
             "itemtype": "method",
             "name": "render",
@@ -2553,7 +2594,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 90,
+            "line": 103,
             "description": "Creates a new campaign. The only field populated is the name.\nThis method does not save the newly created campaign (use campaign.save())",
             "itemtype": "method",
             "name": "create",
@@ -2572,7 +2613,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 108,
+            "line": 121,
             "description": "Saves the current information about the campaign\nNote: this requires that the server is in 'dev' mode",
             "itemtype": "method",
             "name": "save",
@@ -2591,7 +2632,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 131,
+            "line": 144,
             "description": "updates the value of a field in the campaign\ncan remove the prefix campaign from property names while preserving camel-casing",
             "itemtype": "method",
             "name": "update",
@@ -2615,7 +2656,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 149,
+            "line": 162,
             "description": "Adds a map to the campaign\nNote this does not check whether the map actually exists",
             "itemtype": "method",
             "name": "addMap",
@@ -2639,7 +2680,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 171,
+            "line": 184,
             "description": "Moves the map up one in the order (nearer the start)",
             "params": [
                 {
@@ -2656,7 +2697,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 187,
+            "line": 200,
             "description": "Moves the map down one in the order (nearer the end)",
             "params": [
                 {
@@ -2673,7 +2714,7 @@
         },
         {
             "file": "js/campaign.js",
-            "line": 203,
+            "line": 216,
             "description": "Populates the relevant DOM ul with the campaigns",
             "itemtype": "method",
             "name": "list",
@@ -2692,7 +2733,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 151,
+            "line": 152,
             "description": "sends a request to the server instructing it to delete a file",
             "itemtype": "method",
             "name": "_deleteItem",
@@ -2715,7 +2756,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 198,
+            "line": 199,
             "description": "Updates the value of an item",
             "itemtype": "method",
             "name": "_editItem",
@@ -2733,7 +2774,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 215,
+            "line": 216,
             "description": "Carries out all initialisation actions",
             "itemtype": "method",
             "name": "init",
@@ -2752,7 +2793,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 233,
+            "line": 234,
             "description": "Starts any modules that need starting and then begins the game loop",
             "itemtype": "method",
             "name": "start",
@@ -2764,7 +2805,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 250,
+            "line": 251,
             "description": "The body of the game loop",
             "itemtype": "method",
             "name": "main",
@@ -2776,7 +2817,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 271,
+            "line": 272,
             "description": "Resets game state when map data changes",
             "itemtype": "method",
             "name": "reset",
@@ -2788,7 +2829,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 284,
+            "line": 285,
             "description": "A singleton DOM element. On first call creates the DOM element. On all calls populates the DOM element with the items\nin the game.info.items array.",
             "itemtype": "method",
             "name": "info",
@@ -2801,7 +2842,7 @@
         },
         {
             "file": "js/edit.js",
-            "line": 306,
+            "line": 307,
             "description": "Adds an item to the game.info.items array. \nIf one argument, adds the variable name and value\nIf two, adds both separated by a colon",
             "itemtype": "method",
             "name": "info.add",
@@ -3498,7 +3539,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 32,
+            "line": 33,
             "description": "Loads the assets required by the map",
             "params": [
                 {
@@ -3515,7 +3556,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 44,
+            "line": 50,
             "description": "initialise the map based on a loaded map object",
             "itemtype": "method",
             "name": "init",
@@ -3534,7 +3575,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 81,
+            "line": 87,
             "description": "Creates a new blank map object",
             "itemtype": "method",
             "name": "new",
@@ -3564,7 +3605,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 107,
+            "line": 113,
             "description": "Updates map values",
             "itemtype": "method",
             "name": "update",
@@ -3588,7 +3629,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 124,
+            "line": 130,
             "description": "Saves the map on the server (this should only be allowed on the dev server)",
             "itemtype": "method",
             "name": "save",
@@ -3600,7 +3641,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 156,
+            "line": 162,
             "description": "renders the map",
             "itemtype": "method",
             "name": "render",
@@ -3612,7 +3653,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 179,
+            "line": 185,
             "description": "Checks that a position is within the bounds of the map",
             "itemtype": "method",
             "name": "checkWithinBounds",
@@ -3632,7 +3673,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 193,
+            "line": 199,
             "description": "Gets the tile object for the tile index",
             "itemtype": "method",
             "name": "getTileObj",
@@ -3644,7 +3685,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 207,
+            "line": 213,
             "description": "Checks that a particular tile is passable",
             "itemtype": "method",
             "name": "isPassable",
@@ -3664,7 +3705,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 218,
+            "line": 224,
             "itemtype": "method",
             "name": "collisionAdjust",
             "params": [
@@ -3688,7 +3729,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 283,
+            "line": 289,
             "description": "Scrolls the map so that it is looking at the passed position",
             "itemtype": "method",
             "name": "position",
@@ -3707,7 +3748,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 303,
+            "line": 309,
             "description": "Returns the index of the tile corresponding to the passed postion",
             "itemtype": "method",
             "name": "getTileIndex",
@@ -3727,7 +3768,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 319,
+            "line": 325,
             "description": "Returns a vector indicating the position of the centre of the tile",
             "itemtype": "method",
             "name": "getTileCentre",
@@ -3747,7 +3788,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 338,
+            "line": 344,
             "description": "Converts a tile index into 2d coordinates within the tiles array",
             "itemtype": "method",
             "name": "getTileCoords",
@@ -3767,7 +3808,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 352,
+            "line": 358,
             "description": "Converts 2d tile coords (not pixel coords) into a tile index",
             "itemtype": "method",
             "name": "getTileFromCoords",
@@ -3792,7 +3833,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 368,
+            "line": 374,
             "description": "Checks if a line between two points can pass unimpeeded by the map\nNote that this does not check for collisions with entities",
             "itemtype": "method",
             "name": "lineTraversable",
@@ -3817,7 +3858,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 397,
+            "line": 403,
             "description": "Higlights the tile indicated",
             "itemtype": "method",
             "name": "highlightTile",
@@ -3836,7 +3877,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 419,
+            "line": 425,
             "description": "highlights the tile under the mouse cursor",
             "itemtype": "method",
             "name": "highlightMouseTile",
@@ -3848,7 +3889,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 430,
+            "line": 436,
             "description": "Resizes the map",
             "itemtype": "method",
             "name": "resize",
@@ -3867,7 +3908,7 @@
         },
         {
             "file": "js/map.js",
-            "line": 514,
+            "line": 520,
             "description": "Returns a string indicating the side of the map closest to the mouse cursor",
             "itemtype": "method",
             "name": "sideClosestToCursor",
@@ -4100,8 +4141,8 @@
             "description": "Loads the tile assets",
             "params": [
                 {
-                    "name": "imageUrl",
-                    "description": "The url of the image file",
+                    "name": "tilesetName",
+                    "description": "The name of the tileset",
                     "type": "String"
                 }
             ],
@@ -4113,19 +4154,7 @@
         },
         {
             "file": "js/tiles.js",
-            "line": 32,
-            "description": "Sets tile dimensions and passability",
-            "itemtype": "method",
-            "name": "init",
-            "return": {
-                "description": "this"
-            },
-            "class": "tiles",
-            "module": "tiles"
-        },
-        {
-            "file": "js/tiles.js",
-            "line": 59,
+            "line": 34,
             "description": "Renders a tile\n\nPlaceholder code TODO: wrap canvas call in a graphics module facade",
             "itemtype": "method",
             "name": "renderTile",
@@ -5955,28 +5984,32 @@
             "line": " js/assetLoader.js:40"
         },
         {
-            "message": "Missing item type\nLoads images",
+            "message": "Missing item type\nLoads tilesets",
             "line": " js/assetLoader.js:51"
         },
         {
+            "message": "Missing item type\nLoads images",
+            "line": " js/assetLoader.js:72"
+        },
+        {
             "message": "Missing item type\nConducts the ajax request to load an asset",
-            "line": " js/assetLoader.js:70"
+            "line": " js/assetLoader.js:91"
         },
         {
             "message": "Missing item type\nThe action to take when an asset has been successfully loaded",
-            "line": " js/assetLoader.js:99"
+            "line": " js/assetLoader.js:120"
         },
         {
             "message": "Missing item type\nThe action to take when an asset has failed to load",
-            "line": " js/assetLoader.js:114"
+            "line": " js/assetLoader.js:135"
         },
         {
             "message": "Missing item type\nAdds an asset to the asset cache",
-            "line": " js/assetLoader.js:125"
+            "line": " js/assetLoader.js:146"
         },
         {
             "message": "Missing item type\nRetrieves an asset from the cache if it exists or returns null",
-            "line": " js/assetLoader.js:137"
+            "line": " js/assetLoader.js:158"
         },
         {
             "message": "Missing item type\nDetermines whether or not the baddy is alert and therefore how quickly he reacts",
@@ -5984,11 +6017,11 @@
         },
         {
             "message": "Missing item type\nMoves the map up one in the order (nearer the start)",
-            "line": " js/campaign.js:171"
+            "line": " js/campaign.js:184"
         },
         {
             "message": "Missing item type\nMoves the map down one in the order (nearer the end)",
-            "line": " js/campaign.js:187"
+            "line": " js/campaign.js:200"
         },
         {
             "message": "Missing item type\nEvent handlers for map selection screen",
@@ -6000,7 +6033,7 @@
         },
         {
             "message": "Missing item type\nLoads the assets required by the map",
-            "line": " js/map.js:32"
+            "line": " js/map.js:33"
         },
         {
             "message": "Missing item type\nLoads the tile assets",

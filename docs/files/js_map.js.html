@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-23</em>
+            <em>API Docs for: 0.1.4-25</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -203,6 +203,7 @@ E.map = (function() {
 		rows: 0,
 		tileWidth: 0,
 		tileHeight: 0,
+		tileset: &#x27;tileset&#x27;,
 		width: 0,
 		height: 0,
 		data: [],
@@ -217,7 +218,12 @@ E.map = (function() {
 	 */
 	map.load = function(mapObj) {
 		map.mapObj = mapObj;
-		E.tiles.load(&#x27;assets/images/tileset.png&#x27;, mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
+		if (mapObj.tileset) {
+			E.tiles.load(mapObj.tileset, mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
+		}
+		else {
+			throw new Exception(&#x27;map does not specify tileset&#x27;);
+		}
 		return this;
 	};
 

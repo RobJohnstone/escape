@@ -67,6 +67,7 @@ E.game = (function() {
 		$('#campaignScreen').on('click', '.mapName', function() {
 			var mapName = $(this).attr('id').substr(4),
 				callback = function(mapObj) {
+					E.campaign.setCurrentmap(mapName);
 					E.map.load(mapObj);
 					E.screen.change('mapScreen');
 				};
@@ -274,9 +275,9 @@ E.game = (function() {
 	 * @method reset
 	 * @return this
 	 */
-	game.reset = function(start) {
+	game.reset = function() {
 		E.entities.instances = [];
-		game.init(E.campaign.getCurrentmap(), start);
+		game.init(E.campaign.getCurrentmap());
 		game.update = true;
 		return this;
 	};

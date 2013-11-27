@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.4-23</em>
+            <em>API Docs for: 0.1.4-25</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -195,7 +195,7 @@
 	 * Initialises the tab
 	 *
 	 * @method init
-	 * return this
+	 * @return this
 	 */
 	tilesTab.init = function() {
 		this._selectedTile = null;
@@ -232,7 +232,7 @@
 			tileButton.width(this._tiles.tileWidth);
 			tileButton.height(this._tiles.tileHeight);
 			tileButton.css({
-				&#x27;background-image&#x27;: &#x27;url(&#x27;+this._tiles._imageUrl+&#x27;)&#x27;,
+				&#x27;background-image&#x27;: &#x27;url(&#x27;+this._tiles.tilesetImage.src+&#x27;)&#x27;,
 				&#x27;background-position&#x27;: (-index * this._tiles.tileWidth)+&#x27;px 0&#x27;
 			});
 
