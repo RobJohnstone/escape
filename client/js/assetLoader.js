@@ -49,6 +49,27 @@ E.assetLoader = (function() {
 	};
 
 	/**
+	 * Loads tilesets
+	 *
+	 * @param onLoad {function} The callback to be invoked once the tileset has loaded
+	 * @param tilesetUrl {string} The tilesetName of the tileset
+	 */
+	assetLoader.load.tileset = function(onLoad, tilesetName) {
+		var tilesetUrl = 'assets/tilesets/'+tilesetName+'.json',
+			imageUrl = 'assets/images/'+tilesetName+'.png',
+			tilesetObj = {};
+		assetLoader.load.image(checkLoaded.bind(null, 'image'), imageUrl);
+		assetLoader.load.generic(checkLoaded.bind(null, 'tileset'), tilesetUrl, 'json');
+
+		function checkLoaded(type, result) {
+			tilesetObj[type] = result;
+			if (tilesetObj.image && tilesetObj.tileset) {
+				util.invokeCallback(onLoad, tilesetObj);
+			}
+		}
+	};
+
+	/**
 	 * Loads images
 	 *
 	 * @param onLoad {function} The callback to be invoked once the image has loaded

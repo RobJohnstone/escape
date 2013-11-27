@@ -37,7 +37,7 @@ E.map = (function() {
 	 */
 	map.load = function(mapObj) {
 		map.mapObj = mapObj;
-		E.tiles.load('assets/images/tileset.png', mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
+		E.tiles.load('tileset', mapObj.tileWidth, mapObj.tileHeight, map.init.bind(null, mapObj));
 		return this;
 	};
 

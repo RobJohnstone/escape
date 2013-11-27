@@ -15,7 +15,7 @@
 	 * Initialises the tab
 	 *
 	 * @method init
-	 * return this
+	 * @return this
 	 */
 	tilesTab.init = function() {
 		this._selectedTile = null;

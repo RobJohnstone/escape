@@ -1,0 +1,14 @@
+[{
+	"passable": true
+},
+{
+	"passable": false
+},
+{
+	"passable": false
+},
+{
+	"colour": "yellow",
+	"passable": true,
+	"exit": true
+}]

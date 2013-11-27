@@ -18,42 +18,17 @@ E.tiles = (function() {
 	/**
 	 * Loads the tile assets
 	 *
-	 * @param imageUrl {String} The url of the image file
+	 * @param tilesetName {String} The name of the tileset
 	 * @return this
 	 */
-	tiles.load = function(url, tileWidth, tileHeight, callback) {
-		this._imageUrl = url;
-		E.assetLoader.load('image', function() {
-			tiles.init(tileWidth, tileHeight);
+	tiles.load = function(tilesetName, tileWidth, tileHeight, callback) {
+		this.tileWidth = tileWidth;
+		this.tileHeight = tileHeight;
+		E.assetLoader.load('tileset', function(result) {
+			this.tilesetImage = result.image;
+			this.tileset = result.tileset;
 			callback();
-		}, url);
-	};
-
-	/**
-	 * Sets tile dimensions and passability
-	 *
-	 * @method init
-	 * @return this
-	 */
-	tiles.init = function(tileWidth, tileHeight) {
-		tiles.tilesetImage = E.assetLoader.getFromCache(this._imageUrl);
-		tiles.tileWidth = tileWidth;
-		tiles.tileHeight = tileHeight;
-		tiles.tileset = [{ // floor
-							passable: true
-						},
-						{ // hwall
-							passable: false
-						},
-						{ // vwall
-							passable: false
-						},
-						{ // exit
-							colour: 'yellow',
-							passable: true,
-							exit: true
-						}];
-		return this;
+		}.bind(this), tilesetName);
 	};
 
 	/**
