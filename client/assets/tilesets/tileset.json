@@ -8,6 +8,33 @@
 	"passable": false
 },
 {
+	"passable": false
+},
+{
+	"passable": false
+},
+{
+	"passable": false
+},
+{
+	"passable": true
+},
+{
+	"passable": true
+},
+{
+	"passable": true
+},
+{
+	"passable": true
+},
+{
+	"passable": true
+},
+{
+	"passable": true
+},
+{
 	"colour": "yellow",
 	"passable": true,
 	"exit": true

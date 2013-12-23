@@ -141,6 +141,7 @@ E.map = (function() {
 			rows: map.rows,
 			tileWidth: map.tileWidth,
 			tileHeight: map.tileHeight,
+			tileset: map.tileset,
 			actors: E.entities.instances.filter(function(entity) {
 				return entity.abbr; // ensure only actors and not other entities
 			}).map(function(entity) {
